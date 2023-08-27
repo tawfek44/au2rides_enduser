@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/au2rides_mobile_enduser.iml" filepath="$PROJECT_DIR$/au2rides_mobile_enduser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/au2rides_mobile_enduser_android.iml" filepath="$PROJECT_DIR$/android/au2rides_mobile_enduser_android.iml" />
+    </modules>
+  </component>
+</project>
