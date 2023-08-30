@@ -12,6 +12,7 @@ class Routes {
   static const genderScreenRoute = "GENDER_SCREEN_ROUTE";
   static const countriesScreenRoute = "COUNTRIES_SCREEN_ROUTE";
   static const addRideScreenRoute = "ADD_RIDE_SCREEN_ROUTE";
+  static const addFuelScreenRoute = "ADD_FUEL_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
