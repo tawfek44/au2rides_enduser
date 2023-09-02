@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/styles/colors.dart';
 import '../../../core/widgets/app_text.dart';
@@ -15,11 +16,20 @@ class AddFuelScreen extends StatefulWidget {
 }
 
 class _AddFuelScreenState extends State<AddFuelScreen> {
+  var fontSize = 13.sp;
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
+  late DateTime tempDate;
+  var dateFormat;
   @override
   Widget build(BuildContext context) {
+    tempDate = DateFormat("hh:mm").parse("${dayTime.hour}:${dayTime.minute}");
+    dateFormat = DateFormat("h:mm a");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
         title: AppText(
           text: "Add fuel",
           fontSize: 16.sp,
@@ -63,90 +73,120 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
     );
   }
 
-  Widget getNotesSection()=>CupertinoListSection.insetGrouped(
-    header: AppText(text: "Notes",color: AppColors.greyColor,fontSize: 15.sp,),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile.notched(
-        onTap: (){},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
-        title: const CupertinoTextField(
-          decoration: BoxDecoration(
-            border: Border(
-              right: BorderSide.none
-            )
-          ),
-          maxLines: 5,
-        ),)
-    ],
-  );
-  Widget getDocumentsSection()=>CupertinoListSection.insetGrouped(
-    header: AppText(text: "Documents",color: AppColors.greyColor,fontSize: 15.sp,),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile.notched(
-        onTap: (){},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
-        trailing: const Icon(CupertinoIcons.add_circled,color: AppColors.greyColor,),
-          title: AppText(text: "Attach Document...",color: AppColors.greyColor,fontSize: 15.sp,),)
-    ],
-  );
-  Widget getFuelBrandAndPaymentMethods()=>CupertinoListSection.insetGrouped(
-    margin: EdgeInsets.zero,
-    children: [
-      Column(
+  Widget getNotesSection() =>
+      CupertinoListSection.insetGrouped(
+        header: AppText(
+          text: "Notes",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+        margin: EdgeInsets.zero,
         children: [
-          getFuelBrandSection(),
-          Divider(
-            indent: 60.w,
-            height: 0,
-          ),
-          getPaymentMethodSection()
+          CupertinoListTile.notched(
+            onTap: () {},
+            padding: EdgeInsets.symmetric(horizontal: 13.w),
+            title: const CupertinoTextField(
+              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+              maxLines: 5,
+            ),
+          )
         ],
-      )
-    ],
-  );
-  Widget getPaymentMethodSection()=>CupertinoListTile.notched(
-    onTap: (){},
-    padding: EdgeInsets.symmetric(horizontal: 13.w),
-    title: AppText(
-      text: "Payment Method",
-      fontSize: 15.sp,
-    ),
-    leading: Icon(
-      Icons.payment,
-      color: Theme.of(context).primaryColor,
-    ),
-    additionalInfo:  AppText(
-      text: "Not Set",
-      color: AppColors.greyColor,
-      fontSize: 15.sp,
-    ),
-    trailing: const Icon(
-      CupertinoIcons.forward,
-      color: AppColors.greyColor,
-    ),);
-  Widget getFuelBrandSection()=>CupertinoListTile.notched(
-    onTap: (){},
-    padding: EdgeInsets.symmetric(horizontal: 13.w),
-    title: AppText(
-      text: "Fuel Brand",
-      fontSize: 15.sp,
-    ),
-    leading: Icon(
-      Icons.local_gas_station,
-      color: Theme.of(context).primaryColor,
-    ),
-    additionalInfo:  AppText(
-      text: "Not Set",
-      color: AppColors.greyColor,
-      fontSize: 15.sp,
-    ),
-    trailing: const Icon(
-      CupertinoIcons.forward,
-      color: AppColors.greyColor,
-    ),);
-  Widget getCostSection() => CupertinoListSection.insetGrouped(
+      );
+
+  Widget getDocumentsSection() =>
+      CupertinoListSection.insetGrouped(
+        header: AppText(
+          text: "Documents",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+        margin: EdgeInsets.zero,
+        children: [
+          CupertinoListTile.notched(
+            onTap: () {},
+            padding: EdgeInsets.symmetric(horizontal: 13.w),
+            trailing: const Icon(
+              CupertinoIcons.add_circled,
+              color: AppColors.greyColor,
+            ),
+            title: AppText(
+              text: "Attach Document...",
+              color: AppColors.greyColor,
+              fontSize: fontSize,
+            ),
+          )
+        ],
+      );
+
+  Widget getFuelBrandAndPaymentMethods() =>
+      CupertinoListSection.insetGrouped(
+        margin: EdgeInsets.zero,
+        children: [
+          Column(
+            children: [
+              getFuelBrandSection(),
+              Divider(
+                indent: 60.w,
+                height: 0,
+              ),
+              getPaymentMethodSection()
+            ],
+          )
+        ],
+      );
+
+  Widget getPaymentMethodSection() =>
+      CupertinoListTile.notched(
+        onTap: () {},
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
+        title: AppText(
+          text: "Payment Method",
+          fontSize: fontSize,
+        ),
+        leading: Icon(
+          Icons.payment,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        additionalInfo: AppText(
+          text: "Not Set",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+        trailing: const Icon(
+          CupertinoIcons.forward,
+          color: AppColors.greyColor,
+        ),
+      );
+
+  Widget getFuelBrandSection() =>
+      CupertinoListTile.notched(
+        onTap: () {},
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
+        title: AppText(
+          text: "Fuel Brand",
+          fontSize: fontSize,
+        ),
+        leading: Icon(
+          Icons.local_gas_station,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        additionalInfo: AppText(
+          text: "Not Set",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+        trailing: const Icon(
+          CupertinoIcons.forward,
+          color: AppColors.greyColor,
+        ),
+      );
+
+  Widget getCostSection() =>
+      CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
         children: [
           Column(
@@ -171,113 +211,132 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
           )
         ],
       );
-  Widget getTotalSection() =>CupertinoListTile(
-    padding: EdgeInsets.symmetric(horizontal: 13.w),
-    title: AppText(
-      text: "Total Cost",
-      fontSize: 15.sp,
-    ),
-    leading: Icon(
-      Icons.shopping_cart,
-      color: Theme.of(context).primaryColor,
-    ),
-    additionalInfo: SizedBox(
-      width: 90.w,
-      child: CupertinoTextField(
-        textAlign: TextAlign.right,
-        keyboardType: TextInputType.number,
-        maxLines: 1,
-        placeholderStyle: TextStyle(
-            fontSize: 14.sp, height: 1.5.h, color: AppColors.greyColor),
-        placeholder: "0.0",
-        decoration:
-        BoxDecoration(border: Border.all(style: BorderStyle.none)),
-      ),
-    ),
-    trailing: AppText(
-      text: "EGP",
-      color: AppColors.greyColor,
-      fontSize: 15.sp,
-    ),);
-  Widget getQuantitySection() =>CupertinoListTile(
-    padding: EdgeInsets.symmetric(horizontal: 13.w),
-    title: AppText(
-      text: "Quantity",
-      fontSize: 15.sp,
-    ),
-    leading: Icon(
-      Icons.production_quantity_limits,
-      color: Theme.of(context).primaryColor,
-    ),
-    additionalInfo: SizedBox(
-      width: 90.w,
-      child: CupertinoTextField(
-        textAlign: TextAlign.right,
-        keyboardType: TextInputType.number,
-        maxLines: 1,
-        placeholderStyle: TextStyle(
-            fontSize: 14.sp, height: 1.5.h, color: AppColors.greyColor),
-        placeholder: "0.0",
-        decoration:
-        BoxDecoration(border: Border.all(style: BorderStyle.none)),
-      ),
-    ),
-    trailing: AppText(
-      text: "L",
-      color: AppColors.greyColor,
-      fontSize: 15.sp,
-    ),);
 
-  Widget getCostPerLiterSection()=>CupertinoListTile(
-      padding: EdgeInsets.symmetric(horizontal: 13.w),
-      title: AppText(
-        text: "Cost Per Liter",
-        fontSize: 15.sp,
-      ),
-      leading: Icon(
-        Icons.local_gas_station,
-        color: Theme.of(context).primaryColor,
-      ),
-      additionalInfo: SizedBox(
-        width: 90.w,
-        child: CupertinoTextField(
-          textAlign: TextAlign.right,
-          keyboardType: TextInputType.number,
-          maxLines: 1,
-          placeholderStyle: TextStyle(
-              fontSize: 14.sp, height: 1.5.h, color: AppColors.greyColor),
-          placeholder: "0.0",
-          decoration:
-          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+  Widget getTotalSection() =>
+      CupertinoListTile(
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
+        title: AppText(
+          text: "Total Cost",
+          fontSize: fontSize,
         ),
-      ),
-      trailing: AppText(
-        text: "EGP",
-        color: AppColors.greyColor,
-        fontSize: 15.sp,
-      ),);
-  Widget getOctaneSection() => CupertinoListTile.notched(
-      onTap: () {},
-      backgroundColor: Colors.transparent,
-      title: AppText(
-        text: "Octane",
-        fontSize: 15.sp,
-      ),
-      leading: Icon(
-        Icons.rate_review_outlined,
-        color: Theme.of(context).primaryColor,
-      ),
-      additionalInfo: AppText(
-        text: "Not Set",
-        color: AppColors.greyColor,
-        fontSize: 15.sp,
-      ),
-      trailing: const Icon(
-        CupertinoIcons.forward,
-        color: AppColors.greyColor,
-      ));
+        leading: Icon(
+          Icons.shopping_cart,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        additionalInfo: SizedBox(
+          width: 90.w,
+          child: CupertinoTextField(
+            textAlign: TextAlign.right,
+            keyboardType: TextInputType.number,
+            maxLines: 1,
+            placeholderStyle: TextStyle(
+                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+            placeholder: "0.0",
+            decoration:
+            BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          ),
+        ),
+        trailing: AppText(
+          text: "EGP",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+      );
 
-  Widget getDataAndOdometerSection() => CupertinoListSection.insetGrouped(
+  Widget getQuantitySection() =>
+      CupertinoListTile(
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
+        title: AppText(
+          text: "Quantity",
+          fontSize: fontSize,
+        ),
+        leading: Icon(
+          Icons.production_quantity_limits,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        additionalInfo: SizedBox(
+          width: 90.w,
+          child: CupertinoTextField(
+            textAlign: TextAlign.right,
+            keyboardType: TextInputType.number,
+            maxLines: 1,
+            placeholderStyle: TextStyle(
+                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+            placeholder: "0.0",
+            decoration:
+            BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          ),
+        ),
+        trailing: AppText(
+          text: "L",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+      );
+
+  Widget getCostPerLiterSection() =>
+      CupertinoListTile(
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
+        title: AppText(
+          text: "Cost Per Liter",
+          fontSize: fontSize,
+        ),
+        leading: Icon(
+          Icons.local_gas_station,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        additionalInfo: SizedBox(
+          width: 90.w,
+          child: CupertinoTextField(
+            textAlign: TextAlign.right,
+            keyboardType: TextInputType.number,
+            maxLines: 1,
+            placeholderStyle: TextStyle(
+                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+            placeholder: "0.0",
+            decoration:
+            BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          ),
+        ),
+        trailing: AppText(
+          text: "EGP",
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+      );
+
+  Widget getOctaneSection() =>
+      CupertinoListTile.notched(
+          onTap: () {},
+          backgroundColor: Colors.transparent,
+          title: AppText(
+            text: "Octane",
+            fontSize: fontSize,
+          ),
+          leading: Icon(
+            Icons.rate_review_outlined,
+            color: Theme
+                .of(context)
+                .primaryColor,
+          ),
+          additionalInfo: AppText(
+            text: "Not Set",
+            color: AppColors.greyColor,
+            fontSize: fontSize,
+          ),
+          trailing: const Icon(
+            CupertinoIcons.forward,
+            color: AppColors.greyColor,
+          ));
+
+  Widget getDataAndOdometerSection() =>
+      CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
         children: [
           Column(
@@ -293,15 +352,18 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
         ],
       );
 
-  Widget getOdometerSection() => CupertinoListTile(
-    padding: EdgeInsets.symmetric(horizontal: 13.w),
+  Widget getOdometerSection() =>
+      CupertinoListTile(
+        padding: EdgeInsets.symmetric(horizontal: 13.w),
         title: AppText(
           text: "Odometer",
-          fontSize: 15.sp,
+          fontSize: fontSize,
         ),
         leading: Icon(
           CupertinoIcons.speedometer,
-          color: Theme.of(context).primaryColor,
+          color: Theme
+              .of(context)
+              .primaryColor,
         ),
         additionalInfo: SizedBox(
           width: 90.w,
@@ -313,58 +375,68 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             ],
             maxLines: 1,
             placeholderStyle: TextStyle(
-                fontSize: 14.sp, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
-                BoxDecoration(border: Border.all(style: BorderStyle.none)),
+            BoxDecoration(border: Border.all(style: BorderStyle.none)),
           ),
         ),
         trailing: AppText(
           text: "Km",
           color: AppColors.greyColor,
-          fontSize: 15.sp,
+          fontSize: fontSize,
         ),
       );
 
-  Widget getDateSection() => CupertinoListTile.notched(
+  Widget getDateSection() =>
+      CupertinoListTile.notched(
         title: AppText(
           text: "Date",
-          fontSize: 15.sp,
+          fontSize: fontSize,
         ),
         leading: Icon(
           CupertinoIcons.calendar,
-          color: Theme.of(context).primaryColor,
+          color: Theme
+              .of(context)
+              .primaryColor,
         ),
         trailing: Row(
           children: [getDateWidget(), gap(width: 5.w), getTimeWidget()],
         ),
       );
 
-  Widget getTimeWidget() => Container(
-        decoration: BoxDecoration(
-            color: AppColors.lightGreyColor,
-            borderRadius: BorderRadius.circular(5.w)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
-          child: AppText(
-            text: "06:15 PM",
-            fontSize: 12.sp,
+  Widget getTimeWidget() =>
+      InkWell(
+        onTap: getDateDialog ,
+        child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.lightGreyColor,
+              borderRadius: BorderRadius.circular(5.w)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+            child: AppText(
+              text: dateFormat.format(tempDate).toString(),
+              fontSize: 12.sp,
+            ),
           ),
         ),
       );
 
-  Widget getDateWidget() => Container(
-        decoration: BoxDecoration(
-            color: AppColors.lightGreyColor,
-            borderRadius: BorderRadius.circular(5.w)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
-          child: AppText(
-            text: "18 Jan 2023",
-            fontSize: 12.sp,
-          ),
-        ),
-      );
+  Widget getDateWidget() =>
+      InkWell(
+          onTap:showDateDialog ,
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.lightGreyColor,
+                borderRadius: BorderRadius.circular(5.w)),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+              child: AppText(
+                text: DateFormat('dd MMM yyyy').format(selectedDate),
+                fontSize: 12.sp,
+              ),
+            ),
+          ));
 
   Widget getRideNameSection() => CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
@@ -372,11 +444,13 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
           CupertinoListTile(
             title: AppText(
               text: "Vehicle",
-              fontSize: 15.sp,
+              fontSize: fontSize,
             ),
             leading: Icon(
               CupertinoIcons.car_detailed,
-              color: Theme.of(context).primaryColor,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
             ),
             trailing: AppText(
               text: 'Manar',
@@ -385,4 +459,30 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
           )
         ],
       );
+  void showDateDialog() async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1800),
+        lastDate: DateTime(2101)
+    );
+    if (pickedDate != null) {
+      setState(() {
+        selectedDate = pickedDate;
+      });
+    }
+  }
+  void getDateDialog() async {
+    final TimeOfDay? timePicked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (timePicked != null) {
+      setState(() {
+        dayTime= timePicked;
+        tempDate = DateFormat("hh:mm").parse("${dayTime.hour}:${dayTime.minute}");
+        dateFormat = DateFormat("h:mm a");
+      });
+    }
+  }
 }
