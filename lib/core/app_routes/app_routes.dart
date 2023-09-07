@@ -1,5 +1,7 @@
 
+import 'package:au2rides/features/about_screen/presentation/screen/about_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
+import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
@@ -64,6 +66,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: AddFuelScreen(),
+        ));
+      case Routes.addOdometerScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddOdometerScreen(),
+        ));
+      case Routes.aboutScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AboutScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

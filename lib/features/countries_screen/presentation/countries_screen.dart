@@ -20,9 +20,16 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: AppText(text: "Countries",fontSize: 16.sp,),
-      ),
+
+
+      appBar:  PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+            title: AppText(text: "Countries",fontSize: 16.sp,)
+          )),
+
+
       body:SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(10.w),

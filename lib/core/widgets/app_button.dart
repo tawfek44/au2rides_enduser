@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
    AppButton(
       {Key? key,
       required this.label,
-      this.roundness = 10,
+      this.roundness = 3,
       this.fontWeight = FontWeight.bold,
       this.padding,
       this.margin,
@@ -45,7 +45,7 @@ class AppButton extends StatelessWidget {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(roundness),
-              side: BorderSide(color: color ?? AppColors.primaryColor),
+              //side: BorderSide(color: color ?? AppColors.primaryColor),
             ),
           ),
           backgroundColor:
@@ -59,7 +59,7 @@ class AppButton extends StatelessWidget {
               child: AppText(
                 text: label,
                 textAlign: TextAlign.center,
-                fontSize: 16.sp,
+                fontSize: 13.sp,
                 fontWeight: fontWeight,
                 color: Colors.white,
               ),

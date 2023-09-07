@@ -24,17 +24,19 @@ class _AddRideScreenState extends State<AddRideScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title:  AppText(text:"Add new ride",fontSize: 16.sp,color: AppColors.white,),
-        leading: IconButton(
-          color: AppColors.white,
-          icon: const Icon(CupertinoIcons.back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+            title: AppText(text:"Add new ride",fontSize: 16.sp,color: AppColors.white,),
+            leading: IconButton(
+              color: AppColors.white,
+              icon: const Icon(CupertinoIcons.back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),

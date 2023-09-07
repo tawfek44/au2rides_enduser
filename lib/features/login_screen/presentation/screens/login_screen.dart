@@ -24,13 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        title: AppText(
-          text: "Sign In",
-          fontWeight: FontWeight.bold,
-          fontSize: 16.sp,
-        ),
-      ),
+      appBar:PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+              title: AppText(
+                text: "Sign In",
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+              ),
+          )),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

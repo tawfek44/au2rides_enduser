@@ -16,7 +16,7 @@ class AddFuelScreen extends StatefulWidget {
 }
 
 class _AddFuelScreenState extends State<AddFuelScreen> {
-  var fontSize = 13.sp;
+  var fontSize = 11.sp;
   DateTime selectedDate = DateTime.now();
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
@@ -26,23 +26,24 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
     tempDate = DateFormat("hh:mm").parse("${dayTime.hour}:${dayTime.minute}");
     dateFormat = DateFormat("h:mm a");
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme
-            .of(context)
-            .primaryColor,
-        title: AppText(
-          text: "Add fuel",
-          fontSize: 16.sp,
-          color: AppColors.white,
-        ),
-        leading: IconButton(
-          color: AppColors.white,
-          icon: const Icon(CupertinoIcons.back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+            title: AppText(
+              text: "Add fuel",
+              fontSize: 16.sp,
+              color: AppColors.white,
+            ),
+            leading: IconButton(
+            color: AppColors.white,
+            icon: const Icon(CupertinoIcons.back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          )),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
@@ -51,7 +52,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             children: [
               AppText(
                 text: "Fuel Up",
-                fontSize: 22.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
               ),
               gap(height: 5.h),
@@ -84,7 +85,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
         children: [
           CupertinoListTile.notched(
             onTap: () {},
-            padding: EdgeInsets.symmetric(horizontal: 13.w),
             title: const CupertinoTextField(
               decoration: BoxDecoration(border: Border(right: BorderSide.none)),
               maxLines: 5,
@@ -104,7 +104,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
         children: [
           CupertinoListTile.notched(
             onTap: () {},
-            padding: EdgeInsets.symmetric(horizontal: 13.w),
             trailing: const Icon(
               CupertinoIcons.add_circled,
               color: AppColors.greyColor,
@@ -138,7 +137,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
   Widget getPaymentMethodSection() =>
       CupertinoListTile.notched(
         onTap: () {},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
         title: AppText(
           text: "Payment Method",
           fontSize: fontSize,
@@ -163,7 +161,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
   Widget getFuelBrandSection() =>
       CupertinoListTile.notched(
         onTap: () {},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
         title: AppText(
           text: "Fuel Brand",
           fontSize: fontSize,
@@ -213,8 +210,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
       );
 
   Widget getTotalSection() =>
-      CupertinoListTile(
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
+      CupertinoListTile.notched(
         title: AppText(
           text: "Total Cost",
           fontSize: fontSize,
@@ -232,7 +228,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             keyboardType: TextInputType.number,
             maxLines: 1,
             placeholderStyle: TextStyle(
-                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, height: 1.7.h, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
             BoxDecoration(border: Border.all(style: BorderStyle.none)),
@@ -246,8 +242,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
       );
 
   Widget getQuantitySection() =>
-      CupertinoListTile(
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
+      CupertinoListTile.notched(
         title: AppText(
           text: "Quantity",
           fontSize: fontSize,
@@ -265,7 +260,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             keyboardType: TextInputType.number,
             maxLines: 1,
             placeholderStyle: TextStyle(
-                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, height: 1.7.h, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
             BoxDecoration(border: Border.all(style: BorderStyle.none)),
@@ -279,8 +274,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
       );
 
   Widget getCostPerLiterSection() =>
-      CupertinoListTile(
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
+      CupertinoListTile.notched(
         title: AppText(
           text: "Cost Per Liter",
           fontSize: fontSize,
@@ -298,7 +292,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             keyboardType: TextInputType.number,
             maxLines: 1,
             placeholderStyle: TextStyle(
-                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, height: 1.7.h, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
             BoxDecoration(border: Border.all(style: BorderStyle.none)),
@@ -353,8 +347,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
       );
 
   Widget getOdometerSection() =>
-      CupertinoListTile(
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
+      CupertinoListTile.notched(
         title: AppText(
           text: "Odometer",
           fontSize: fontSize,
@@ -375,7 +368,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             ],
             maxLines: 1,
             placeholderStyle: TextStyle(
-                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, height: 1.7.h, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
             BoxDecoration(border: Border.all(style: BorderStyle.none)),
@@ -416,7 +409,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
             child: AppText(
               text: dateFormat.format(tempDate).toString(),
-              fontSize: 12.sp,
+              fontSize: fontSize,
             ),
           ),
         ),
@@ -433,7 +426,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
               padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
               child: AppText(
                 text: DateFormat('dd MMM yyyy').format(selectedDate),
-                fontSize: 12.sp,
+                fontSize: fontSize,
               ),
             ),
           ));
@@ -454,6 +447,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             ),
             trailing: AppText(
               text: 'Manar',
+              fontSize: fontSize,
               color: AppColors.greyColor,
             ),
           )

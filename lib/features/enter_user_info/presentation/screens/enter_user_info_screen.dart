@@ -34,14 +34,18 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   Widget build(BuildContext context) {
     _formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: AppText(
-          text: "Register new account",
-          fontSize: 15.sp,
-          color: AppColors.white,
-        ),
-      ),
+      appBar:
+      PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+            title: AppText(
+              text: "Register new account",
+              fontSize: 15.sp,
+              color: AppColors.white,
+            ),
+          )),
+
       body: Form(
         key: _formKey,
         child: Padding(

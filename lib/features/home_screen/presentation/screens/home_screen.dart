@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int activeIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,7 +32,40 @@ class _HomeScreenState extends State<HomeScreen> {
               child: getDrawerItems()),
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-              child: getAppBar()),
+              child: getAppBar(
+                context: context,
+                 title: CupertinoTextField(
+                suffix: SizedBox(
+                  height: 42.h,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.qr_code,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: () async {},
+                  ),
+                ),
+              ),
+                leading: Builder(
+                  builder: (context) => IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon:  Icon(
+                      Icons.menu,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+                actions: [
+                  IconButton(
+                      onPressed: () {},
+                      icon:  Icon(
+                        Icons.notifications_active,
+                        color: Theme.of(context).primaryColor,
+                      ))
+                ]
+              )),
           body: Padding(
             padding: EdgeInsets.only(top: 10.h, left: 5.w, right: 5.w),
             child: ListView(
@@ -106,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
         width: double.infinity,
         child: Card(
             elevation: 5,
-            shape:  RoundedRectangleBorder(
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(corner)),
             ),
             child: Stack(
@@ -134,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
         width: double.infinity,
         child: Card(
           elevation: 3,
-          shape:  RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(corner)),
           ),
           child: Center(
@@ -144,61 +178,25 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
-
-  Widget getAppBar() => AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon:  Icon(
-              Icons.menu,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-        titleSpacing: 0,
-        title: CupertinoTextField(
-          suffix: SizedBox(
-            height: 42.h,
-            child: IconButton(
-              icon:  Icon(
-                Icons.qr_code,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () async {},
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon:  Icon(
-                Icons.notifications_active,
-                color: Theme.of(context).primaryColor,
-              ))
-        ],
-      );
-
   Widget getCarouselSliderWidget() => Stack(
-    alignment: AlignmentDirectional.bottomCenter,
-    children: [
-      CarouselSlider.builder(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: [
+          CarouselSlider.builder(
             itemCount: 4,
             itemBuilder: (context, _, index) {
               return getWeatherItemWidget();
             },
             options: CarouselOptions(
-              initialPage: 0,
-              autoPlay: true,
-              viewportFraction: 1,
-              height: 235.h,
-              onPageChanged: (index,reason)=> setState(()=>activeIndex = index)
-            ),
+                initialPage: 0,
+                autoPlay: true,
+                viewportFraction: 1,
+                height: 235.h,
+                onPageChanged: (index, reason) =>
+                    setState(() => activeIndex = index)),
           ),
-      buildIndicator(),
-    ],
-  );
+          buildIndicator(),
+        ],
+      );
 
   Widget getWeatherItemWidget() => Stack(
         children: [
@@ -206,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             child: Card(
               elevation: 3,
-              shape:  RoundedRectangleBorder(
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(corner)),
               ),
               child: ClipRRect(
@@ -282,11 +280,13 @@ class _HomeScreenState extends State<HomeScreen> {
   buildIndicator() {
     return Positioned(
       bottom: 15.h,
-
       child: AnimatedSmoothIndicator(
-          activeIndex: activeIndex,
-          count: 4,
-        effect: ExpandingDotsEffect(dotWidth: 10.w,dotHeight: 10.h,activeDotColor: Theme.of(context).primaryColor),
+        activeIndex: activeIndex,
+        count: 4,
+        effect: ExpandingDotsEffect(
+            dotWidth: 10.w,
+            dotHeight: 10.h,
+            activeDotColor: Theme.of(context).primaryColor),
       ),
     );
   }
