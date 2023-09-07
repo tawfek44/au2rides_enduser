@@ -44,79 +44,19 @@ class _AboutScreenState extends State<AboutScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 140.w,
-                  child: Image.asset("images/logo.png"),
-                ),
+                getLogo(),
                 gap(height: 20.h),
-                AppText(
-                  text: 'Au2Rides',
-                  fontSize: 25.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                getAppName(),
                 gap(height: 30.h),
-                AppText(
-                  text: 'Follow us',
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                getFollowUsWidget(),
                 gap(height: 10.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: CircleAvatar(
-                        radius: 20.w,
-                        child: Image.asset("images/facebook.png"),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: CircleAvatar(
-                        radius: 20.w,
-                        child: Image.asset("images/instagram.png"),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: CircleAvatar(
-                        radius: 20.w,
-                        child: Image.asset("images/linkedin.png"),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: CircleAvatar(
-                        radius: 20.w,
-                        child: Image.asset("images/twitter.png"),
-                      ),
-                    )
-                  ],
-                ),
+                getSocialMediaLogos(),
                 gap(height: 20.h),
-                AppText(
-                  text: 'Au2Rides - 1.0.0',
-                  color: AppColors.greyColor,
-                  fontSize: 13.sp,
-                ),
+                getAppVersion(),
                 gap(height: 15.h),
-                TextButton(
-                  onPressed: () {},
-                  child: AppText(
-                    text: 'Privacy policy and terms of use',
-                    decoration: TextDecoration.underline,
-                    fontSize: 13.sp,
-                  ),
-                ),
+                getPrivacyPolicyTextButton(),
                 gap(height: 15.h),
-                AppButton(
-                  label: 'www.au2rides.com',
-                  fontWeight: FontWeight.normal,
-
-                  height: 40.h,
-                  onPressed: () {},
-                ),
+                getWebSiteButton(),
               ],
             ),
           ),
@@ -124,4 +64,70 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
     );
   }
+  Widget getWebSiteButton()=>AppButton(
+    label: 'www.au2rides.com',
+    fontWeight: FontWeight.normal,
+    height: 40.h,
+    onPressed: () {},
+  );
+  Widget getPrivacyPolicyTextButton()=> TextButton(
+    onPressed: () {},
+    child: AppText(
+      text: 'Privacy policy and terms of use',
+      decoration: TextDecoration.underline,
+      fontSize: 13.sp,
+    ),
+  );
+  Widget getAppVersion()=>AppText(
+    text: 'Au2Rides - 1.0.0',
+    color: AppColors.greyColor,
+    fontSize: 13.sp,
+  );
+  Widget getSocialMediaLogos()=> Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      IconButton(
+        onPressed: () {},
+        icon: CircleAvatar(
+          radius: 20.w,
+          child: Image.asset("images/facebook.png"),
+        ),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: CircleAvatar(
+          radius: 20.w,
+          child: Image.asset("images/instagram.png"),
+        ),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: CircleAvatar(
+          radius: 20.w,
+          child: Image.asset("images/linkedin.png"),
+        ),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: CircleAvatar(
+          radius: 20.w,
+          child: Image.asset("images/twitter.png"),
+        ),
+      )
+    ],
+  );
+  Widget getFollowUsWidget()=>AppText(
+    text: 'Follow us',
+    fontSize: 15.sp,
+    fontWeight: FontWeight.bold,
+  );
+  Widget getAppName()=>AppText(
+    text: 'Au2Rides',
+    fontSize: 25.sp,
+    fontWeight: FontWeight.bold,
+  );
+  Widget getLogo()=>SizedBox(
+    width: 140.w,
+    child: Image.asset("images/logo.png"),
+  );
 }
