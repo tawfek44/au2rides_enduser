@@ -15,6 +15,7 @@ class Routes {
   static const addFuelScreenRoute = "ADD_FUEL_SCREEN_ROUTE";
   static const addOdometerScreenRoute = "ADD_ODOMETER_SCREEN_ROUTE";
   static const aboutScreenRoute = "ABOUT_SCREEN_ROUTE";
+  static const contactUsScreenRoute = "CONTACT_US_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

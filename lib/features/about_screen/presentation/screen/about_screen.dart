@@ -122,7 +122,7 @@ class _AboutScreenState extends State<AboutScreen> {
     fontWeight: FontWeight.bold,
   );
   Widget getAppName()=>AppText(
-    text: 'Au2Rides',
+    text: 'au2rides',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
   );

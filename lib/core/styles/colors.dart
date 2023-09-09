@@ -14,6 +14,7 @@ class AppColors {
   static const seedColor = Color(0xFF0073B1);
   static const greyColor = Colors.grey;
   static var lightGreyColor = Colors.grey[200];
+  static final lightGreyColorForText = Colors.grey[300];
   static const backgroundColor = Color(0xFFf2f1f6);
   static const backgroundColorTransparent = Color(0xe7e7e7e7);
   static final secondaryColor = HexColor("AAABA8");

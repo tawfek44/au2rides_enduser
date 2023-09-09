@@ -8,6 +8,9 @@ const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
 const apiBaseUrl ='http://fomoisreal-001-site3.btempurl.com/api/v1';
 bool isArabicLocalization() => Intl.getCurrentLocale() == arLanguageCode;
+const smallMaxLines =1;
+const highMaxLines =5;
+
 final corner =4.w;
 Widget gap({
   var width,
