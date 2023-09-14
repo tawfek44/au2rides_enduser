@@ -9,6 +9,7 @@ import 'package:au2rides/features/countries_screen/presentation/countries_screen
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
+import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
 import 'package:flutter/material.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
@@ -82,6 +83,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: ContactUsScreen(),
+        ));
+      case Routes.searchQRScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: SearchScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

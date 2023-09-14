@@ -10,7 +10,7 @@ const apiBaseUrl ='http://fomoisreal-001-site3.btempurl.com/api/v1';
 bool isArabicLocalization() => Intl.getCurrentLocale() == arLanguageCode;
 const smallMaxLines =1;
 const highMaxLines =5;
-
+final fontSize = 11.sp;
 final corner =4.w;
 Widget gap({
   var width,
@@ -24,10 +24,12 @@ Widget getAppBar({
   required Widget title,
   required context,
   List<Widget>? actions,
-  Widget? leading
+  Widget? leading,
+  PreferredSizeWidget? bottom
 }) => AppBar(
   backgroundColor: Theme.of(context).primaryColor,
   leading: leading,
   title:title,
-  actions:actions
+  actions:actions,
+  bottom: bottom,
 );
