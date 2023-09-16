@@ -1,4 +1,7 @@
+
+
 import 'package:au2rides/features/search_screen/presentation/screen/my_code_screen.dart';
+import 'package:au2rides/features/search_screen/presentation/screen/scan_qr_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +18,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -43,13 +47,15 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const MyCodeScreen(),
-            AppText(text: "a")
+            MyCodeScreen(),
+            ScanQrScreen()
           ],
         ),
       ),
     );
   }
+
 }
+
