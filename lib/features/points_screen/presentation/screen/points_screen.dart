@@ -1,3 +1,5 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,24 +34,7 @@ class _PointsScreenState extends State<PointsScreen> {
           padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.w),
           child: Column(
             children: [
-              Material(
-                color: Colors.white,
-                child: InkWell(
-                  onTap: (){},
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
-                    width: double.infinity,
-
-                    child: Row(
-                      children: [
-                        AppText(text: "Currency",fontSize: fontSize,),
-                        const Spacer(),
-                        AppText(text: "EGP",fontSize: fontSize,color: Colors.grey[500]!,),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              getCurrencyWidget(),
               gap(height: 15.h),
               getUpperCard(),
               getQrCodeCard(),
@@ -65,7 +50,27 @@ class _PointsScreenState extends State<PointsScreen> {
       ),
     );
   }
+  getCurrencyWidget()=>Material(
+    color: Colors.white,
+    child: InkWell(
+      onTap: (){
+        NamedNavigatorImpl().push(Routes.currencyScreenRoute);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
+        width: double.infinity,
 
+        child: Row(
+          children: [
+            AppText(text: "Currency",fontSize: fontSize,),
+            const Spacer(),
+            AppText(text: "EGP",fontSize: fontSize,color: Colors.grey[500]!,),
+            Icon(Icons.arrow_forward_ios,color: AppColors.greyColor,size: 15.w,)
+          ],
+        ),
+      ),
+    ),
+  );
   getCouponsContainerWidget()=>Container(
     width: double.infinity,
     color: Colors.white,
@@ -88,7 +93,7 @@ class _PointsScreenState extends State<PointsScreen> {
         color: Colors.white,
         child: InkWell(
           onTap: () {},
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5.h),
@@ -103,7 +108,6 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ),
       );
-
   getQrCodeCard() => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -125,7 +129,6 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ),
       );
-
   getUpperCard() => Stack(
         children: [
           Container(
@@ -156,7 +159,6 @@ class _PointsScreenState extends State<PointsScreen> {
                   color: Colors.grey[100], size: 100.w))
         ],
       );
-
   getUpperCardTitle() => Row(
         children: [
           AppText(
@@ -173,7 +175,6 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
-
   getUpperCardPoints() => Row(
         children: [
           AppText(
@@ -189,7 +190,6 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
-
   getUpperCardCurrencyAndMoney() => Row(
         children: [
           AppText(
@@ -205,7 +205,6 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
-
   getCoupons() =>ListView.builder(
     itemCount: 2,
     shrinkWrap: true,
