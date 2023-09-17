@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           ],
           theme: getLightThemeData(context),
           darkTheme: darkThemeData,
-          initialRoute: Routes.searchQRScreenRoute,
+          initialRoute: Routes.myPointsScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );
