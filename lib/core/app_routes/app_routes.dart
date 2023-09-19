@@ -6,6 +6,7 @@ import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.d
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
 import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_us_screen.dart';
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
+import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
 import 'package:au2rides/features/currency_screen/presentation/screen/currency_screen.dart';
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
@@ -106,6 +107,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: TransactionHistoryScreen(),
+        ));
+      case Routes.couponsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: CouponsScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

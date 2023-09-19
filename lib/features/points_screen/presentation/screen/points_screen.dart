@@ -112,7 +112,7 @@ class _PointsScreenState extends State<PointsScreen> {
                NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
                break;
              case ScreenRoute.coupons:
-               //NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
+               NamedNavigatorImpl().push(Routes.couponsScreenRoute);
                break;
            }
 
