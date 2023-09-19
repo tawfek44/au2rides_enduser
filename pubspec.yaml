@@ -55,6 +55,7 @@ dependencies:
   file_picker: ^5.3.1
   flutter_local_notifications: ^8.2.0
   flutter_rating_bar: ^4.0.1
+  modal_bottom_sheet: ^3.0.0-pre
 
 
 dev_dependencies:

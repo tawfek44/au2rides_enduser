@@ -19,6 +19,7 @@ class Routes {
   static const searchQRScreenRoute = "SEARCH_QR_SCREEN_ROUTE";
   static const myPointsScreenRoute = "MY_POINTS_SCREEN_ROUTE";
   static const currencyScreenRoute = "CURRENCY_SCREEN_ROUTE";
+  static const transactionHistoryScreenRoute = "TRANSACTION_HISTORY_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

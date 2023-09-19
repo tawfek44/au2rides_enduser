@@ -13,6 +13,7 @@ import 'package:au2rides/features/login_screen/presentation/screens/login_screen
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
+import 'package:au2rides/features/transaction_history_screen/presentation/screen/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
 import '../../features/xx.dart';
@@ -100,6 +101,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: CurrencyScreen(),
+        ));
+      case Routes.transactionHistoryScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: TransactionHistoryScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

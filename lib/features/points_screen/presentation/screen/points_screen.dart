@@ -1,7 +1,9 @@
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
+import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -33,66 +35,88 @@ class _PointsScreenState extends State<PointsScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.w),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               getCurrencyWidget(),
               gap(height: 15.h),
               getUpperCard(),
               getQrCodeCard(),
               gap(height: 15.h),
-              getButtonsWidget(buttonTitle: "TRANSACTION HISTORY"),
+              getButtonsWidget(buttonTitle: "TRANSACTION HISTORY",screenRoute: ScreenRoute.transactionHistory),
               gap(height: 8.h),
-              getButtonsWidget(buttonTitle: "COUPONS"),
+              getButtonsWidget(buttonTitle: "COUPONS",screenRoute: ScreenRoute.coupons),
               gap(height: 10.h),
-              getCouponsContainerWidget()
+              AppText(
+                text: "Others",
+                fontWeight: FontWeight.bold,
+              ),
+              gap(height: 15.h),
+              getOthersContainerWidget()
             ],
           ),
         ),
       ),
     );
   }
-  getCurrencyWidget()=>Material(
-    color: Colors.white,
-    child: InkWell(
-      onTap: (){
-        NamedNavigatorImpl().push(Routes.currencyScreenRoute);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
-        width: double.infinity,
 
-        child: Row(
-          children: [
-            AppText(text: "Currency",fontSize: fontSize,),
-            const Spacer(),
-            AppText(text: "EGP",fontSize: fontSize,color: Colors.grey[500]!,),
-            Icon(Icons.arrow_forward_ios,color: AppColors.greyColor,size: 15.w,)
-          ],
-        ),
-      ),
-    ),
-  );
-  getCouponsContainerWidget()=>Container(
-    width: double.infinity,
-    color: Colors.white,
-    child: Padding(
-      padding: EdgeInsets.all(15.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppText(
-            text: "Coupons",
-            fontWeight: FontWeight.bold,
-          ),
-          gap(height: 25.h),
-          getCoupons()
-        ],
-      ),
-    ),
-  );
-  getButtonsWidget({required String buttonTitle}) => Material(
+  getCurrencyWidget() => Material(
         color: Colors.white,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            NamedNavigatorImpl().push(Routes.currencyScreenRoute);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+            width: double.infinity,
+            child: Row(
+              children: [
+                AppText(
+                  text: "Currency",
+                  fontSize: fontSize,
+                ),
+                const Spacer(),
+                AppText(
+                  text: "EGP",
+                  fontSize: fontSize,
+                  color: Colors.grey[500]!,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppColors.greyColor,
+                  size: 15.w,
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+
+  getOthersContainerWidget() => Container(
+        width: double.infinity,
+        color: Colors.white,
+        child: Padding(
+          padding: EdgeInsets.all(15.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [getOthers()],
+          ),
+        ),
+      );
+
+  getButtonsWidget({required String buttonTitle,required ScreenRoute screenRoute}) => Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: () {
+           switch (screenRoute){
+             case ScreenRoute.transactionHistory:
+               NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
+               break;
+             case ScreenRoute.coupons:
+               //NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
+               break;
+           }
+
+          },
           child: SizedBox(
             width: double.infinity,
             child: Padding(
@@ -108,6 +132,7 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ),
       );
+
   getQrCodeCard() => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -129,6 +154,7 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ),
       );
+
   getUpperCard() => Stack(
         children: [
           Container(
@@ -159,6 +185,7 @@ class _PointsScreenState extends State<PointsScreen> {
                   color: Colors.grey[100], size: 100.w))
         ],
       );
+
   getUpperCardTitle() => Row(
         children: [
           AppText(
@@ -175,6 +202,7 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
+
   getUpperCardPoints() => Row(
         children: [
           AppText(
@@ -190,6 +218,7 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
+
   getUpperCardCurrencyAndMoney() => Row(
         children: [
           AppText(
@@ -205,72 +234,134 @@ class _PointsScreenState extends State<PointsScreen> {
           ),
         ],
       );
-  getCoupons() =>ListView.builder(
-    itemCount: 2,
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemBuilder: (context, index) => getCouponItemWidget()
-  );
-  getCouponItemWidget()=>Padding(
-    padding: EdgeInsets.symmetric(vertical: 10.h),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Row(
+
+  getOthers() => ListView.builder(
+      itemCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) => getOthersItemWidget());
+
+  getOthersItemWidget() => Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            getVendorImage(),
-            gap(width: 10.w),
-            getTitles(),
-            const Spacer(),
-           getValues()
+            Row(
+              children: [
+                getVendorImage(),
+                gap(width: 10.w),
+                getTitles(),
+                const Spacer(),
+                getValues()
+              ],
+            ),
+            getTransferButton(),
+            const Divider(
+              height: 0,
+            ),
           ],
         ),
-        getTransferButton(),
-        const Divider(height: 0,),
-      ],
-    ),
-  );
-  getVendorImage()=>SizedBox(
-    width: 50.w,
-    child: Image.asset('images/img.png'),
-  );
-  getTitles()=>Column(
-    crossAxisAlignment:
-    CrossAxisAlignment.start,
-    children: [
-      AppText(
-        text: "My Points",
-        fontSize: fontSize,
-      ),
-      gap(height: 5.h),
-      AppText(
-        text: "Money",
-        fontSize: fontSize,
-      ),
-    ],
-  );
+      );
+
+  getVendorImage() => SizedBox(
+        width: 50.w,
+        child: Image.asset('images/img.png'),
+      );
+
+  getTitles() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            text: "My Points",
+            fontSize: fontSize,
+          ),
+          gap(height: 5.h),
+          AppText(
+            text: "Money",
+            fontSize: fontSize,
+          ),
+        ],
+      );
 
   getValues() => Column(
-    crossAxisAlignment:
-    CrossAxisAlignment.start,
-    children: [
-      AppText(
-        text: "657",
-        fontSize: fontSize,
-        color: Colors.grey[500]!,
-      ),
-      gap(height: 5.h),
-      AppText(
-        text: "1000 EGP",
-        fontSize: fontSize,
-        color: Colors.grey[500]!,
-      ),
-    ],
-  );
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            text: "657",
+            fontSize: fontSize,
+            color: Colors.grey[500]!,
+          ),
+          gap(height: 5.h),
+          AppText(
+            text: "1000 EGP",
+            fontSize: fontSize,
+            color: Colors.grey[500]!,
+          ),
+        ],
+      );
 
-  getTransferButton()=> TextButton.icon(
-    onPressed: (){},
-    icon: const Icon(Icons.compare_arrows_sharp),
-    label: AppText(text: "Transfer",color: Theme.of(context).primaryColor,),
-  );
+  getTransferButton() => TextButton.icon(
+        onPressed: () {
+
+          showModalBottomSheet(
+            backgroundColor: Colors.white,
+            context: context,
+            builder: (context)=>Directionality(
+              textDirection: TextDirection.ltr,
+              child: SizedBox(
+                width: double.infinity,
+                child: Wrap(
+                  children:[
+                    Padding(
+                      padding:  EdgeInsets.all(15.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(text: "Points Transfer",fontWeight: FontWeight.bold,),
+                          gap(height: 20.h),
+                          AppText(text: "From : Mobilawy"),
+                          gap(height: 10.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppText(text: "Points :"),
+                              gap(width: 5.w),
+                              SizedBox(
+                                  width: 100.w,
+                                  child: CupertinoTextField(
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                  )
+                              ),
+                            ],
+                          ),
+                          gap(height: 10.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppText(text: "Money :"),
+                              gap(width: 5.w),
+                              AppText(text: "120 EGP")
+                            ],
+                          ),
+                          gap(height: 10.h),
+                          AppButton(label: "Proceed", onPressed: (){},height: 45.h,)
+                        ],
+                      ),
+                    ),
+                  ]
+                ),
+              ),
+            ),
+          );
+        },
+        icon: const Icon(Icons.compare_arrows_sharp),
+        label: AppText(
+          text: "Transfer",
+          color: Theme.of(context).primaryColor,
+        ),
+      );
 }
+enum ScreenRoute {transactionHistory,coupons}
