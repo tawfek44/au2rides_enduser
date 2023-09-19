@@ -1,4 +1,5 @@
 
+import 'package:au2rides/features/Qr_code_Details_screen/presentation/screen/qr_code_details_screen.dart';
 import 'package:au2rides/features/about_screen/presentation/screen/about_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
@@ -112,6 +113,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: CouponsScreen(),
+        ));
+      case Routes.qrCodeDetailsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: QrCodeDetailsScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

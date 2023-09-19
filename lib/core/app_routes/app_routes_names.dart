@@ -21,6 +21,7 @@ class Routes {
   static const currencyScreenRoute = "CURRENCY_SCREEN_ROUTE";
   static const transactionHistoryScreenRoute = "TRANSACTION_HISTORY_SCREEN_ROUTE";
   static const couponsScreenRoute = "COUPONS_SCREEN_ROUTE";
+  static const qrCodeDetailsScreenRoute = "QR_CODE_DETAILS_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
