@@ -51,18 +51,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
                     },
-                    icon:  Icon(
+                    icon:  const Icon(
                       Icons.menu,
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 actions: [
                   IconButton(
                       onPressed: () {},
-                      icon:  Icon(
+                      icon:  const Icon(
                         Icons.notifications_active,
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.white,
                       ))
                 ]
               )),
@@ -108,9 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 70.h,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.w),
-                      child: CachedNetworkImage(
-                          imageUrl:
-                              'https://img.freepik.com/free-icon/user_318-159711.jpg'))),
+                      child: Image.asset("images/img.png"))),
               SizedBox(
                 height: 10.h,
               ),
