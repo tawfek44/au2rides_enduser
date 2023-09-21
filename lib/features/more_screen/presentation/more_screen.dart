@@ -60,10 +60,9 @@ class _MoreScreenState extends State<MoreScreen> {
         icon: Icons.language,
         choice: ExpansionListTileChoice.language),
     ExpansionListModel(
-      title: "About",
-      icon: Icons.info,
-      choice: ExpansionListTileChoice.about
-    ),
+        title: "About",
+        icon: Icons.info,
+        choice: ExpansionListTileChoice.about),
   ];
 
   @override
@@ -100,10 +99,11 @@ class _MoreScreenState extends State<MoreScreen> {
                 listLength: helpAndSupportExpansionListData.length,
               ),
               getExpansionListTile(
-                  icon: Icons.settings,
-                  title: "Settings & privacy",
-                  list: settingsAndPrivacyExpansionListData,
-                  listLength: settingsAndPrivacyExpansionListData.length),
+                icon: Icons.settings,
+                title: "Settings & privacy",
+                list: settingsAndPrivacyExpansionListData,
+                listLength: settingsAndPrivacyExpansionListData.length,
+              ),
               gap(height: 10.h),
               AppButton(label: "Log out", height: 40.h, onPressed: () {})
             ],
@@ -151,38 +151,38 @@ class _MoreScreenState extends State<MoreScreen> {
                 color: Theme.of(context).primaryColor,
               ),
               onTap: () {
-               switch(list[index].choice) {
-                 case ExpansionListTileChoice.helpCenter:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.supportInbox:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.contactUs:
-                   NamedNavigatorImpl().push(Routes.contactUsScreenRoute);
-                   break;
-                 case ExpansionListTileChoice.termAndPolicies:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.settings:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.privacyShortcuts:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.adds:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.orderAndPayments:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.language:
-                   // TODO: Handle this case.
-                   break;
-                 case ExpansionListTileChoice.about:
-                   // TODO: Handle this case.
-                   break;
-               }
+                switch (list[index].choice) {
+                  case ExpansionListTileChoice.helpCenter:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.supportInbox:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.contactUs:
+                    NamedNavigatorImpl().push(Routes.contactUsScreenRoute);
+                    break;
+                  case ExpansionListTileChoice.termAndPolicies:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.settings:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.privacyShortcuts:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.adds:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.orderAndPayments:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.language:
+                    // TODO: Handle this case.
+                    break;
+                  case ExpansionListTileChoice.about:
+                    NamedNavigatorImpl().push(Routes.aboutScreenRoute);
+                    break;
+                }
               },
             ),
           ),
