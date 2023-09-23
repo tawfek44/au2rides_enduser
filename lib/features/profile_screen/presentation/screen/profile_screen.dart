@@ -14,7 +14,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool value = true;
+  bool locationButtonFlag = false;
+  bool activitiesNotificationsButtonFlag = false;
+  bool emailNotificationsButtonFlag = false;
+  bool whatsappNotificationsButtonFlag = false;
+  bool smsNotificationsButtonFlag = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,70 +42,125 @@ class _ProfileScreenState extends State<ProfileScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             getProfileHeader(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  gap(height: 20.h),
-                  AppText(
-                    text: "PROFILE",
-                    fontSize: fontSize,
-                    color: AppColors.secondaryColor,
-                  ),
-                  getListTileChoiceWidget(
-                      icon: Icons.account_circle_outlined,
-                      title: "Account details"),
-                  Divider(
-                    height: 3.h,
-                    indent: 40.w,
-                  ),
-                  getListTileChoiceWidget(
-                      icon: Icons.wallet, title: "My wallets"),
-                  Divider(
-                    height: 3.h,
-                    indent: 40.w,
-                  ),
-                  CupertinoListTile(
-                    padding: EdgeInsets.zero,
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(
-                          text: "Turn your location",
-                          fontSize: fontSize,
-                        ),
-                        AppText(
-                          text: "This will improve lots of things",
-                          fontSize: fontSize - 2.sp,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ],
-                    ),
-                    trailing: Transform.scale(
-                      scale: .9,
-                      child: Switch.adaptive(
-                        value: value,
-                        onChanged: (value){
-                          setState(() {
-                            this.value = value;
-                          });
-                        },
-                      ),
-                    ),
-                    leading: Icon(
-                      Icons.location_on_outlined,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  )
-                ],
-              ),
-            )
+            getUserDetails()
           ],
         ),
       ),
     );
   }
+
+  Widget getUserDetails()=>Padding(
+    padding: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 15.w),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        gap(height: 20.h),
+        getProfileSection(),
+        gap(height: 35.h),
+        getDocumentsSection(),
+        gap(height: 35.h),
+        getNotificationsSections()
+      ],
+    ),
+  );
+  Widget getNotificationsSections()=> Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      AppText(
+        text: "NOTIFICATIONS",
+        fontSize: fontSize,
+        color: AppColors.secondaryColor,
+      ),
+      getListTileReusableWidget(
+          title: "Activities notifications",
+          secondTitle:
+          "Payments success, failed and other activities",
+          flag: activitiesNotificationsButtonFlag,
+          fromWhere: ListTileOnOfButtonChoice.activities,
+          icon: Icons.bar_chart),
+      Divider(
+        height: 3.h,
+        indent: 40.w,
+      ),
+      getListTileReusableWidget(
+          title: "Email notifications",
+          icon: Icons.mark_email_unread_outlined,
+          fromWhere: ListTileOnOfButtonChoice.email,
+          flag: emailNotificationsButtonFlag),
+      Divider(
+        height: 3.h,
+        indent: 40.w,
+      ),
+      getListTileReusableWidget(
+          title: "What`s app notifications",
+          icon: Icons.mark_chat_unread,
+          fromWhere: ListTileOnOfButtonChoice.whatsapp,
+          flag: whatsappNotificationsButtonFlag),
+      Divider(
+        height: 3.h,
+        indent: 40.w,
+      ),
+      getListTileReusableWidget(
+          title: "SMS notifications",
+          icon: Icons.markunread_mailbox_outlined,
+          fromWhere: ListTileOnOfButtonChoice.sms,
+          flag: smsNotificationsButtonFlag),
+    ],
+  );
+  Widget getDocumentsSection() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            text: "DOCUMENTS",
+            fontSize: fontSize,
+            color: AppColors.secondaryColor,
+          ),
+          getListTileChoiceWidget(
+              icon: Icons.perm_identity, title: "Identity card / Passport"),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileChoiceWidget(
+              icon: Icons.document_scanner, title: "Driving licences"),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+        ],
+      );
+
+  Widget getProfileSection() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            text: "PROFILE",
+            fontSize: fontSize,
+            color: AppColors.secondaryColor,
+          ),
+          getListTileChoiceWidget(
+              icon: Icons.account_circle_outlined, title: "Account details"),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileChoiceWidget(icon: Icons.wallet, title: "My wallets"),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileReusableWidget(
+              title: "Turn your location",
+              secondTitle: "This will improve lots of things",
+              fromWhere: ListTileOnOfButtonChoice.location,
+              flag: locationButtonFlag,
+              icon: Icons.location_on_outlined),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+        ],
+      );
 
   Widget getRateBarAndQRCodeRow() => IntrinsicHeight(
         child: Row(
@@ -109,7 +169,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const VerticalDivider(
               width: 0,
             ),
-            gap(width: 15.w),
             getQRCodeButton(),
           ],
         ),
@@ -150,37 +209,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
           borderRadius: BorderRadius.circular(40.w),
           child: Image.asset("images/img.png")));
 
-  getRateBarWidget() => Container(
-        padding: EdgeInsets.only(right: 15.w),
+  getRateBarWidget() => SizedBox(
         width: MediaQuery.of(context).size.width / 2,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            getUserRatingBar(ratingValue: 2.75, itemSize: 20.w),
+            getUserRatingBar(ratingValue: 2.75, itemSize: 25.w),
           ],
         ),
       );
 
-  getQRCodeButton() => IconButton(
-        onPressed: () {},
-        icon: SizedBox(
-          width: 35.w,
-          child: Image.asset("images/qrcode.png"),
+  getQRCodeButton() => SizedBox(
+    width: MediaQuery.of(context).size.width / 2,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: SizedBox(
+            width: 50.w,
+            child: Image.asset("images/qrcode.png"),
+          ),
         ),
-      );
+      ],
+    ),
+  );
 
   getProfileHeader() => Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Theme.of(context).primaryColor,
-                Colors.blue[400]!,
-                Colors.blue[200]!
-              ],
-            ),
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(corner + 10.w),
               bottomRight: Radius.circular(corner + 10.w),
@@ -199,7 +257,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               gap(height: 3.h),
               AppText(
-                text: "01143178019",
+                text: "01222358041",
                 fontSize: fontSize,
                 color: AppColors.white,
               ),
@@ -227,4 +285,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
           size: 15.w,
         ),
       );
+
+  getListTileReusableWidget(
+          {required String title,
+          String? secondTitle,
+          required icon,
+          required ListTileOnOfButtonChoice fromWhere,
+          required bool flag}) =>
+      CupertinoListTile(
+        padding: EdgeInsets.zero,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText(
+              text: title,
+              fontSize: fontSize,
+            ),
+            if (secondTitle != null) ...[
+              AppText(
+                text: secondTitle,
+                fontSize: fontSize - 2.sp,
+                color: AppColors.secondaryColor,
+              ),
+            ]
+          ],
+        ),
+        trailing: fromWhere == ListTileOnOfButtonChoice.email
+            ? Transform.scale(
+                scale: .9,
+                child: const Switch.adaptive(
+                  value: false,
+                  onChanged: null,
+                ),
+              )
+            : Transform.scale(
+                scale: .9,
+                child: Switch.adaptive(
+                  value: flag,
+                  onChanged: (value) {
+                    switch (fromWhere) {
+                      case ListTileOnOfButtonChoice.location:
+                        setState(() {
+                          locationButtonFlag = value;
+                        });
+                        break;
+                      case ListTileOnOfButtonChoice.activities:
+                        setState(() {
+                          activitiesNotificationsButtonFlag = value;
+                        });
+                        break;
+                      case ListTileOnOfButtonChoice.email:
+                        setState(() {
+                          emailNotificationsButtonFlag = value;
+                        });
+                        break;
+                      case ListTileOnOfButtonChoice.whatsapp:
+                        setState(() {
+                          whatsappNotificationsButtonFlag = value;
+                        });
+                        break;
+                      case ListTileOnOfButtonChoice.sms:
+                        setState(() {
+                          smsNotificationsButtonFlag = value;
+                        });
+                        break;
+                    }
+                  },
+                ),
+              ),
+        leading: Icon(
+          icon,
+          color: Theme.of(context).primaryColor,
+        ),
+      );
 }
+
+enum ListTileOnOfButtonChoice { location, activities, email, whatsapp, sms }
