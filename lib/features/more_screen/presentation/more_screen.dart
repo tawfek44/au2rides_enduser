@@ -207,7 +207,9 @@ class _MoreScreenState extends State<MoreScreen> {
           fontWeight: FontWeight.bold,
         ),
         leading: ClipRRect(child: Image.asset("images/img.png")),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.profileScreenRoute);
+        },
       );
 
   getAllShortcutsGridView() => GridView.builder(

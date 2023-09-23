@@ -28,44 +28,43 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           drawer: Drawer(
               shape: const BeveledRectangleBorder(),
-              width: MediaQuery.of(context).size.width * (2 / 3),
+              width: MediaQuery.of(context).size.width * (2 / 3) + 20.w,
               child: getDrawerItems()),
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(AppBar().preferredSize.height),
               child: getAppBar(
-                context: context,
-                 title: CupertinoTextField(
-                suffix: SizedBox(
-                  height: 42.h,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.qr_code,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    onPressed: () async {},
-                  ),
-                ),
-              ),
-                leading: Builder(
-                  builder: (context) => IconButton(
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    icon:  const Icon(
-                      Icons.menu,
-                      color: Colors.white,
+                  context: context,
+                  title: CupertinoTextField(
+                    suffix: SizedBox(
+                      height: 42.h,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.qr_code,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        onPressed: () async {},
+                      ),
                     ),
                   ),
-                ),
-                actions: [
-                  IconButton(
-                      onPressed: () {},
-                      icon:  const Icon(
-                        Icons.notifications_active,
+                  leading: Builder(
+                    builder: (context) => IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.menu,
                         color: Colors.white,
-                      ))
-                ]
-              )),
+                      ),
+                    ),
+                  ),
+                  actions: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.notifications_active,
+                          color: Colors.white,
+                        ))
+                  ])),
           body: Padding(
             padding: EdgeInsets.only(top: 10.h, left: 5.w, right: 5.w),
             child: ListView(
@@ -93,40 +92,154 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           getDrawerHeader(),
           const Divider(),
+          getDrawerLinks(
+              title: "Profile",
+              icon: Icons.home,
+              drawerChoices: DrawerChoices.profile),
+          getDrawerLinks(
+              title: "Au2rides club",
+              icon: Icons.area_chart,
+              drawerChoices: DrawerChoices.club),
+          getDrawerLinks(
+              title: "Notifications",
+              icon: Icons.notifications_active,
+              drawerChoices: DrawerChoices.notifications),
+          getDrawerLinks(
+              title: "Messages",
+              icon: Icons.messenger,
+              drawerChoices: DrawerChoices.messages),
+          getDrawerLinks(
+              title: "Overdue",
+              icon: Icons.access_alarm_rounded,
+              drawerChoices: DrawerChoices.overdue),
+          getDrawerLinks(
+              title: "My requests",
+              icon: Icons.compare_arrows_rounded,
+              drawerChoices: DrawerChoices.requests),
+          const Divider(),
+          getDrawerLinks(
+              title: "Logout",
+              icon: Icons.logout,
+              drawerChoices: DrawerChoices.logout),
         ],
       );
 
-  Widget getDrawerHeader() => Padding(
-        padding: EdgeInsets.only(top: 30.h, left: 20.w, right: 20.w),
-        child: GestureDetector(
-          onTap: () {},
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                  width: 70.w,
-                  height: 70.h,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30.w),
-                      child: Image.asset("images/img.png"))),
-              SizedBox(
-                height: 10.h,
-              ),
-              AppText(
-                text: 'Tawfek Hesham',
-                fontWeight: FontWeight.bold,
-              ),
-              AppText(
-                text: 'View profile',
-                fontWeight: FontWeight.bold,
-                fontSize: 10.sp,
-                color: AppColors.secondaryColor,
-              ),
-            ],
-          ),
+  Widget getDrawerLinks({
+    required String title,
+    required IconData icon,
+    required DrawerChoices drawerChoices,
+  }) =>
+      CupertinoListTile(
+        onTap: () {
+          switch (drawerChoices) {
+            case DrawerChoices.profile:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.club:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.notifications:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.messages:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.overdue:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.requests:
+              // TODO: Handle this case.
+              break;
+            case DrawerChoices.logout:
+              // TODO: Handle this case.
+              break;
+          }
+        },
+        title: AppText(
+          text: title,
+          color: AppColors.darkGray,
+          fontSize: fontSize,
+        ),
+        leading: Icon(
+          icon,
+          color: Theme.of(context).primaryColor,
         ),
       );
 
+  Widget getDrawerHeader() => Padding(
+        padding: EdgeInsets.only(top: 30.h, left: 20.w, right: 10.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: AlignmentDirectional.bottomEnd,
+              children: [
+                getImageProfile(),
+                Positioned(
+                  bottom: -20.h,
+                  right: -10.w,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.white),
+                        borderRadius: BorderRadius.all(Radius.circular(50.w))
+                      ),
+                      child: CircleAvatar(
+                        radius: 20.w,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        child: const Icon(
+                          Icons.camera_alt_outlined,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      text: 'Tawfek Hesham',
+                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize,
+                    ),
+                    AppText(
+                      text: '01143178019',
+                      fontSize: fontSize,
+                      color: AppColors.secondaryColor,
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: SizedBox(
+                    width: 40.w,
+                    child: Image.asset("images/qrcode.png"),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      );
+
+  Widget getImageProfile()=>SizedBox(
+      width: 100.w,
+      height: 100.h,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(40.w),
+          child: Image.asset("images/img.png")));
   Widget getMyRides() => ListView.builder(
         shrinkWrap: true,
         itemBuilder: (context, index) => getRideItem(),
@@ -176,6 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
+
   Widget getCarouselSliderWidget() => Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
@@ -288,4 +402,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+enum DrawerChoices {
+  profile,
+  club,
+  notifications,
+  messages,
+  overdue,
+  requests,
+  logout
 }

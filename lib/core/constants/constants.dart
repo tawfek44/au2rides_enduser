@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -18,6 +19,21 @@ Widget gap({
 })=>SizedBox(
   width: width,
   height: height,
+);
+
+getUserRatingBar({
+  required ratingValue,
+  required itemSize
+}) =>RatingBarIndicator(
+  itemPadding: EdgeInsets.zero,
+  rating: ratingValue,
+  itemBuilder: (context, index) => const Icon(
+    Icons.star,
+    color: Colors.amber,
+  ),
+  itemCount: 5,
+  itemSize: itemSize,
+  direction: Axis.horizontal,
 );
 
 Widget getAppBar({

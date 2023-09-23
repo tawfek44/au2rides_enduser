@@ -1,3 +1,4 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/styles/colors.dart';
 import '../../../core/widgets/app_text.dart';
 
@@ -52,7 +54,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
             children: [
               AppText(
                 text: "Fuel Up",
-                fontSize: 20.sp,
+                fontSize: fontSize+5.sp,
                 fontWeight: FontWeight.bold,
               ),
               gap(height: 5.h),
@@ -136,7 +138,9 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
 
   Widget getPaymentMethodSection() =>
       CupertinoListTile.notched(
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
+        },
         title: AppText(
           text: "Payment Method",
           fontSize: fontSize,
@@ -160,7 +164,9 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
 
   Widget getFuelBrandSection() =>
       CupertinoListTile.notched(
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
+        },
         title: AppText(
           text: "Fuel Brand",
           fontSize: fontSize,
@@ -307,7 +313,9 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
 
   Widget getOctaneSection() =>
       CupertinoListTile.notched(
-          onTap: () {},
+          onTap: () {
+            NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
+          },
           backgroundColor: Colors.transparent,
           title: AppText(
             text: "Octane",

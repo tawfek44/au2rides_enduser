@@ -55,7 +55,7 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
         children: [
           gap(height: 40.h),
           getUserName(),
-          getUserRatingBar(),
+          getUserRatingBar(itemSize: 25.w,ratingValue: 2.75),
           gap(height: 10.h),
           getUserQrCodeImage()
         ],
@@ -68,16 +68,7 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
   fontSize: fontSize,
   );
 
-  getUserRatingBar() =>RatingBarIndicator(
-    rating: 2.75,
-    itemBuilder: (context, index) => const Icon(
-      Icons.star,
-      color: Colors.amber,
-    ),
-    itemCount: 5,
-    itemSize: 25.w,
-    direction: Axis.horizontal,
-  );
+
 
   getUserQrCodeImage() =>SizedBox(
     width: 150.w,

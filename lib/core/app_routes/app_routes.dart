@@ -12,7 +12,9 @@ import 'package:au2rides/features/currency_screen/presentation/screen/currency_s
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
+import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
+import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
 import 'package:au2rides/features/transaction_history_screen/presentation/screen/transaction_history_screen.dart';
@@ -118,6 +120,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: QrCodeDetailsScreen(),
+        ));
+      case Routes.multiSelectionScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: MultiSelectionScreen(),
+        ));
+      case Routes.profileScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ProfileScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

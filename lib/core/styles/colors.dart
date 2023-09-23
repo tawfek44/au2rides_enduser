@@ -18,6 +18,7 @@ class AppColors {
   static const backgroundColor = Color(0xFFf2f1f6);
   static const backgroundColorTransparent = Color(0xe7e7e7e7);
   static final secondaryColor = HexColor("AAABA8");
+  static const darkGray = Colors.black54;
 
   static const white = Color(0xFFffffff);
   static  const double cardCornerRadius = 6;

@@ -1,6 +1,8 @@
 
 import 'dart:io';
 
+import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
@@ -105,7 +107,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         fieldType: FieldType.text,
         inputType: TextInputType.number,
         trailingWidget:  AppText( text:"psi",
-        fontSize: 13.sp,
+        fontSize: fontSize,
         fontWeight: FontWeight.normal,
         color: AppColors.greyColor
         ),
@@ -120,7 +122,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         fieldType: FieldType.text,
         inputType: TextInputType.number,
         trailingWidget:AppText( text:"psi",
-            fontSize: 13.sp,
+            fontSize: fontSize,
             fontWeight: FontWeight.normal,
             color: AppColors.greyColor
         ),
@@ -139,8 +141,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
         leadingIcon: Icons.tire_repair_outlined,
         fieldType: FieldType.text,
         inputType: TextInputType.number,
+        destination: Routes.multiSelectionScreenRoute,
         trailingWidget:  AppText( text:"psi",
-          fontSize: 13.sp,
+          fontSize: fontSize,
           fontWeight: FontWeight.normal,
           color: AppColors.greyColor
         ),
@@ -154,11 +157,12 @@ class _AddRideScreenState extends State<AddRideScreen> {
           leadingIcon: Icons.tire_repair_outlined,
           fieldType: FieldType.text,
           inputType: TextInputType.number,
+          destination: Routes.multiSelectionScreenRoute,
           trailingWidget: AppText( text:"psi",
-          fontSize: 13.sp,
-          fontWeight: FontWeight.normal,
-          color: AppColors.greyColor
-        ),
+            fontSize: fontSize,
+            fontWeight: FontWeight.normal,
+            color: AppColors.greyColor
+          ),
         onChanged: (text) {
         },
       ),
@@ -172,6 +176,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         fieldName: "Units",
         info: "htgh",
         leadingIcon: Icons.tire_repair_outlined,
+        destination: Routes.multiSelectionScreenRoute,
         fieldType: FieldType.listTile,
         onChanged: (text) {
         },
@@ -183,6 +188,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         groupName: "FUEL",
         fieldName: "Fuel Type",
         info: "hbg",
+        destination: Routes.multiSelectionScreenRoute,
         leadingIcon: Icons.local_gas_station_outlined,
         fieldType: FieldType.listTile,
         onChanged: (text) {
@@ -192,6 +198,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         groupName: "FUEL",
         fieldName: "Fuel Units",
         info:"dfhj",
+        destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.speedometer,
         fieldType: FieldType.listTile,
         onChanged: (text) {
@@ -202,6 +209,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         fieldName: "Consumption",
         info: "tyu",
         leadingIcon: CupertinoIcons.speedometer,
+        destination: Routes.multiSelectionScreenRoute,
         fieldType: FieldType.listTile,
         onChanged: (text) {
         },
@@ -214,6 +222,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         groupName: "METRICS",
         fieldName: "Unit",
         info: "jhk",
+        destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.waveform,
         fieldType: FieldType.listTile,
         onChanged: (text) {
@@ -225,10 +234,10 @@ class _AddRideScreenState extends State<AddRideScreen> {
         info: "Odometer",
         leadingIcon: CupertinoIcons.speedometer,
         fieldType: FieldType.text,
-        trailingWidget: const Text("km",
+        trailingWidget:  Text("km",
           style:  TextStyle(
               color: Colors.grey,
-              fontSize: 16,
+              fontSize: fontSize,
               fontWeight: FontWeight.normal),
         ),
         onChanged: (text) {
@@ -246,6 +255,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       onChanged: (text) {
 
       },
+      destination: Routes.multiSelectionScreenRoute
     ),
     TextFieldDto(
       groupName: "MANUFACTURING DETAILS",
@@ -254,6 +264,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       leadingIcon: CupertinoIcons.calendar,
       fieldType: FieldType.date,
       inputType: TextInputType.datetime,
+      destination: Routes.multiSelectionScreenRoute,
       onChanged: (text) {
         var year = int.tryParse(text as String);
       },
@@ -264,6 +275,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       info: "hgjk",
       fieldType: FieldType.listTile,
       leadingIcon: CupertinoIcons.car,
+      destination: Routes.multiSelectionScreenRoute,
       onChanged: (text) {
       },
     ),
@@ -297,7 +309,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
         text: fields[0].groupName,
         color: Colors.grey,
         fontWeight: FontWeight.normal,
-          fontSize: 12.sp
+          fontSize: fontSize
       ),
       children: fields.map((fieldDto) {
         switch (fieldDto.fieldType) {
@@ -323,7 +335,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
     return CupertinoListTile.notched(
       onTap: () async {
         if (fieldDto.destination != null) {
-          var value = await Navigator.pushNamed(context, fieldDto.destination!);
+          var value = await NamedNavigatorImpl().push(fieldDto.destination!);
           if (value != null) {
             setState(() {
               fieldDto.onChanged(value);
@@ -331,8 +343,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
           }
         }
       },
-      title: AppText(text:fieldDto.fieldName,fontSize: 15.sp,),
-      additionalInfo: AppText(text:fieldDto.info,fontSize: 13.sp,color: AppColors.greyColor,),
+      title: AppText(text:fieldDto.fieldName,fontSize: fontSize,),
+      additionalInfo: AppText(text:fieldDto.info,fontSize: fontSize,color: AppColors.greyColor,),
       trailing: fieldDto.trailingWidget ??
           const Icon(
             Icons.arrow_forward_ios,
@@ -353,8 +365,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
         //    context: context, builder: (BuildContext context) {  },
       },
 
-      title: AppText(text:fieldDto.fieldName,fontSize: 15.sp,),
-      additionalInfo: AppText(text:fieldDto.info,fontSize: 13.sp,color: AppColors.greyColor,),
+      title: AppText(text:fieldDto.fieldName,fontSize: fontSize,),
+      additionalInfo: AppText(text:fieldDto.info,fontSize: fontSize,color: AppColors.greyColor,),
       trailing: fieldDto.trailingWidget ??
           const Icon(
             Icons.arrow_forward_ios,
@@ -387,7 +399,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       ),
       placeholder: fieldDto.info,
       placeholderStyle: TextStyle(
-        fontSize: 15.sp,
+        fontSize: fontSize,
         color: AppColors.greyColor,
           height: 1.5.h
       ),

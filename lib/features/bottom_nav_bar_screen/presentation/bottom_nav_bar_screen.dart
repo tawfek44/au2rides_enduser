@@ -1,3 +1,4 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/home_screen/presentation/screens/home_screen.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/constants/constants.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
@@ -84,7 +86,28 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                 ),
                 elevation: 3,
                 child:InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    switch(index){
+                      case 0:
+                        NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        break;
+                      case 1:
+                        NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
+                        break;
+                      case 2:
+                       // NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        break;
+                      case 3:
+                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        break;
+                      case 4:
+                        NamedNavigatorImpl().push(Routes.addOdometerScreenRoute);
+                        break;
+                      case 5:
+                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        break;
+                    }
+                  },
                     child: getModalBottomSheetItemWidget(index: index)
                 ),
               ),

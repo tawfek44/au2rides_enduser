@@ -22,6 +22,8 @@ class Routes {
   static const transactionHistoryScreenRoute = "TRANSACTION_HISTORY_SCREEN_ROUTE";
   static const couponsScreenRoute = "COUPONS_SCREEN_ROUTE";
   static const qrCodeDetailsScreenRoute = "QR_CODE_DETAILS_SCREEN_ROUTE";
+  static const multiSelectionScreenRoute = "MULTI_SELECTION_SCREEN_ROUTE";
+  static const profileScreenRoute = "PROFILE_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

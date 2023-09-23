@@ -51,7 +51,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
             children: [
               AppText(
                 text: "Odometer Reading",
-                fontSize: 22.sp,
+                fontSize: fontSize,
                 fontWeight: FontWeight.bold,
               ),
               gap(height: 5.h),
@@ -82,6 +82,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
         ),
         trailing: AppText(
           text: 'Manar',
+          fontSize: fontSize,
           color: AppColors.greyColor,
         ),
       )
@@ -168,7 +169,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
             padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
             child: AppText(
               text: dateFormat.format(tempDate).toString(),
-              fontSize: 12.sp,
+              fontSize: fontSize,
             ),
           ),
         ),
@@ -185,7 +186,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
               padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
               child: AppText(
                 text: DateFormat('dd MMM yyyy').format(selectedDate),
-                fontSize: 12.sp,
+                fontSize: fontSize,
               ),
             ),
           ));
