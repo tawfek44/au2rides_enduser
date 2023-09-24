@@ -1,3 +1,4 @@
+import 'package:au2rides/core/styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -43,8 +44,11 @@ Widget getAppBar({
   Widget? leading,
   PreferredSizeWidget? bottom
 }) => AppBar(
+  iconTheme: const IconThemeData(
+    color: AppColors.white, //change your color here
+  ),
   backgroundColor: Theme.of(context).primaryColor,
-  leading: leading,
+  leading: leading ,
   title:title,
   actions:actions,
   bottom: bottom,

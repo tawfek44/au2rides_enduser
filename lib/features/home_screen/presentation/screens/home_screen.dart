@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,15 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
               preferredSize: Size.fromHeight(AppBar().preferredSize.height),
               child: getAppBar(
                   context: context,
-                  title: CupertinoTextField(
-                    suffix: SizedBox(
-                      height: 42.h,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.qr_code,
-                          color: Theme.of(context).primaryColor,
+                  title: InkWell(
+                    onTap: (){
+                      NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+                    },
+                    child: CupertinoTextField(
+                      enabled: false,
+                      suffix: SizedBox(
+                        height: 42.h,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.qr_code,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          onPressed: () async {},
                         ),
-                        onPressed: () async {},
                       ),
                     ),
                   ),
@@ -133,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: () {
           switch (drawerChoices) {
             case DrawerChoices.profile:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.profileScreenRoute);
               break;
             case DrawerChoices.club:
               // TODO: Handle this case.
@@ -222,7 +230,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+                  },
                   icon: SizedBox(
                     width: 40.w,
                     child: Image.asset("images/qrcode.png"),

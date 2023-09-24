@@ -68,16 +68,15 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        titleSpacing: 10.w,
-        iconTheme: const IconThemeData(
-          color: AppColors.white,
-        ),
-        title: AppText(
-          text: "Menu",
-          color: AppColors.white,
-          fontSize: 16.sp,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+        child: getAppBar(
+          context: context,
+          title: AppText(
+            text: "Menu",
+            fontSize: 15.sp,
+            color: AppColors.white,
+          ),
         ),
       ),
       body: SingleChildScrollView(

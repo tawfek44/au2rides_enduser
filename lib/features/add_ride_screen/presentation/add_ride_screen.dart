@@ -31,13 +31,6 @@ class _AddRideScreenState extends State<AddRideScreen> {
           child: getAppBar(
             context: context,
             title: AppText(text:"Add new ride",fontSize: 16.sp,color: AppColors.white,),
-            leading: IconButton(
-              color: AppColors.white,
-              icon: const Icon(CupertinoIcons.back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
           )),
       body: SingleChildScrollView(
         child: Padding(
@@ -264,9 +257,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
       leadingIcon: CupertinoIcons.calendar,
       fieldType: FieldType.date,
       inputType: TextInputType.datetime,
-      destination: Routes.multiSelectionScreenRoute,
       onChanged: (text) {
-        var year = int.tryParse(text as String);
+
       },
     ),
     TextFieldDto(
@@ -335,6 +327,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
     return CupertinoListTile.notched(
       onTap: () async {
         if (fieldDto.destination != null) {
+
           var value = await NamedNavigatorImpl().push(fieldDto.destination!);
           if (value != null) {
             setState(() {

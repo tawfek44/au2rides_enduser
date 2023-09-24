@@ -47,21 +47,20 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       ),
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: BottomAppBar(
+        padding: EdgeInsets.only(bottom: 0,top: 10.h),
         height: 60.h,
-        child: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          color: Theme.of(context).primaryColor,
-          child:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              getHomeButton(),
-              getShopsButton(),
-              getRemindersButton(),
-              getMoreButton(),
-            ],
-          ),
+        shape: const CircularNotchedRectangle(),
+        color: Theme.of(context).primaryColor,
+        child:
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            getHomeButton(),
+            getShopsButton(),
+            getRemindersButton(),
+            getMoreButton(),
+          ],
         ),
       ),
     );
@@ -128,40 +127,65 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       AppText(text: addItemNamesListInEnglish[index].keys.first,fontSize: 12.sp,),
     ],
   );
-  Widget getHomeButton()=>IconButton(
+  Widget getHomeButton()=>MaterialButton(
+    padding: EdgeInsets.zero,
+    minWidth: 60.w,
     onPressed: (){
       setState(() {
         currentIndex = 0;
       });
 
     },
-    icon:  Icon(Icons.home,color: currentIndex == 0? Colors.white:Colors.black,),
+    child:  Column(
+      children: [
+        Icon(Icons.home,color: currentIndex == 0? Colors.white:Colors.black,),
+        AppText(text: "Home",fontSize: fontSize,color: currentIndex == 0? Colors.white:Colors.black,)
+      ],
+    ),
   );
 
-  Widget getShopsButton()=>IconButton(
+  Widget getShopsButton()=>MaterialButton(
+    minWidth: 60.w,
     onPressed: (){
       setState(() {
         currentIndex = 1;
       });
     },
-    icon:  Icon(Icons.shop_2,color: currentIndex == 1? Colors.white:Colors.black,),
+    child:  Column(
+      children: [
+        Icon(Icons.shop_2,color: currentIndex == 1? Colors.white:Colors.black,),
+        AppText(text: "Shops",fontSize: fontSize,color: currentIndex == 1? Colors.white:Colors.black,)
+      ],
+    ),
   );
 
-  Widget getRemindersButton()=>IconButton(
+  Widget getRemindersButton()=>MaterialButton(
+    minWidth: 60.w,
     onPressed: (){
       setState(() {
         currentIndex = 2;
       });
     },
-    icon:  Icon(Icons.calendar_month,color: currentIndex == 2? Colors.white:Colors.black,),
+    child:  Column(
+      children: [
+        Icon(Icons.calendar_month,color: currentIndex == 2? Colors.white:Colors.black,),
+        AppText(text: "Reminders",fontSize: fontSize,color: currentIndex == 2? Colors.white:Colors.black,)
+      ],
+    ),
   );
 
-  Widget getMoreButton()=>IconButton(
+  Widget getMoreButton()=>MaterialButton(
+    minWidth: 60.w,
     onPressed: (){
       setState(() {
         currentIndex = 3;
       });
     },
-    icon: Icon(Icons.more_horiz,color: currentIndex == 3? Colors.white:Colors.black,),
+    child: Column(
+      children: [
+        Icon(Icons.more_horiz,color: currentIndex == 3? Colors.white:Colors.black,),
+        AppText(text: "More",fontSize: fontSize,color: currentIndex == 3? Colors.white:Colors.black,)
+      ],
+    ),
   );
 }

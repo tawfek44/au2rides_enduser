@@ -1,8 +1,10 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
 
@@ -24,89 +26,86 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        titleSpacing: 0,
-        iconTheme: const IconThemeData(
-          color: AppColors.white,
-        ),
-        title: AppText(
-          text: "Profile",
-          color: AppColors.white,
-          fontSize: 16.sp,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+        child: getAppBar(
+          context: context,
+          title: AppText(
+            text: "Profile",
+            fontSize: 15.sp,
+            color: AppColors.white,
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            getProfileHeader(),
-            getUserDetails()
-          ],
+          children: [getProfileHeader(), getUserDetails()],
         ),
       ),
     );
   }
 
-  Widget getUserDetails()=>Padding(
-    padding: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 15.w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        gap(height: 20.h),
-        getProfileSection(),
-        gap(height: 35.h),
-        getDocumentsSection(),
-        gap(height: 35.h),
-        getNotificationsSections()
-      ],
-    ),
-  );
-  Widget getNotificationsSections()=> Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      AppText(
-        text: "NOTIFICATIONS",
-        fontSize: fontSize,
-        color: AppColors.secondaryColor,
-      ),
-      getListTileReusableWidget(
-          title: "Activities notifications",
-          secondTitle:
-          "Payments success, failed and other activities",
-          flag: activitiesNotificationsButtonFlag,
-          fromWhere: ListTileOnOfButtonChoice.activities,
-          icon: Icons.bar_chart),
-      Divider(
-        height: 3.h,
-        indent: 40.w,
-      ),
-      getListTileReusableWidget(
-          title: "Email notifications",
-          icon: Icons.mark_email_unread_outlined,
-          fromWhere: ListTileOnOfButtonChoice.email,
-          flag: emailNotificationsButtonFlag),
-      Divider(
-        height: 3.h,
-        indent: 40.w,
-      ),
-      getListTileReusableWidget(
-          title: "What`s app notifications",
-          icon: Icons.mark_chat_unread,
-          fromWhere: ListTileOnOfButtonChoice.whatsapp,
-          flag: whatsappNotificationsButtonFlag),
-      Divider(
-        height: 3.h,
-        indent: 40.w,
-      ),
-      getListTileReusableWidget(
-          title: "SMS notifications",
-          icon: Icons.markunread_mailbox_outlined,
-          fromWhere: ListTileOnOfButtonChoice.sms,
-          flag: smsNotificationsButtonFlag),
-    ],
-  );
+  Widget getUserDetails() => Padding(
+        padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 15.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            gap(height: 20.h),
+            getProfileSection(),
+            gap(height: 35.h),
+            getDocumentsSection(),
+            gap(height: 35.h),
+            getNotificationsSections()
+          ],
+        ),
+      );
+
+  Widget getNotificationsSections() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            text: "NOTIFICATIONS",
+            fontSize: fontSize,
+            color: AppColors.secondaryColor,
+          ),
+          getListTileReusableWidget(
+              title: "Activities notifications",
+              secondTitle: "Payments success, failed and other activities",
+              flag: activitiesNotificationsButtonFlag,
+              fromWhere: ListTileOnOfButtonChoice.activities,
+              icon: Icons.bar_chart),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileReusableWidget(
+              title: "Email notifications",
+              icon: Icons.mark_email_unread_outlined,
+              fromWhere: ListTileOnOfButtonChoice.email,
+              flag: emailNotificationsButtonFlag),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileReusableWidget(
+              title: "What`s app notifications",
+              icon: Icons.mark_chat_unread,
+              fromWhere: ListTileOnOfButtonChoice.whatsapp,
+              flag: whatsappNotificationsButtonFlag),
+          Divider(
+            height: 3.h,
+            indent: 40.w,
+          ),
+          getListTileReusableWidget(
+              title: "SMS notifications",
+              icon: Icons.markunread_mailbox_outlined,
+              fromWhere: ListTileOnOfButtonChoice.sms,
+              flag: smsNotificationsButtonFlag),
+        ],
+      );
+
   Widget getDocumentsSection() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -116,13 +115,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: AppColors.secondaryColor,
           ),
           getListTileChoiceWidget(
-              icon: Icons.perm_identity, title: "Identity card / Passport"),
+            icon: Icons.perm_identity,
+            title: "Identity card / Passport",
+            choice: ListTileRouteChoice.identityCard,
+          ),
           Divider(
             height: 3.h,
             indent: 40.w,
           ),
           getListTileChoiceWidget(
-              icon: Icons.document_scanner, title: "Driving licences"),
+            icon: Icons.document_scanner,
+            title: "Driving licences",
+            choice: ListTileRouteChoice.drivingLicence,
+          ),
           Divider(
             height: 3.h,
             indent: 40.w,
@@ -139,12 +144,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: AppColors.secondaryColor,
           ),
           getListTileChoiceWidget(
-              icon: Icons.account_circle_outlined, title: "Account details"),
+            icon: Icons.account_circle_outlined,
+            title: "Account details",
+            choice: ListTileRouteChoice.account,
+          ),
           Divider(
             height: 3.h,
             indent: 40.w,
           ),
-          getListTileChoiceWidget(icon: Icons.wallet, title: "My wallets"),
+          getListTileChoiceWidget(
+            icon: Icons.wallet,
+            title: "My wallets",
+            choice: ListTileRouteChoice.wallets,
+          ),
           Divider(
             height: 3.h,
             indent: 40.w,
@@ -220,20 +232,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
 
   getQRCodeButton() => SizedBox(
-    width: MediaQuery.of(context).size.width / 2,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: () {},
-          icon: SizedBox(
-            width: 50.w,
-            child: Image.asset("images/qrcode.png"),
-          ),
+        width: MediaQuery.of(context).size.width / 2,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+              },
+              icon: SizedBox(
+                width: 50.w,
+                child: Image.asset("images/qrcode.png"),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
   getProfileHeader() => Container(
         width: double.infinity,
@@ -268,8 +282,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
 
-  getListTileChoiceWidget({required title, required icon}) => CupertinoListTile(
-        onTap: () {},
+  getListTileChoiceWidget({
+    required title,
+    required icon,
+    required ListTileRouteChoice choice,
+  }) =>
+      CupertinoListTile(
+        onTap: () {
+          switch(choice) {
+            case ListTileRouteChoice.account:
+              NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
+              break;
+            case ListTileRouteChoice.wallets:
+              // TODO: Handle this case.
+              break;
+            case ListTileRouteChoice.identityCard:
+              // TODO: Handle this case.
+              break;
+            case ListTileRouteChoice.drivingLicence:
+              // TODO: Handle this case.
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,
@@ -361,3 +395,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
 }
 
 enum ListTileOnOfButtonChoice { location, activities, email, whatsapp, sms }
+
+enum ListTileRouteChoice { account, wallets, identityCard, drivingLicence }

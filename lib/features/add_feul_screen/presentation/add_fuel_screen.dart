@@ -37,13 +37,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
               fontSize: 16.sp,
               color: AppColors.white,
             ),
-            leading: IconButton(
-            color: AppColors.white,
-            icon: const Icon(CupertinoIcons.back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
           )),
 
       body: SingleChildScrollView(

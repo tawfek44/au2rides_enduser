@@ -17,16 +17,15 @@ class _QrCodeDetailsScreenState extends State<QrCodeDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        titleSpacing: 0,
-        iconTheme: const IconThemeData(
-          color: AppColors.white,
-        ),
-        title: AppText(
-          text: "Qr Code Details",
-          color: AppColors.white,
-          fontSize: 16.sp,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+        child: getAppBar(
+          context: context,
+          title: AppText(
+            text: "QR code details",
+            fontSize: 15.sp,
+            color: AppColors.white,
+          ),
         ),
       ),
       body: SingleChildScrollView(

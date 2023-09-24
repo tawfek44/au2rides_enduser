@@ -29,13 +29,6 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               fontSize: 16.sp,
               color: AppColors.white,
             ),
-            leading: IconButton(
-              color: AppColors.white,
-              icon: const Icon(CupertinoIcons.back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
           )),
       body: SingleChildScrollView(
         child: Padding(
