@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context: context,
               title: AppText(
                 text: "Sign In",
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16.sp,
               ),
@@ -143,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
   );
   Widget getSignInButton() => AppButton(
       color: Theme.of(context).primaryColor,
-      height: 50.h,
+      height: appButtonHeight,
       label: "Sign In",
       roundness: corner,
       onPressed: () {

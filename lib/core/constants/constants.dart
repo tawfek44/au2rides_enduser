@@ -14,6 +14,7 @@ const smallMaxLines =1;
 const highMaxLines =5;
 final fontSize = 11.sp;
 final corner =4.w;
+final appButtonHeight = 45.h;
 Widget gap({
   var width,
   var height

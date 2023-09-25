@@ -5,6 +5,7 @@ import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.d
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
+import 'package:au2rides/features/change_password_screen/presentation/screen/change_password_screen.dart';
 import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_us_screen.dart';
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
@@ -13,6 +14,7 @@ import 'package:au2rides/features/enter_user_info/presentation/screens/enter_use
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
+import 'package:au2rides/features/myDocuments_screen/presentation/screen/my_document_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
@@ -130,6 +132,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: ProfileScreen(),
+        ));
+      case Routes.changePasswordScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ChangePasswordScreen(),
+        ));
+      case Routes.myDocumentsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: MyDocumentScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

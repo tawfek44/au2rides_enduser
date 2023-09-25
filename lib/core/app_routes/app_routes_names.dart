@@ -24,6 +24,8 @@ class Routes {
   static const qrCodeDetailsScreenRoute = "QR_CODE_DETAILS_SCREEN_ROUTE";
   static const multiSelectionScreenRoute = "MULTI_SELECTION_SCREEN_ROUTE";
   static const profileScreenRoute = "PROFILE_SCREEN_ROUTE";
+  static const changePasswordScreenRoute = "CHANGE_PASSWORD_SCREEN_ROUTE";
+  static const myDocumentsScreenRoute = "MY_DOCUMENTS_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

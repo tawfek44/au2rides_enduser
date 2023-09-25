@@ -43,7 +43,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
             borderRadius: BorderRadius.circular(30.h)
           ),
           backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(Icons.add,color: Colors.white,),
+          child: const Icon(Icons.add,color: AppColors.white,),
       ),
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerDocked,

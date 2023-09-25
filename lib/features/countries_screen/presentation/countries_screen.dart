@@ -26,7 +26,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
             context: context,
-            title: AppText(text: "Countries",fontSize: 16.sp,)
+            title: AppText(text: "Countries",fontSize: 16.sp,color: AppColors.white,)
           )),
 
 

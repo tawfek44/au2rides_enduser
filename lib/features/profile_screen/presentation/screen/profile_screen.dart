@@ -57,11 +57,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
             gap(height: 35.h),
             getDocumentsSection(),
             gap(height: 35.h),
-            getNotificationsSections()
+            getNotificationsSections(),
+            gap(height: 35.h),
+            getSecuritySection()
           ],
         ),
       );
 
+  Widget getSecuritySection()=>Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      AppText(
+        text: "SECURITY",
+        fontSize: fontSize,
+        color: AppColors.secondaryColor,
+      ),
+      getListTileChoiceWidget(
+        icon: Icons.password,
+        title: "Change password",
+        choice: ListTileRouteChoice.changePassword,
+      ),
+    ],
+  );
   Widget getNotificationsSections() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -302,6 +319,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             case ListTileRouteChoice.drivingLicence:
               // TODO: Handle this case.
               break;
+            case ListTileRouteChoice.changePassword:
+              NamedNavigatorImpl().push(Routes.changePasswordScreenRoute);
+              break;
           }
         },
         title: AppText(
@@ -396,4 +416,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 enum ListTileOnOfButtonChoice { location, activities, email, whatsapp, sms }
 
-enum ListTileRouteChoice { account, wallets, identityCard, drivingLicence }
+enum ListTileRouteChoice { account, wallets, identityCard, drivingLicence,changePassword }
