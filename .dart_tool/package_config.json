@@ -452,6 +452,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "full_screen_image",
+      "rootUri": "file:///C:/Users/Tawfek/AppData/Local/Pub/Cache/hosted/pub.dev/full_screen_image-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "geocoding",
       "rootUri": "file:///C:/Users/Tawfek/AppData/Local/Pub/Cache/hosted/pub.dev/geocoding-2.1.0",
       "packageUri": "lib/",
@@ -1148,7 +1154,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-09-19T12:24:10.231618Z",
+  "generated": "2023-10-01T14:10:24.580411Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

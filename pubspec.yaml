@@ -56,6 +56,7 @@ dependencies:
   flutter_local_notifications: ^8.2.0
   flutter_rating_bar: ^4.0.1
   modal_bottom_sheet: ^3.0.0-pre
+  full_screen_image: ^2.0.0
 
 
 dev_dependencies:
