@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           ],
           theme: getLightThemeData(context),
           darkTheme: darkThemeData,
-          initialRoute: Routes.myDocumentsScreenRoute,
+          initialRoute: Routes.profileScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );

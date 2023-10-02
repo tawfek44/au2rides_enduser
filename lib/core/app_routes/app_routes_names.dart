@@ -26,6 +26,7 @@ class Routes {
   static const profileScreenRoute = "PROFILE_SCREEN_ROUTE";
   static const changePasswordScreenRoute = "CHANGE_PASSWORD_SCREEN_ROUTE";
   static const myDocumentsScreenRoute = "MY_DOCUMENTS_SCREEN_ROUTE";
+  static const myDrivingLicensesScreenRoute = "MY_DRIVING_LICENSES_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

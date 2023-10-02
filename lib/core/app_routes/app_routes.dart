@@ -10,17 +10,18 @@ import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
 import 'package:au2rides/features/currency_screen/presentation/screen/currency_screen.dart';
+import 'package:au2rides/features/driving_license_screen/presentation/screen/driving_license_screen.dart';
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
-import 'package:au2rides/features/myDocuments_screen/presentation/screen/my_document_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
 import 'package:au2rides/features/transaction_history_screen/presentation/screen/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
+import '../../features/identity_card_passport_screen/presentation/screen/identity_card_passport_screen.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
 import '../../features/xx.dart';
 import 'app_routes_names.dart';
@@ -141,7 +142,12 @@ class NamedNavigatorImpl implements NamedNavigator {
       case Routes.myDocumentsScreenRoute:
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
-          child: MyDocumentScreen(),
+          child: IdentityCardOrPassportScreen(),
+        ));
+      case Routes.myDrivingLicensesScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: DrivingLicenseScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

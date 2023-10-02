@@ -311,13 +311,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
               break;
             case ListTileRouteChoice.wallets:
-              // TODO: Handle this case.
+
               break;
             case ListTileRouteChoice.identityCard:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.myDocumentsScreenRoute);
               break;
             case ListTileRouteChoice.drivingLicence:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.myDrivingLicensesScreenRoute);
               break;
             case ListTileRouteChoice.changePassword:
               NamedNavigatorImpl().push(Routes.changePasswordScreenRoute);
