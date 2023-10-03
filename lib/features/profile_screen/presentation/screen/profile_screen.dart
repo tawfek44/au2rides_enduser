@@ -311,7 +311,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
               break;
             case ListTileRouteChoice.wallets:
-
+              NamedNavigatorImpl().push(Routes.walletScreenRoute);
               break;
             case ListTileRouteChoice.identityCard:
               NamedNavigatorImpl().push(Routes.myDocumentsScreenRoute);
