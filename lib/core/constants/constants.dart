@@ -34,7 +34,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments }
+enum AppBarRoutes { myDocuments,wallet }
 
 Widget getAppBar(
         {required Widget title,
@@ -52,7 +52,7 @@ Widget getAppBar(
       backgroundColor: Theme.of(context).primaryColor,
       leading: leading,
       title: title,
-      actions: route == AppBarRoutes.myDocuments
+      actions: route == AppBarRoutes.myDocuments||route == AppBarRoutes.wallet
           ? [IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))]
           : actions,
       bottom: bottom,
