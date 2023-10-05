@@ -4,8 +4,10 @@ import 'package:au2rides/features/about_screen/presentation/screen/about_screen.
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
+import 'package:au2rides/features/add_wallet_item/presentation/screen/add_wallet_item.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
 import 'package:au2rides/features/change_password_screen/presentation/screen/change_password_screen.dart';
+import 'package:au2rides/features/choose_provider_screen/presentation/screen/choose_provider_screen.dart';
 import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_us_screen.dart';
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
@@ -154,6 +156,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: WalletScreen(),
+        ));
+      case Routes.addWalletScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddWalletItemScreen(),
+        ));
+      case Routes.providersScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ChooseProviderScreen(),
         ));
       case Routes.xx:
         return MaterialPageRoute(builder: (_) =>  const Directionality(

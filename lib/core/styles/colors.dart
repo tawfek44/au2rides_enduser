@@ -11,6 +11,8 @@ class AppColors {
 
   static final primaryColor = HexColor("8c00ff");
   static const validColor = Colors.green;
+  static const redColor = Colors.red;
+
   static const seedColor = Color(0xFF0073B1);
   static const greyColor = Colors.grey;
   static var lightGreyColor = Colors.grey[200];

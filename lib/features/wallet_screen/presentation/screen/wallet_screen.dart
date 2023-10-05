@@ -1,5 +1,8 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -51,16 +54,20 @@ class _WalletScreenState extends State<WalletScreen> {
             background: Container(
               color: Colors.red,
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 10.w),
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end ,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.delete,color: AppColors.white,size: 25.w,)
+                    Icon(
+                      Icons.delete,
+                      color: AppColors.white,
+                      size: 25.w,
+                    )
                   ],
                 ),
               ),
             ),
-            onDismissed: (direction){
+            onDismissed: (direction) {
               setState(() {
                 walletList.removeAt(index);
               });
@@ -106,6 +113,11 @@ class _WalletScreenState extends State<WalletScreen> {
               ],
             ),
             gap(height: 10.h),
+            AppText(
+              text: item.numberOrEmail,
+              fontSize: fontSize,
+            ),
+            gap(height: 10.h),
             Row(
               children: [
                 AppText(
@@ -119,11 +131,6 @@ class _WalletScreenState extends State<WalletScreen> {
                 )
               ],
             ),
-            gap(height: 10.h),
-            AppText(
-              text: item.numberOrEmail,
-              fontSize: fontSize,
-            )
           ],
         ),
         trailing: Icon(
@@ -132,41 +139,12 @@ class _WalletScreenState extends State<WalletScreen> {
           size: 15.w,
         ),
       ));
-  addButtonOnPressed() => showModalBottomSheet(
-    isScrollControlled: true,
-    backgroundColor: AppColors.white,
-    shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(corner),
-            topRight: Radius.circular(corner))),
-    context: context,
-    builder: (context) => Directionality(
-      textDirection: TextDirection.ltr,
-      child: StatefulBuilder(
-        builder: (context, StateSetter setState) => Padding(
-          padding: EdgeInsets.only(
-              top: 15.w,
-              right: 15.w,
-              left: 15.w,
-              bottom: MediaQuery.of(context).viewInsets.bottom + 10.h),
-          child: SingleChildScrollView(
-            child: Wrap(
-              children: [
-                CupertinoListSection.insetGrouped(
-                  margin: EdgeInsets.only(
-                      left: 0, right: 0, top: 0, bottom: 15.h),
-                  children: [
-                  ],
-                ),
-                AppButton(label: "Save", onPressed: () {}),
-                gap(height: 10.h),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
+
+  addButtonOnPressed() {
+    NamedNavigatorImpl().push(Routes.addWalletScreenRoute);
+  }
+
+
 }
 
 class WalletModel {

@@ -28,6 +28,8 @@ class Routes {
   static const myDocumentsScreenRoute = "MY_DOCUMENTS_SCREEN_ROUTE";
   static const myDrivingLicensesScreenRoute = "MY_DRIVING_LICENSES_SCREEN_ROUTE";
   static const walletScreenRoute = "WALLET_SCREEN_ROUTE";
+  static const addWalletScreenRoute = "ADD_WALLET_SCREEN_ROUTE";
+  static const providersScreenRoute = "PROVIDERS_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
