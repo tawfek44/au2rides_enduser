@@ -1,12 +1,19 @@
 
+import 'dart:convert';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
 import 'core/styles/theme.dart';
+import 'dart:developer' as logDev;
 Future main() async {
+
+
   WidgetsFlutterBinding.ensureInitialized();
   //configureInjection();
   launchApp();
@@ -22,6 +29,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String? packageName;
+  double packageVersion = 0;
+  late Map<String, dynamic> deviceInfo;
   @override
   void initState() {
     super.initState();
@@ -48,11 +58,34 @@ class _MyAppState extends State<MyApp> {
           ],
           theme: getLightThemeData(context),
           darkTheme: darkThemeData,
-          initialRoute: Routes.profileScreenRoute,
+          initialRoute: Routes.showFuelUpScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );
       },
     );
   }
+  getDeviceIfo() {
+    DeviceInfoPlugin().deviceInfo.then((device) {
+      if (device.data.isNotEmpty) {
+        deviceInfo = device.data;
+        print("-------------------------deviceInfo-------------------------------------");
+        logDev.log(json.encode(deviceInfo));
+        print("-------------------------deviceInfo-------------------------------------");
+      }
+      }
+    );
+  }
+
+  getPackageData() {
+    PackageInfo.fromPlatform().then((value) {
+      packageName = value.packageName;
+      packageVersion = double.parse(
+          value.version.split(".")[0] + value.version.split(".")[1]);
+      print("-------------------------PackageName-------------------------------------");
+      debugPrint(packageName);
+      print("-------------------------PackageName-------------------------------------");
+    });
+  }
 }
+

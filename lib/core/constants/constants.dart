@@ -34,7 +34,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments, wallet, addWallet }
+enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp}
 
 Widget getAppBar(
         {required Widget title,
@@ -63,11 +63,15 @@ List<Widget> getAppBarWidgetAccordingToRoute(
     VoidCallback? onPressedDelete,
     required List<Widget>? actions}) {
   switch (route) {
-    case AppBarRoutes.myDocuments:
+    case AppBarRoutes.myDocuments :
       return [
         IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
       ];
     case AppBarRoutes.wallet:
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
+      ];
+    case AppBarRoutes.showFuelUp:
       return [
         IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
       ];

@@ -30,6 +30,7 @@ class Routes {
   static const walletScreenRoute = "WALLET_SCREEN_ROUTE";
   static const addWalletScreenRoute = "ADD_WALLET_SCREEN_ROUTE";
   static const providersScreenRoute = "PROVIDERS_SCREEN_ROUTE";
+  static const showFuelUpScreenRoute = "SHOW_FUEL_UP_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
