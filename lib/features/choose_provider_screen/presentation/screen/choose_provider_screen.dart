@@ -31,7 +31,7 @@ class _ChooseProviderScreenState extends State<ChooseProviderScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.all(15.w),
+          padding: EdgeInsets.all(15.w),
           child: Column(
             children: [
               addProviderSection(hintText: "Add provider..."),

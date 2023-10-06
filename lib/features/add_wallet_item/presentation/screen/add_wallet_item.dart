@@ -26,6 +26,13 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.addWallet,
+          onPressed: (){
+
+          },
+          onPressedDelete: (){
+
+          },
           title: AppText(
             text: "Add Wallet Item",
             fontSize: 15.sp,
@@ -76,10 +83,6 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                   getNotesSection()
                 ],
               ),
-              AppButton(label: "Save", onPressed: () {}),
-              gap(height: 10.h),
-              AppButton(label: "Delete",color: AppColors.redColor, onPressed: () {}),
-              gap(height: 10.h),
             ],
           ),
         ),

@@ -34,7 +34,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments,wallet }
+enum AppBarRoutes { myDocuments, wallet, addWallet }
 
 Widget getAppBar(
         {required Widget title,
@@ -43,8 +43,8 @@ Widget getAppBar(
         Widget? leading,
         PreferredSizeWidget? bottom,
         AppBarRoutes? route,
-        VoidCallback? onPressed
-        }) =>
+        VoidCallback? onPressedDelete,
+        VoidCallback? onPressed}) =>
     AppBar(
       iconTheme: const IconThemeData(
         color: AppColors.white, //change your color here
@@ -52,8 +52,44 @@ Widget getAppBar(
       backgroundColor: Theme.of(context).primaryColor,
       leading: leading,
       title: title,
-      actions: route == AppBarRoutes.myDocuments||route == AppBarRoutes.wallet
-          ? [IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))]
-          : actions,
+      actions: getAppBarWidgetAccordingToRoute(
+          route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete),
       bottom: bottom,
     );
+
+List<Widget> getAppBarWidgetAccordingToRoute(
+    {AppBarRoutes? route,
+    VoidCallback? onPressed,
+    VoidCallback? onPressedDelete,
+    required List<Widget>? actions}) {
+  switch (route) {
+    case AppBarRoutes.myDocuments:
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
+      ];
+    case AppBarRoutes.wallet:
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
+      ];
+    case AppBarRoutes.addWallet:
+      return [
+        IconButton(
+            onPressed: onPressedDelete,
+            icon: const Icon(
+              Icons.delete,
+              color: AppColors.redColor,
+            )),
+        IconButton(
+            onPressed: onPressed,
+            icon: const Icon(
+              Icons.save,
+              color: AppColors.white,
+            )),
+
+      ];
+    default:
+      {
+        return actions ?? [];
+      }
+  }
+}
