@@ -31,6 +31,10 @@ class Routes {
   static const addWalletScreenRoute = "ADD_WALLET_SCREEN_ROUTE";
   static const providersScreenRoute = "PROVIDERS_SCREEN_ROUTE";
   static const showFuelUpScreenRoute = "SHOW_FUEL_UP_SCREEN_ROUTE";
+  static const showOdometerScreenRoute = "SHOW_ODOMETER_SCREEN_ROUTE";
+  static const showTripsScreenRoute = "SHOW_TRIPS_SCREEN_ROUTE";
+  static const showMaintenanceScreenRoute = "SHOW_MAINTENANCE_SCREEN_ROUTE";
+  static const showRemindersScreenRoute = "SHOW_REMINDERS_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
