@@ -40,12 +40,14 @@ Widget getAppBar(
         {required Widget title,
         required context,
         List<Widget>? actions,
+        bool? isLeadingIconExists,
         Widget? leading,
         PreferredSizeWidget? bottom,
         AppBarRoutes? route,
         VoidCallback? onPressedDelete,
         VoidCallback? onPressed}) =>
     AppBar(
+      automaticallyImplyLeading: isLeadingIconExists??true,
       iconTheme: const IconThemeData(
         color: AppColors.white, //change your color here
       ),

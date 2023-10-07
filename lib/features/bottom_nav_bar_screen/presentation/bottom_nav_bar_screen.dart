@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/constants/constants.dart';
+import '../../show_reminders_screen/presentation/screen/show_reminders_screen.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({super.key});
@@ -20,7 +21,7 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
-  List<Widget> screens=[const HomeScreen(),const ShopsScreen(),const RemindersScreen(),const MoreScreen()];
+  List<Widget> screens=[const HomeScreen(),const ShopsScreen(),const ShowRemindersScreen(),const MoreScreen()];
   int currentIndex=0;
   List<Map<String,IconData>> addItemNamesListInEnglish =
   [

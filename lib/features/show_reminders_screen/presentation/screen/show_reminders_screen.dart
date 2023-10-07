@@ -22,13 +22,14 @@ class _ShowRemindersScreenState extends State<ShowRemindersScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
+          isLeadingIconExists: false,
           context: context,
           route: AppBarRoutes.showFuelUp,
           onPressed: () {
             //NamedNavigatorImpl().push(Routes.ad);
           },
           title: AppText(
-            text: "Show Reminders",
+            text: "Reminders",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

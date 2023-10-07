@@ -72,6 +72,7 @@ class _MoreScreenState extends State<MoreScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          isLeadingIconExists: false,
           title: AppText(
             text: "Menu",
             fontSize: 15.sp,
