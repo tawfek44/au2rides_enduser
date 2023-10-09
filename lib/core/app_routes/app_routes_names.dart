@@ -35,6 +35,7 @@ class Routes {
   static const showTripsScreenRoute = "SHOW_TRIPS_SCREEN_ROUTE";
   static const showMaintenanceScreenRoute = "SHOW_MAINTENANCE_SCREEN_ROUTE";
   static const showRemindersScreenRoute = "SHOW_REMINDERS_SCREEN_ROUTE";
+  static const addReminderScreenRoute = "ADD_REMINDER_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

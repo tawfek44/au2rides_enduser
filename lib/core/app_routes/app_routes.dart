@@ -3,6 +3,7 @@ import 'package:au2rides/features/Qr_code_Details_screen/presentation/screen/qr_
 import 'package:au2rides/features/about_screen/presentation/screen/about_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
+import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
 import 'package:au2rides/features/add_wallet_item/presentation/screen/add_wallet_item.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
@@ -196,6 +197,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: ShowRemindersScreen(),
+        ));
+      case Routes.addReminderScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddReminderScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

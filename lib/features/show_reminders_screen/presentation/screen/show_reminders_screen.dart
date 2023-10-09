@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
-import '../../../reminders_screen/presentation/reminders_screen.dart';
 
 class ShowRemindersScreen extends StatefulWidget {
   const ShowRemindersScreen({super.key});
