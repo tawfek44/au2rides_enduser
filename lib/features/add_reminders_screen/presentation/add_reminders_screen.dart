@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../../../core/constants/constants.dart';
 import '../../../core/styles/colors.dart';
@@ -18,9 +18,11 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
   bool odometerJustOnceCheckBoxMark = false;
   bool dateJustOnceCheckBoxMark = false;
   DateTime selectedDate = DateTime.now();
+  bool recurrenceBool=false;
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
   var dateFormat;
+  List<String> recurrenceChoicesList = ["JustOnce", "Repeat every"];
 
   @override
   Widget build(BuildContext context) {
@@ -52,22 +54,16 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                 children: [
                   getTypeListTile(
                       title: "Recurrence",
-                      additionalInfo: "Just Once",
+                      additionalInfo: recurrenceBool?"Repeat Every":"Just Once",
+                      choice: ChoiceRoute.recurrence,
                       trailingIcon: CupertinoIcons.right_chevron,
                       leadingIcon: Icon(
                         CupertinoIcons.bell_fill,
                         color: Theme.of(context).primaryColor,
                       )),
-                  getJustOnceWidget(
-                    boolCheckMark: odometerJustOnceCheckBoxMark,
-                    title: "KM",
-                    choice: CheckBoxMarkRoute.odometer,
-                  ),
-                  getJustOnceWidget(
-                    boolCheckMark: dateJustOnceCheckBoxMark,
-                    title: "Date",
-                    choice: CheckBoxMarkRoute.date,
-                  )
+                  if(!recurrenceBool)...[ getJustOnceWidgets()]
+                  else getRepeatEveryWidgets(),
+
                 ],
               ),
               gap(height: 20.h),
@@ -77,8 +73,122 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
         ),
       ),
     );
+
   }
 
+  _showRecurrenceDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: CupertinoAlertDialog(
+              title: Center(
+                  child: AppText(
+                text: "Choose the Recurrence",
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+              )),
+              content: AppText(
+                text: "Choose the recurrence either Just once or Repeat every.",
+                fontSize: fontSize,
+                maxLines: 10,
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: AppText(text:"Just Once",fontSize: fontSize,),
+                  onPressed: () {
+                    setState(() {
+                      recurrenceBool=false;
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(text:"Repeat Every",fontSize: fontSize,),
+                  onPressed: () {
+                    setState(() {
+                      recurrenceBool=true;
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(text:"CANCEL",fontSize: fontSize,),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  Widget getRepeatEveryWidgets()=>Column(
+    children: [
+      CupertinoListTile.notched(
+        onTap: () {},
+        title: AppText(
+          text: "KM",
+          fontSize: fontSize,
+        ),
+        leading: CupertinoCheckbox(
+          value: true,
+          onChanged: (bool? value) {
+            setState(() {});
+          },
+        ),
+        additionalInfo: getOdometerTextField(),
+      ),
+      Divider(indent: 55.w,thickness: .5,height: 0,),
+      CupertinoListTile.notched(
+        onTap: () {
+        },
+        title: AppText(
+          text: "Time",
+          fontSize: fontSize,
+        ),
+        leading: CupertinoCheckbox(
+          value: true,
+          onChanged: (bool? value) {
+            setState(() {});
+          },
+        ),
+        additionalInfo: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            AppText(
+              text: "Daily",
+              fontSize: fontSize,
+              color: AppColors.greyColor,
+            ),
+            getOdometerTextField()
+          ],
+        ),
+        trailing: const Icon(
+          CupertinoIcons.right_chevron,
+          color: AppColors.greyColor,
+        ),
+      ),
+    ],
+  );
+  Widget getJustOnceWidgets()=>Column(
+    children: [
+      getJustOnceWidget(
+        boolCheckMark: odometerJustOnceCheckBoxMark,
+        title: "KM",
+        choice: CheckBoxMarkRoute.odometer,
+      ),
+      Divider(indent: 55.w,thickness: .5,height: 0,),
+      getJustOnceWidget(
+        boolCheckMark: dateJustOnceCheckBoxMark,
+        title: "Date",
+        choice: CheckBoxMarkRoute.date,
+      ),
+    ],
+  );
   Widget getJustOnceWidget({
     required bool boolCheckMark,
     required String title,
@@ -121,7 +231,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
           style: TextStyle(fontSize: fontSize),
           placeholderStyle: TextStyle(
               fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
-          placeholder: "0.0",
+          placeholder: "0",
           decoration:
               BoxDecoration(border: Border.all(style: BorderStyle.none)),
         ),
@@ -138,7 +248,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
           child: AppText(
-            text: DateFormat('dd MMM yyyy').format(selectedDate),
+            text: intl.DateFormat('dd MMM yyyy').format(selectedDate),
             fontSize: fontSize,
           ),
         ),
@@ -162,12 +272,14 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
         children: [
           getTypeListTile(
             title: "Reminder Type",
-            additionalInfo: "Not Set",
+            additionalInfo: "",
+            choice: ChoiceRoute.reminderType,
             trailingIcon: CupertinoIcons.arrow_up_down,
           ),
           getTypeListTile(
             trailingIcon: CupertinoIcons.right_chevron,
-            additionalInfo: "Not Set",
+            additionalInfo: "",
+            choice: ChoiceRoute.type,
             title: "Type",
           ),
         ],
@@ -196,9 +308,22 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
           {required String title,
           required String additionalInfo,
           required IconData trailingIcon,
+          required ChoiceRoute choice,
           Widget? leadingIcon}) =>
       CupertinoListTile.notched(
-        onTap: () {},
+        onTap: () {
+          switch(choice) {
+            case ChoiceRoute.recurrence:
+              _showRecurrenceDialog(context);
+              break;
+            case ChoiceRoute.reminderType:
+              // TODO: Handle this case.
+              break;
+            case ChoiceRoute.type:
+              // TODO: Handle this case.
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,
@@ -238,3 +363,4 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
 }
 
 enum CheckBoxMarkRoute { odometer, date }
+enum ChoiceRoute {recurrence,reminderType,type}
