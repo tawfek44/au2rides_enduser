@@ -5,6 +5,7 @@ import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.d
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
+import 'package:au2rides/features/add_trip_screen/presentation/screen/add_trip_screen.dart';
 import 'package:au2rides/features/add_wallet_item/presentation/screen/add_wallet_item.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
 import 'package:au2rides/features/change_password_screen/presentation/screen/change_password_screen.dart';
@@ -202,6 +203,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: AddReminderScreen(),
+        ));
+      case Routes.addTripScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddTripScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

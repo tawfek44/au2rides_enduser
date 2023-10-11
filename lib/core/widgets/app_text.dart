@@ -40,6 +40,7 @@ class AppText extends StatelessWidget {
         //  fontFamily: isArabicLocalization() ? 'Tajawal' : 'Gilroy',
       ),
       maxLines: maxLines ?? 1,
+
       //  textDirection:
       // isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
     );
