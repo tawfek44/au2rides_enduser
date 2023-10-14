@@ -63,84 +63,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget getSignInSection() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppText(
-            text: "SIGN IN DETAILS",
-            fontSize: 10.sp,
-            color: AppColors.greyColor,
-          ),
-          gap(height: 10.h),
-          Container(
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(corner))),
-              child: Column(
-                children: [
-                  getCountriesWidget(),
-                  Divider(
-                    height: 0,
-                    indent: 55.w,
-                  ),
-                  getPhoneNumberWidget()
-                ],
-              )),
-        ],
-      );
-
-  Widget getPhoneNumberWidget()=>Padding(
-    padding: EdgeInsets.symmetric(horizontal: 10.w),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        AppText(
-          text: '+20',
-          color: AppColors.greyColor,
-        ),
-        Expanded(
-          child: SharedTextField(
-            hintText: 'Phone Number',
-            textController: phoneController,
-            inputType: TextInputType.text,
-          ),
-        ),
-      ],
-    ),
-  );
-  Widget getCountriesWidget()=>Material(
-    color: Colors.transparent,
-    child: InkWell(
-      onTap: () {
-        NamedNavigatorImpl().push(Routes.countriesScreenRoute);
-      },
-      child: Padding(
-        padding: EdgeInsets.only(
-            left: 10.w, right: 10.w, top: 15.h, bottom: 15.h),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.flag,color: Theme.of(context).primaryColor,),
-            gap(width: 20.w),
-            AppText(
-              text: "Countries",
-              fontSize: 13.sp,
-              color: AppColors.greyColor,
-            ),
-            const Spacer(),
-            AppText(
-              text: "Egypt",
-              fontSize: 13.sp,
-              color: AppColors.greyColor,
-            ),
-            const Icon(
-              CupertinoIcons.forward,
-              color: AppColors.greyColor,
-            )
-          ],
-        ),
+  Widget getSignInSection() => CupertinoListSection.insetGrouped(
+    header: AppText(text: "SIGN IN DETAILS",fontSize: fontSize,color: AppColors.greyColor,),
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        onTap: (){
+          NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+        },
+        leading:  Icon(Icons.flag,color: Theme.of(context).primaryColor,),
+        trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
+        title: AppText(text: "Countries",fontSize: fontSize,color: AppColors.greyColor,),
       ),
-    ),
+      CupertinoListTile(
+          leading:  AppText(text: "+20",fontSize: fontSize,color: AppColors.greyColor,),
+          title:  CupertinoTextField(
+            decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+            placeholder: "Phone Number",
+            placeholderStyle: TextStyle(
+                fontSize: fontSize,
+                color: AppColors.greyColor,
+                height: 1.7.h
+            ),
+          )
+      )
+    ],
   );
   Widget getSignInButton() => AppButton(
       color: Theme.of(context).primaryColor,

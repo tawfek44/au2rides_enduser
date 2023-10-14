@@ -36,14 +36,23 @@ class _CountriesScreenState extends State<CountriesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(
-                text: "Countries",
-
-                fontWeight: FontWeight.bold,
-                fontSize: 16.sp,
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                header: AppText(text: "COUNTRIES",fontSize: fontSize,color: AppColors.greyColor,),
+                children: [
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context,index)=>CupertinoListTile(
+                      onTap: (){},
+                      title: AppText(text: countries[index],fontSize: fontSize,),
+                    ),
+                    itemCount: countries.length, separatorBuilder: (BuildContext context, int index) {
+                      return Divider(height: 0,indent: 20.w,);
+                  },
+                  )
+                ],
               ),
-              gap(height: 10.h),
-              getCountriesSection(),
             ],
           )
         ),

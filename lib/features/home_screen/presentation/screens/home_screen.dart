@@ -364,7 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           AppText(
             text: 'Desert of Giza Governorate',
-            fontSize: 12.sp,
+            fontSize:fontSize,
           ),
           const Spacer(),
           IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz))
@@ -395,6 +395,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getSeeFullForecastTextButtonWidget() => TextButton(
         onPressed: () {},
         child: AppText(
+          fontSize: fontSize,
           text: 'See full forecast',
         ),
       );

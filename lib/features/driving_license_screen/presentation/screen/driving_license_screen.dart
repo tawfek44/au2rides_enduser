@@ -47,31 +47,41 @@ class _DrivingLicenseScreenState extends State<DrivingLicenseScreen> {
           ),
         ),
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) => Dismissible(
-          direction: DismissDirection.endToStart,
-          key: ObjectKey(myDrivingLicences[index]),
-          background: Container(
-            color: Colors.red,
-            child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 10.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end ,
-                children: [
-                   Icon(Icons.delete,color: AppColors.white,size: 25.w,)
-                ],
+      body: Padding(
+        padding:  EdgeInsets.all(15.w),
+        child: CupertinoListSection.insetGrouped(
+          margin: EdgeInsets.zero,
+          children: [
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => Dismissible(
+                direction: DismissDirection.endToStart,
+                key: ObjectKey(myDrivingLicences[index]),
+                background: Container(
+                  color: Colors.red,
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 10.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end ,
+                      children: [
+                         Icon(Icons.delete,color: AppColors.white,size: 25.w,)
+                      ],
+                    ),
+                  ),
+                ),
+                onDismissed: (direction){
+                  setState(() {
+                    myDrivingLicences.removeAt(index);
+                  });
+                },
+                child: drivingLicenceItem(drivingLicenceModel: myDrivingLicences[index]),
               ),
+              separatorBuilder: (context, index) => const Divider(height: 0,),
+              itemCount: myDrivingLicences.length,
             ),
-          ),
-          onDismissed: (direction){
-            setState(() {
-              myDrivingLicences.removeAt(index);
-            });
-          },
-          child: drivingLicenceItem(drivingLicenceModel: myDrivingLicences[index]),
+          ],
         ),
-        separatorBuilder: (context, index) => const Divider(height: 0,),
-        itemCount: myDrivingLicences.length,
       ),
     );
   }

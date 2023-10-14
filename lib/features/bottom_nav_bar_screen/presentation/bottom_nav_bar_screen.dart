@@ -94,7 +94,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                         NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
                         break;
                       case 2:
-                       // NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
                         break;
                       case 3:
                         //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
@@ -103,7 +103,10 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                         NamedNavigatorImpl().push(Routes.addOdometerScreenRoute);
                         break;
                       case 5:
-                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        NamedNavigatorImpl().push(Routes.addTripScreenRoute);
+                        break;
+                      case 6:
+                        NamedNavigatorImpl().push(Routes.addReminderScreenRoute);
                         break;
                     }
                   },

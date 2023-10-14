@@ -47,37 +47,47 @@ class _WalletScreenState extends State<WalletScreen> {
             ),
           ),
         ),
-        body: ListView.separated(
-          itemBuilder: (context, index) => Dismissible(
-            direction: DismissDirection.endToStart,
-            key: ObjectKey(walletList[index]),
-            background: Container(
-              color: Colors.red,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.delete,
-                      color: AppColors.white,
-                      size: 25.w,
-                    )
-                  ],
+        body: Padding(
+          padding:  EdgeInsets.all(15.w),
+          child: CupertinoListSection.insetGrouped(
+            margin: EdgeInsets.zero,
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) => Dismissible(
+                  direction: DismissDirection.endToStart,
+                  key: ObjectKey(walletList[index]),
+                  background: Container(
+                    color: Colors.red,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: AppColors.white,
+                            size: 25.w,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    setState(() {
+                      walletList.removeAt(index);
+                    });
+                  },
+                  child: getListItem(item: walletList[index]),
                 ),
+                separatorBuilder: (context, index) => const Divider(
+                  height: 0,
+                ),
+                itemCount: walletList.length,
               ),
-            ),
-            onDismissed: (direction) {
-              setState(() {
-                walletList.removeAt(index);
-              });
-            },
-            child: getListItem(item: walletList[index]),
+            ],
           ),
-          separatorBuilder: (context, index) => const Divider(
-            height: 0,
-          ),
-          itemCount: walletList.length,
         ));
   }
 

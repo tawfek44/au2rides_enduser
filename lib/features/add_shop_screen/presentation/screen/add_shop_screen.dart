@@ -49,7 +49,6 @@ class _AddShopScreenState extends State<AddShopScreen> {
                   getReusableSection(header: "Name",sectionName: SectionName.name),
                   getReusableSection(header: "CONTACT",sectionName: SectionName.contact),
                   getReusableSection(header: "ADDRESS",sectionName: SectionName.address),
-
                 ],
               ),
             )

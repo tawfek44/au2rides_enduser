@@ -1,4 +1,5 @@
 import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,12 +21,20 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: getAppBar(
+            context: context,
+            title: AppText(
+              text: "Verification",
+              fontSize: 16.sp,
+              color: AppColors.white,
+            ),
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 35.h,
-            ),
+            gap(height: 30.h),
             getLogo(),
             SizedBox(
               height: 24.h,
@@ -56,7 +65,7 @@ class _OTPScreenState extends State<OTPScreen> {
     child: Text(
       "Resend New Code",
       style: TextStyle(
-        fontSize: 16.sp,
+        fontSize: fontSize,
         fontWeight: FontWeight.bold,
         color: Theme.of(context).primaryColor,
       ),
@@ -67,7 +76,7 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget getDidNotReceiveAnyCodeTextWidget()=>  Text(
     "Didn't you receive any code?",
     style: TextStyle(
-      fontSize: 14.sp,
+      fontSize: fontSize,
       fontWeight: FontWeight.bold,
       color: Colors.black38,
     ),
@@ -109,6 +118,9 @@ class _OTPScreenState extends State<OTPScreen> {
     numberOfFields: 6,
     keyboardType: TextInputType.number,
     filled: true,
+    textStyle: TextStyle(
+      fontSize: fontSize
+    ),
     fillColor: Colors.black.withOpacity(0.1),
     inputFormatters: [
       FilteringTextInputFormatter.digitsOnly
@@ -135,12 +147,12 @@ class _OTPScreenState extends State<OTPScreen> {
   );
   Widget getVerificationTextWidget()=>AppText(
     text: 'Verification',
-    fontSize: 22.sp,
+    fontSize: fontSize+5.sp,
     fontWeight: FontWeight.bold,
   );
   Widget getEnterOTPTextWidget()=>AppText(
     text:"Enter your OTP code here",
-    fontSize: 14.sp,
+    fontSize: fontSize,
     fontWeight: FontWeight.bold,
     color: Theme.of(context).hintColor,
     textAlign: TextAlign.center,
