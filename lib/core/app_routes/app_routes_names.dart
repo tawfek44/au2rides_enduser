@@ -39,6 +39,8 @@ class Routes {
   static const addReminderScreenRoute = "ADD_REMINDER_SCREEN_ROUTE";
   static const addTripScreenRoute = "ADD_TRIP_SCREEN_ROUTE";
   static const addShopScreenRoute = "ADD_SHOP_SCREEN_ROUTE";
+  static const addExpensesScreenRoute = "ADD_EXPENSES_SCREEN_ROUTE";
+  static const addItemScreenRoute = "ADD_ITEM_SCREEN_ROUTE";
   static const xx = "xx";
 }
 
