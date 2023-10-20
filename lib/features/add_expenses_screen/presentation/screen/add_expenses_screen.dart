@@ -98,7 +98,7 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
         padding:  EdgeInsets.symmetric(vertical: 10.h),
         child: CupertinoListTile(
           onTap: (){
-            NamedNavigatorImpl().push(Routes.addItemScreenRoute);
+            NamedNavigatorImpl().push(Routes.itemRemindersScreenRoute);
           },
           trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
           leading:Icon(newItemClassList[index].leadingIcon,color: Theme.of(context).primaryColor,),
@@ -151,7 +151,9 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
             separatorBuilder: (context, index) => Divider(indent: 55.w,height: 0,thickness: .5,),
             itemCount: newItemClassList.length,),
           CupertinoListTile(
-            onTap: () {},
+            onTap: () {
+              NamedNavigatorImpl().push(Routes.addItemScreenRoute);
+            },
             title: AppText(
               text: "Add Item...",
               fontSize: fontSize,

@@ -41,6 +41,9 @@ class Routes {
   static const addShopScreenRoute = "ADD_SHOP_SCREEN_ROUTE";
   static const addExpensesScreenRoute = "ADD_EXPENSES_SCREEN_ROUTE";
   static const addItemScreenRoute = "ADD_ITEM_SCREEN_ROUTE";
+  static const createNewItemScreenRoute = "CREATE_NEW_ITEM_SCREEN_ROUTE";
+  static const departmentsScreenRoute = "DEPARTMENTS_SCREEN_ROUTE";
+  static const itemRemindersScreenRoute = "ITEM_REMINDERS_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

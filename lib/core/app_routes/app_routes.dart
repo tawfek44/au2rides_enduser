@@ -16,10 +16,13 @@ import 'package:au2rides/features/choose_provider_screen/presentation/screen/cho
 import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_us_screen.dart';
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
+import 'package:au2rides/features/create_item_screen/presentation/screen/create_item_screen.dart';
 import 'package:au2rides/features/currency_screen/presentation/screen/currency_screen.dart';
+import 'package:au2rides/features/departments_screen/presentation/screen/departments_screen.dart';
 import 'package:au2rides/features/driving_license_screen/presentation/screen/driving_license_screen.dart';
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
+import 'package:au2rides/features/item_reminders_screen/presentation/screen/item_reminders_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
@@ -232,6 +235,21 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: AddItemScreen(),
+        ));
+      case Routes.createNewItemScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: CreateItemScreen(),
+        ));
+      case Routes.departmentsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: DepartmentsScreen(),
+        ));
+      case Routes.itemRemindersScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ItemRemindersScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(
