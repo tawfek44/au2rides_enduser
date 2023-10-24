@@ -142,7 +142,7 @@ class _ItemRemindersScreenState extends State<ItemRemindersScreen> {
 
   Widget getDateSection(
           {required String title, required RemindersTimeDateChoice choice}) =>
-      CupertinoListTile.notched(
+      CupertinoListTile(
         title: AppText(
           text: title,
           fontSize: fontSize,

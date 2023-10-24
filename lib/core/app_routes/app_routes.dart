@@ -4,6 +4,7 @@ import 'package:au2rides/features/about_screen/presentation/screen/about_screen.
 import 'package:au2rides/features/add_expenses_screen/presentation/screen/add_expenses_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
 import 'package:au2rides/features/add_items/presentation/screen/add_item_screen.dart';
+import 'package:au2rides/features/add_maintenance_screen/presentation/screen/add_maintenance_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
@@ -23,6 +24,7 @@ import 'package:au2rides/features/driving_license_screen/presentation/screen/dri
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
 import 'package:au2rides/features/item_reminders_screen/presentation/screen/item_reminders_screen.dart';
+import 'package:au2rides/features/language_screen/presentation/screen/language_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
@@ -250,6 +252,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: ItemRemindersScreen(),
+        ));
+      case Routes.addMaintenanceScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddMaintenanceScreen(),
+        ));
+      case Routes.languagesScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: LanguageScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

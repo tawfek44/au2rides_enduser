@@ -1,8 +1,10 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -66,6 +68,19 @@ Widget getNewItemSectionWidget()=> CupertinoListSection.insetGrouped(
     required ItemInfoChoices choices,
   }) =>
       CupertinoListTile(
+        onTap: (){
+          switch(choices) {
+            case ItemInfoChoices.name:
+              // TODO: Handle this case.
+              break;
+            case ItemInfoChoices.type:
+              // TODO: Handle this case.
+              break;
+            case ItemInfoChoices.department:
+              NamedNavigatorImpl().push(Routes.departmentsScreenRoute);
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,

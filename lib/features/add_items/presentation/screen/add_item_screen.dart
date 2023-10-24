@@ -1,9 +1,11 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -54,7 +56,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
               ),
 
               gap(height: 20.h),
-              AppButton(label: "Create Item...", onPressed: (){}),
+              AppButton(label: "Create Item...", onPressed: (){
+                NamedNavigatorImpl().push(Routes.createNewItemScreenRoute);
+              }),
             ],
           ),
         ),

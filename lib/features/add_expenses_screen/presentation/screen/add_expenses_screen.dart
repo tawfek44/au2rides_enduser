@@ -315,7 +315,7 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
                 color: Theme.of(context).primaryColor,
               ),
               additionalInfo: AppText(
-                text: expenseTypeBool ? "Other" : "Expense",
+                text: expenseTypeBool ? "Other" : "Vehicle",
                 fontSize: fontSize,
                 color: AppColors.greyColor,
               ),
@@ -364,7 +364,7 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
               actions: <Widget>[
                 CupertinoDialogAction(
                   child: AppText(
-                    text: "Expense",
+                    text: "Vehicle",
                     fontSize: fontSize,
                   ),
                   onPressed: () {
