@@ -94,10 +94,10 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                         NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
                         break;
                       case 2:
-                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        NamedNavigatorImpl().push(Routes.addExpensesScreenRoute);
                         break;
                       case 3:
-                        //NamedNavigatorImpl().push(Routes.addRideScreenRoute);
+                        NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
                         break;
                       case 4:
                         NamedNavigatorImpl().push(Routes.addOdometerScreenRoute);

@@ -177,7 +177,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     // TODO: Handle this case.
                     break;
                   case ExpansionListTileChoice.language:
-                    // TODO: Handle this case.
+                    NamedNavigatorImpl().push(Routes.languagesScreenRoute);
                     break;
                   case ExpansionListTileChoice.about:
                     NamedNavigatorImpl().push(Routes.aboutScreenRoute);

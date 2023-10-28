@@ -34,7 +34,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp}
+enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp,edit}
 
 Widget getAppBar(
         {required Widget title,
@@ -76,6 +76,15 @@ List<Widget> getAppBarWidgetAccordingToRoute(
     case AppBarRoutes.showFuelUp:
       return [
         IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
+      ];
+    case AppBarRoutes.edit:
+      return [
+        IconButton(
+            onPressed: onPressed,
+            icon: const Icon(
+              Icons.edit,
+            )),
+
       ];
     case AppBarRoutes.addWallet:
       return [

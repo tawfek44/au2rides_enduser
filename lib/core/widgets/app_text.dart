@@ -11,6 +11,7 @@ class AppText extends StatelessWidget {
   final TextAlign? textAlign;
   final TextDecoration? decoration;
   final double? height;
+  final List<Shadow>? shadowList;
 
   AppText({
     Key? key,
@@ -22,6 +23,7 @@ class AppText extends StatelessWidget {
     this.textAlign,
     this.decoration,
     this.height,
+    this.shadowList
   }) : super(key: key);
 
   @override
@@ -37,6 +39,7 @@ class AppText extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         decoration: decoration,
         decorationColor: Colors.black,
+        shadows: shadowList
         //  fontFamily: isArabicLocalization() ? 'Tajawal' : 'Gilroy',
       ),
       maxLines: maxLines ?? 1,

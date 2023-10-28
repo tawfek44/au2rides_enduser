@@ -29,6 +29,7 @@ import 'package:au2rides/features/login_screen/presentation/screens/login_screen
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
+import 'package:au2rides/features/ride_details/presentation/screen/ride_details.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/show_expenses_screen/presentation/screen/show_expenses_screen.dart';
 import 'package:au2rides/features/show_fuel_up_screen/presentation/screen/show_fuel_up_screen.dart';
@@ -262,6 +263,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: LanguageScreen(),
+        ));
+      case Routes.rideDetailsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: RideDetails(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

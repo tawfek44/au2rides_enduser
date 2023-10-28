@@ -124,6 +124,10 @@ class _HomeScreenState extends State<HomeScreen> {
               title: "My requests",
               icon: Icons.compare_arrows_rounded,
               drawerChoices: DrawerChoices.requests),
+          getDrawerLinks(
+              title: "Languages",
+              icon: Icons.language,
+              drawerChoices: DrawerChoices.languages),
           const Divider(),
           getDrawerLinks(
               title: "Logout",
@@ -160,6 +164,9 @@ class _HomeScreenState extends State<HomeScreen> {
               break;
             case DrawerChoices.logout:
               // TODO: Handle this case.
+              break;
+            case DrawerChoices.languages:
+              NamedNavigatorImpl().push(Routes.languagesScreenRoute);
               break;
           }
         },
@@ -257,21 +264,26 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const NeverScrollableScrollPhysics(),
       );
 
-  Widget getRideItem() => SizedBox(
-        width: double.infinity,
-        child: Card(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(corner)),
-            ),
-            child: Stack(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(5.w),
-                    child: Image.asset('images/car.png'))
-              ],
-            )),
-      );
+  Widget getRideItem() => GestureDetector(
+    onTap: (){
+      NamedNavigatorImpl().push(Routes.rideDetailsScreenRoute);
+    },
+    child: SizedBox(
+          width: double.infinity,
+          child: Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(corner)),
+              ),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(5.w),
+                      child: Image.asset('images/car.png'))
+                ],
+              )),
+        ),
+  );
 
   Widget getSponsoredAds() => CarouselSlider.builder(
         itemCount: 4,
@@ -422,5 +434,6 @@ enum DrawerChoices {
   messages,
   overdue,
   requests,
+  languages,
   logout
 }
