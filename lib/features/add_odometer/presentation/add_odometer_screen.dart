@@ -16,7 +16,6 @@ class AddOdometerScreen extends StatefulWidget {
 }
 
 class _AddOdometerScreenState extends State<AddOdometerScreen> {
-  var fontSize = 13.sp;
   DateTime selectedDate = DateTime.now();
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
@@ -137,8 +136,11 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
               FilteringTextInputFormatter.digitsOnly
             ],
             maxLines: 1,
+            style: TextStyle(
+              fontSize: fontSize
+            ),
             placeholderStyle: TextStyle(
-                fontSize: fontSize, height: 1.5.h, color: AppColors.greyColor),
+                fontSize: fontSize, color: AppColors.greyColor),
             placeholder: "0.0",
             decoration:
             BoxDecoration(border: Border.all(style: BorderStyle.none)),
@@ -223,8 +225,9 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
           CupertinoListTile.notched(
             onTap: () {},
             padding: EdgeInsets.symmetric(horizontal: 13.w),
-            title: const CupertinoTextField(
-              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+            title:  CupertinoTextField(
+              style: TextStyle(fontSize: fontSize),
+              decoration: const BoxDecoration(border: Border(right: BorderSide.none)),
               maxLines: 5,
             ),
           )

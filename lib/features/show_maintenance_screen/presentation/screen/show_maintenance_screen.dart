@@ -41,7 +41,7 @@ class _ShowMaintenanceScreenState extends State<ShowMaintenanceScreen> {
           context: context,
           route: AppBarRoutes.showFuelUp,
           onPressed: () {
-           // NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
+            NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
           },
           title: AppText(
             text: "Show Maintenance",

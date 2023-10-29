@@ -1,6 +1,7 @@
 
 import 'package:au2rides/features/Qr_code_Details_screen/presentation/screen/qr_code_details_screen.dart';
 import 'package:au2rides/features/about_screen/presentation/screen/about_screen.dart';
+import 'package:au2rides/features/acquisition_screen/presentation/screen/acquisition_Screen.dart';
 import 'package:au2rides/features/add_expenses_screen/presentation/screen/add_expenses_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
 import 'package:au2rides/features/add_items/presentation/screen/add_item_screen.dart';
@@ -23,13 +24,16 @@ import 'package:au2rides/features/departments_screen/presentation/screen/departm
 import 'package:au2rides/features/driving_license_screen/presentation/screen/driving_license_screen.dart';
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
 import 'package:au2rides/features/gender_screen/presentation/gender_screen.dart';
+import 'package:au2rides/features/insurance_policy_screen/presentation/screen/insurance_policy_screen.dart';
 import 'package:au2rides/features/item_reminders_screen/presentation/screen/item_reminders_screen.dart';
 import 'package:au2rides/features/language_screen/presentation/screen/language_screen.dart';
+import 'package:au2rides/features/licence_details_screen/presentation/screen/licence_details_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
 import 'package:au2rides/features/ride_details/presentation/screen/ride_details.dart';
+import 'package:au2rides/features/scheduled_maintenance_screen/presentation/screen/scheduled_maintenance_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
 import 'package:au2rides/features/show_expenses_screen/presentation/screen/show_expenses_screen.dart';
 import 'package:au2rides/features/show_fuel_up_screen/presentation/screen/show_fuel_up_screen.dart';
@@ -38,6 +42,7 @@ import 'package:au2rides/features/show_odometer_screen/presentation/screen/show_
 import 'package:au2rides/features/show_reminders_screen/presentation/screen/show_reminders_screen.dart';
 import 'package:au2rides/features/show_trips_screen/presentation/screen/show_trips_screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
+import 'package:au2rides/features/tire_pressure_details/presentation/screen/tire_pressure_details_screen.dart';
 import 'package:au2rides/features/transaction_history_screen/presentation/screen/transaction_history_screen.dart';
 import 'package:au2rides/features/wallet_screen/presentation/screen/wallet_screen.dart';
 import 'package:flutter/material.dart';
@@ -268,6 +273,31 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: RideDetails(),
+        ));
+      case Routes.scheduledMaintenanceScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ScheduledMaintenanceScreen(),
+        ));
+      case Routes.tirePressureScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: TirePressureDetailsScreen(),
+        ));
+      case Routes.licenceDetailsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: LicenceDetailsScreen(),
+        ));
+      case Routes.insurancePolicyScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: InsurancePolicyScreen(),
+        ));
+      case Routes.acquisitionScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AcquisitionScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

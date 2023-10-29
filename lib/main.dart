@@ -57,8 +57,7 @@ class _MyAppState extends State<MyApp> {
             Locale('ar', ''),
           ],
           theme: getLightThemeData(context),
-          darkTheme: darkThemeData,
-          initialRoute: Routes.rideDetailsScreenRoute,
+          initialRoute: Routes.splashScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );

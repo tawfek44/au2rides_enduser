@@ -47,6 +47,11 @@ class Routes {
   static const addMaintenanceScreenRoute = "ADD_MAINTENANCE_SCREEN_ROUTE";
   static const languagesScreenRoute = "LANGUAGES_SCREEN_ROUTE";
   static const rideDetailsScreenRoute = "RIDE_DETAILS_SCREEN_ROUTE";
+  static const scheduledMaintenanceScreenRoute = "SCHEDULED_MAINTENANCE_SCREEN_ROUTE";
+  static const tirePressureScreenRoute = "TIRE_PRESSURE_SCREEN_ROUTE";
+  static const licenceDetailsScreenRoute = "LICENCE_DETAILS_SCREEN_ROUTE";
+  static const insurancePolicyScreenRoute = "INSURANCE_POLICY_SCREEN_ROUTE";
+  static const acquisitionScreenRoute = "ACQUISITION_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

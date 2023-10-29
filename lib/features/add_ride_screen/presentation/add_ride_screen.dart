@@ -44,8 +44,6 @@ class _AddRideScreenState extends State<AddRideScreen> {
               getMetricsSection(),
               getFuelSection(),
               getTirePressureSection(),
-              getFrontSection(),
-              getRearSection(),
               getLicenceSection(),
             ],
           ),

@@ -60,18 +60,15 @@ class _WalletScreenState extends State<WalletScreen> {
                   key: ObjectKey(walletList[index]),
                   background: Container(
                     color: Colors.red,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.delete,
-                            color: AppColors.white,
-                            size: 25.w,
-                          )
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color: AppColors.white,
+                          size: 25.w,
+                        )
+                      ],
                     ),
                   ),
                   onDismissed: (direction) {
@@ -91,64 +88,62 @@ class _WalletScreenState extends State<WalletScreen> {
         ));
   }
 
-  Widget getListItem({required WalletModel item}) => Padding(
-      padding: EdgeInsets.all(10.w),
-      child: CupertinoListTile.notched(
-        onTap: () {},
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  Widget getListItem({required WalletModel item}) => CupertinoListTile.notched(
+    onTap: () {},
+    title: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                AppText(
-                  text: item.vendor,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                ),
-                gap(width: 15.w),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(corner)),
-                  height: 25.h,
-                  width: 50.w,
-                  child: Center(
-                      child: Text(
-                    "Linked",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: fontSize - 2.sp),
-                    textAlign: TextAlign.center,
-                  )),
-                ),
-              ],
-            ),
-            gap(height: 10.h),
             AppText(
-              text: item.numberOrEmail,
+              text: item.vendor,
               fontSize: fontSize,
+              fontWeight: FontWeight.bold,
             ),
-            gap(height: 10.h),
-            Row(
-              children: [
-                AppText(
-                  text: item.country,
-                  fontSize: fontSize,
-                ),
-                gap(width: 15.w),
-                AppText(
-                  text: item.points,
-                  fontSize: fontSize,
-                )
-              ],
+            gap(width: 15.w),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(corner)),
+              height: 25.h,
+              width: 50.w,
+              child: Center(
+                  child: Text(
+                "Linked",
+                style: TextStyle(
+                    color: Colors.white, fontSize: fontSize - 2.sp),
+                textAlign: TextAlign.center,
+              )),
             ),
           ],
         ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          color: AppColors.secondaryColor,
-          size: 15.w,
+        gap(height: 10.h),
+        AppText(
+          text: item.numberOrEmail,
+          fontSize: fontSize,
         ),
-      ));
+        gap(height: 10.h),
+        Row(
+          children: [
+            AppText(
+              text: item.country,
+              fontSize: fontSize,
+            ),
+            gap(width: 15.w),
+            AppText(
+              text: item.points,
+              fontSize: fontSize,
+            )
+          ],
+        ),
+      ],
+    ),
+    trailing: Icon(
+      Icons.arrow_forward_ios,
+      color: AppColors.secondaryColor,
+      size: 15.w,
+    ),
+  );
 
   addButtonOnPressed() {
     NamedNavigatorImpl().push(Routes.addWalletScreenRoute);

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -38,7 +40,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
           context: context,
           route: AppBarRoutes.showFuelUp,
           onPressed: () {
-            // NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
+            NamedNavigatorImpl().push(Routes.addExpensesScreenRoute);
           },
           title: AppText(
             text: "Show Expenses",
@@ -117,7 +119,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
-        trailing: const Icon(CupertinoIcons.arrow_up_down,color: AppColors.greyColor,)
+        trailing: const Icon(Icons.unfold_more,color: AppColors.greyColor,)
       ),
       CupertinoListTile(
         title: AppText(

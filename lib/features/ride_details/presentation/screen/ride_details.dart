@@ -36,42 +36,45 @@ class _RideDetailsState extends State<RideDetails> {
       "This is acquisition details"
     ];
     List<Icon> rideDetailsItemLinkLeadingIcon = [
-      Icon(Icons.car_repair,color: Theme.of(context).primaryColor),
-      Icon(Icons.compress_outlined,color: Theme.of(context).primaryColor),
-      Icon(CupertinoIcons.doc_checkmark,color: Theme.of(context).primaryColor),
-      Icon(Icons.local_police_outlined,color: Theme.of(context).primaryColor),
-      Icon(Icons.ac_unit_sharp,color: Theme.of(context).primaryColor)
+      Icon(Icons.car_repair, color: Theme
+          .of(context)
+          .primaryColor),
+      Icon(Icons.compress_outlined, color: Theme
+          .of(context)
+          .primaryColor),
+      Icon(CupertinoIcons.doc_checkmark, color: Theme
+          .of(context)
+          .primaryColor),
+      Icon(Icons.local_police_outlined, color: Theme
+          .of(context)
+          .primaryColor),
+      Icon(Icons.ac_unit_sharp, color: Theme
+          .of(context)
+          .primaryColor)
     ];
     List<RideDetailsExpansionListModel> historyExpansionListData = [
       RideDetailsExpansionListModel(
         title: "Show Expenses",
-        icon: Icons.help_center,
+        icon: Icons.monetization_on_outlined,
         choice: RideDetailsExpansionListTileChoice.expense,
       ),
       RideDetailsExpansionListModel(
         title: "Show Odometer Reading",
-        icon: Icons.help_center,
+        icon: Icons.speed,
         choice: RideDetailsExpansionListTileChoice.odometer,
       ),
       RideDetailsExpansionListModel(
         title: "Show Maintenances",
-        icon: Icons.help_center,
+        icon: CupertinoIcons.wrench,
         choice: RideDetailsExpansionListTileChoice.maintenance,
       ),
       RideDetailsExpansionListModel(
-        title: "Show Reminders",
-        icon: Icons.help_center,
-        choice: RideDetailsExpansionListTileChoice.reminders,
-      ),
-      RideDetailsExpansionListModel(
         title: "Show Trips",
-        icon: Icons.help_center,
+        icon: Icons.beach_access,
         choice: RideDetailsExpansionListTileChoice.trips,
       ),
     ];
     return Scaffold(
-
-      backgroundColor: AppColors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
@@ -95,10 +98,9 @@ class _RideDetailsState extends State<RideDetails> {
               getRidePic(),
               gap(height: 15.h),
               getRideDetailsLinksListView(
-                rideDetailsItemLink: rideDetailsItemLinkTitle,
-                rideDetailsItemLinkSubTitle: rideDetailsItemLinkSubTitle,
-                icons: rideDetailsItemLinkLeadingIcon
-              ),
+                  rideDetailsItemLink: rideDetailsItemLinkTitle,
+                  rideDetailsItemLinkSubTitle: rideDetailsItemLinkSubTitle,
+                  icons: rideDetailsItemLinkLeadingIcon),
               gap(height: 15.h),
               getExpansionListTile(
                 icon: Icons.history,
@@ -114,53 +116,82 @@ class _RideDetailsState extends State<RideDetails> {
       ),
     );
   }
-  getExpansionListTile(
-      {required IconData icon,
-        required int listLength,
-        required List<RideDetailsExpansionListModel> list,
-        required String title}) =>
-      ExpansionTile(
-        title: Row(
-          children: [
 
-            Icon(
-              icon,
-              color: Theme.of(context).primaryColor,
-            ),
-            gap(width: 10.w),
-            AppText(
-              text: title,
-              fontSize: fontSize + 2.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ],
-        ),
-        children: List.generate(
-          listLength,
-              (index) => Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.h),
-            child: ListTile(
-              shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(corner)),
-              tileColor: Colors.white,
-              title: AppText(
-                text: list[index].title,
-                fontSize: fontSize,
+  getExpansionListTile({required IconData icon,
+    required int listLength,
+    required List<RideDetailsExpansionListModel> list,
+    required String title}) =>
+      ExpansionTile(
+          title: Row(
+            children: [
+              Icon(
+                icon,
+                color: Theme
+                    .of(context)
+                    .primaryColor,
+              ),
+              gap(width: 10.w),
+              AppText(
+                text: title,
+                fontSize: fontSize + 2.sp,
                 fontWeight: FontWeight.bold,
               ),
-              leading: Icon(
-                list[index].icon,
-                color: Theme.of(context).primaryColor,
-              ),
-              onTap: () {
-
-              },
-            ),
+            ],
           ),
-        ),
+          children: [
+            CupertinoListSection.insetGrouped(
+              margin: EdgeInsets.zero,
+              children: [
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) =>
+                      CupertinoListTile(
+                        trailing: const Icon(CupertinoIcons.right_chevron,
+                          color: AppColors.greyColor,),
+                        title: AppText(
+                          text: list[index].title,
+                          fontSize: fontSize,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        leading: Icon(
+                          list[index].icon,
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
+                        ),
+                        onTap: () {
+                          switch (index) {
+                            case 0:
+                              NamedNavigatorImpl().push(
+                                  Routes.showExpensesScreenRoute);
+                              break;
+                            case 1:
+                              NamedNavigatorImpl().push(
+                                  Routes.showOdometerScreenRoute);
+                              break;
+                            case 2:
+                              NamedNavigatorImpl().push(
+                                  Routes.showMaintenanceScreenRoute);
+                              break;
+                            case 3:
+                              NamedNavigatorImpl().push(
+                                  Routes.showTripsScreenRoute);
+                              break;
+                          }
+                        },
+                      ),
+                  separatorBuilder: (context, index) =>
+                      Divider(height: 0, indent: 55.w, thickness: 0.5,),
+                  itemCount: listLength,
+                ),
+              ],
+            )
+          ]
       );
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-    backgroundColor: AppColors.white,
+
+  Widget getNotesSection() =>
+      CupertinoListSection.insetGrouped(
         header: AppText(
           text: "Notes",
           color: AppColors.greyColor,
@@ -170,46 +201,70 @@ class _RideDetailsState extends State<RideDetails> {
         children: const [
           CupertinoListTile(
             title: CupertinoTextField(
-              //decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
               maxLines: 5,
             ),
           )
         ],
       );
 
-
-
-  getRideDetailsLinksListView(
-          {required List<String> rideDetailsItemLink,
-          required List<String> rideDetailsItemLinkSubTitle,
-            required List<Icon> icons
-          }) =>
-      ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => getRideDetailsLinksItem(
-            title: rideDetailsItemLink[index],
-            subTitle: rideDetailsItemLinkSubTitle[index],
-            icon: icons[index]
-        ),
-        separatorBuilder: (context, index) =>  Divider(
-          height: 0,
-          thickness: 0.5,
-          indent: 55.w,
-        ),
-        itemCount: rideDetailsItemLink.length,
+  getRideDetailsLinksListView({required List<String> rideDetailsItemLink,
+    required List<String> rideDetailsItemLinkSubTitle,
+    required List<Icon> icons}) =>
+      CupertinoListSection.insetGrouped(
+        margin: EdgeInsets.zero,
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) =>
+                getRideDetailsLinksItem(
+                    title: rideDetailsItemLink[index],
+                    index: index,
+                    subTitle: rideDetailsItemLinkSubTitle[index],
+                    icon: icons[index]),
+            separatorBuilder: (context, index) =>
+                Divider(
+                  height: 0,
+                  thickness: 0.5,
+                  indent: 55.w,
+                ),
+            itemCount: rideDetailsItemLink.length,
+          ),
+        ],
       );
 
-  getRideDetailsLinksItem({required String title, required String subTitle,required Icon icon}) =>
+  getRideDetailsLinksItem({required String title,
+    required String subTitle,
+    required Icon icon,
+    required index,}) =>
       CupertinoListTile(
-        onTap: () {},
+        onTap: () {
+          switch(index){
+            case 0:
+              NamedNavigatorImpl().push(Routes.scheduledMaintenanceScreenRoute);
+              break;
+            case 1:
+              NamedNavigatorImpl().push(Routes.tirePressureScreenRoute);
+              break;
+            case 2:
+              NamedNavigatorImpl().push(Routes.licenceDetailsScreenRoute);
+              break;
+            case 3:
+              NamedNavigatorImpl().push(Routes.insurancePolicyScreenRoute);
+              break;
+            case 4:
+              NamedNavigatorImpl().push(Routes.acquisitionScreenRoute);
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,
         ),
         subtitle: AppText(
           text: subTitle,
-          fontSize: fontSize-1.sp,
+          fontSize: fontSize - 1.sp,
           color: AppColors.greyColor,
         ),
         leading: icon,
@@ -219,7 +274,8 @@ class _RideDetailsState extends State<RideDetails> {
         ),
       );
 
-  Widget getRidePic() => SizedBox(
+  Widget getRidePic() =>
+      SizedBox(
         width: double.infinity,
         height: 180.h,
         child: Card(
@@ -254,7 +310,8 @@ class _RideDetailsState extends State<RideDetails> {
             )),
       );
 
-  getRideDetailsOnPic() => Padding(
+  getRideDetailsOnPic() =>
+      Padding(
         padding: EdgeInsets.all(15.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -270,7 +327,8 @@ class _RideDetailsState extends State<RideDetails> {
         ),
       );
 
-  getRideDetails() => Column(
+  getRideDetails() =>
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           getRideNameAndType(),
@@ -285,7 +343,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getRideNameAndType() => Row(
+  getRideNameAndType() =>
+      Row(
         children: [
           AppText(
             text: "My car name",
@@ -309,7 +368,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getRideYearAndModel() => Row(
+  getRideYearAndModel() =>
+      Row(
         children: [
           AppText(
             text: "2024 GG-ZS",
@@ -331,7 +391,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getOdometerRead() => AppText(
+  getOdometerRead() =>
+      AppText(
         text: "23243 KM",
         fontSize: fontSize,
         color: AppColors.white,
@@ -340,7 +401,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getVINNumber() => AppText(
+  getVINNumber() =>
+      AppText(
         text: "56576879",
         fontSize: fontSize,
         color: AppColors.white,
@@ -349,7 +411,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getPlateNumber() => AppText(
+  getPlateNumber() =>
+      AppText(
         text: "ج ر ص - 542",
         fontSize: fontSize,
         color: AppColors.white,
@@ -358,7 +421,8 @@ class _RideDetailsState extends State<RideDetails> {
         ],
       );
 
-  getShadow() => const Shadow(
+  getShadow() =>
+      const Shadow(
         color: Colors.black,
         blurRadius: 2.0,
         offset: Offset(1.0, 1.0),
@@ -372,6 +436,7 @@ enum RideDetailsLinksNames {
   insurancePolicy,
   acquisitionDetails
 }
+
 enum RideDetailsExpansionListTileChoice {
   expense,
   maintenance,
@@ -380,10 +445,12 @@ enum RideDetailsExpansionListTileChoice {
   reminders,
   trips,
 }
-class RideDetailsExpansionListModel{
+
+class RideDetailsExpansionListModel {
   String title;
   IconData icon;
   RideDetailsExpansionListTileChoice choice;
 
-  RideDetailsExpansionListModel({required this.title, required this.icon,required this.choice});
+  RideDetailsExpansionListModel(
+      {required this.title, required this.icon, required this.choice});
 }

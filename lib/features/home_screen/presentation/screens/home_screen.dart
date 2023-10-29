@@ -269,22 +269,158 @@ class _HomeScreenState extends State<HomeScreen> {
       NamedNavigatorImpl().push(Routes.rideDetailsScreenRoute);
     },
     child: SizedBox(
-          width: double.infinity,
-          child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(corner)),
+      width: double.infinity,
+      height: 180.h,
+      child: Card(
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(corner)),
+          ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.w),
+                child: Container(
+                  width: double.infinity,
+                  child: Image.asset(
+                    'images/car.png',
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               ),
-              child: Stack(
-                children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(5.w),
-                      child: Image.asset('images/car.png'))
-                ],
-              )),
-        ),
+              ClipRRect(
+                // Clip it cleanly.
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                  child: Container(
+                    color: Colors.grey.withOpacity(0.1),
+                    alignment: Alignment.center,
+                    child: getRideDetailsOnPic(),
+                  ),
+                ),
+              ),
+            ],
+          )),
+    )
   );
 
+  getRideDetailsOnPic() =>
+      Padding(
+        padding: EdgeInsets.all(15.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            getRideDetails(),
+            const Spacer(),
+            Icon(
+              CupertinoIcons.qrcode,
+              size: 60.w,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      );
+
+  getRideDetails() =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          getRideNameAndType(),
+          gap(height: 5.h),
+          getRideYearAndModel(),
+          gap(height: 5.h),
+          getOdometerRead(),
+          gap(height: 5.h),
+          getVINNumber(),
+          gap(height: 5.h),
+          getPlateNumber()
+        ],
+      );
+
+  getRideNameAndType() =>
+      Row(
+        children: [
+          AppText(
+            text: "My car name",
+            fontSize: fontSize,
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+            shadowList: [
+              getShadow(),
+            ],
+          ),
+          gap(width: 5.w),
+          AppText(
+            text: "(Car)",
+            fontSize: fontSize,
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+            shadowList: [
+              getShadow(),
+            ],
+          ),
+        ],
+      );
+
+  getRideYearAndModel() =>
+      Row(
+        children: [
+          AppText(
+            text: "2024 GG-ZS",
+            fontSize: fontSize,
+            color: AppColors.white,
+            shadowList: [
+              getShadow(),
+            ],
+          ),
+          gap(width: 5.w),
+          AppText(
+            text: "(Trim)",
+            fontSize: fontSize,
+            color: AppColors.white,
+            shadowList: [
+              getShadow(),
+            ],
+          ),
+        ],
+      );
+
+  getOdometerRead() =>
+      AppText(
+        text: "23243 KM",
+        fontSize: fontSize,
+        color: AppColors.white,
+        shadowList: [
+          getShadow(),
+        ],
+      );
+
+  getVINNumber() =>
+      AppText(
+        text: "56576879",
+        fontSize: fontSize,
+        color: AppColors.white,
+        shadowList: [
+          getShadow(),
+        ],
+      );
+
+  getPlateNumber() =>
+      AppText(
+        text: "ج ر ص - 542",
+        fontSize: fontSize,
+        color: AppColors.white,
+        shadowList: [
+          getShadow(),
+        ],
+      );
+
+  getShadow() =>
+      const Shadow(
+        color: Colors.black,
+        blurRadius: 2.0,
+        offset: Offset(1.0, 1.0),
+      );
   Widget getSponsoredAds() => CarouselSlider.builder(
         itemCount: 4,
         itemBuilder: (context, _, index) {

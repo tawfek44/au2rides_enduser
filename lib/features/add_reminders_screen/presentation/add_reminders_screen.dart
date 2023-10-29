@@ -274,7 +274,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
             title: "Reminder Type",
             additionalInfo: "",
             choice: ChoiceRoute.reminderType,
-            trailingIcon: CupertinoIcons.arrow_up_down,
+            trailingIcon: Icons.unfold_more,
           ),
           getTypeListTile(
             trailingIcon: CupertinoIcons.right_chevron,

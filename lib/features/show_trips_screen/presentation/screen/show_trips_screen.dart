@@ -39,7 +39,7 @@ class _ShowTripsScreenState extends State<ShowTripsScreen> {
           context: context,
           route: AppBarRoutes.showFuelUp,
           onPressed: () {
-          //  NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
+           NamedNavigatorImpl().push(Routes.addTripScreenRoute);
           },
           title: AppText(
             text: "Show Trips",
