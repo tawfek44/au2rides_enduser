@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:requestLegacyExternalStorage="true"
-        android:label="au2rides_mobile_enduser"
+        android:label="au2rides"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -62,7 +62,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="au2rides_mobile_enduser"
+        android:label="au2rides"
         android:requestLegacyExternalStorage="true" >
         <activity
             android:name="com.example.au2rides_mobile_enduser.MainActivity"

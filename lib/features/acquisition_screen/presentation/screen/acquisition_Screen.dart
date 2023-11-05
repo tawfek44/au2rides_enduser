@@ -83,7 +83,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
             color: AppColors.greyColor),
         placeholder: "0.0",
         decoration: BoxDecoration(
-            border: Border.all(style: BorderStyle.none)),
+          border: Border.all(style: BorderStyle.none)),
       ),
     ),
   );

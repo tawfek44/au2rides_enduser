@@ -112,7 +112,7 @@
 62-->[androidx.core:core:1.10.1] C:\Users\Tawfek\.gradle\caches\transforms-3\c4988ff80110f75080a936fc6f044848\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
 63        android:debuggable="true"
 64        android:icon="@mipmap/ic_launcher"
-65        android:label="au2rides_mobile_enduser"
+65        android:label="au2rides"
 66        android:requestLegacyExternalStorage="true" >
 67        <activity
 68            android:name="com.example.au2rides_mobile_enduser.MainActivity"

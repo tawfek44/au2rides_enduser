@@ -66,6 +66,7 @@ class _ShowRemindersScreenState extends State<ShowRemindersScreen> {
         child: AppBar(
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
+            unselectedLabelColor: AppColors.greyColor,
             labelStyle: TextStyle(fontSize: fontSize),
             tabs: const [
               Tab(

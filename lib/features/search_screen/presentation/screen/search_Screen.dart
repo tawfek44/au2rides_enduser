@@ -36,7 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
             bottom:  TabBar(
               labelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.tab,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: AppColors.greyColor,
               labelStyle: TextStyle(
                 fontSize: fontSize
               ),

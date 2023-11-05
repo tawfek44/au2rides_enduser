@@ -217,7 +217,7 @@ class _MoreScreenState extends State<MoreScreen> {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 180.h,
-          childAspectRatio: 6 / 3,
+          childAspectRatio: 6 / 3.2,
           crossAxisSpacing: 8.w,
           mainAxisSpacing: 8.h,
         ),

@@ -270,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     child: SizedBox(
       width: double.infinity,
-      height: 180.h,
+      height: 185.h,
       child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -460,7 +460,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 initialPage: 0,
                 autoPlay: true,
                 viewportFraction: 1,
-                height: 235.h,
+                height: 200.h,
                 onPageChanged: (index, reason) =>
                     setState(() => activeIndex = index)),
           ),
@@ -488,7 +488,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(15.w),
+            padding:  EdgeInsets.only(top: 5.h,left: 10.w,right: 10.w),
             child: Column(
               children: [
                 getLocationAndMoreRow(),
@@ -523,19 +523,19 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-              width: 100.w,
-              height: 100.h,
+              width: 80.w,
+              height: 80.h,
               child: Image.asset("images/cloud.png")),
           SizedBox(
             width: 5.w,
           ),
-          AppText(text: '22', fontSize: 30.sp),
+          AppText(text: '22', fontSize: fontSize+5.sp),
           SizedBox(
             width: 5.w,
           ),
           AppText(
             text: '°C',
-            fontSize: 24.sp,
+            fontSize: fontSize+5.sp,
           )
         ],
       );
@@ -555,8 +555,8 @@ class _HomeScreenState extends State<HomeScreen> {
         activeIndex: activeIndex,
         count: 4,
         effect: ExpandingDotsEffect(
-            dotWidth: 10.w,
-            dotHeight: 10.h,
+            dotWidth: 7.w,
+            dotHeight: 7.h,
             activeDotColor: Theme.of(context).primaryColor),
       ),
     );

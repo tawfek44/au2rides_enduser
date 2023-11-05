@@ -39,7 +39,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
               bottom:  TabBar(
               labelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.tab,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: AppColors.greyColor,
               labelStyle: TextStyle(
                   fontSize: fontSize
               ),

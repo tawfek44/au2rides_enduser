@@ -12,7 +12,7 @@ const apiBaseUrl = 'http://fomoisreal-001-site3.btempurl.com/api/v1';
 bool isArabicLocalization() => Intl.getCurrentLocale() == arLanguageCode;
 const smallMaxLines = 1;
 const highMaxLines = 5;
-final fontSize = 11.sp;
+final fontSize = 12.sp;
 final corner = 4.w;
 final appButtonHeight = 45.h;
 
@@ -55,7 +55,7 @@ Widget getAppBar(
       leading: leading,
       title: title,
       actions: getAppBarWidgetAccordingToRoute(
-          route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete),
+          route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete,context: context),
       bottom: bottom,
     );
 
@@ -63,6 +63,7 @@ List<Widget> getAppBarWidgetAccordingToRoute(
     {AppBarRoutes? route,
     VoidCallback? onPressed,
     VoidCallback? onPressedDelete,
+    required BuildContext context,
     required List<Widget>? actions}) {
   switch (route) {
     case AppBarRoutes.myDocuments :
@@ -92,7 +93,7 @@ List<Widget> getAppBarWidgetAccordingToRoute(
             onPressed: onPressedDelete,
             icon: const Icon(
               Icons.delete,
-              color: AppColors.redColor,
+              color: AppColors.white,
             )),
         IconButton(
             onPressed: onPressed,
@@ -102,6 +103,7 @@ List<Widget> getAppBarWidgetAccordingToRoute(
             )),
 
       ];
+
     default:
       {
         return actions ?? [];

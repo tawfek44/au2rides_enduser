@@ -6,9 +6,7 @@ import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
-import '../../../../core/widgets/shared_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -73,17 +71,23 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         leading:  Icon(Icons.flag,color: Theme.of(context).primaryColor,),
         trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
-        title: AppText(text: "Countries",fontSize: fontSize,color: AppColors.greyColor,),
+        title: AppText(text: "Country",fontSize: fontSize,color: AppColors.greyColor,),
       ),
       CupertinoListTile(
+        leadingToTitle: 10.w,
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
           leading:  AppText(text: "+20",fontSize: fontSize,color: AppColors.greyColor,),
           title:  CupertinoTextField(
-            decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+            controller: phoneController,
+            textAlignVertical: TextAlignVertical.center,
+            style: TextStyle(
+              fontSize: fontSize
+            ),
+            decoration: const BoxDecoration(border: Border(right: BorderSide.none)),
             placeholder: "Phone Number",
             placeholderStyle: TextStyle(
                 fontSize: fontSize,
                 color: AppColors.greyColor,
-                height: 1.7.h
             ),
           )
       )
@@ -94,11 +98,55 @@ class _LoginScreenState extends State<LoginScreen> {
       height: appButtonHeight,
       label: "Sign In",
       roundness: corner,
-      onPressed: () {
-        NamedNavigatorImpl().push(Routes.otpScreenRoute);
+      onPressed: () async {
+         showNumberValidationDialog(context);
+
       });
 
+  showNumberValidationDialog(BuildContext context) async{
+     showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: CupertinoAlertDialog(
+              title: Center(
+                  child: AppText(
+                    text: "Number validation",
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  )),
+              content: AppText(
+                text: "Are you sure that this number +20${phoneController.text} is your number?",
+                fontSize: fontSize,
+                maxLines: 10,
+              ),
+              actions: <Widget>[
 
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Cancel",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                      Navigator.of(context).pop();
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Ok",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    NamedNavigatorImpl().push(Routes.otpScreenRoute);
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
   Widget getSignInTextWidget() => AppText(
         text: 'Sign In',
         fontSize: 22.sp,
