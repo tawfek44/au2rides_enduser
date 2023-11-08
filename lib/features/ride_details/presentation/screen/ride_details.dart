@@ -277,7 +277,7 @@ class _RideDetailsState extends State<RideDetails> {
   Widget getRidePic() =>
       SizedBox(
         width: double.infinity,
-        height: 180.h,
+        height: 185.h,
         child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
@@ -335,11 +335,11 @@ class _RideDetailsState extends State<RideDetails> {
           gap(height: 5.h),
           getRideYearAndModel(),
           gap(height: 5.h),
-          getOdometerRead(),
-          gap(height: 5.h),
           getVINNumber(),
           gap(height: 5.h),
-          getPlateNumber()
+          getPlateNumber(),
+          gap(height: 5.h),
+          getOdometerRead(),
         ],
       );
 

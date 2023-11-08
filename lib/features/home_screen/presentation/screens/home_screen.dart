@@ -81,15 +81,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                getSponsoredAds(),
+                //getSponsoredAds(),
                 SizedBox(
                   height: 10.h,
                 ),
-                AppText(text: 'My Rides'),
+               // AppText(text: 'My Rides'),
                 SizedBox(
                   height: 5.h,
                 ),
-                getMyRides(),
+               // getMyRides(),
               ],
             ),
           )),
@@ -107,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
           getDrawerLinks(
               title: "Au2rides club",
               icon: Icons.area_chart,
-              drawerChoices: DrawerChoices.club),
+              drawerChoices: DrawerChoices.club,
+          ),
           getDrawerLinks(
               title: "Notifications",
               icon: Icons.notifications_active,
@@ -125,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.compare_arrows_rounded,
               drawerChoices: DrawerChoices.requests),
           getDrawerLinks(
-              title: "Languages",
+              title: "App Language",
               icon: Icons.language,
               drawerChoices: DrawerChoices.languages),
           const Divider(),
@@ -148,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
               NamedNavigatorImpl().push(Routes.profileScreenRoute);
               break;
             case DrawerChoices.club:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.myPointsScreenRoute);
               break;
             case DrawerChoices.notifications:
               // TODO: Handle this case.
@@ -157,13 +158,13 @@ class _HomeScreenState extends State<HomeScreen> {
               // TODO: Handle this case.
               break;
             case DrawerChoices.overdue:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.showRemindersScreenRoute);
               break;
             case DrawerChoices.requests:
               // TODO: Handle this case.
               break;
             case DrawerChoices.logout:
-              // TODO: Handle this case.
+              _showLogoutDialog(context);
               break;
             case DrawerChoices.languages:
               NamedNavigatorImpl().push(Routes.languagesScreenRoute);
@@ -180,7 +181,52 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Theme.of(context).primaryColor,
         ),
       );
-
+  _showLogoutDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: CupertinoAlertDialog(
+              title: Center(
+                  child: AppText(
+                    text: "Logout",
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  )),
+              content: AppText(
+                text: "Are you sure that you want to log out?",
+                fontSize: fontSize,
+                maxLines: 10,
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Cancel",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Logout",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
   Widget getDrawerHeader() => Padding(
         padding: EdgeInsets.only(top: 30.h, left: 20.w, right: 10.w),
         child: Column(
@@ -229,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: fontSize,
                     ),
                     AppText(
-                      text: '01143178019',
+                      text: '+201143178019',
                       fontSize: fontSize,
                       color: AppColors.secondaryColor,
                     ),
@@ -270,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     child: SizedBox(
       width: double.infinity,
-      height: 185.h,
+      height: 175.h,
       child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -284,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   child: Image.asset(
                     'images/car.png',
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -304,36 +350,52 @@ class _HomeScreenState extends State<HomeScreen> {
     )
   );
 
+  Widget getVerifiedWidget()=> Container(
+    decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(corner)),
+    height: 25.h,
+    width: 50.w,
+    child: Center(
+        child: Text(
+          'Verified',
+          style: TextStyle(
+              color: Colors.white, fontSize: fontSize - 2.sp),
+          textAlign: TextAlign.center,
+        )),
+  );
   getRideDetailsOnPic() =>
       Padding(
-        padding: EdgeInsets.all(15.w),
+        padding: EdgeInsets.all(12.w),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getRideDetails(),
             const Spacer(),
-            Icon(
-              CupertinoIcons.qrcode,
-              size: 60.w,
-              color: Colors.white,
+            IconButton(
+              onPressed: (){
+                showQrCodeDialog(context);
+              },
+              icon: Icon(
+                CupertinoIcons.qrcode,
+                size: 60.w,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
       );
+
 
   getRideDetails() =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           getRideNameAndType(),
-          gap(height: 5.h),
           getRideYearAndModel(),
-          gap(height: 5.h),
-          getOdometerRead(),
-          gap(height: 5.h),
           getVINNumber(),
-          gap(height: 5.h),
-          getPlateNumber()
+          getPlateNumber(),
+          getOdometerRead(),
         ],
       );
 
@@ -359,6 +421,8 @@ class _HomeScreenState extends State<HomeScreen> {
               getShadow(),
             ],
           ),
+          gap(width: 5.w),
+          getVerifiedWidget(),
         ],
       );
 

@@ -3,13 +3,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
+
+import '../widgets/app_text.dart';
 
 const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
 const apiBaseUrl = 'http://fomoisreal-001-site3.btempurl.com/api/v1';
-
-bool isArabicLocalization() => Intl.getCurrentLocale() == arLanguageCode;
+void showQrCodeDialog(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: CupertinoAlertDialog(
+            content: Icon(Icons.qr_code,size: 200.w,),
+          ),
+        );
+      });
+}
+bool isArabicLocalization() => intl.Intl.getCurrentLocale() == arLanguageCode;
 const smallMaxLines = 1;
 const highMaxLines = 5;
 final fontSize = 12.sp;
@@ -110,3 +123,5 @@ List<Widget> getAppBarWidgetAccordingToRoute(
       }
   }
 }
+
+

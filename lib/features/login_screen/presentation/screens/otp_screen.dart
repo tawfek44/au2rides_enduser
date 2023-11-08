@@ -111,7 +111,7 @@ class _OTPScreenState extends State<OTPScreen> {
       height: 50.h,
       label: "Verify",
         onPressed: () {
-          NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute);
+          NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
         }),
   );
   Widget getOTPTextField() =>OtpTextField(

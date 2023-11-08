@@ -1,4 +1,4 @@
-#Sun Oct 29 18:38:01 EET 2023
+#Mon Nov 06 22:57:50 EET 2023
 base.0=D\:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

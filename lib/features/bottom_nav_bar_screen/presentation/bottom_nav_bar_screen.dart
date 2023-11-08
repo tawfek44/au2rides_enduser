@@ -68,6 +68,9 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   floatingActionButtonOnPress(){
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(corner),
+        ),
         context: context,
         builder: (context) => Padding(
               padding: EdgeInsets.all(10.w),
@@ -80,9 +83,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
               ),
               itemCount: addItemNamesListInEnglish.length,
               itemBuilder: (context,index)=> Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(corner)
-                ),
                 elevation: 3,
                 child:InkWell(
                   onTap: (){
@@ -141,8 +141,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     },
     child:  Column(
       children: [
-        Icon(Icons.home,color: currentIndex == 0? Colors.white:Colors.black,),
-        AppText(text: "Home",fontSize: fontSize,color: currentIndex == 0? Colors.white:Colors.black,)
+        Icon(Icons.home,color: currentIndex == 0? Colors.white:AppColors.greyColor,),
+        AppText(text: "Home",fontSize: fontSize,color: currentIndex == 0? Colors.white:AppColors.greyColor,)
       ],
     ),
   );
@@ -156,8 +156,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     },
     child:  Column(
       children: [
-        Icon(Icons.shop_2,color: currentIndex == 1? Colors.white:Colors.black,),
-        AppText(text: "Shops",fontSize: fontSize,color: currentIndex == 1? Colors.white:Colors.black,)
+        Icon(Icons.shop_2,color: currentIndex == 1? Colors.white:AppColors.greyColor,),
+        AppText(text: "Shops",fontSize: fontSize,color: currentIndex == 1? Colors.white:AppColors.greyColor,)
       ],
     ),
   );
@@ -171,8 +171,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     },
     child:  Column(
       children: [
-        Icon(Icons.calendar_month,color: currentIndex == 2? Colors.white:Colors.black,),
-        AppText(text: "Reminders",fontSize: fontSize,color: currentIndex == 2? Colors.white:Colors.black,)
+        Icon(Icons.calendar_month,color: currentIndex == 2? Colors.white:AppColors.greyColor,),
+        AppText(text: "Reminders",fontSize: fontSize,color: currentIndex == 2? Colors.white:AppColors.greyColor,)
       ],
     ),
   );
@@ -186,8 +186,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     },
     child: Column(
       children: [
-        Icon(Icons.more_horiz,color: currentIndex == 3? Colors.white:Colors.black,),
-        AppText(text: "More",fontSize: fontSize,color: currentIndex == 3? Colors.white:Colors.black,)
+        Icon(Icons.more_horiz,color: currentIndex == 3? Colors.white:AppColors.greyColor,),
+        AppText(text: "More",fontSize: fontSize,color: currentIndex == 3? Colors.white:AppColors.greyColor,)
       ],
     ),
   );

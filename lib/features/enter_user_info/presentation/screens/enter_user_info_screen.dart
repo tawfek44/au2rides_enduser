@@ -29,6 +29,10 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   var birthDateController = TextEditingController();
   String? selectedItem;
   DateTime nowDate= DateTime.now();
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
+  late DateTime tempDate;
+  var dateFormat;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +63,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 label: 'Continue',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute);
                     _formKey.currentState!.save();
                   }
                 },
@@ -71,7 +76,33 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
       ),
     );
   }
+  Widget getDateWidget() => InkWell(
+      onTap: showDateDialog,
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.lightGreyColor,
+            borderRadius: BorderRadius.circular(5.w)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+          child: AppText(
+            text: DateFormat('dd MMM yyyy').format(selectedDate),
+            fontSize: fontSize,
+          ),
+        ),
+      ));
 
+  void showDateDialog() async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1800),
+        lastDate: DateTime(2101));
+    if (pickedDate != null) {
+      setState(() {
+        selectedDate = pickedDate;
+      });
+    }
+  }
   Widget getUserPic() => Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
@@ -241,7 +272,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                         ),
                         getBirthDateWidget(),
                         const Spacer(),
-                        AppText(text: DateFormat.yMMMEd().format(nowDate),fontSize: 13.sp,color: AppColors.greyColor,),
+                        getDateWidget()
                       ],
                     ),
                   ),

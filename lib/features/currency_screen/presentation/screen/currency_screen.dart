@@ -14,6 +14,7 @@ class CurrencyScreen extends StatefulWidget {
 }
 
 class _CurrencyScreenState extends State<CurrencyScreen> {
+  List<String>currencyNamesList=["EGP","EUR","USD","GBP","JPY","SEK"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,45 +29,73 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
           ),
         ),
       ),
-      body:
-      Container(
-        color: Colors.white,
+      body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.all(10.w),
-          child: ListView.separated(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding:  EdgeInsets.symmetric(vertical: 10.h),
-                child:
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: (){},
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 50.w,
-                          child: Image.asset("images/img.png"),
-                        ),
-                        gap(width: 10.w),
-                        AppText(text: "Egyptian Pound",fontSize: fontSize,),
-                        const Spacer(),
-                        AppText(text: "EGP",fontSize: fontSize,color: Colors.grey[500]!,),
-                        gap(width: 5.w),
-                        Icon(CupertinoIcons.checkmark,color: Theme.of(context).primaryColor,)
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }, separatorBuilder: (BuildContext context, int index) {
-              return  Divider(indent: 55.w,height: 0,);
-          },
+          padding: EdgeInsets.all(10.w),
 
+          child: Column(
+            children: [
+              getSearchBar(),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+                  getCurrencyListView(),
+                ],
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
+
+          },
+        ),
+      )
+    ],
+  );
+  Widget getCurrencyListView()=> ListView.separated(
+  shrinkWrap: true,
+  physics: const NeverScrollableScrollPhysics(),
+  itemCount: currencyNamesList.length,
+  itemBuilder: (context, index) {
+    return getCurrenciesItem(currencyName: currencyNamesList[index]);
+  },
+  separatorBuilder: (BuildContext context, int index) {
+    return Divider(
+      indent: 55.w,
+      height: 0,
+    );
+  },
+);
+  Widget getCurrenciesItem({required currencyName}) => CupertinoListTile(
+        leading:  SizedBox(
+          width: 50.w,
+          child: Image.asset("images/img.png"),
+        ),
+        title: AppText(
+          text: currencyName,
+          fontSize: fontSize,
+        ),
+    trailing: Icon(
+      CupertinoIcons.checkmark,
+      color: Theme.of(context).primaryColor,
+    )
+      );
 }

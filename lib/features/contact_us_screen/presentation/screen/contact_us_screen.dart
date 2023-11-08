@@ -15,8 +15,6 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
-  final fontSize = 11.sp;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +52,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
       header: AppText(
           maxLines: 1,
           text: header,
-          color: Colors.grey,
+          color: AppColors.greyColor,
           fontWeight: FontWeight.normal,
           fontSize: 12.sp),
       children: fields.map((fieldDto) {
@@ -85,7 +83,8 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           placeholder: placeHolder,
           placeholderStyle: TextStyle(
               fontSize: fontSize,
-              color: AppColors.lightGreyColorForText,
+              color: AppColors.greyColor
+              ,
               height: 1.7.h),
           decoration:
               const BoxDecoration(border: Border(right: BorderSide.none)),
@@ -123,11 +122,11 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   AppText(
                     text: "Feedback",
                     fontSize: fontSize,
-                    color: AppColors.lightGreyColorForText!,
+                    color: AppColors.greyColor,
                   ),
-                  Icon(
-                    CupertinoIcons.arrow_up_down,
-                    color: AppColors.lightGreyColorForText,
+                  const Icon(
+                    Icons.unfold_more,
+                    color: AppColors.greyColor,
                   )
                 ],
               ),
@@ -162,7 +161,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         onChanged: (t) {
         },
         fieldType: FieldType.listTile,
-        trailingWidget: const Icon(CupertinoIcons.add_circled),
+        trailingWidget: const Icon(CupertinoIcons.add_circled,color: AppColors.greyColor,),
       ),
     ],
   );

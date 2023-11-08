@@ -74,8 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: AppText(text: "Country",fontSize: fontSize,color: AppColors.greyColor,),
       ),
       CupertinoListTile(
-        leadingToTitle: 10.w,
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        leadingToTitle: 0,
           leading:  AppText(text: "+20",fontSize: fontSize,color: AppColors.greyColor,),
           title:  CupertinoTextField(
             controller: phoneController,
@@ -117,9 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.bold,
                   )),
               content: AppText(
-                text: "Are you sure that this number +20${phoneController.text} is your number?",
+                text: "Are you sure that this number +20${phoneController.text} is correct?",
                 fontSize: fontSize,
                 maxLines: 10,
+                textAlign: TextAlign.center,
               ),
               actions: <Widget>[
 

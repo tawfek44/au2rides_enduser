@@ -34,6 +34,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
           padding: EdgeInsets.all(15.w),
           child: Column(
             children: [
+              getSearchBar(),
+              gap(height: 15.h),
               CupertinoListSection.insetGrouped(
                 margin: EdgeInsets.zero,
                 children: [
@@ -54,4 +56,24 @@ class _LanguageScreenState extends State<LanguageScreen> {
       ),
     );
   }
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
+          },
+        ),
+      )
+    ],
+  );
 }
