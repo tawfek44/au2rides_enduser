@@ -1,8 +1,10 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -99,7 +101,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
       CupertinoListTile.notched(
         onTap: () {
           switch (title){
-
+            case "Type":
+              NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
+              break;
           }
         },
         padding: EdgeInsets.symmetric(horizontal: 13.w),
@@ -125,7 +129,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                     color: AppColors.greyColor,
                   ),
                   const Icon(
-                    Icons.unfold_more,
+                    CupertinoIcons.right_chevron,
                     color: AppColors.greyColor,
                   )
                 ],

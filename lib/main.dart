@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
             Locale('ar', ''),
           ],
           theme: getLightThemeData(context),
-          initialRoute: Routes.contactUsScreenRoute,
+          initialRoute: Routes.myDrivingLicensesScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );

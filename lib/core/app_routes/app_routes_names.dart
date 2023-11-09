@@ -52,6 +52,8 @@ class Routes {
   static const licenceDetailsScreenRoute = "LICENCE_DETAILS_SCREEN_ROUTE";
   static const insurancePolicyScreenRoute = "INSURANCE_POLICY_SCREEN_ROUTE";
   static const acquisitionScreenRoute = "ACQUISITION_SCREEN_ROUTE";
+  static const addNewIdentityCardOrPassportScreenRoute = "ADD_NEW_IDENTITY_CARD_OR_PASSPORT_SCREEN_ROUTE";
+  static const addDrivingLicenceScreenRoute = "ADD_DRIVING_LICENCE_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

@@ -24,7 +24,7 @@ void showQrCodeDialog(BuildContext context) {
 }
 bool isArabicLocalization() => intl.Intl.getCurrentLocale() == arLanguageCode;
 const smallMaxLines = 1;
-const highMaxLines = 5;
+const highMaxLines = 10;
 final fontSize = 12.sp;
 final corner = 4.w;
 final appButtonHeight = 45.h;

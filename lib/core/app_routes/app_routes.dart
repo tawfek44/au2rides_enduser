@@ -4,8 +4,10 @@ import 'package:au2rides/features/about_screen/presentation/screen/about_screen.
 import 'package:au2rides/features/acquisition_screen/presentation/screen/acquisition_Screen.dart';
 import 'package:au2rides/features/add_expenses_screen/presentation/screen/add_expenses_screen.dart';
 import 'package:au2rides/features/add_feul_screen/presentation/add_fuel_screen.dart';
+import 'package:au2rides/features/add_identity_card_or_password_screen/presentation/screen/add_identity_card_or_password_screen.dart';
 import 'package:au2rides/features/add_items/presentation/screen/add_item_screen.dart';
 import 'package:au2rides/features/add_maintenance_screen/presentation/screen/add_maintenance_screen.dart';
+import 'package:au2rides/features/add_new_driving_licence_screen/presentation/screen/add_driving_licence_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
@@ -298,6 +300,16 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: AcquisitionScreen(),
+        ));
+      case Routes.addNewIdentityCardOrPassportScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddIdentityCardOrPasswordScreen(),
+        ));
+      case Routes.addDrivingLicenceScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AddDrivingLicenceScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

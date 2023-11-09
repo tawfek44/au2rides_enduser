@@ -25,7 +25,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
@@ -39,8 +38,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [getProfileHeader(), getUserDetails()],
         ),
       ),
@@ -64,14 +61,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
 
-  Widget getSecuritySection()=>Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+  Widget getSecuritySection()=>CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    header:  AppText(
+      text: "SECURITY",
+      fontSize: fontSize,
+      color: AppColors.secondaryColor,
+    ),
     children: [
-      AppText(
-        text: "SECURITY",
-        fontSize: fontSize,
-        color: AppColors.secondaryColor,
-      ),
       getListTileChoiceWidget(
         icon: Icons.password,
         title: "Change password",
@@ -79,42 +76,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     ],
   );
-  Widget getNotificationsSections() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget getNotificationsSections() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+        header: AppText(
+          text: "NOTIFICATIONS",
+          fontSize: fontSize,
+          color: AppColors.secondaryColor,
+        ),
         children: [
-          AppText(
-            text: "NOTIFICATIONS",
-            fontSize: fontSize,
-            color: AppColors.secondaryColor,
-          ),
           getListTileReusableWidget(
               title: "Activities notifications",
               secondTitle: "Payments success, failed and other activities",
               flag: activitiesNotificationsButtonFlag,
               fromWhere: ListTileOnOfButtonChoice.activities,
               icon: Icons.bar_chart),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
           getListTileReusableWidget(
               title: "Email notifications",
               icon: Icons.mark_email_unread_outlined,
               fromWhere: ListTileOnOfButtonChoice.email,
               flag: emailNotificationsButtonFlag),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
           getListTileReusableWidget(
               title: "What`s app notifications",
               icon: Icons.mark_chat_unread,
               fromWhere: ListTileOnOfButtonChoice.whatsapp,
               flag: whatsappNotificationsButtonFlag),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
           getListTileReusableWidget(
               title: "SMS notifications",
               icon: Icons.markunread_mailbox_outlined,
@@ -123,60 +108,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       );
 
-  Widget getDocumentsSection() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget getDocumentsSection() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+        header: AppText(
+          text: "DOCUMENTS",
+          fontSize: fontSize,
+          color: AppColors.secondaryColor,
+        ),
         children: [
-          AppText(
-            text: "DOCUMENTS",
-            fontSize: fontSize,
-            color: AppColors.secondaryColor,
-          ),
           getListTileChoiceWidget(
             icon: Icons.perm_identity,
             title: "Identity card / Passport",
             choice: ListTileRouteChoice.identityCard,
-          ),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
           ),
           getListTileChoiceWidget(
             icon: Icons.document_scanner,
             title: "Driving licences",
             choice: ListTileRouteChoice.drivingLicence,
           ),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
         ],
       );
 
-  Widget getProfileSection() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget getProfileSection() => CupertinoListSection.insetGrouped(
+    header: AppText(
+      text: "PROFILE",
+      fontSize: fontSize,
+      color: AppColors.secondaryColor,
+    ),
+    margin: EdgeInsets.zero,
         children: [
-          AppText(
-            text: "PROFILE",
-            fontSize: fontSize,
-            color: AppColors.secondaryColor,
-          ),
           getListTileChoiceWidget(
             icon: Icons.account_circle_outlined,
             title: "Account details",
             choice: ListTileRouteChoice.account,
           ),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
           getListTileChoiceWidget(
             icon: Icons.wallet,
             title: "My wallets",
             choice: ListTileRouteChoice.wallets,
-          ),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
           ),
           getListTileReusableWidget(
               title: "Turn your location",
@@ -184,20 +153,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fromWhere: ListTileOnOfButtonChoice.location,
               flag: locationButtonFlag,
               icon: Icons.location_on_outlined),
-          Divider(
-            height: 3.h,
-            indent: 40.w,
-          ),
         ],
       );
 
   Widget getRateBarAndQRCodeRow() => IntrinsicHeight(
-        child: Row(
+          child: Row(
           children: [
-            getRateBarWidget(),
-            const VerticalDivider(
-              width: 0,
-            ),
+            //getRateBarWidget(),
+           // const VerticalDivider(
+            //  width: 0,
+          //  ),
             getQRCodeButton(),
           ],
         ),
@@ -218,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     border: Border.all(color: AppColors.white),
                     borderRadius: BorderRadius.all(Radius.circular(50.w))),
                 child: CircleAvatar(
-                  radius: 20.w,
+                  radius: 17.w,
                   backgroundColor: Theme.of(context).primaryColor,
                   child: const Icon(
                     Icons.camera_alt_outlined,
@@ -248,57 +213,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
 
-  getQRCodeButton() => SizedBox(
-        width: MediaQuery.of(context).size.width / 2,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: () {
-                NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
-              },
-              icon: SizedBox(
-                width: 50.w,
-                child: Image.asset("images/qrcode.png"),
-              ),
-            ),
-          ],
-        ),
-      );
+  getQRCodeButton() => Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      IconButton(
+        onPressed: () {
+          NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+        },
+        icon: Icon(CupertinoIcons.qrcode,size: 55.w,color: AppColors.white,)
+      ),
+    ],
+  );
 
   getProfileHeader() => Container(
         width: double.infinity,
         decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(corner + 10.w),
-              bottomRight: Radius.circular(corner + 10.w),
+              bottomLeft: Radius.circular(corner),
+              bottomRight: Radius.circular(corner),
             )),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.h),
+          padding:  EdgeInsets.all(15.w),
           child: Column(
             children: [
-              getImage(),
-              gap(height: 15.h),
-              AppText(
-                text: "Ahmed Fahmy",
-                fontSize: fontSize,
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
-              ),
-              gap(height: 3.h),
-              AppText(
-                text: "01222358041",
-                fontSize: fontSize,
-                color: AppColors.white,
-              ),
-              gap(height: 10.h),
-              getRateBarAndQRCodeRow()
+              getImageAndNameAndNumber(),
+
             ],
           ),
         ),
       );
-
+getImageAndNameAndNumber()=> Row(
+  children: [
+    getImage(),
+    gap(width: 15.h),
+    Column(
+      children: [
+        AppText(
+          text: "Ahmed Fahmy",
+          fontSize: fontSize,
+          color: AppColors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        gap(height: 3.h),
+        AppText(
+          text: "01222358041",
+          fontSize: fontSize,
+          color: AppColors.white,
+        ),
+      ],
+    ),
+    const Spacer(),
+    getRateBarAndQRCodeRow(),
+  ],
+);
   getListTileChoiceWidget({
     required title,
     required icon,
@@ -332,7 +300,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon,
           color: Theme.of(context).primaryColor,
         ),
-        padding: EdgeInsets.zero,
         trailing: Icon(
           Icons.arrow_forward_ios,
           color: AppColors.secondaryColor,
@@ -347,7 +314,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           required ListTileOnOfButtonChoice fromWhere,
           required bool flag}) =>
       CupertinoListTile(
-        padding: EdgeInsets.zero,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
