@@ -30,6 +30,7 @@ dependencies:
   intl_utils: ^2.8.1
   bloc:
   hexcolor: ^3.0.1
+  webview_flutter: ^4.4.2
   get: ^4.6.5
   lottie: ^2.3.2
   geolocator: ^9.0.2

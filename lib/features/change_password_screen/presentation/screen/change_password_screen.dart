@@ -26,6 +26,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
               context: context,
+              route: AppBarRoutes.save,
               title: AppText(
                 text: "Change Password",
                 fontSize: 16.sp,
@@ -56,11 +57,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                 ],
               ),
-              gap(height: 20.h),
-              AppButton(
-                  label: "Change Password",
-                  height: appButtonHeight,
-                  onPressed: () {})
             ],
           ),
         ),

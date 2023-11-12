@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart'as intl;
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
@@ -29,6 +29,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.addWallet,
           title: AppText(
             text: "Acquisition Details",
             fontSize: 15.sp,
@@ -52,8 +53,6 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
               ),
               addAttachment(),
               getNotesSection(),
-              gap(height: 15.h),
-              AppButton(label: "Save", onPressed: (){}),
             ],
           ),
         ),
@@ -114,6 +113,9 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
     ),
   );
   getTypeListTile() => CupertinoListTile(
+    onTap: (){
+      showAcquisitionDialog(context);
+    },
         title: AppText(
           text: "Type",
           fontSize: fontSize,
@@ -122,7 +124,44 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
         leading:  Icon(Icons.merge_type_outlined,color: Theme.of(context).primaryColor),
         additionalInfo: AppText(text: "Purchase",fontSize: fontSize,color: AppColors.greyColor,),
       );
+  void showAcquisitionDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: CupertinoAlertDialog(
+              title: Center(
+                  child: AppText(
+                    text: "Acquisition Type",
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  )),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Purchase",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: "Lease",
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
 
+              ],
+            ),
+          );
+        });
+  }
   Widget addAttachment() => CupertinoListSection.insetGrouped(
         header: AppText(
           text: "ATTACHMENTS",
@@ -158,7 +197,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
             onTap: () {},
             title: const CupertinoTextField(
               decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: 5,
+              maxLines: highMaxLines,
             ),
           )
         ],
@@ -187,7 +226,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
           child: AppText(
-            text: DateFormat('dd MMM yyyy').format(selectedDate),
+            text: intl.DateFormat('dd MMM yyyy').format(selectedDate),
             fontSize: fontSize,
           ),
         ),
@@ -215,8 +254,8 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
       setState(() {
         dayTime = timePicked;
         tempDate =
-            DateFormat("hh:mm").parse("${dayTime.hour}:${dayTime.minute}");
-        dateFormat = DateFormat("h:mm a");
+            intl.DateFormat("hh:mm").parse("${dayTime.hour}:${dayTime.minute}");
+        dateFormat = intl.DateFormat("h:mm a");
       });
     }
   }

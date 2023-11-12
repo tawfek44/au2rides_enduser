@@ -67,7 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   actions: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          NamedNavigatorImpl().push(Routes.notificationScreenRoute);
+                        },
                         icon: const Icon(
                           Icons.notifications_active,
                           color: Colors.white,
@@ -81,15 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                //getSponsoredAds(),
+                getSponsoredAds(),
                 SizedBox(
                   height: 10.h,
                 ),
-               // AppText(text: 'My Rides'),
+                AppText(text: 'My Rides'),
                 SizedBox(
                   height: 5.h,
                 ),
-               // getMyRides(),
+                getMyRides(),
               ],
             ),
           )),
@@ -121,10 +123,10 @@ class _HomeScreenState extends State<HomeScreen> {
               title: "Overdue",
               icon: Icons.access_alarm_rounded,
               drawerChoices: DrawerChoices.overdue),
-          getDrawerLinks(
-              title: "My requests",
-              icon: Icons.compare_arrows_rounded,
-              drawerChoices: DrawerChoices.requests),
+       //   getDrawerLinks(
+          //    title: "My requests",
+            //  icon: Icons.compare_arrows_rounded,
+           //   drawerChoices: DrawerChoices.requests),
           getDrawerLinks(
               title: "App Language",
               icon: Icons.language,
@@ -152,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
               NamedNavigatorImpl().push(Routes.myPointsScreenRoute);
               break;
             case DrawerChoices.notifications:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.notificationScreenRoute);
               break;
             case DrawerChoices.messages:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.messagesScreenRoute);
               break;
             case DrawerChoices.overdue:
               NamedNavigatorImpl().push(Routes.showRemindersScreenRoute);
@@ -164,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // TODO: Handle this case.
               break;
             case DrawerChoices.logout:
-              _showLogoutDialog(context);
+              showLogoutDialog(context);
               break;
             case DrawerChoices.languages:
               NamedNavigatorImpl().push(Routes.languagesScreenRoute);
@@ -181,52 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Theme.of(context).primaryColor,
         ),
       );
-  _showLogoutDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Directionality(
-            textDirection: TextDirection.ltr,
-            child: CupertinoAlertDialog(
-              title: Center(
-                  child: AppText(
-                    text: "Logout",
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                  )),
-              content: AppText(
-                text: "Are you sure that you want to log out?",
-                fontSize: fontSize,
-                maxLines: 10,
-              ),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  child: AppText(
-                    text: "Cancel",
-                    fontSize: fontSize,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-                CupertinoDialogAction(
-                  child: AppText(
-                    text: "Logout",
-                    fontSize: fontSize,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-              ],
-            ),
-          );
-        });
-  }
+
   Widget getDrawerHeader() => Padding(
         padding: EdgeInsets.only(top: 30.h, left: 20.w, right: 10.w),
         child: Column(
@@ -306,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getMyRides() => ListView.builder(
         shrinkWrap: true,
         itemBuilder: (context, index) => getRideItem(),
-        itemCount: 1,
+        itemCount: 2,
         physics: const NeverScrollableScrollPhysics(),
       );
 
@@ -316,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     child: SizedBox(
       width: double.infinity,
-      height: 175.h,
+      height: 160.h,
       child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -368,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Padding(
         padding: EdgeInsets.all(12.w),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             getRideDetails(),
             const Spacer(),
@@ -390,6 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
   getRideDetails() =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           getRideNameAndType(),
           getRideYearAndModel(),
@@ -512,25 +470,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-  Widget getCarouselSliderWidget() => Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          CarouselSlider.builder(
-            itemCount: 4,
-            itemBuilder: (context, _, index) {
-              return getWeatherItemWidget();
-            },
-            options: CarouselOptions(
-                initialPage: 0,
-                autoPlay: true,
-                viewportFraction: 1,
-                height: 200.h,
-                onPageChanged: (index, reason) =>
-                    setState(() => activeIndex = index)),
-          ),
-          buildIndicator(),
-        ],
-      );
+  Widget getCarouselSliderWidget() => SizedBox(
+    height: 190.h,
+      child: getWeatherItemWidget(),
+  );
 
   Widget getWeatherItemWidget() => Stack(
         children: [

@@ -115,7 +115,7 @@ class _ShowFuelUpScreenState extends State<ShowFuelUpScreen> {
               color: Theme.of(context).primaryColor,
             ),
             trailing: AppText(
-              text: 'Manar',
+              text: 'My Ride Name',
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),

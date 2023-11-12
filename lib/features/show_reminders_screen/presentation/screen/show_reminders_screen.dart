@@ -96,7 +96,7 @@ class _ShowRemindersScreenState extends State<ShowRemindersScreen> {
               color: Theme.of(context).primaryColor,
             ),
             trailing: AppText(
-              text: 'Manar',
+              text: 'My Ride Name',
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),

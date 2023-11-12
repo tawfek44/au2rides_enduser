@@ -1,4 +1,5 @@
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gap(height: 30.h),
+              gap(height: 90.h),
               getUpperContainer(),
               gap(height: 20.h),
               getShareMyCodeButton(),
@@ -55,7 +56,8 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
         children: [
           gap(height: 40.h),
           getUserName(),
-          getUserRatingBar(itemSize: 25.w,ratingValue: 2.75),
+          AppText(text: "+201535098065",fontSize: fontSize-1.sp,color: AppColors.greyColor,),
+          //getUserRatingBar(itemSize: 25.w,ratingValue: 2.75),
           gap(height: 10.h),
           getUserQrCodeImage()
         ],
@@ -75,13 +77,13 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
     child: Image.asset("images/qrcode.png"),
   );
   getUserImage()=>Positioned(
-    top: -30,
+    top: -100,
     child: Container(
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 1.w),
-          borderRadius: BorderRadius.circular(30.w)),
+          borderRadius: BorderRadius.circular(70.w)),
       child: CircleAvatar(
-        radius: 30.w,
+        radius: 70.w,
         child: ClipRRect(
           child: Image.asset("images/user.png"),
         ),

@@ -112,7 +112,7 @@ class _ShowTripsScreenState extends State<ShowTripsScreen> {
           color: Theme.of(context).primaryColor,
         ),
         trailing: AppText(
-          text: 'Manar',
+          text: 'My Ride Name',
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -123,7 +123,9 @@ class _ShowTripsScreenState extends State<ShowTripsScreen> {
   Widget tripsItem({required ShowTripsModel tripsModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addTripScreenRoute);
+        },
         title: Column(
           children: [
             Row(

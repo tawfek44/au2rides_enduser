@@ -1,3 +1,4 @@
+import 'package:au2rides/core/constants/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class SharedTextField extends StatelessWidget {
       cursorColor: Theme.of(context).primaryColor,
       style:   TextStyle(
         color: Colors.black,
-        fontSize: 15.sp
+        fontSize: fontSize
         // fontFamily: isArabicLocalization() ? "Tajawal" : "Gilroy",
       ),
       onChanged: onChanged,

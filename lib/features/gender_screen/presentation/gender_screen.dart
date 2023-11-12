@@ -27,7 +27,7 @@ class _GenderScreenState extends State<GenderScreen> {
         child: getAppBar(
           context: context,
           title: AppText(
-            text: "Choose you gender",
+            text: "Choose your gender",
             fontSize: 15.sp,
             color: AppColors.white,
           ),
@@ -35,13 +35,14 @@ class _GenderScreenState extends State<GenderScreen> {
       ),
           body: Padding(
             padding: EdgeInsets.all(20.w),
-            child: ListView.builder(
-              itemCount: genderItemList.length,
-                itemBuilder: (context,index)=>  Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(corner))),
-                    child: Column(
+            child: CupertinoListSection.insetGrouped(
+              margin: EdgeInsets.zero,
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: genderItemList.length,
+                    itemBuilder: (context,index)=>  Column(
                       children: [
                         getCountriesWidget(text: genderItemList[index],icon: genderIconList[index]),
                         if(index!=genderItemList.length-1)...[
@@ -51,7 +52,9 @@ class _GenderScreenState extends State<GenderScreen> {
                           )
                         ]
                       ],
-                    )),
+                    ),
+                ),
+              ],
             ),
           ),
     ));

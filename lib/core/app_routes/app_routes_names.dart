@@ -54,6 +54,12 @@ class Routes {
   static const acquisitionScreenRoute = "ACQUISITION_SCREEN_ROUTE";
   static const addNewIdentityCardOrPassportScreenRoute = "ADD_NEW_IDENTITY_CARD_OR_PASSPORT_SCREEN_ROUTE";
   static const addDrivingLicenceScreenRoute = "ADD_DRIVING_LICENCE_SCREEN_ROUTE";
+  static const webViewScreenRoute = "WEB_VIEW_SCREEN_ROUTE";
+  static const dashboardScreenRoute = "DASHBOARD_SCREEN_ROUTE";
+  static const messagesScreenRoute = "MESSAGES_SCREEN_ROUTE";
+  static const notificationScreenRoute = "NOTIFICATION_SCREEN_ROUTE";
+  static const allShopsScreenRoute = "ALL_SHOPS_SCREEN_ROUTE";
+  static const startUpScreenRoute = "START_UP_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

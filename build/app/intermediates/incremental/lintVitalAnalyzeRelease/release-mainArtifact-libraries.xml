@@ -82,10 +82,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android@@:file_picker::release"
-      jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out\jars\libs\R.jar"
-      resolved="com.mr.flutter.plugin.filepicker:file_picker:unspecified"
-      folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out"
+      name="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android@@:flutter_local_notifications::release"
+      jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out\jars\libs\R.jar"
+      resolved="com.dexterous.flutterlocalnotifications:flutter_local_notifications:unspecified"
+      folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -95,10 +95,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android@@:flutter_local_notifications::release"
-      jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out\jars\libs\R.jar"
-      resolved="com.dexterous.flutterlocalnotifications:flutter_local_notifications:unspecified"
-      folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\.transforms\5f616cc7b540e10bcd103a8e32db0d4b\transformed\out"
+      name="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android@@:file_picker::release"
+      jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out\jars\libs\R.jar"
+      resolved="com.mr.flutter.plugin.filepicker:file_picker:unspecified"
+      folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\.transforms\bf124c733cf1ed1f1e37ed64c98de5ab\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -125,6 +125,19 @@
       jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\.transforms\298afefa03c36a436367eca2a755fa29\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\.transforms\298afefa03c36a436367eca2a755fa29\transformed\out\jars\libs\R.jar"
       resolved="net.touchcapture.qr.flutterqr:qr_code_scanner:unspecified"
       folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\.transforms\298afefa03c36a436367eca2a755fa29\transformed\out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android@@:webview_flutter_android::release"
+      jars="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\webview_flutter_android\.transforms\385cb5ffa76ea22163f39f81e2a16808\transformed\out\jars\classes.jar;D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\webview_flutter_android\.transforms\385cb5ffa76ea22163f39f81e2a16808\transformed\out\jars\libs\R.jar"
+      resolved="io.flutter.plugins.webviewflutter:webview_flutter_android:unspecified"
+      folder="D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\webview_flutter_android\.transforms\385cb5ffa76ea22163f39f81e2a16808\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -490,9 +503,9 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="androidx.annotation:annotation-jvm:1.6.0@jar"
-      jars="C:\Users\Tawfek\.gradle\caches\modules-2\files-2.1\androidx.annotation\annotation-jvm\1.6.0\a7257339a052df0f91433cf9651231bbb802b502\annotation-jvm-1.6.0.jar"
-      resolved="androidx.annotation:annotation-jvm:1.6.0"/>
+      name="androidx.annotation:annotation-jvm:1.7.0@jar"
+      jars="C:\Users\Tawfek\.gradle\caches\modules-2\files-2.1\androidx.annotation\annotation-jvm\1.7.0\920472d40adcdef5e18708976b3e314f9a636fcd\annotation-jvm-1.7.0.jar"
+      resolved="androidx.annotation:annotation-jvm:1.7.0"/>
   <library
       name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22@jar"
       jars="C:\Users\Tawfek\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.8.22\4dabb8248310d833bb6a8b516024a91fd3d275c\kotlin-stdlib-jdk7-1.8.22.jar"
@@ -817,6 +830,19 @@
       jars="C:\Users\Tawfek\.gradle\caches\transforms-3\c7b5e40c8322718297956b3bec8a46d6\transformed\media-1.1.0\jars\classes.jar"
       resolved="androidx.media:media:1.1.0"
       folder="C:\Users\Tawfek\.gradle\caches\transforms-3\c7b5e40c8322718297956b3bec8a46d6\transformed\media-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.webkit:webkit:1.7.0@aar"
+      jars="C:\Users\Tawfek\.gradle\caches\transforms-3\26053599e8c0dac0e11dd421905435f3\transformed\webkit-1.7.0\jars\classes.jar"
+      resolved="androidx.webkit:webkit:1.7.0"
+      folder="C:\Users\Tawfek\.gradle\caches\transforms-3\26053599e8c0dac0e11dd421905435f3\transformed\webkit-1.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

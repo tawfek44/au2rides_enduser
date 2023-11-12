@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -81,7 +83,9 @@ class _RemindersScreenState extends State<RemindersTypeScreen> {
   Widget remindersItem({required RemindersModel remindersModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addReminderScreenRoute);
+        },
         title: Column(
           children: [
             Row(
@@ -117,10 +121,7 @@ class _RemindersScreenState extends State<RemindersTypeScreen> {
                   fontSize: fontSize,
                 ),
                 const Spacer(),
-                AppText(
-                  text: remindersModel.date,
-                  fontSize: fontSize,
-                ),
+                getConstDateWidget(dateText: remindersModel.date)
               ],
             ),
             gap(height: 7.h),

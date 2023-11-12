@@ -89,7 +89,9 @@ class _WalletScreenState extends State<WalletScreen> {
   }
 
   Widget getListItem({required WalletModel item}) => CupertinoListTile.notched(
-    onTap: () {},
+    onTap: () {
+      NamedNavigatorImpl().push(Routes.addWalletScreenRoute);
+    },
     title: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

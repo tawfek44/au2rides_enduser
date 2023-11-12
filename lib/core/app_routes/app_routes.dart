@@ -14,6 +14,7 @@ import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.d
 import 'package:au2rides/features/add_shop_screen/presentation/screen/add_shop_screen.dart';
 import 'package:au2rides/features/add_trip_screen/presentation/screen/add_trip_screen.dart';
 import 'package:au2rides/features/add_wallet_item/presentation/screen/add_wallet_item.dart';
+import 'package:au2rides/features/all_shops_screen/presentation/screen/all_shops_screen.dart';
 import 'package:au2rides/features/bottom_nav_bar_screen/presentation/bottom_nav_bar_screen.dart';
 import 'package:au2rides/features/change_password_screen/presentation/screen/change_password_screen.dart';
 import 'package:au2rides/features/choose_provider_screen/presentation/screen/choose_provider_screen.dart';
@@ -22,6 +23,7 @@ import 'package:au2rides/features/countries_screen/presentation/countries_screen
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
 import 'package:au2rides/features/create_item_screen/presentation/screen/create_item_screen.dart';
 import 'package:au2rides/features/currency_screen/presentation/screen/currency_screen.dart';
+import 'package:au2rides/features/dashboard_signs_screen/presentation/screen/dashboard_signs_screen.dart';
 import 'package:au2rides/features/departments_screen/presentation/screen/departments_screen.dart';
 import 'package:au2rides/features/driving_license_screen/presentation/screen/driving_license_screen.dart';
 import 'package:au2rides/features/enter_user_info/presentation/screens/enter_user_info_screen.dart';
@@ -31,7 +33,9 @@ import 'package:au2rides/features/item_reminders_screen/presentation/screen/item
 import 'package:au2rides/features/language_screen/presentation/screen/language_screen.dart';
 import 'package:au2rides/features/licence_details_screen/presentation/screen/licence_details_screen.dart';
 import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
+import 'package:au2rides/features/messages_screen/presentation/screen/messages_screen.dart';
 import 'package:au2rides/features/multiselection_screen/presentation/screen/multiselection_screen.dart';
+import 'package:au2rides/features/notifications_screen/presentation/screen/notifications_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
 import 'package:au2rides/features/ride_details/presentation/screen/ride_details.dart';
@@ -44,9 +48,11 @@ import 'package:au2rides/features/show_odometer_screen/presentation/screen/show_
 import 'package:au2rides/features/show_reminders_screen/presentation/screen/show_reminders_screen.dart';
 import 'package:au2rides/features/show_trips_screen/presentation/screen/show_trips_screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
+import 'package:au2rides/features/start_up_screen/presentation/screen/start_up_screen.dart';
 import 'package:au2rides/features/tire_pressure_details/presentation/screen/tire_pressure_details_screen.dart';
 import 'package:au2rides/features/transaction_history_screen/presentation/screen/transaction_history_screen.dart';
 import 'package:au2rides/features/wallet_screen/presentation/screen/wallet_screen.dart';
+import 'package:au2rides/features/web_view_screen/web_view_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/identity_card_passport_screen/presentation/screen/identity_card_passport_screen.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
@@ -310,6 +316,36 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: AddDrivingLicenceScreen(),
+        ));
+      case Routes.webViewScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: WebViewScreen(),
+        ));
+      case Routes.dashboardScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: DashboardSignsScreen(),
+        ));
+      case Routes.messagesScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: MessagesScreen(),
+        ));
+      case Routes.notificationScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: NotificationsScreen(),
+        ));
+      case Routes.allShopsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: AllShopsScreen(),
+        ));
+      case Routes.startUpScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: StartUpScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

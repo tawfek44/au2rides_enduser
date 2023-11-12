@@ -475,6 +475,41 @@
     public static final android.os.Parcelable$Creator *;
 }
 # End of content from C:\Users\Tawfek\.gradle\caches\transforms-3\c7b5e40c8322718297956b3bec8a46d6\transformed\media-1.1.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\Tawfek\.gradle\caches\transforms-3\26053599e8c0dac0e11dd421905435f3\transformed\webkit-1.7.0\proguard.txt
+# Copyright 2018 The Chromium Authors
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# We need to avoid obfuscating the support library boundary interface because
+# this API is shared with the Android Support Library.
+# Note that we only 'keep' the package org.chromium.support_lib_boundary itself,
+# any sub-packages of that package can still be obfuscated.
+-keep public class org.chromium.support_lib_boundary.* { public *; }
+
+# Copyright (C) 2018 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Prevent WebViewClientCompat from being renamed, since chromium depends on this name.
+-keepnames public class androidx.webkit.WebViewClientCompat
+
+# Prevent ProcessGlobalConfig and member sProcessGlobalConfig from being renamed, since chromium
+# depends on this name.
+-keepnames public class androidx.webkit.ProcessGlobalConfig {
+    private static final *** sProcessGlobalConfig;
+}
+
+# End of content from C:\Users\Tawfek\.gradle\caches\transforms-3\26053599e8c0dac0e11dd421905435f3\transformed\webkit-1.7.0\proguard.txt
 # The proguard configuration file for the following section is C:\Users\Tawfek\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
@@ -699,7 +734,7 @@
 }
 
 # End of content from C:\Users\Tawfek\.gradle\caches\transforms-3\77d0e2a7631d914cab0a6886846690d8\transformed\jetified-threetenabp-1.2.3\proguard.txt
-# The proguard configuration file for the following section is C:\Users\Tawfek\.gradle\caches\transforms-3\cd7b0812a8d7edc98d828d78d6e3b2e2\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
+# The proguard configuration file for the following section is C:\Users\Tawfek\.gradle\caches\transforms-3\96eface9dbec35e1af9d220df1ec772e\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
 -keep,allowobfuscation @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}
 
@@ -719,7 +754,7 @@
   @androidx.annotation.DoNotInline <methods>;
 }
 
-# End of content from C:\Users\Tawfek\.gradle\caches\transforms-3\cd7b0812a8d7edc98d828d78d6e3b2e2\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
+# End of content from C:\Users\Tawfek\.gradle\caches\transforms-3\96eface9dbec35e1af9d220df1ec772e\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
 # The proguard configuration file for the following section is C:\Users\Tawfek\.gradle\caches\transforms-3\92eb2f5ec5ad860e95c0c6daee775420\transformed\rules\lib\META-INF\proguard\org.threeten.bp.pro
 -keepclassmembers class org.threeten.bp.Ser {
   <init>();

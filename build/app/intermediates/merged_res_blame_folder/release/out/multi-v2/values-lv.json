@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeReleaseResources-34:/values-lv/values-lv.xml",
+            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeReleaseResources-35:/values-lv/values-lv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Tawfek\\.gradle\\caches\\transforms-3\\781e5567158e59d38ee2b89930f9808b\\transformed\\jetified-play-services-base-18.1.0\\res\\values-lv\\values.xml",

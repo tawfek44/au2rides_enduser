@@ -110,7 +110,7 @@ class _ShowOdometerScreenState extends State<ShowOdometerScreen> {
           color: Theme.of(context).primaryColor,
         ),
         trailing: AppText(
-          text: 'Manar',
+          text: 'My Ride Name',
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -120,7 +120,9 @@ class _ShowOdometerScreenState extends State<ShowOdometerScreen> {
   Widget showOdometerItem({required ShowOdometerModel odometerModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addOdometerScreenRoute);
+        },
         title: Column(
           children: [
             Row(

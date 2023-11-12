@@ -114,7 +114,7 @@ class _ShowMaintenanceScreenState extends State<ShowMaintenanceScreen> {
           color: Theme.of(context).primaryColor,
         ),
         trailing: AppText(
-          text: 'Manar',
+          text: 'My Ride Name',
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -125,7 +125,9 @@ class _ShowMaintenanceScreenState extends State<ShowMaintenanceScreen> {
   Widget myFuelUpItem({required ShowMaintenanceModel maintenanceModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
+        },
         title: Column(
           children: [
             Row(

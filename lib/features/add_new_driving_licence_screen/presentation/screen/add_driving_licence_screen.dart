@@ -99,12 +99,15 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
               CupertinoListSection.insetGrouped(
                 margin: EdgeInsets.zero,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      getImageTitle(imageTitle: "Document Front"),
-                      getDocumentImage(),
-                    ],
+                  Padding(
+                    padding:  EdgeInsets.only(top: 5.h,bottom: 10.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getImageTitle(imageTitle: "DOCUMENT FRONT"),
+                        getDocumentImage(),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -112,12 +115,15 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
               CupertinoListSection.insetGrouped(
                 margin: EdgeInsets.zero,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      getImageTitle(imageTitle: "Document Back"),
-                      getDocumentImage(),
-                    ],
+                  Padding(
+                    padding:  EdgeInsets.only(top: 5.h,bottom: 10.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getImageTitle(imageTitle: "DOCUMENT BACK"),
+                        getDocumentImage(),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -166,7 +172,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(
     header: AppText(
-      text: "Notes",
+      text: "NOTES",
       color: AppColors.greyColor,
       fontSize: fontSize,
     ),

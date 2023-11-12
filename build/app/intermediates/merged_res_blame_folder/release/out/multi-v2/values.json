@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeReleaseResources-34:/values/values.xml",
+            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeReleaseResources-35:/values/values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Tawfek\\.gradle\\caches\\transforms-3\\c7b5e40c8322718297956b3bec8a46d6\\transformed\\media-1.1.0\\res\\values\\values.xml",

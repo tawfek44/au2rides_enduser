@@ -75,7 +75,53 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
     );
 
   }
-
+  void showReminderTypeDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: CupertinoAlertDialog(
+              title: Center(
+                  child: AppText(
+                    text: "Reminder!",
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  )),
+              content: AppText(
+                text: "Choose Reminder Type...",
+                textAlign: TextAlign.center,
+                fontSize: fontSize,
+                maxLines: 10,
+              ),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: AppText(text:"Expense",fontSize: fontSize,),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(text:"Service",fontSize: fontSize,),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: AppText(text:"Cancel",fontSize: fontSize,),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            )
+          );
+        });
+  }
   _showRecurrenceDialog(BuildContext context) {
     showDialog(
         context: context,
@@ -91,6 +137,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
               )),
               content: AppText(
                 text: "Choose the recurrence either Just once or Repeat every.",
+                textAlign: TextAlign.center,
                 fontSize: fontSize,
                 maxLines: 10,
               ),
@@ -111,12 +158,6 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                       recurrenceBool=true;
                       Navigator.of(context).pop();
                     });
-                  },
-                ),
-                CupertinoDialogAction(
-                  child: AppText(text:"CANCEL",fontSize: fontSize,),
-                  onPressed: () {
-                    Navigator.of(context).pop();
                   },
                 ),
               ],
@@ -287,7 +328,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "Notes",
+          text: "NOTES",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
@@ -317,7 +358,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
               _showRecurrenceDialog(context);
               break;
             case ChoiceRoute.reminderType:
-              // TODO: Handle this case.
+              showReminderTypeDialog(context);
               break;
             case ChoiceRoute.type:
               // TODO: Handle this case.
@@ -353,7 +394,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
               color: Theme.of(context).primaryColor,
             ),
             trailing: AppText(
-              text: 'Manar',
+              text: 'My Ride Name',
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),

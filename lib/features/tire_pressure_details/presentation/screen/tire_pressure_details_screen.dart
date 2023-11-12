@@ -54,9 +54,6 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
     ),
     children: [
       CupertinoListTile(
-        onTap: (){
-          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
-        },
         leading: Icon(Icons.tire_repair,color: Theme.of(context).primaryColor,),
         title: AppText(
           text: "Pressure",
@@ -66,9 +63,6 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
         trailing: AppText(text: "psi",fontSize: fontSize,color: AppColors.greyColor,),
       ),
       CupertinoListTile(
-        onTap: (){
-          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
-        },
         leading: Icon(Icons.tire_repair,color: Theme.of(context).primaryColor,),
         title: AppText(
           text: "Size",
@@ -88,9 +82,6 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
     ),
     children: [
       CupertinoListTile(
-        onTap: (){
-          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
-        },
         leading: Icon(Icons.tire_repair,color: Theme.of(context).primaryColor,),
         title: AppText(
           text: "Pressure",
@@ -100,9 +91,6 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
         trailing: AppText(text: "psi",fontSize: fontSize,color: AppColors.greyColor,),
       ),
       CupertinoListTile(
-        onTap: (){
-          NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
-        },
         leading: Icon(Icons.tire_repair,color: Theme.of(context).primaryColor,),
         title: AppText(
           text: "Size",

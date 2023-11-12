@@ -18,7 +18,6 @@ class AddFuelScreen extends StatefulWidget {
 }
 
 class _AddFuelScreenState extends State<AddFuelScreen> {
-  var fontSize = 11.sp;
   DateTime selectedDate = DateTime.now();
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
@@ -33,7 +32,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
           child: getAppBar(
             context: context,
             title: AppText(
-              text: "Add fuel",
+              text: "Add Fuel Up",
               fontSize: 16.sp,
               color: AppColors.white,
             ),
@@ -447,7 +446,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
                   .primaryColor,
             ),
             trailing: AppText(
-              text: 'Manar',
+              text: 'My Ride Name',
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),

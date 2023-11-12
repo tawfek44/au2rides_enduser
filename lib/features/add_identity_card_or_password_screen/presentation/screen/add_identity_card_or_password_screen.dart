@@ -58,13 +58,14 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
   );
   Widget getDocumentBackImage()=> CupertinoListSection.insetGrouped(
     margin: EdgeInsets.zero,
+    header:  getImageTitle(imageTitle: "DOCUMENT BACK"),
     children: [
       Padding(
         padding:  EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            getImageTitle(imageTitle: "Document Back"),
+
             getDocumentImage(),
           ],
         ),
@@ -75,13 +76,13 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
   );
   Widget getDocumentFrontImage()=>CupertinoListSection.insetGrouped(
     margin: EdgeInsets.zero,
+    header:  getImageTitle(imageTitle: "DOCUMENT FRONT"),
     children: [
       Padding(
         padding:  EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            getImageTitle(imageTitle: "Document Front"),
             getDocumentImage(),
           ],
         ),
@@ -172,12 +173,10 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
       ),
     ),
   );
-  Widget getImageTitle({required String imageTitle}) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 20.w),
-    child: AppText(
-      text: imageTitle,
-      fontSize: fontSize,
-    ),
+  Widget getImageTitle({required String imageTitle}) => AppText(
+    text: imageTitle,
+    fontSize: fontSize,
+    color: AppColors.greyColor,
   );
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(
@@ -354,24 +353,7 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
                     fontSize: fontSize,
                     fontWeight: FontWeight.bold,
                   )),
-              content: AppText(
-                text: "Choose Document Type..",
-                textAlign: TextAlign.center,
-                fontSize: fontSize,
-                maxLines: highMaxLines,
-              ),
               actions: <Widget>[
-                CupertinoDialogAction(
-                  child: AppText(
-                    text: "Cancel",
-                    fontSize: fontSize,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
                 CupertinoDialogAction(
                   child: AppText(
                     text: "Passport",

@@ -30,7 +30,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
           child: getAppBar(
             context: context,
             title:  AppText(
-              text: "Add Odometer",
+              text: "Add Odometer Reading",
               fontSize: 16.sp,
               color: AppColors.white,
             ),
@@ -73,7 +73,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
               .primaryColor,
         ),
         trailing: AppText(
-          text: 'Manar',
+          text: 'My Ride Name',
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),

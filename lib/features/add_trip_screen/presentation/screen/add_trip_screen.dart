@@ -234,7 +234,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
               color: Theme.of(context).primaryColor,
             ),
             trailing: AppText(
-              text: 'Manar',
+              text: 'My Ride Name',
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),

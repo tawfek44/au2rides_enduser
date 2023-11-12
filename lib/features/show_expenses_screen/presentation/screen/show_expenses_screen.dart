@@ -131,7 +131,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
           color: Theme.of(context).primaryColor,
         ),
         trailing: AppText(
-          text: 'Manar',
+          text: 'My Ride Name',
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -158,7 +158,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
               ),
               actions: <Widget>[
                 CupertinoDialogAction(
-                  child: AppText(text:"RIDES",fontSize: fontSize,),
+                  child: AppText(text:"Rides",fontSize: fontSize,),
                   onPressed: () {
                     setState(() {
                       recurrenceBool=false;
@@ -167,7 +167,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
                   },
                 ),
                 CupertinoDialogAction(
-                  child: AppText(text:"OTHER",fontSize: fontSize,),
+                  child: AppText(text:"Other",fontSize: fontSize,),
                   onPressed: () {
                     setState(() {
                       recurrenceBool=true;
@@ -176,7 +176,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
                   },
                 ),
                 CupertinoDialogAction(
-                  child: AppText(text:"CANCEL",fontSize: fontSize,),
+                  child: AppText(text:"Cancel",fontSize: fontSize,),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -186,10 +186,24 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
           );
         });
   }
+  Widget getDateWidget({required String dateText}) => Container(
+    decoration: BoxDecoration(
+        color: AppColors.lightGreyColor,
+        borderRadius: BorderRadius.circular(5.w)),
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+      child: AppText(
+        text: dateText,
+        fontSize: fontSize,
+      ),
+    ),
+  );
   Widget myExpensesItem({required ShowExpensesModel expensesModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addExpensesScreenRoute);
+        },
         title: Column(
           children: [
             Row(
@@ -225,10 +239,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
                   fontSize: fontSize,
                 ),
                 const Spacer(),
-                AppText(
-                  text: expensesModel.date,
-                  fontSize: fontSize,
-                ),
+                getDateWidget(dateText:expensesModel.date )
               ],
             ),
             gap(height: 7.h),

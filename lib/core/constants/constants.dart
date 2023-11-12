@@ -47,7 +47,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp,edit}
+enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp,edit,save}
 
 Widget getAppBar(
         {required Widget title,
@@ -71,6 +71,60 @@ Widget getAppBar(
           route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete,context: context),
       bottom: bottom,
     );
+void showLogoutDialog(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: CupertinoAlertDialog(
+            title: Center(
+                child: AppText(
+                  text: "Logout",
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                )),
+            content: AppText(
+              text: "Are you sure that you want to log out?",
+              fontSize: fontSize,
+              maxLines: 10,
+            ),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: AppText(
+                  text: "Cancel",
+                  fontSize: fontSize,
+                ),
+                onPressed: () {
+                    Navigator.of(context).pop();
+                },
+              ),
+              CupertinoDialogAction(
+                child: AppText(
+                  text: "Logout",
+                  fontSize: fontSize,
+                ),
+                onPressed: () {
+                    Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      });
+}
+Widget getConstDateWidget({required String dateText}) => Container(
+  decoration: BoxDecoration(
+      color: AppColors.lightGreyColor,
+      borderRadius: BorderRadius.circular(5.w)),
+  child: Padding(
+    padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+    child: AppText(
+      text: dateText,
+      fontSize: fontSize,
+    ),
+  ),
+);
 
 List<Widget> getAppBarWidgetAccordingToRoute(
     {AppBarRoutes? route,
@@ -79,6 +133,10 @@ List<Widget> getAppBarWidgetAccordingToRoute(
     required BuildContext context,
     required List<Widget>? actions}) {
   switch (route) {
+    case AppBarRoutes.save :
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.save))
+      ];
     case AppBarRoutes.myDocuments :
       return [
         IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeDebugResources-34:/values-si/values-si.xml",
+            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeDebugResources-35:/values-si/values-si.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Tawfek\\.gradle\\caches\\transforms-3\\6d3bbaf4594b8ed85e4722883be764b3\\transformed\\browser-1.4.0\\res\\values-si\\values-si.xml",

@@ -26,14 +26,16 @@ class _RideDetailsState extends State<RideDetails> {
       "Tire pressure",
       "Licence details",
       "Insurance policy",
-      "Acquisition details"
+      "Acquisition details",
+      "Dashboard Signs"
     ];
     List<String> rideDetailsItemLinkSubTitle = [
       "This is scheduled maintenance",
       "This is tire pressure",
       "This is licence details",
       "This is insurance policy",
-      "This is acquisition details"
+      "This is acquisition details",
+      "This is dashboard signs"
     ];
     List<Icon> rideDetailsItemLinkLeadingIcon = [
       Icon(Icons.car_repair, color: Theme
@@ -49,6 +51,9 @@ class _RideDetailsState extends State<RideDetails> {
           .of(context)
           .primaryColor),
       Icon(Icons.ac_unit_sharp, color: Theme
+          .of(context)
+          .primaryColor),
+      Icon(Icons.dashboard, color: Theme
           .of(context)
           .primaryColor)
     ];
@@ -202,7 +207,7 @@ class _RideDetailsState extends State<RideDetails> {
           CupertinoListTile(
             title: CupertinoTextField(
               decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: 5,
+              maxLines: highMaxLines,
             ),
           )
         ],
@@ -256,11 +261,22 @@ class _RideDetailsState extends State<RideDetails> {
             case 4:
               NamedNavigatorImpl().push(Routes.acquisitionScreenRoute);
               break;
+            case 5:
+              NamedNavigatorImpl().push(Routes.dashboardScreenRoute);
+              break;
           }
         },
-        title: AppText(
-          text: title,
-          fontSize: fontSize,
+        title: Row(
+          children: [
+            AppText(
+              text: title,
+              fontSize: fontSize,
+            ),
+            if(index == 2 || index == 3)...[
+              gap(width: 5.w),
+              getVerifiedComponent()
+            ]
+          ],
         ),
         subtitle: AppText(
           text: subTitle,
@@ -274,6 +290,20 @@ class _RideDetailsState extends State<RideDetails> {
         ),
       );
 
+  Widget getVerifiedComponent()=> Container(
+    decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(corner)),
+    height: 25.h,
+    width: 50.w,
+    child: Center(
+        child: Text(
+          "Verified",
+          style: TextStyle(
+              color: Colors.white, fontSize: fontSize - 2.sp),
+          textAlign: TextAlign.center,
+        )),
+  );
   Widget getRidePic() =>
       SizedBox(
         width: double.infinity,
@@ -434,7 +464,8 @@ enum RideDetailsLinksNames {
   tirePressure,
   licenceDetails,
   insurancePolicy,
-  acquisitionDetails
+  acquisitionDetails,
+  dashboardSigns
 }
 
 enum RideDetailsExpansionListTileChoice {

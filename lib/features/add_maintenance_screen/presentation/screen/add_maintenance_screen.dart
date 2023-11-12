@@ -252,7 +252,16 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
       );
     } else {
       return CupertinoListTile(
-        onTap: () {},
+        onTap: () {
+          switch(choices) {
+            case WorkSectionChoices.shop:
+              NamedNavigatorImpl().push(Routes.allShopsScreenRoute);
+              break;
+            case WorkSectionChoices.paymentMethod:
+              // TODO: Handle this case.
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,
@@ -312,7 +321,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
             color: Theme.of(context).primaryColor,
           ),
           trailing: AppText(
-            text: 'Manar',
+            text: 'My Ride Name',
             fontSize: fontSize,
             color: AppColors.greyColor,
           ),
@@ -503,9 +512,10 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(
     header: AppText(
-      text: "Notes",
+      text: "NOTES",
       color: AppColors.greyColor,
       fontSize: fontSize,
+      maxLines: highMaxLines,
     ),
     margin: EdgeInsets.zero,
     children: [

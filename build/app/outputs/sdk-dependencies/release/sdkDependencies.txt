@@ -50,7 +50,7 @@ library {
   maven_library {
     groupId: "androidx.annotation"
     artifactId: "annotation"
-    version: "1.6.0"
+    version: "1.7.0"
   }
   repo_index {
   }
@@ -59,10 +59,10 @@ library {
   maven_library {
     groupId: "androidx.annotation"
     artifactId: "annotation-jvm"
-    version: "1.6.0"
+    version: "1.7.0"
   }
   digests {
-    sha256: "`\261\v^\365v\233yW\001r\340\025\270\025\224\005\311/\003K\250\213\223\221\251wX\234\235\353N"
+    sha256: "\343k\216K\203\223\244\255\307N=J\262*\325\243c\226\360\316\242\344\vW4\352\341I7\337\322$"
   }
   repo_index {
   }
@@ -1114,6 +1114,18 @@ library {
 }
 library {
   maven_library {
+    groupId: "androidx.webkit"
+    artifactId: "webkit"
+    version: "1.7.0"
+  }
+  digests {
+    sha256: "\347.J8\206\247\001\240{\006j\313&\235\314\n\032\232\0246\020s\037{\022U\262\223\215\226\2377"
+  }
+  repo_index {
+  }
+}
+library {
+  maven_library {
     groupId: "androidx.exifinterface"
     artifactId: "exifinterface"
     version: "1.3.6"
@@ -1199,7 +1211,7 @@ library {
 }
 library {
   digests {
-    sha256: "*\035\220\355\032\363\222\246n\233=\030\001\017\276;\326Q\337\363\3260X\216\242?\352\244\250\016\000\257"
+    sha256: "\243\336\350\236\027)R\037\257\017\344\326\2000#\0043\212\376\223\a\b\324S\221\006\0232\303v-g"
   }
 }
 library_dependencies {
@@ -1813,16 +1825,21 @@ library_dependencies {
 library_dependencies {
   library_index: 92
   library_dep_index: 4
+  library_dep_index: 12
 }
 library_dependencies {
   library_index: 93
+  library_dep_index: 4
+}
+library_dependencies {
+  library_index: 94
   library_dep_index: 6
   library_dep_index: 42
   library_dep_index: 41
   library_dep_index: 7
 }
 library_dependencies {
-  library_index: 94
+  library_index: 95
   library_dep_index: 3
   library_dep_index: 12
   library_dep_index: 67
@@ -1839,33 +1856,34 @@ library_dependencies {
 module_dependencies {
   module_name: "base"
   dependency_index: 41
-  dependency_index: 95
   dependency_index: 96
   dependency_index: 97
   dependency_index: 98
+  dependency_index: 99
   dependency_index: 0
   dependency_index: 53
   dependency_index: 4
   dependency_index: 73
   dependency_index: 76
   dependency_index: 12
-  dependency_index: 14
   dependency_index: 77
   dependency_index: 78
   dependency_index: 79
+  dependency_index: 14
   dependency_index: 42
   dependency_index: 81
   dependency_index: 82
   dependency_index: 91
+  dependency_index: 92
   dependency_index: 1
   dependency_index: 6
-  dependency_index: 92
-  dependency_index: 39
   dependency_index: 93
+  dependency_index: 39
+  dependency_index: 94
   dependency_index: 56
   dependency_index: 44
-  dependency_index: 94
-  dependency_index: 99
+  dependency_index: 95
+  dependency_index: 100
 }
 repositories {
   maven_repo {
@@ -1920,6 +1938,16 @@ repositories {
 repositories {
   maven_repo {
     url: "https://jcenter.bintray.com/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://dl.google.com/dl/android/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://repo.maven.apache.org/maven2/"
   }
 }
 repositories {

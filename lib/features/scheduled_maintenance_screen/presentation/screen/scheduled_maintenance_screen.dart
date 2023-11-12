@@ -99,7 +99,9 @@ class _ScheduledMaintenanceScreenState extends State<ScheduledMaintenanceScreen>
   Widget remindersItem({required RemindersModel remindersModel}) =>
       CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
+        },
         title: Column(
           children: [
             Row(

@@ -1,3 +1,5 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,6 +42,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.addWallet,
           title: AppText(
             text: "Licence Details",
             fontSize: 15.sp,
@@ -52,79 +55,109 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
           padding:  EdgeInsets.all(15.w),
           child: Column(
             children: [
-              SingleChildScrollView(
-                child: Wrap(
-                  children: [
-                    CupertinoListSection.insetGrouped(
-                      margin: EdgeInsets.zero,
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      getListTileInModalButtonSheet(
+                          icon: CupertinoIcons.right_chevron,
+                          title: "Issuing Country",
+                          choice: ChoicesInListTile.issuedCountry,
+                          value: "Egypt",
+                          leadingIcon: Icon(
+                            CupertinoIcons.globe,
+                            color: Theme.of(context).primaryColor,
+                          )),
+                      Divider(
+                        height: 0,
+                        indent: 55.w,
+                      ),
+                      getTextFieldInModalButtonSheet(
+                          title: "Document Number",
+                          stateSetter: setState,
+                          choice:
+                          ModalBottomSheetListTileChoices.document,
+                          dateType: ModalBottomSheetDateType.other,
+                          icon: Icon(
+                            CupertinoIcons.doc_plaintext,
+                            color: Theme.of(context).primaryColor,
+                          )),
+                      Divider(
+                        height: 0,
+                        indent: 55.w,
+                      ),
+                      getTextFieldInModalButtonSheet(
+                          title: "Issued Date",
+                          stateSetter: setState,
+                          choice: ModalBottomSheetListTileChoices.date,
+                          dateType: ModalBottomSheetDateType.issuedDate,
+                          icon: Icon(CupertinoIcons.rectangle_dock,
+                              color: Theme.of(context).primaryColor)),
+                      Divider(
+                        height: 0,
+                        indent: 55.w,
+                      ),
+                      getTextFieldInModalButtonSheet(
+                          title: "Expiry Date",
+                          stateSetter: setState,
+                          dateType: ModalBottomSheetDateType.expiryDate,
+                          choice: ModalBottomSheetListTileChoices.date,
+                          icon: Icon(CupertinoIcons.doc_text_search,
+                              color: Theme.of(context).primaryColor)),
+
+                    ],
+                  )
+                ],
+              ),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                header: getImageTitle(imageTitle: "Document Front"),
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.symmetric(vertical: 5.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            getListTileInModalButtonSheet(
-                                icon: CupertinoIcons.right_chevron,
-                                title: "Issuing Country",
-                                choice: ChoicesInListTile.issuedCountry,
-                                value: "Egypt",
-                                leadingIcon: Icon(
-                                  CupertinoIcons.globe,
-                                  color: Theme.of(context).primaryColor,
-                                )),
-                            Divider(
-                              height: 0,
-                              indent: 55.w,
-                            ),
-                            getTextFieldInModalButtonSheet(
-                                title: "Document Number",
-                                stateSetter: setState,
-                                choice:
-                                ModalBottomSheetListTileChoices.document,
-                                dateType: ModalBottomSheetDateType.other,
-                                icon: Icon(
-                                  CupertinoIcons.doc_plaintext,
-                                  color: Theme.of(context).primaryColor,
-                                )),
-                            Divider(
-                              height: 0,
-                              indent: 55.w,
-                            ),
-                            getTextFieldInModalButtonSheet(
-                                title: "Issued Date",
-                                stateSetter: setState,
-                                choice: ModalBottomSheetListTileChoices.date,
-                                dateType: ModalBottomSheetDateType.issuedDate,
-                                icon: Icon(CupertinoIcons.rectangle_dock,
-                                    color: Theme.of(context).primaryColor)),
-                            Divider(
-                              height: 0,
-                              indent: 55.w,
-                            ),
-                            getTextFieldInModalButtonSheet(
-                                title: "Expiry Date",
-                                stateSetter: setState,
-                                dateType: ModalBottomSheetDateType.expiryDate,
-                                choice: ModalBottomSheetListTileChoices.date,
-                                icon: Icon(CupertinoIcons.doc_text_search,
-                                    color: Theme.of(context).primaryColor)),
-                            Divider(
-                              height: 0,
-                              indent: 55.w,
-                            ),
-                            getImageTitle(imageTitle: "Document Front"),
-                            getDocumentImage(),
-                            const Divider(),
-                            getImageTitle(imageTitle: "Document Back"),
-                            getDocumentImage(),
-                            getNotesSection()
-                          ],
-                        )
+                        getDocumentImage(),
                       ],
                     ),
-                    AppButton(label: "Save", onPressed: () {}),
-                    gap(height: 10.h),
-                  ],
-                ),
+                  )
+                ],
               ),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                header: getImageTitle(imageTitle: "Document Back"),
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.symmetric(vertical: 5.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getDocumentImage(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      getNotesSection()
+                    ],
+                  )
+                ],
+              ),
+
+
             ],
           ),
         ),
@@ -152,12 +185,13 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
     child: AppText(
       text: imageTitle,
       fontSize: fontSize,
+      color: AppColors.greyColor,
     ),
   );
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(
     header: AppText(
-      text: "Notes",
+      text: "NOTES",
       color: AppColors.greyColor,
       fontSize: fontSize,
     ),
@@ -168,7 +202,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
         padding: EdgeInsets.symmetric(horizontal: 13.w),
         title: const CupertinoTextField(
           decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-          maxLines: 5,
+          maxLines: highMaxLines,
         ),
       )
     ],
@@ -293,7 +327,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
             case ChoicesInListTile.documentType:
               break;
             case ChoicesInListTile.issuedCountry:
-            // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.countriesScreenRoute);
               break;
           }
         },
