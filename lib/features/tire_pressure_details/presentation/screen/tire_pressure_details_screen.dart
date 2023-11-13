@@ -24,6 +24,7 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.save,
           title: AppText(
             text: "Tire Pressure",
             fontSize: 15.sp,

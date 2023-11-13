@@ -258,7 +258,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
               NamedNavigatorImpl().push(Routes.allShopsScreenRoute);
               break;
             case WorkSectionChoices.paymentMethod:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.showPaymentMethodsScreenRoute);
               break;
           }
         },

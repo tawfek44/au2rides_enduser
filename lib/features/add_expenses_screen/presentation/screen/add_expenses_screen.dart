@@ -252,7 +252,16 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
       );
     } else {
       return CupertinoListTile(
-        onTap: () {},
+        onTap: () {
+          switch(choices) {
+            case WorkSectionChoices.shop:
+              NamedNavigatorImpl().push(Routes.allShopsScreenRoute);
+              break;
+            case WorkSectionChoices.paymentMethod:
+              NamedNavigatorImpl().push(Routes.showPaymentMethodsScreenRoute);
+              break;
+          }
+        },
         title: AppText(
           text: title,
           fontSize: fontSize,

@@ -45,6 +45,7 @@ import 'package:au2rides/features/show_expenses_screen/presentation/screen/show_
 import 'package:au2rides/features/show_fuel_up_screen/presentation/screen/show_fuel_up_screen.dart';
 import 'package:au2rides/features/show_maintenance_screen/presentation/screen/show_maintenance_screen.dart';
 import 'package:au2rides/features/show_odometer_screen/presentation/screen/show_odometer_screen.dart';
+import 'package:au2rides/features/show_payment_methods_screen/presentation/screen/show_payment_method_screen.dart';
 import 'package:au2rides/features/show_reminders_screen/presentation/screen/show_reminders_screen.dart';
 import 'package:au2rides/features/show_trips_screen/presentation/screen/show_trips_screen.dart';
 import 'package:au2rides/features/splash_screen/presentation/screen/splash.dart';
@@ -346,6 +347,11 @@ class NamedNavigatorImpl implements NamedNavigator {
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
           child: StartUpScreen(),
+        ));
+      case Routes.showPaymentMethodsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const Directionality(
+          textDirection: TextDirection.ltr,
+          child: ShowPaymentMethodsScreen(),
         ));
      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

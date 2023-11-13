@@ -6,8 +6,8 @@ import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class StartUpScreen extends StatefulWidget {
   const StartUpScreen({super.key});
 
@@ -62,6 +62,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
           children: [
             CupertinoListTile(
               onTap: () {
+
                 NamedNavigatorImpl().push(Routes.languagesScreenRoute);
               },
               leading: Icon(
@@ -69,7 +70,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 color: Theme.of(context).primaryColor,
               ),
               title: AppText(
-                text: "App Language",
+                text: AppLocalizations.of(context)?.appLanguageText??"",
                 fontSize: fontSize,
               ),
               trailing: const Icon(

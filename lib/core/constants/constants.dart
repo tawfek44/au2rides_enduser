@@ -135,7 +135,7 @@ List<Widget> getAppBarWidgetAccordingToRoute(
   switch (route) {
     case AppBarRoutes.save :
       return [
-        IconButton(onPressed: onPressed, icon: const Icon(Icons.save))
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.save,color: AppColors.white,))
       ];
     case AppBarRoutes.myDocuments :
       return [

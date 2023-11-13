@@ -3,10 +3,9 @@ import 'dart:convert';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
 import 'core/styles/theme.dart';
@@ -47,15 +46,9 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('ar', ''),
-          ],
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('ar',''),
           theme: getLightThemeData(context),
           initialRoute: Routes.startUpScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,

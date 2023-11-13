@@ -39,11 +39,11 @@ class _AddRideScreenState extends State<AddRideScreen> {
             children: [
               buildImageWidget(context),
               getNameSection(),
-              getVINSection(),
+              getRegistrationDetailsSection(),
               getManufacturerDetailsSection(),
               getMetricsSection(),
               getFuelSection(),
-              getLicenceSection(),
+              getRegionalDetailsSection()
             ],
           ),
         ),
@@ -51,133 +51,33 @@ class _AddRideScreenState extends State<AddRideScreen> {
     );
   }
 
-  Widget getLicenceSection()=> buildSection(
-    context,
-    [
-      TextFieldDto(
-        groupName: "LICENCE",
-        fieldName: "Licence Plate",
-        info: "Licence Plate",
-        leadingIcon: CupertinoIcons.textformat_abc,
-        fieldType: FieldType.text,
-        inputType: TextInputType.text,
-        onChanged: (text) {
-        },
-      ),
-      TextFieldDto(
-        groupName: "MANUFACTURING DETAILS",
-        fieldName: "Start Date",
-        info: "Start Date",
-        leadingIcon: CupertinoIcons.calendar,
-        fieldType: FieldType.date,
-        inputType: TextInputType.datetime,
-        onChanged: (text) {
-        },
-      ),
-      TextFieldDto(
-        groupName: "MANUFACTURING DETAILS",
-        fieldName: "End Date",
-        info: "End Date",
-        leadingIcon: CupertinoIcons.calendar_badge_minus,
-        fieldType: FieldType.date,
-        inputType: TextInputType.datetime,
-        onChanged: (text) {
-        },
-      ),
-    ],
-  );
-  Widget getRearSection()=> buildSection(
-    context,
-    [
-      TextFieldDto(
-        groupName: "REAR",
-        fieldName: "Pressure",
-        info: "Pressure",
-        leadingIcon: Icons.tire_repair_outlined,
-        fieldType: FieldType.text,
-        inputType: TextInputType.number,
-        trailingWidget:  AppText( text:"psi",
-        fontSize: fontSize,
-        fontWeight: FontWeight.normal,
-        color: AppColors.greyColor
-        ),
-        onChanged: (text) {
-        },
-      ),
-      TextFieldDto(
-        groupName: "FRONT",
-        fieldName: "Size",
-        info: "Size",
-        leadingIcon: Icons.tire_repair_outlined,
-        fieldType: FieldType.text,
-        inputType: TextInputType.number,
-        trailingWidget:AppText( text:"psi",
-            fontSize: fontSize,
-            fontWeight: FontWeight.normal,
-            color: AppColors.greyColor
-        ),
-        onChanged: (text) {
-        },
-      ),
-    ],
-  );
-  Widget getFrontSection()=> buildSection(
-    context,
-    [
-      TextFieldDto(
-        groupName: "FRONT",
-        fieldName: "Pressure",
-        info: "Pressure",
-        leadingIcon: Icons.tire_repair_outlined,
-        fieldType: FieldType.text,
-        inputType: TextInputType.number,
-        destination: Routes.multiSelectionScreenRoute,
-        trailingWidget:  AppText( text:"psi",
-          fontSize: fontSize,
-          fontWeight: FontWeight.normal,
-          color: AppColors.greyColor
-        ),
-        onChanged: (text) {
-        },
-      ),
-      TextFieldDto(
-          groupName: "FRONT",
-          fieldName: "Size",
-          info: "Size",
-          leadingIcon: Icons.tire_repair_outlined,
-          fieldType: FieldType.text,
-          inputType: TextInputType.number,
-          destination: Routes.multiSelectionScreenRoute,
-          trailingWidget: AppText( text:"psi",
-            fontSize: fontSize,
-            fontWeight: FontWeight.normal,
-            color: AppColors.greyColor
-          ),
-        onChanged: (text) {
-        },
-      ),
-    ],
-  );
-  Widget getTirePressureSection()=> buildSection(
-    context,
-    [
-      TextFieldDto(
-        groupName: "TIRE PRESSURE",
-        fieldName: "Units",
-        info: "htgh",
-        leadingIcon: Icons.tire_repair_outlined,
-        destination: Routes.multiSelectionScreenRoute,
-        fieldType: FieldType.listTile,
-        onChanged: (text) {
-        },
-      ),
-    ],
-  );
+  Widget getRegionalDetailsSection()=>buildSection(context, [
+    TextFieldDto(
+      groupName: "REGIONAL DETAILS",
+      fieldName: "Country",
+      info: "Egypt",
+      destination: Routes.countriesScreenRoute,
+      leadingIcon: CupertinoIcons.globe,
+      fieldType: FieldType.listTile,
+      onChanged: (text) {
+      },
+    ),
+    TextFieldDto(
+      groupName: "REGIONAL DETAILS",
+      fieldName: "Currency",
+      info: "EGP",
+      destination: Routes.currencyScreenRoute,
+      leadingIcon: CupertinoIcons.money_dollar,
+      fieldType: FieldType.listTile,
+      onChanged: (text) {
+      },
+    ),
+  ],);
   Widget getFuelSection()=>buildSection(context, [
       TextFieldDto(
         groupName: "FUEL",
         fieldName: "Fuel Type",
-        info: "hbg",
+        info: "Gasoline",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: Icons.local_gas_station_outlined,
         fieldType: FieldType.listTile,
@@ -187,7 +87,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       TextFieldDto(
         groupName: "FUEL",
         fieldName: "Fuel Units",
-        info:"dfhj",
+        info:"Liters",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.speedometer,
         fieldType: FieldType.listTile,
@@ -197,7 +97,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       TextFieldDto(
         groupName: "FUEL",
         fieldName: "Consumption",
-        info: "tyu",
+        info: "Liters / 100 KM",
         leadingIcon: CupertinoIcons.speedometer,
         destination: Routes.multiSelectionScreenRoute,
         fieldType: FieldType.listTile,
@@ -211,7 +111,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       TextFieldDto(
         groupName: "METRICS",
         fieldName: "Unit",
-        info: "jhk",
+        info: "Kilometers",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.waveform,
         fieldType: FieldType.listTile,
@@ -239,7 +139,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
     TextFieldDto(
       groupName: "MANUFACTURING DETAILS",
       fieldName: "Type",
-      info: "hjk",
+      info: "Car",
       leadingIcon: CupertinoIcons.equal_circle,
       fieldType: FieldType.listTile,
       onChanged: (text) {
@@ -251,6 +151,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       groupName: "MANUFACTURING DETAILS",
       fieldName: "Year",
       info: "Year",
+      destination: Routes.multiSelectionScreenRoute,
       leadingIcon: CupertinoIcons.calendar,
       fieldType: FieldType.date,
       inputType: TextInputType.datetime,
@@ -261,7 +162,29 @@ class _AddRideScreenState extends State<AddRideScreen> {
     TextFieldDto(
       groupName: "MANUFACTURING DETAILS",
       fieldName: "Make",
-      info: "hgjk",
+      info: "MG",
+      fieldType: FieldType.listTile,
+      leadingIcon: CupertinoIcons.car,
+      destination: Routes.multiSelectionScreenRoute,
+      onChanged: (text) {
+      },
+    ),
+    TextFieldDto(
+      groupName: "MANUFACTURING DETAILS",
+      fieldName: "Model",
+      info: "ZS",
+      destination: Routes.multiSelectionScreenRoute,
+      leadingIcon: CupertinoIcons.car_detailed,
+      fieldType: FieldType.date,
+      inputType: TextInputType.datetime,
+      onChanged: (text) {
+
+      },
+    ),
+    TextFieldDto(
+      groupName: "MANUFACTURING DETAILS",
+      fieldName: "Trim",
+      info: "Comfort",
       fieldType: FieldType.listTile,
       leadingIcon: CupertinoIcons.car,
       destination: Routes.multiSelectionScreenRoute,
@@ -269,16 +192,26 @@ class _AddRideScreenState extends State<AddRideScreen> {
       },
     ),
   ],);
-  Widget getVINSection()=>buildSection(context, [
+  Widget getRegistrationDetailsSection()=>buildSection(context, [
     TextFieldDto(
-        groupName: "VIN",
-        fieldName: "VIN",
-        info: "EX:WQ2BF2A53MLB51234",
+        groupName: "REGISTRATION DETAILS",
+        fieldName: "REGISTRATION DETAILS",
+        info: "VIN : EX:WQ2BF2A53MLB51234",
         onChanged: (text) {
 
         },
         leadingIcon: Icons.tag,
-        trailingIcon: CupertinoIcons.viewfinder)
+       ),
+    TextFieldDto(
+      groupName: "REGISTRATION DETAILS",
+      fieldName: "Licence Plate",
+      info: "License Plate : ex:123 ABC",
+      leadingIcon: CupertinoIcons.textformat_abc,
+      fieldType: FieldType.text,
+      inputType: TextInputType.text,
+      onChanged: (text) {
+      },
+    ),
   ]);
   Widget getNameSection()=>buildSection(context, [
     TextFieldDto(
