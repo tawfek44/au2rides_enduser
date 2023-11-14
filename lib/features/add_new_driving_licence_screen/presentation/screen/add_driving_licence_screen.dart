@@ -25,7 +25,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
-          route: AppBarRoutes.addWallet,
+          route: AppBarRoutes.saveAndDelete,
           context: context,
           title: AppText(
             text: "Add Driving License",

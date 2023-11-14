@@ -29,6 +29,7 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
             context: context,
+            route: AppBarRoutes.save,
             title:  AppText(
               text: "Add Odometer Reading",
               fontSize: 16.sp,
@@ -216,19 +217,18 @@ class _AddOdometerScreenState extends State<AddOdometerScreen> {
   Widget getNotesSection() =>
       CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "Notes",
+          text: "NOTES",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
         margin: EdgeInsets.zero,
         children: [
           CupertinoListTile.notched(
-            onTap: () {},
             padding: EdgeInsets.symmetric(horizontal: 13.w),
             title:  CupertinoTextField(
               style: TextStyle(fontSize: fontSize),
               decoration: const BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: 5,
+              maxLines: highMaxLines,
             ),
           )
         ],

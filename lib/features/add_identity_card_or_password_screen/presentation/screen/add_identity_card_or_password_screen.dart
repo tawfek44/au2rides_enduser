@@ -25,7 +25,7 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
             context: context,
-            route: AppBarRoutes.addWallet,
+            route: AppBarRoutes.saveAndDelete,
             title: AppText(
               text: "Add Identity Card / Passport",
               fontSize: 16.sp,

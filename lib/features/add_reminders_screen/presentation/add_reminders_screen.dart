@@ -38,7 +38,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
             ),
             onPressedDelete: () {},
             onPressed: () {},
-            route: AppBarRoutes.addWallet),
+            route: AppBarRoutes.saveAndDelete),
       ),
       body: SingleChildScrollView(
         child: Padding(

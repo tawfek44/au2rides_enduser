@@ -31,6 +31,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
             context: context,
+            route: AppBarRoutes.saveAndDelete,
             title: AppText(
               text: "Add Fuel Up",
               fontSize: 16.sp,
@@ -56,8 +57,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
               gap(height: 30.h),
               getCostSection(),
               gap(height: 30.h),
-              getFuelBrandAndPaymentMethods(),
-              gap(height: 5.h),
               getDocumentsSection(),
               gap(height: 10.h),
               getNotesSection()
@@ -71,7 +70,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
   Widget getNotesSection() =>
       CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "Notes",
+          text: "NOTES",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
@@ -90,7 +89,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
   Widget getDocumentsSection() =>
       CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "Documents",
+          text: "DOCUMENTS",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
@@ -111,22 +110,6 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
         ],
       );
 
-  Widget getFuelBrandAndPaymentMethods() =>
-      CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
-        children: [
-          Column(
-            children: [
-              getFuelBrandSection(),
-              Divider(
-                indent: 60.w,
-                height: 0,
-              ),
-              getPaymentMethodSection()
-            ],
-          )
-        ],
-      );
 
   Widget getPaymentMethodSection() =>
       CupertinoListTile.notched(
@@ -191,7 +174,7 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
                 indent: 60.w,
                 height: 0,
               ),
-              getCostPerLiterSection(),
+              getFuelBrandSection(),
               Divider(
                 indent: 60.w,
                 height: 0,
@@ -201,7 +184,20 @@ class _AddFuelScreenState extends State<AddFuelScreen> {
                 indent: 60.w,
                 height: 0,
               ),
+              getCostPerLiterSection(),
+              Divider(
+                indent: 60.w,
+                height: 0,
+              ),
               getTotalSection(),
+              Divider(
+                indent: 60.w,
+                height: 0,
+              ),
+              getPaymentMethodSection(),
+
+
+
             ],
           )
         ],

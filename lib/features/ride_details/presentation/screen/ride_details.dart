@@ -84,7 +84,7 @@ class _RideDetailsState extends State<RideDetails> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.edit,
+          route: AppBarRoutes.editAndDelete,
           onPressed: () {
             NamedNavigatorImpl().push(Routes.addRideScreenRoute);
           },
@@ -198,7 +198,7 @@ class _RideDetailsState extends State<RideDetails> {
   Widget getNotesSection() =>
       CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "Notes",
+          text: "NOTES",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
@@ -307,7 +307,7 @@ class _RideDetailsState extends State<RideDetails> {
   Widget getRidePic() =>
       SizedBox(
         width: double.infinity,
-        height: 185.h,
+        height: 160.h,
         child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
@@ -321,7 +321,7 @@ class _RideDetailsState extends State<RideDetails> {
                     width: double.infinity,
                     child: Image.asset(
                       'images/car.png',
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -340,18 +340,22 @@ class _RideDetailsState extends State<RideDetails> {
             )),
       );
 
-  getRideDetailsOnPic() =>
-      Padding(
-        padding: EdgeInsets.all(15.w),
+  getRideDetailsOnPic() => Padding(
+        padding: EdgeInsets.all(12.w),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             getRideDetails(),
             const Spacer(),
-            Icon(
-              CupertinoIcons.qrcode,
-              size: 60.w,
-              color: Colors.white,
+            IconButton(
+              onPressed: (){
+                showQrCodeDialog(context);
+              },
+              icon: Icon(
+                CupertinoIcons.qrcode,
+                size: 60.w,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -362,13 +366,9 @@ class _RideDetailsState extends State<RideDetails> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           getRideNameAndType(),
-          gap(height: 5.h),
           getRideYearAndModel(),
-          gap(height: 5.h),
           getVINNumber(),
-          gap(height: 5.h),
           getPlateNumber(),
-          gap(height: 5.h),
           getOdometerRead(),
         ],
       );

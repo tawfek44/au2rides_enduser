@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart' as intl;
 
 import '../widgets/app_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
@@ -47,7 +48,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments, wallet, addWallet, showFuelUp,edit,save}
+enum AppBarRoutes { myDocuments, wallet, showFuelUp,edit,save,editAndDelete,saveAndDelete}
 
 Widget getAppBar(
         {required Widget title,
@@ -71,6 +72,22 @@ Widget getAppBar(
           route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete,context: context),
       bottom: bottom,
     );
+Widget getNotesSection({required context}) => CupertinoListSection.insetGrouped(
+  header: AppText(
+    text: AppLocalizations.of(context)!.notes,
+    color: AppColors.greyColor,
+    fontSize: fontSize,
+  ),
+  margin: EdgeInsets.zero,
+  children: [
+    CupertinoListTile.notched(
+      title: const CupertinoTextField(
+        decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+        maxLines: highMaxLines,
+      ),
+    )
+  ],
+);
 void showLogoutDialog(BuildContext context) {
   showDialog(
       context: context,
@@ -133,6 +150,16 @@ List<Widget> getAppBarWidgetAccordingToRoute(
     required BuildContext context,
     required List<Widget>? actions}) {
   switch (route) {
+    case AppBarRoutes.editAndDelete :
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.edit,color: AppColors.white,)),
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,))
+      ];
+    case AppBarRoutes.saveAndDelete :
+      return [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.save,color: AppColors.white,)),
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,))
+      ];
     case AppBarRoutes.save :
       return [
         IconButton(onPressed: onPressed, icon: const Icon(Icons.save,color: AppColors.white,))
@@ -155,22 +182,6 @@ List<Widget> getAppBarWidgetAccordingToRoute(
             onPressed: onPressed,
             icon: const Icon(
               Icons.edit,
-            )),
-
-      ];
-    case AppBarRoutes.addWallet:
-      return [
-        IconButton(
-            onPressed: onPressedDelete,
-            icon: const Icon(
-              Icons.delete,
-              color: AppColors.white,
-            )),
-        IconButton(
-            onPressed: onPressed,
-            icon: const Icon(
-              Icons.save,
-              color: AppColors.white,
             )),
 
       ];

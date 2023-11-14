@@ -8,6 +8,7 @@ import 'package:intl/intl.dart'as intl;
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AcquisitionScreen extends StatefulWidget {
   const AcquisitionScreen({super.key});
@@ -29,9 +30,9 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.addWallet,
+          route: AppBarRoutes.save,
           title: AppText(
-            text: "Acquisition Details",
+            text: AppLocalizations.of(context)!.acquisitionDetails,
             fontSize: 15.sp,
             color: AppColors.white,
           ),
@@ -52,7 +53,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
                 ],
               ),
               addAttachment(),
-              getNotesSection(),
+              getNotesSection(context: context),
             ],
           ),
         ),
@@ -62,7 +63,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
 
   getOdometerListTile()=>CupertinoListTile(
     title: AppText(
-      text: "Odometer",
+      text: AppLocalizations.of(context)!.odometer,
       fontSize: fontSize,
     ),
     trailing: AppText(text: "KM",color: AppColors.greyColor,fontSize: fontSize,),
@@ -88,7 +89,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
   );
   getPriceListTile() =>CupertinoListTile(
     title: AppText(
-      text: "Price",
+      text: AppLocalizations.of(context)!.price,
       fontSize: fontSize,
     ),
     trailing: AppText(text: "EGP",color: AppColors.greyColor,fontSize: fontSize,),
@@ -117,7 +118,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
       showAcquisitionDialog(context);
     },
         title: AppText(
-          text: "Type",
+          text: AppLocalizations.of(context)!.type,
           fontSize: fontSize,
         ),
         trailing: const Icon(Icons.unfold_more,color: AppColors.greyColor,),
@@ -133,14 +134,14 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                    text: "Acquisition Type",
+                    text:AppLocalizations.of(context)!.acquisitionType,
                     fontSize: fontSize,
                     fontWeight: FontWeight.bold,
                   )),
               actions: <Widget>[
                 CupertinoDialogAction(
                   child: AppText(
-                    text: "Purchase",
+                    text: AppLocalizations.of(context)!.purchase,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
@@ -149,14 +150,22 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
                 ),
                 CupertinoDialogAction(
                   child: AppText(
-                    text: "Lease",
+                    text: AppLocalizations.of(context)!.lease,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
-
+                CupertinoDialogAction(
+                  child: AppText(
+                    text: AppLocalizations.of(context)!.cancel,
+                    fontSize: fontSize,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
               ],
             ),
           );
@@ -164,7 +173,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
   }
   Widget addAttachment() => CupertinoListSection.insetGrouped(
         header: AppText(
-          text: "ATTACHMENTS",
+          text: AppLocalizations.of(context)!.attachment,
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -173,7 +182,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
           CupertinoListTile(
             onTap: () {},
             title: AppText(
-              text: "Attachments...",
+              text: AppLocalizations.of(context)!.attachmentTitle,
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),
@@ -185,27 +194,11 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
         ],
       );
 
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-        header: AppText(
-          text: "Notes",
-          color: AppColors.greyColor,
-          fontSize: fontSize,
-        ),
-        margin: EdgeInsets.zero,
-        children: [
-          CupertinoListTile.notched(
-            onTap: () {},
-            title: const CupertinoTextField(
-              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: highMaxLines,
-            ),
-          )
-        ],
-      );
+
 
   Widget getDateSection() => CupertinoListTile(
         title: AppText(
-          text: "Date",
+          text: AppLocalizations.of(context)!.date,
           fontSize: fontSize,
         ),
         leading: Icon(

@@ -98,6 +98,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'App Language'**
   String get appLanguageText;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @followUS.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow us'**
+  String get followUS;
+
+  /// No description provided for @privacyPolicyAndTermsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy and terms of use'**
+  String get privacyPolicyAndTermsOfUse;
+
+  /// No description provided for @acquisitionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Acquisition Details'**
+  String get acquisitionDetails;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @acquisitionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Acquisition Type'**
+  String get acquisitionType;
+
+  /// No description provided for @purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase'**
+  String get purchase;
+
+  /// No description provided for @lease.
+  ///
+  /// In en, this message translates to:
+  /// **'Lease'**
+  String get lease;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get price;
+
+  /// No description provided for @odometer.
+  ///
+  /// In en, this message translates to:
+  /// **'Odometer'**
+  String get odometer;
+
+  /// No description provided for @attachment.
+  ///
+  /// In en, this message translates to:
+  /// **'ATTACHMENTS'**
+  String get attachment;
+
+  /// No description provided for @attachmentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachments...'**
+  String get attachmentTitle;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTES'**
+  String get notes;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

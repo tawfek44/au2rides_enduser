@@ -42,7 +42,7 @@ class _InsurancePolicyScreenState extends State<InsurancePolicyScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.addWallet,
+          route: AppBarRoutes.saveAndDelete,
           title: AppText(
             text: "Insurance Policy",
             fontSize: 15.sp,
@@ -128,7 +128,7 @@ class _InsurancePolicyScreenState extends State<InsurancePolicyScreen> {
               gap(height: 15.h),
               CupertinoListSection.insetGrouped(
                 margin: EdgeInsets.zero,
-                header: getImageTitle(imageTitle: "Document Front"),
+                header: getImageTitle(imageTitle: "DOCUMENT FRONT"),
                 children: [
                   Padding(
                     padding:  EdgeInsets.symmetric(vertical: 10.h),
@@ -144,7 +144,7 @@ class _InsurancePolicyScreenState extends State<InsurancePolicyScreen> {
               gap(height: 15.h),
               CupertinoListSection.insetGrouped(
                 margin: EdgeInsets.zero,
-                header: getImageTitle(imageTitle: "Document Back"),
+                header: getImageTitle(imageTitle: "DOCUMENT BACK"),
                 children: [
                   Padding(
                     padding:  EdgeInsets.symmetric(vertical: 10.h),
@@ -192,13 +192,10 @@ class _InsurancePolicyScreenState extends State<InsurancePolicyScreen> {
     ),
   );
 
-  Widget getImageTitle({required String imageTitle}) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 20.w),
-    child: AppText(
-      text: imageTitle,
-      fontSize: fontSize,
-      color: AppColors.greyColor,
-    ),
+  Widget getImageTitle({required String imageTitle}) => AppText(
+    text: imageTitle,
+    fontSize: fontSize,
+    color: AppColors.greyColor,
   );
 
   Widget getNotesSection() => CupertinoListSection.insetGrouped(

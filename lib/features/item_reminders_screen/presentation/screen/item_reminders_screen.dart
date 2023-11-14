@@ -40,6 +40,7 @@ class _ItemRemindersScreenState extends State<ItemRemindersScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.save,
           title: AppText(
             text: "Reminders",
             fontSize: 15.sp,
@@ -57,11 +58,8 @@ class _ItemRemindersScreenState extends State<ItemRemindersScreen> {
                   choice: RemindersNameChoice.odometer),
               gap(height: 20.h),
               getListTile(
-                  reminderTitle: "Time Reminder",
+                  reminderTitle: "Date Reminder",
                   choice: RemindersNameChoice.time),
-
-              gap(height: 20.h),
-              AppButton(label: "Save", onPressed: (){}),
             ],
           ),
         ),
@@ -150,8 +148,6 @@ class _ItemRemindersScreenState extends State<ItemRemindersScreen> {
         trailing: Row(
           children: [
             getDateWidget(choice: choice),
-            gap(width: 5.w),
-            getTimeWidget(choice: choice)
           ],
         ),
       );

@@ -200,6 +200,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
         onChanged: (text) {
 
         },
+        fieldType: FieldType.text,
+        inputType: TextInputType.text,
         leadingIcon: Icons.tag,
        ),
     TextFieldDto(
@@ -303,33 +305,32 @@ class _AddRideScreenState extends State<AddRideScreen> {
   }
 
   Widget buildTextFieldTile(BuildContext context, TextFieldDto fieldDto) {
-    return CupertinoTextField(
-      keyboardType: fieldDto.inputType,
-      suffix: Padding(
-        padding:  EdgeInsets.only(left:15.w, right: 15.w,bottom: 16.h,top:16.h),
-        child: fieldDto.trailingWidget ??
-            Icon(
-              fieldDto.trailingIcon,
-              color: Theme.of(context).primaryColor,
-            ),
+    return CupertinoListTile(
+      leading: Icon(
+        fieldDto.leadingIcon,
+        color: Theme.of(context).primaryColor,
       ),
-      prefix: Padding(
-        padding:  EdgeInsets.only(left:15.w, right: 15.w,bottom: 16.h,top:16.h),
-        child: Icon(
-          fieldDto.leadingIcon,
-          color: Theme.of(context).primaryColor,
+      trailing: fieldDto.trailingWidget ?? Icon(
+        fieldDto.trailingIcon,
+        color: Theme.of(context).primaryColor,
+      ),
+      title: CupertinoTextField(
+        keyboardType: fieldDto.inputType,
+        placeholder: fieldDto.info,
+        style: TextStyle(
+          fontSize: fontSize
         ),
+        decoration:
+        const BoxDecoration(border: Border(right: BorderSide.none)),
+        placeholderStyle: TextStyle(
+          fontSize: fontSize,
+          color: AppColors.greyColor,
+        ),
+        maxLines: 1,
+        onChanged: (name) {
+          fieldDto.onChanged(name);
+        },
       ),
-      placeholder: fieldDto.info,
-      placeholderStyle: TextStyle(
-        fontSize: fontSize,
-        color: AppColors.greyColor,
-          height: 1.5.h
-      ),
-      maxLines: 1,
-      onChanged: (name) {
-        fieldDto.onChanged(name);
-      },
     );
   }
   Widget buildImageWidget(BuildContext context) {

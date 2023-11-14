@@ -2,10 +2,12 @@ import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -23,7 +25,7 @@ class _AboutScreenState extends State<AboutScreen> {
           child: getAppBar(
             context: context,
             title: AppText(
-              text: "About",
+              text: AppLocalizations.of(context)!.about,
               fontSize: 16.sp,
               color: AppColors.white,
             ),
@@ -66,7 +68,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget getPrivacyPolicyTextButton()=> TextButton(
     onPressed: () {},
     child: AppText(
-      text: 'Privacy policy and terms of use',
+      text: AppLocalizations.of(context)!.privacyPolicyAndTermsOfUse,
       decoration: TextDecoration.underline,
       fontSize: 13.sp,
     ),
@@ -110,7 +112,7 @@ class _AboutScreenState extends State<AboutScreen> {
     ],
   );
   Widget getFollowUsWidget()=>AppText(
-    text: 'Follow us',
+    text: AppLocalizations.of(context)!.followUS,
     fontSize: 15.sp,
     fontWeight: FontWeight.bold,
   );

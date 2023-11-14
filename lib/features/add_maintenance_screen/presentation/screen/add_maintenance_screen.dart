@@ -63,6 +63,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.save,
           title: AppText(
             text: "Add Maintenance",
             fontSize: 15.sp,
@@ -287,7 +288,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
 
   Widget getDocumentsSection() => CupertinoListSection.insetGrouped(
     header: AppText(
-      text: "Documents",
+      text: "DOCUMENTS",
       color: AppColors.greyColor,
       fontSize: fontSize,
     ),

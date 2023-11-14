@@ -1,3 +1,18 @@
 {
-  "appLanguageText": "App Language"
+  "appLanguageText": "App Language",
+  "about": "About",
+  "followUS": "Follow us",
+  "privacyPolicyAndTermsOfUse": "Privacy policy and terms of use",
+  "acquisitionDetails": "Acquisition Details",
+  "date": "Date",
+  "type": "Type",
+  "acquisitionType": "Acquisition Type",
+  "purchase": "Purchase",
+  "lease": "Lease",
+  "cancel": "Cancel",
+  "price": "Price",
+  "odometer": "Odometer",
+  "attachment": "ATTACHMENTS",
+  "attachmentTitle": "Attachments...",
+  "notes": "NOTES"
 }

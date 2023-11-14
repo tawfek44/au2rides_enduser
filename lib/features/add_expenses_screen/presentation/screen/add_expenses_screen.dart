@@ -63,6 +63,7 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.save,
           title: AppText(
             text: "Add Expenses",
             fontSize: 15.sp,
@@ -361,15 +362,10 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                text: "Choose the expense type",
+                text: "Service Type",
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
               )),
-              content: AppText(
-                text: "Choose the type either Expense or Other.",
-                fontSize: fontSize,
-                maxLines: 10,
-              ),
               actions: <Widget>[
                 CupertinoDialogAction(
                   child: AppText(
@@ -393,15 +389,6 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
                       expenseTypeBool = true;
                       Navigator.of(context).pop();
                     });
-                  },
-                ),
-                CupertinoDialogAction(
-                  child: AppText(
-                    text: "CANCEL",
-                    fontSize: fontSize,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
                   },
                 ),
               ],

@@ -26,7 +26,7 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.addWallet,
+          route: AppBarRoutes.saveAndDelete,
           onPressed: (){
 
           },

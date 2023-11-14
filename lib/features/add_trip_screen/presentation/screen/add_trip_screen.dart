@@ -27,7 +27,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.addWallet,
+          route: AppBarRoutes.saveAndDelete,
           onPressed: () {},
           onPressedDelete: () {},
           title: AppText(

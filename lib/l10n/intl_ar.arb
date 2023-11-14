@@ -1,3 +1,18 @@
 {
-  "appLanguageText": "لغة التطبيق"
+  "appLanguageText": "لغة التطبيق",
+  "about": "عننا",
+  "followUS": "تابعنا",
+  "privacyPolicyAndTermsOfUse": "سياسة الخصوصية وشروط الإستخدام",
+  "acquisitionDetails": "تفاصيل الإمتلاك",
+  "date": "التاريخ",
+  "type": "النوع",
+  "acquisitionType": "نوع الإمتلاك",
+  "purchase": "شراء",
+  "lease": "إيجار",
+  "cancel": "إلغاء",
+  "price": "السعر",
+  "odometer": "عداد المسافات",
+  "attachment": "المرفقات",
+  "attachmentTitle": "المرفقات...",
+  "notes": "ملاحظات"
 }

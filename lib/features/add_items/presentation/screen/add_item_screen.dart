@@ -24,6 +24,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
+            route: AppBarRoutes.save,
             context: context,
             title: AppText(
               text: "Add New Item",
@@ -55,10 +56,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 ],
               ),
 
-              gap(height: 20.h),
-              AppButton(label: "Create Item...", onPressed: (){
-                NamedNavigatorImpl().push(Routes.createNewItemScreenRoute);
-              }),
             ],
           ),
         ),

@@ -14,16 +14,24 @@ class DepartmentsScreen extends StatefulWidget {
 }
 
 class _DepartmentsScreenState extends State<DepartmentsScreen> {
-  List<Department>departmentList = [
-    Department(name: "Bodes"),
-    Department(name: "Engine"),
-    Department(name: "Finance"),
-    Department(name: "General"),
-    Department(name: "Performance"),
-    Department(name: "Fuel System"),
-    Department(name: "Transmission"),
-    Department(name: "Suspension"),
-  ];
+  List<Department> tempDepartmentList = [];
+  List<Department>departmentList=[];
+  TextEditingController departmentsSearchText = TextEditingController();
+  @override
+  void initState() {
+    departmentList = [
+      Department(name: "Bodes"),
+      Department(name: "Engine"),
+      Department(name: "Finance"),
+      Department(name: "General"),
+      Department(name: "Performance"),
+      Department(name: "Fuel System"),
+      Department(name: "Transmission"),
+      Department(name: "Suspension"),
+    ];
+    tempDepartmentList = departmentList;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,28 +50,72 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(15.w),
-          child: CupertinoListSection.insetGrouped(
-            margin: EdgeInsets.zero,
+          child: Column(
             children: [
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) =>
-                    getDepartmentItem(departmentName:departmentList[index].name),
-                separatorBuilder: (context, index) =>
-                    const Divider(
-                      height: 0,
-                      thickness: .5,
-                    ),
-                itemCount: departmentList.length,
-              )
+              getSearchBar(),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) =>
+                        getDepartmentItem(departmentName:departmentList[index].name),
+                    separatorBuilder: (context, index) =>
+                        const Divider(
+                          height: 0,
+                          thickness: .5,
+                        ),
+                    itemCount: departmentList.length,
+                  )
+                ],
+              ),
             ],
           ),
         ),
       ),
     );
   }
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          controller: departmentsSearchText,
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
+            List<Department>temp=[];
+            if(text.isNotEmpty){
+              for(var element in tempDepartmentList){
+                if(element.name.toLowerCase().contains(text)){
+                  temp.add(element);
+                }
+              }
+            }
+            setState(() {
+              if(temp.isNotEmpty){
+                tempDepartmentList=temp;
+              }
+              else{
+                tempDepartmentList=departmentList;
+              }
+            });
 
+
+          },
+        ),
+      )
+    ],
+  );
   Widget getDepartmentItem({required String departmentName}) =>
       CupertinoListTile(
         onTap: (){},
