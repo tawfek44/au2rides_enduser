@@ -53,7 +53,7 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
   Widget getNotesListSection()=>CupertinoListSection.insetGrouped(
     margin: EdgeInsets.zero,
     children: [
-      getNotesSection(),
+      getNotesSection(context: context),
     ],
   );
   Widget getDocumentBackImage()=> CupertinoListSection.insetGrouped(
@@ -179,24 +179,6 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
     color: AppColors.greyColor,
   );
 
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-    header: AppText(
-      text: "Notes",
-      color: AppColors.greyColor,
-      fontSize: fontSize,
-    ),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile.notched(
-        onTap: () {},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
-        title: const CupertinoTextField(
-          decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-          maxLines: highMaxLines,
-        ),
-      )
-    ],
-  );
   Widget getTextFieldInModalButtonSheet(
       {required title,
         required icon,

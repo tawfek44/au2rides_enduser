@@ -71,6 +71,15 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                         CupertinoIcons.globe,
                         color: Theme.of(context).primaryColor,
                       )),
+                  getListTileInModalButtonSheet(
+                      icon: CupertinoIcons.right_chevron,
+                      title: "Currency",
+                      value: "EGP",
+                      choice: WalletCountryChoice.currency,
+                      leadingIcon: Icon(
+                        CupertinoIcons.money_dollar_circle,
+                        color: Theme.of(context).primaryColor,
+                      )),
                   getReusableTextField(
                       title: "Account",
                       leadingIcon: CupertinoIcons.mail,
@@ -80,7 +89,7 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                       leadingIcon: CupertinoIcons.star_circle,
                       hintText: "0"
                   ),
-                  getNotesSection()
+                  getNotesSection(context: context)
                 ],
               ),
             ],
@@ -89,24 +98,6 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
       ),
     );
   }
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-    header: AppText(
-      text: "Notes",
-      color: AppColors.greyColor,
-      fontSize: fontSize,
-    ),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile.notched(
-        onTap: () {},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
-        title: const CupertinoTextField(
-          decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-          maxLines: 5,
-        ),
-      )
-    ],
-  );
 
   Widget getListTileInModalButtonSheet({
     required String title,
@@ -124,6 +115,9 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                 break;
               case WalletCountryChoice.country:
                 NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+                break;
+              case WalletCountryChoice.currency:
+                NamedNavigatorImpl().push(Routes.currencyScreenRoute);
                 break;
             }
           },
@@ -186,4 +180,4 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
       );
 }
 
-enum WalletCountryChoice{wallet,country}
+enum WalletCountryChoice{wallet,country,currency}

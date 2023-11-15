@@ -97,6 +97,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
               ),
              gap(height: 15.h),
               CupertinoListSection.insetGrouped(
+                header:  getImageTitle(imageTitle: "DOCUMENT FRONT"),
                 margin: EdgeInsets.zero,
                 children: [
                   Padding(
@@ -104,7 +105,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        getImageTitle(imageTitle: "DOCUMENT FRONT"),
+
                         getDocumentImage(),
                       ],
                     ),
@@ -113,6 +114,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
               ),
               gap(height: 15.h),
               CupertinoListSection.insetGrouped(
+                header:   getImageTitle(imageTitle: "DOCUMENT BACK"),
                 margin: EdgeInsets.zero,
                 children: [
                   Padding(
@@ -120,7 +122,6 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        getImageTitle(imageTitle: "DOCUMENT BACK"),
                         getDocumentImage(),
                       ],
                     ),
@@ -134,7 +135,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      getNotesSection()
+                      getNotesSection(context: context)
                     ],
                   )
                 ],
@@ -162,32 +163,11 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
     ),
   );
 
-  Widget getImageTitle({required String imageTitle}) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 20.w),
-    child: AppText(
-      text: imageTitle,
-      fontSize: fontSize,
-    ),
+  Widget getImageTitle({required String imageTitle}) => AppText(
+    text: imageTitle,
+    fontSize: fontSize,
   );
 
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-    header: AppText(
-      text: "NOTES",
-      color: AppColors.greyColor,
-      fontSize: fontSize,
-    ),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile.notched(
-        onTap: () {},
-        padding: EdgeInsets.symmetric(horizontal: 13.w),
-        title: const CupertinoTextField(
-          decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-          maxLines: highMaxLines,
-        ),
-      )
-    ],
-  );
 
   Widget getTextFieldInModalButtonSheet(
       {required title,

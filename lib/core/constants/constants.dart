@@ -48,7 +48,7 @@ getUserRatingBar({required ratingValue, required itemSize}) =>
       direction: Axis.horizontal,
     );
 
-enum AppBarRoutes { myDocuments, wallet, showFuelUp,edit,save,editAndDelete,saveAndDelete}
+enum AppBarRoutes { add, wallet, showFuelUp,edit,save,editAndDelete,saveAndDelete}
 
 Widget getAppBar(
         {required Widget title,
@@ -79,9 +79,9 @@ Widget getNotesSection({required context}) => CupertinoListSection.insetGrouped(
     fontSize: fontSize,
   ),
   margin: EdgeInsets.zero,
-  children: [
+  children: const [
     CupertinoListTile.notched(
-      title: const CupertinoTextField(
+      title: CupertinoTextField(
         decoration: BoxDecoration(border: Border(right: BorderSide.none)),
         maxLines: highMaxLines,
       ),
@@ -152,21 +152,23 @@ List<Widget> getAppBarWidgetAccordingToRoute(
   switch (route) {
     case AppBarRoutes.editAndDelete :
       return [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,)),
         IconButton(onPressed: onPressed, icon: const Icon(Icons.edit,color: AppColors.white,)),
-        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,))
+
       ];
     case AppBarRoutes.saveAndDelete :
       return [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,)),
         IconButton(onPressed: onPressed, icon: const Icon(Icons.save,color: AppColors.white,)),
-        IconButton(onPressed: onPressed, icon: const Icon(Icons.delete,color: AppColors.white,))
+
       ];
     case AppBarRoutes.save :
       return [
         IconButton(onPressed: onPressed, icon: const Icon(Icons.save,color: AppColors.white,))
       ];
-    case AppBarRoutes.myDocuments :
+    case AppBarRoutes.add :
       return [
-        IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add))
+        IconButton(onPressed: onPressed, icon: const Icon(CupertinoIcons.add,color: AppColors.white,))
       ];
     case AppBarRoutes.wallet:
       return [

@@ -45,7 +45,7 @@ class _ShowFuelUpScreenState extends State<ShowFuelUpScreen> {
             NamedNavigatorImpl().push(Routes.addFuelScreenRoute);
           },
           title: AppText(
-            text: "Show Fuel Up",
+            text: "Fuel Up Logs",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

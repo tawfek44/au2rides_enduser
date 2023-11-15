@@ -41,7 +41,7 @@ class _WalletScreenState extends State<WalletScreen> {
             route: AppBarRoutes.wallet,
             onPressed: addButtonOnPressed,
             title: AppText(
-              text: "Wallet",
+              text: "My Wallets",
               fontSize: 15.sp,
               color: AppColors.white,
             ),

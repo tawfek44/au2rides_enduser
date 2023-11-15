@@ -26,7 +26,7 @@ class _PointsScreenState extends State<PointsScreen> {
           child: getAppBar(
             context: context,
             title: AppText(
-              text: "My Points",
+              text: "My au2rides Club",
               fontSize: 16.sp,
               color: AppColors.white,
             ),
@@ -42,10 +42,17 @@ class _PointsScreenState extends State<PointsScreen> {
               getUpperCard(),
               getQrCodeCard(),
               gap(height: 15.h),
-              getButtonsWidget(buttonTitle: "TRANSACTION HISTORY",
-                  screenRoute: ScreenRoute.transactionHistory),
-              gap(height: 8.h),
-              getButtonsWidget(buttonTitle: "COUPONS",screenRoute: ScreenRoute.coupons),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+                  getButtonsWidget(
+                      buttonTitle: "Transaction History",
+                      screenRoute: ScreenRoute.transactionHistory),
+                  const Divider(height: 0,thickness: .5,color: AppColors.greyColor,),
+                  getButtonsWidget(
+                      buttonTitle: "Coupons", screenRoute: ScreenRoute.coupons),
+                ],
+              ),
               gap(height: 10.h),
               AppText(
                 fontSize: fontSize,
@@ -105,34 +112,26 @@ class _PointsScreenState extends State<PointsScreen> {
         ),
       );
 
-  getButtonsWidget({required String buttonTitle,required ScreenRoute screenRoute}) => Material(
-        color: Colors.white,
-        child: InkWell(
-          onTap: () {
-           switch (screenRoute){
-             case ScreenRoute.transactionHistory:
-               NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
-               break;
-             case ScreenRoute.coupons:
-               NamedNavigatorImpl().push(Routes.couponsScreenRoute);
-               break;
-           }
-
-          },
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.h),
-              child: Center(
-                  child: AppText(
-                    fontSize: fontSize,
-                text: buttonTitle,
-                fontWeight: FontWeight.bold,
-                maxLines: 2,
-                color: Theme.of(context).primaryColor,
-              )),
-            ),
-          ),
+  getButtonsWidget(
+          {required String buttonTitle, required ScreenRoute screenRoute}) =>
+      CupertinoListTile(
+        onTap: () {
+          switch (screenRoute) {
+            case ScreenRoute.transactionHistory:
+              NamedNavigatorImpl().push(Routes.transactionHistoryScreenRoute);
+              break;
+            case ScreenRoute.coupons:
+              NamedNavigatorImpl().push(Routes.couponsScreenRoute);
+              break;
+          }
+        },
+        trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
+        title: AppText(
+          fontSize: fontSize,
+          text: buttonTitle,
+          fontWeight: FontWeight.bold,
+          maxLines: 2,
+          color: Theme.of(context).primaryColor,
         ),
       );
 
@@ -305,19 +304,17 @@ class _PointsScreenState extends State<PointsScreen> {
 
   getTransferButton() => TextButton.icon(
         onPressed: () {
-
           showModalBottomSheet(
             context: context,
-            builder: (context)=>Directionality(
+            builder: (context) => Directionality(
               textDirection: TextDirection.ltr,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(corner),
-                    topLeft: Radius.circular(corner),
-                  ),
-                  color: Colors.grey[200]
-                ),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(corner),
+                      topLeft: Radius.circular(corner),
+                    ),
+                    color: Colors.grey[200]),
                 width: double.infinity,
                 child: getModalBottomSheetWidgets(),
               ),
@@ -331,49 +328,57 @@ class _PointsScreenState extends State<PointsScreen> {
           color: Theme.of(context).primaryColor,
         ),
       );
-  getProviderNameRowInModalBottomSheet()=>Row(
-    children: [
-      AppText(text: "From"),
-      const Spacer(),
-      AppText(text: "Mobilawy"),
-    ],
-  );
-  getPointsRowInModalBottomSheet()=>Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      AppText(text: "Points"),
-      const Spacer(),
-      SizedBox(
-          width: 150.w,
-          child: CupertinoTextField(
-            keyboardType: TextInputType.number,
-            maxLines: 1,
-            decoration:
-            BoxDecoration(border: Border.all(style: BorderStyle.none),color: Colors.white),
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-          )
-      ),
-    ],
-  );
-  getAmountRowInModalBottomSheet()=>Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      AppText(text: "Amount"),
-      const Spacer(),
-      AppText(text: "120 EGP")
-    ],
-  );
-  getProceedButtonInModalBottomSheet()=>AppButton(label: "Proceed", onPressed: (){},height: 45.h);
-  getModalBottomSheetWidgets()=>Wrap(
-      children:[
+
+  getProviderNameRowInModalBottomSheet() => Row(
+        children: [
+          AppText(text: "From"),
+          const Spacer(),
+          AppText(text: "Mobilawy"),
+        ],
+      );
+
+  getPointsRowInModalBottomSheet() => Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AppText(text: "Points"),
+          const Spacer(),
+          SizedBox(
+              width: 150.w,
+              child: CupertinoTextField(
+                keyboardType: TextInputType.number,
+                maxLines: 1,
+                decoration: BoxDecoration(
+                    border: Border.all(style: BorderStyle.none),
+                    color: Colors.white),
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+              )),
+        ],
+      );
+
+  getAmountRowInModalBottomSheet() => Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AppText(text: "Amount"),
+          const Spacer(),
+          AppText(text: "120 EGP")
+        ],
+      );
+
+  getProceedButtonInModalBottomSheet() =>
+      AppButton(label: "Proceed", onPressed: () {}, height: 45.h);
+
+  getModalBottomSheetWidgets() => Wrap(children: [
         Padding(
-          padding:  EdgeInsets.all(15.w),
+          padding: EdgeInsets.all(15.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(text: "Points Transfer",fontWeight: FontWeight.bold,),
+              AppText(
+                text: "Points Transfer",
+                fontWeight: FontWeight.bold,
+              ),
               gap(height: 20.h),
               getProviderNameRowInModalBottomSheet(),
               gap(height: 10.h),
@@ -385,7 +390,7 @@ class _PointsScreenState extends State<PointsScreen> {
             ],
           ),
         ),
-      ]
-  );
+      ]);
 }
-enum ScreenRoute {transactionHistory,coupons}
+
+enum ScreenRoute { transactionHistory, coupons }

@@ -24,6 +24,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
+          route: AppBarRoutes.save,
           title: AppText(
             text: "Create New Item",
             fontSize: 15.sp,
@@ -38,7 +39,6 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
             children: [
               getNewItemSectionWidget(),
               gap(height: 20.h),
-              AppButton(label: "Save", onPressed: (){})
             ],
           ),
         ),

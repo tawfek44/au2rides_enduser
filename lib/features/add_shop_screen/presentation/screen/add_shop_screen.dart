@@ -42,11 +42,12 @@ class _AddShopScreenState extends State<AddShopScreen> {
         child: Column(
           children: [
             getProfileHeader(),
+            getQrCodeSection(),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
+              padding:  EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 children: [
-                  getReusableSection(header: "Name",sectionName: SectionName.name),
+                  getReusableSection(header: "NAME",sectionName: SectionName.name),
                   getReusableSection(header: "CONTACT",sectionName: SectionName.contact),
                   getReusableSection(header: "ADDRESS",sectionName: SectionName.address),
                 ],
@@ -60,58 +61,67 @@ class _AddShopScreenState extends State<AddShopScreen> {
   }
 
 
-  Widget getReusableTextField({String? placeHolder})=> CupertinoTextField(
-    padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 7.h),
-    placeholder: placeHolder??"",
-    placeholderStyle: TextStyle(
-      fontSize: fontSize,
-      height: 1.7.h,
-      color: AppColors.greyColor
+  Widget getReusableTextField({String? placeHolder,required Icon icon})=> CupertinoListTile(
+    leading: icon,
+    title: CupertinoTextField(
+      placeholder: placeHolder??"",
+      style: TextStyle(
+        fontSize: fontSize
+      ),
+      decoration:  const BoxDecoration(border: Border(right: BorderSide.none)),
     ),
-    decoration:  const BoxDecoration(border: Border(right: BorderSide.none)),
   );
   Widget getReusableSection({required String header,required SectionName sectionName})=> CupertinoListSection.insetGrouped(
     header: AppText(text: header,fontSize: fontSize,color: AppColors.greyColor,),
     margin: EdgeInsets.zero,
     children: [
       if(sectionName == SectionName.name)...[
-        getReusableTextField(),
+        getReusableTextField(icon:  Icon(Icons.person,color: Theme.of(context).primaryColor)),
       ]
       else if(sectionName == SectionName.contact)...[
-        getReusableTextField(placeHolder: "Phone Number"),
-        getReusableTextField(placeHolder: "Contact Person"),
-        getReusableTextField(placeHolder: "Email Address"),
+        getReusableTextField(placeHolder: "Phone Number", icon:  Icon(Icons.phone,color: Theme.of(context).primaryColor)),
+        getReusableTextField(placeHolder: "Contact Person", icon:  Icon(Icons.person,color: Theme.of(context).primaryColor)),
+        getReusableTextField(placeHolder: "Email Address", icon:  Icon(Icons.email_outlined,color: Theme.of(context).primaryColor)),
       ]
       else...[
-          getReusableTextField(placeHolder: "Street"),
-          getReusableTextField(placeHolder: "City"),
-          getReusableTextField(placeHolder: "State"),
-          getReusableTextField(placeHolder: "Country"),
+          getReusableTextField(placeHolder: "Street",icon:  Icon(Icons.directions,color: Theme.of(context).primaryColor)),
+          getReusableTextField(placeHolder: "City",icon:  Icon(Icons.location_city,color: Theme.of(context).primaryColor)),
+          getReusableTextField(placeHolder: "State",icon:  Icon(Icons.merge_type,color: Theme.of(context).primaryColor)),
+          getReusableTextField(placeHolder: "Country",icon:  Icon(CupertinoIcons.globe,color: Theme.of(context).primaryColor,)),
           CupertinoListTile(
             onTap: (){},
+            leading: Icon(CupertinoIcons.globe,color: Theme.of(context).primaryColor,),
             title: AppText(text: "Shoubra,cairo,egypt",fontSize: fontSize,color: AppColors.greyColor,),
-            trailing: Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
+            trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
           )
         ]
 
     ],
   );
+   getQrCodeSection(){
+    return Padding(
+      padding:  EdgeInsets.all(15.w),
+      child: CupertinoListSection.insetGrouped(
+        margin: EdgeInsets.zero,
+        children: [
+          getRateBarAndQRCodeRow()
+        ],
+      ),
+    );
+  }
   getProfileHeader() => Container(
     width: double.infinity,
     decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(corner + 10.w),
-          bottomRight: Radius.circular(corner + 10.w),
+          bottomLeft: Radius.circular(corner),
+          bottomRight: Radius.circular(corner),
         )),
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: 15.h),
       child: Column(
         children: [
           buildImageWidget(context),
-          gap(height: 10.h),
-          getRateBarAndQRCodeRow()
-
         ],
       ),
     ),
@@ -186,34 +196,26 @@ class _AddShopScreenState extends State<AddShopScreen> {
     ),
   );
 
-  getQRCodeButton() => SizedBox(
-    width: MediaQuery.of(context).size.width / 2,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: () {
-            NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
-          },
-          icon: SizedBox(
-            width: 40.w,
-            child: Image.asset("images/qrcode.png"),
-          ),
+  getQRCodeButton() => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      IconButton(
+        onPressed: () {
+          NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+        },
+        icon: SizedBox(
+          width: 80.w,
+          child: Image.asset("images/qrcode.png"),
         ),
-      ],
-    ),
+      ),
+    ],
   );
 
-  Widget getRateBarAndQRCodeRow() => IntrinsicHeight(
-    child: Row(
-      children: [
-        getRateBarWidget(),
-        const VerticalDivider(
-          width: 0,
-        ),
-        getQRCodeButton(),
-      ],
-    ),
+  Widget getRateBarAndQRCodeRow() => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      getQRCodeButton(),
+    ],
   );
 }
 enum TextFieldName{name,phone,contact,email,street,city,state,country,postalCode}

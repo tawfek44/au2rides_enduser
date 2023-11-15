@@ -119,6 +119,7 @@ class _TirePressureDetailsScreenState extends State<TirePressureDetailsScreen> {
           text: "Units",
           fontSize: fontSize,
         ),
+        additionalInfo: AppText(text: "PSI",fontSize: fontSize,color: AppColors.greyColor,),
         trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
       )
     ],

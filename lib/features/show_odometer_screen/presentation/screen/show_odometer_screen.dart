@@ -38,9 +38,9 @@ class _ShowOdometerScreenState extends State<ShowOdometerScreen> {
           onPressed: (){
             NamedNavigatorImpl().push(Routes.addOdometerScreenRoute);
           },
-          route: AppBarRoutes.myDocuments,
+          route: AppBarRoutes.add,
           title: AppText(
-            text: "Show Odometer",
+            text: "Odometer Reading Log",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

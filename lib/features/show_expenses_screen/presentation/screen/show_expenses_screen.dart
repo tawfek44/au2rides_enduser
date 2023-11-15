@@ -43,7 +43,7 @@ class _ShowExpenseScreenState extends State<ShowExpenseScreen> {
             NamedNavigatorImpl().push(Routes.addExpensesScreenRoute);
           },
           title: AppText(
-            text: "Show Expenses",
+            text: "Expenses Log",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

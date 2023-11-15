@@ -37,7 +37,7 @@ class _ScheduledMaintenanceScreenState extends State<ScheduledMaintenanceScreen>
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.myDocuments,
+          route: AppBarRoutes.add,
           onPressed: (){
             NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
           },

@@ -24,7 +24,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         child: getAppBar(
           context: context,
           title: AppText(
-            text: "Transfer History",
+            text: "Points Transfer Logs",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

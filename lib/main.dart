@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: AppLocalizations.supportedLocales,
           locale: const Locale('en',''),
           theme: getLightThemeData(context),
-          initialRoute: Routes.startUpScreenRoute,
+          initialRoute: Routes.multiSelectionScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );

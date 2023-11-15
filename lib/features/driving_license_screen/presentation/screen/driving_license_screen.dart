@@ -39,7 +39,7 @@ class _DrivingLicenseScreenState extends State<DrivingLicenseScreen> {
         child: getAppBar(
           context: context,
           onPressed: addButtonOnPressed,
-          route: AppBarRoutes.myDocuments,
+          route: AppBarRoutes.add,
           title: AppText(
             text: "Driving Licenses",
             fontSize: 15.sp,

@@ -24,7 +24,7 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gap(height: 90.h),
+              //gap(height: 120.h),
               getUpperContainer(),
               gap(height: 20.h),
               getShareMyCodeButton(),
@@ -36,25 +36,23 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
     );
   }
 
-  Widget getUpperContainer() =>Stack(
-    clipBehavior: Clip.none,
-    alignment: AlignmentDirectional.topCenter,
+  Widget getUpperContainer() =>Column(
     children: [
+      getUserImage(),
       SizedBox(
         width: double.infinity,
         child: getUserInfoCard()
       ),
-      getUserImage(),
+
     ],
   );
 
   Widget getUserInfoCard() =>Card(
     color: Colors.white,
     child: Padding(
-      padding: EdgeInsets.only(bottom: 30.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       child: Column(
         children: [
-          gap(height: 40.h),
           getUserName(),
           AppText(text: "+201535098065",fontSize: fontSize-1.sp,color: AppColors.greyColor,),
           //getUserRatingBar(itemSize: 25.w,ratingValue: 2.75),
@@ -76,17 +74,14 @@ class _MyCodeScreenState extends State<MyCodeScreen> {
     width: 150.w,
     child: Image.asset("images/qrcode.png"),
   );
-  getUserImage()=>Positioned(
-    top: -100,
-    child: Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 1.w),
-          borderRadius: BorderRadius.circular(70.w)),
-      child: CircleAvatar(
-        radius: 70.w,
-        child: ClipRRect(
-          child: Image.asset("images/user.png"),
-        ),
+  getUserImage()=>Container(
+    decoration: BoxDecoration(
+        border: Border.all(color: Colors.white, width: 1.w),
+        borderRadius: BorderRadius.circular(70.w)),
+    child: CircleAvatar(
+      radius: 70.w,
+      child: ClipRRect(
+        child: Image.asset("images/user.png"),
       ),
     ),
   );

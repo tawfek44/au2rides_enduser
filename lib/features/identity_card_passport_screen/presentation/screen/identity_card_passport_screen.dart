@@ -40,7 +40,7 @@ class _IdentityCardOrPassportScreenState extends State<IdentityCardOrPassportScr
         child: getAppBar(
           context: context,
           onPressed: addButtonOnPressed,
-          route: AppBarRoutes.myDocuments,
+          route: AppBarRoutes.add,
           title: AppText(
             text: "Identity Card / Passport",
             fontSize: 15.sp,

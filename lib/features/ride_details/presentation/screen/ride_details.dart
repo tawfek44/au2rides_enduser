@@ -78,6 +78,16 @@ class _RideDetailsState extends State<RideDetails> {
         icon: Icons.beach_access,
         choice: RideDetailsExpansionListTileChoice.trips,
       ),
+      RideDetailsExpansionListModel(
+        title: "Show Fuel Up",
+        icon: Icons.local_gas_station_rounded,
+        choice: RideDetailsExpansionListTileChoice.fuelUp,
+      ),
+      RideDetailsExpansionListModel(
+        title: "Show Reminders",
+        icon: CupertinoIcons.bell_fill,
+        choice: RideDetailsExpansionListTileChoice.reminders,
+      ),
     ];
     return Scaffold(
       appBar: PreferredSize(
@@ -182,6 +192,14 @@ class _RideDetailsState extends State<RideDetails> {
                             case 3:
                               NamedNavigatorImpl().push(
                                   Routes.showTripsScreenRoute);
+                              break;
+                            case 4:
+                              NamedNavigatorImpl().push(
+                                  Routes.showFuelUpScreenRoute);
+                              break;
+                            case 5:
+                              NamedNavigatorImpl().push(
+                                  Routes.showRemindersScreenRoute);
                               break;
                           }
                         },
@@ -340,7 +358,8 @@ class _RideDetailsState extends State<RideDetails> {
             )),
       );
 
-  getRideDetailsOnPic() => Padding(
+  getRideDetailsOnPic() =>
+      Padding(
         padding: EdgeInsets.all(12.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -361,9 +380,11 @@ class _RideDetailsState extends State<RideDetails> {
         ),
       );
 
+
   getRideDetails() =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           getRideNameAndType(),
           getRideYearAndModel(),
@@ -395,9 +416,25 @@ class _RideDetailsState extends State<RideDetails> {
               getShadow(),
             ],
           ),
+          gap(width: 5.w),
+          getVerifiedWidget(),
         ],
       );
 
+  Widget getVerifiedWidget()=> Container(
+    decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(corner)),
+    height: 25.h,
+    width: 50.w,
+    child: Center(
+        child: Text(
+          'Verified',
+          style: TextStyle(
+              color: Colors.white, fontSize: fontSize - 2.sp),
+          textAlign: TextAlign.center,
+        )),
+  );
   getRideYearAndModel() =>
       Row(
         children: [

@@ -44,7 +44,7 @@ class _ShowMaintenanceScreenState extends State<ShowMaintenanceScreen> {
             NamedNavigatorImpl().push(Routes.addMaintenanceScreenRoute);
           },
           title: AppText(
-            text: "Show Maintenance",
+            text: "Maintenance Logs",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

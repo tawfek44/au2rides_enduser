@@ -1,8 +1,10 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart' as intl;
 
+import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/styles/colors.dart';
 import '../../../core/widgets/app_text.dart';
@@ -19,6 +21,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
   bool dateJustOnceCheckBoxMark = false;
   DateTime selectedDate = DateTime.now();
   bool recurrenceBool=false;
+  bool timeBool=false;
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
   var dateFormat;
@@ -50,6 +53,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
               getReminderTypeWidget(),
               gap(height: 10.h),
               CupertinoListSection.insetGrouped(
+                header: AppText(text: "RECURRENCE DETAILS",fontSize: fontSize,color: AppColors.greyColor,),
                 margin: EdgeInsets.zero,
                 children: [
                   getTypeListTile(
@@ -67,13 +71,56 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                 ],
               ),
               gap(height: 20.h),
-              getNotesSection()
+              getNotesSection(context: context)
             ],
           ),
         ),
       ),
     );
 
+  }
+  void showTimePeriodTypeDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Directionality(
+              textDirection: TextDirection.ltr,
+              child: CupertinoAlertDialog(
+                title: Center(
+                    child: AppText(
+                      text: "Period",
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                    )),
+                actions: <Widget>[
+                  CupertinoDialogAction(
+                    child: AppText(text:"Daily",fontSize: fontSize,),
+                    onPressed: () {
+                      setState(() {
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: AppText(text:"Weakly",fontSize: fontSize,),
+                    onPressed: () {
+                      setState(() {
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: AppText(text:"Monthly",fontSize: fontSize,),
+                    onPressed: () {
+                      setState(() {
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                ],
+              )
+          );
+        });
   }
   void showReminderTypeDialog(BuildContext context) {
     showDialog(
@@ -109,12 +156,6 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                     setState(() {
                       Navigator.of(context).pop();
                     });
-                  },
-                ),
-                CupertinoDialogAction(
-                  child: AppText(text:"Cancel",fontSize: fontSize,),
-                  onPressed: () {
-                    Navigator.of(context).pop();
                   },
                 ),
               ],
@@ -181,38 +222,62 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
           },
         ),
         additionalInfo: getOdometerTextField(),
+        trailing: AppText(text: "KM",fontSize: fontSize,color: AppColors.greyColor,),
       ),
       Divider(indent: 55.w,thickness: .5,height: 0,),
       CupertinoListTile.notched(
-        onTap: () {
-        },
         title: AppText(
           text: "Time",
           fontSize: fontSize,
         ),
-        leading: CupertinoCheckbox(
-          value: true,
+          leading: CupertinoCheckbox(
+          value: timeBool,
           onChanged: (bool? value) {
-            setState(() {});
-          },
-        ),
-        additionalInfo: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            AppText(
-              text: "Daily",
-              fontSize: fontSize,
-              color: AppColors.greyColor,
-            ),
-            getOdometerTextField()
-          ],
-        ),
-        trailing: const Icon(
-          CupertinoIcons.right_chevron,
-          color: AppColors.greyColor,
-        ),
+            setState(() {
+              timeBool=!timeBool;
+            });
+            },
+           ),
       ),
+
+      if(timeBool)...[
+        Divider(indent: 55.w,thickness: .5,height: 0,),
+        CupertinoListTile.notched(
+          onTap: () {
+            showTimePeriodTypeDialog(context);
+          },
+          title: AppText(
+            text: "Period",
+            fontSize: fontSize,
+          ),
+          //  leading: CupertinoCheckbox(
+          //  value: true,
+          //  onChanged: (bool? value) {
+          //    setState(() {});
+          //    },
+          //   ),
+          additionalInfo: AppText(text: "Daily",fontSize: fontSize,color: AppColors.greyColor,),
+          trailing: const Icon(
+            CupertinoIcons.right_chevron,
+            color: AppColors.greyColor,
+          ),
+        ),
+        Divider(indent: 55.w,thickness: .5,height: 0,),
+        CupertinoListTile.notched(
+          title: AppText(
+            text: "Amount",
+            fontSize: fontSize,
+          ),
+          // leading: CupertinoCheckbox(
+          //   value: true,
+          //  onChanged: (bool? value) {
+          //     setState(() {});
+          //   },
+          // ),
+          additionalInfo: getOdometerTextField(),
+        ),
+      ]
+
     ],
   );
   Widget getJustOnceWidgets()=>Column(
@@ -255,6 +320,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
           text: title,
           fontSize: fontSize,
         ),
+        trailing: choice == CheckBoxMarkRoute.odometer?AppText(text: "KM",fontSize: fontSize,color: AppColors.greyColor,):null,
         additionalInfo: choice == CheckBoxMarkRoute.odometer
             ? getOdometerTextField()
             : getDateSection(),
@@ -326,24 +392,6 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
         ],
       );
 
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-        header: AppText(
-          text: "NOTES",
-          color: AppColors.greyColor,
-          fontSize: fontSize,
-        ),
-        margin: EdgeInsets.zero,
-        children: [
-          CupertinoListTile.notched(
-            onTap: () {},
-            padding: EdgeInsets.symmetric(horizontal: 13.w),
-            title: const CupertinoTextField(
-              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: 5,
-            ),
-          )
-        ],
-      );
 
   Widget getTypeListTile(
           {required String title,
@@ -361,7 +409,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
               showReminderTypeDialog(context);
               break;
             case ChoiceRoute.type:
-              // TODO: Handle this case.
+              NamedNavigatorImpl().push(Routes.multiSelectionScreenRoute);
               break;
           }
         },

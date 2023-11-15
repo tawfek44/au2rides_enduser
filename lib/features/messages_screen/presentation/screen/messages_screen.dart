@@ -23,7 +23,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: getAppBar(
           context: context,
-          route: AppBarRoutes.myDocuments,
+          route: AppBarRoutes.add,
           onPressed: () {
             NamedNavigatorImpl().push(Routes.contactUsScreenRoute);
           },

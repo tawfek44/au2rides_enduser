@@ -32,29 +32,36 @@ class _MultiSelectionScreenState extends State<MultiSelectionScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(15.w),
-          child: CupertinoListSection.insetGrouped(
-            margin: EdgeInsets.zero,
+          child: Column(
             children: [
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => CupertinoListTile.notched(
-                    onTap: (){},
-                    backgroundColor: Colors.white,
-                    leading: SizedBox(
-                        width: 30.w,
-                        height: 30.h,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30.w),
-                            child: Image.asset("images/img.png"))),
-                    title: AppText(
-                      text: listOfChoices[index],
-                      fontSize: fontSize,
+              getSearchBar(),
+              gap(height: 15.h),
+              CupertinoListSection.insetGrouped(
+                margin: EdgeInsets.zero,
+                children: [
+
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => CupertinoListTile.notched(
+                        onTap: (){},
+                        backgroundColor: Colors.white,
+                        leading: SizedBox(
+                            width: 30.w,
+                            height: 30.h,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30.w),
+                                child: Image.asset("images/img.png"))),
+                        title: AppText(
+                          text: listOfChoices[index],
+                          fontSize: fontSize,
+                        ),
+                      trailing: Icon(Icons.check,color: Theme.of(context).primaryColor,),
                     ),
-                  trailing: Icon(Icons.check,color: Theme.of(context).primaryColor,),
-                ),
-                separatorBuilder: (context, index) => Divider(height: 0,indent: 55.w,),
-                itemCount: listOfChoices.length,
+                    separatorBuilder: (context, index) => Divider(height: 0,indent: 55.w,),
+                    itemCount: listOfChoices.length,
+                  ),
+                ],
               ),
             ],
           ),
@@ -62,4 +69,25 @@ class _MultiSelectionScreenState extends State<MultiSelectionScreen> {
       ),
     );
   }
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
+
+          },
+        ),
+      )
+    ],
+  );
 }

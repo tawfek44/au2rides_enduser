@@ -55,7 +55,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   ),
                 ],
               ),
-
+              gap(height: 15.h),
+              AppButton(label: "Create Item...", onPressed: (){
+                NamedNavigatorImpl().push(Routes.createNewItemScreenRoute);
+              })
             ],
           ),
         ),

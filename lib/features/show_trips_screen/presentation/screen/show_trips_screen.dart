@@ -42,7 +42,7 @@ class _ShowTripsScreenState extends State<ShowTripsScreen> {
            NamedNavigatorImpl().push(Routes.addTripScreenRoute);
           },
           title: AppText(
-            text: "Show Trips",
+            text: "Trips Logs",
             fontSize: 15.sp,
             color: AppColors.white,
           ),

@@ -330,7 +330,7 @@ getImageAndNameAndNumber()=> Row(
             ]
           ],
         ),
-        trailing: fromWhere == ListTileOnOfButtonChoice.email
+        trailing: fromWhere == ListTileOnOfButtonChoice.email||fromWhere == ListTileOnOfButtonChoice.whatsapp||fromWhere == ListTileOnOfButtonChoice.sms
             ? Transform.scale(
                 scale: .9,
                 child: const Switch.adaptive(

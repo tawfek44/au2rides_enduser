@@ -70,7 +70,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
                   ),
                   CupertinoListTile.notched(
                     title: AppText(
-                      text: "Total Value",
+                      text: "Total Cost",
                       fontSize: fontSize,
                     ),
                     additionalInfo: SizedBox(
@@ -90,7 +90,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
                   )
                 ],
               ),
-              getNotesSection()
+              getNotesSection(context: context)
             ],
           ),
         ),
@@ -212,10 +212,21 @@ class _AddTripScreenState extends State<AddTripScreen> {
               text: "Trip Name",
               fontSize: fontSize,
             ),
-            trailing: AppText(
-              text: 'Alex-Cairo',
-              fontSize: fontSize,
-              color: AppColors.greyColor,
+            leading: Icon(Icons.beach_access,color: Theme.of(context).primaryColor,),
+            trailing:SizedBox(
+              width: 90.w,
+              child: CupertinoTextField(
+                style: TextStyle(fontSize: fontSize),
+                textAlign: TextAlign.right,
+                keyboardType: TextInputType.text,
+                maxLines: 1,
+                placeholderStyle: TextStyle(
+                    fontSize: fontSize,
+                    color: AppColors.greyColor),
+                placeholder: "Alex - Cairo",
+                decoration: BoxDecoration(
+                    border: Border.all(style: BorderStyle.none)),
+              ),
             ),
           )
         ],
@@ -242,21 +253,4 @@ class _AddTripScreenState extends State<AddTripScreen> {
         ],
       );
 
-  Widget getNotesSection() => CupertinoListSection.insetGrouped(
-        header: AppText(
-          text: "Notes",
-          color: AppColors.greyColor,
-          fontSize: fontSize,
-        ),
-        margin: EdgeInsets.zero,
-        children: [
-          CupertinoListTile.notched(
-            onTap: () {},
-            title: const CupertinoTextField(
-              decoration: BoxDecoration(border: Border(right: BorderSide.none)),
-              maxLines: 5,
-            ),
-          )
-        ],
-      );
 }

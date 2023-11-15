@@ -106,7 +106,9 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => CupertinoListTile(
-          onTap: () {},
+          onTap: () {
+            NamedNavigatorImpl().push(Routes.addShopScreenRoute);
+          },
           leading: const Image(
             image: AssetImage("images/user.png"),
           ),
@@ -114,6 +116,7 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
             text: countries[index],
             fontSize: fontSize,
           ),
+          trailing: IconButton(onPressed: (){showQrCodeDialog(context);}, icon: Icon(CupertinoIcons.qrcode,color: Theme.of(context).primaryColor,)),
         ),
         itemCount: countries.length,
         separatorBuilder: (BuildContext context, int index) {
@@ -122,38 +125,7 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
             indent: 20.w,
           );
         },
+
       );
 
-  Widget getShopsWidget({required index}) => Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () {
-            NamedNavigatorImpl().push(Routes.countriesScreenRoute);
-          },
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: 10.w, right: 10.w, top: 15.h, bottom: 15.h),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.flag,
-                  color: Theme.of(context).primaryColor,
-                ),
-                gap(width: 20.w),
-                AppText(
-                  text: shopsList[index],
-                  fontSize: 13.sp,
-                  color: AppColors.greyColor,
-                ),
-                const Spacer(),
-                const Icon(
-                  CupertinoIcons.forward,
-                  color: AppColors.greyColor,
-                )
-              ],
-            ),
-          ),
-        ),
-      );
 }
