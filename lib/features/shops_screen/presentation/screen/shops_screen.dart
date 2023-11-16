@@ -52,6 +52,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
           ),
           body:const TabBarView(
             children: [
+
               ShopsTabScreen(),
               ShopsTabScreen(),
             ],
@@ -59,5 +60,6 @@ class _ShopsScreenState extends State<ShopsScreen> {
       ),
     );
   }
+
 
 }

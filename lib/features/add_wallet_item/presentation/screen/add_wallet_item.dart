@@ -47,51 +47,47 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
             left: 15.w,
             bottom: MediaQuery.of(context).viewInsets.bottom + 10.h),
         child: SingleChildScrollView(
-          child: Wrap(
+          child: CupertinoListSection.insetGrouped(
+            margin: EdgeInsets.only(
+                left: 0, right: 0, top: 0, bottom: 15.h),
             children: [
-              CupertinoListSection.insetGrouped(
-                margin: EdgeInsets.only(
-                    left: 0, right: 0, top: 0, bottom: 15.h),
-                children: [
-                  getListTileInModalButtonSheet(
-                      icon: CupertinoIcons.right_chevron,
-                      title: "Wallet provider",
-                      value: "Mobil",
-                      choice: WalletCountryChoice.wallet,
-                      leadingIcon: Icon(
-                        CupertinoIcons.square_favorites,
-                        color: Theme.of(context).primaryColor,
-                      )),
-                  getListTileInModalButtonSheet(
-                      icon: CupertinoIcons.right_chevron,
-                      title: "Country",
-                      value: "Egypt",
-                      choice: WalletCountryChoice.country,
-                      leadingIcon: Icon(
-                        CupertinoIcons.globe,
-                        color: Theme.of(context).primaryColor,
-                      )),
-                  getListTileInModalButtonSheet(
-                      icon: CupertinoIcons.right_chevron,
-                      title: "Currency",
-                      value: "EGP",
-                      choice: WalletCountryChoice.currency,
-                      leadingIcon: Icon(
-                        CupertinoIcons.money_dollar_circle,
-                        color: Theme.of(context).primaryColor,
-                      )),
-                  getReusableTextField(
-                      title: "Account",
-                      leadingIcon: CupertinoIcons.mail,
-                      hintText: "ex:****@gmail.com"),
-                  getReusableTextField(
-                      title: "Total points",
-                      leadingIcon: CupertinoIcons.star_circle,
-                      hintText: "0"
-                  ),
-                  getNotesSection(context: context)
-                ],
+              getListTileInModalButtonSheet(
+                  icon: CupertinoIcons.right_chevron,
+                  title: "Wallet provider",
+                  value: "Mobil",
+                  choice: WalletCountryChoice.wallet,
+                  leadingIcon: Icon(
+                    CupertinoIcons.square_favorites,
+                    color: Theme.of(context).primaryColor,
+                  )),
+              getListTileInModalButtonSheet(
+                  icon: CupertinoIcons.right_chevron,
+                  title: "Country",
+                  value: "Egypt",
+                  choice: WalletCountryChoice.country,
+                  leadingIcon: Icon(
+                    CupertinoIcons.globe,
+                    color: Theme.of(context).primaryColor,
+                  )),
+              getListTileInModalButtonSheet(
+                  icon: CupertinoIcons.right_chevron,
+                  title: "Currency",
+                  value: "EGP",
+                  choice: WalletCountryChoice.currency,
+                  leadingIcon: Icon(
+                    CupertinoIcons.money_dollar_circle,
+                    color: Theme.of(context).primaryColor,
+                  )),
+              getReusableTextField(
+                  title: "Account",
+                  leadingIcon: CupertinoIcons.mail,
+                  hintText: "ex:****@gmail.com"),
+              getReusableTextField(
+                  title: "Total points",
+                  leadingIcon: CupertinoIcons.star_circle,
+                  hintText: "0"
               ),
+              getNotesSection(context: context)
             ],
           ),
         ),

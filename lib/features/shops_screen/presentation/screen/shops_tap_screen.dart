@@ -1,3 +1,5 @@
+import 'package:au2rides/core/app_routes/app_routes.dart';
+import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -36,6 +38,8 @@ class _ShopsTabScreenState extends State<ShopsTabScreen> {
       padding: EdgeInsets.all(15.w),
       child: Column(
         children: [
+          getSearchBar(),
+          gap(height: 15.h),
           CupertinoListSection.insetGrouped(
             margin: EdgeInsets.zero,
             children: [
@@ -77,11 +81,36 @@ class _ShopsTabScreenState extends State<ShopsTabScreen> {
       ),
     );
   }
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
 
+          },
+        ),
+      )
+    ],
+  );
   Widget shopsItem({required ShopModel shopModel}) => CupertinoListTile.notched(
         padding: EdgeInsets.all(15.w),
-        onTap: () {},
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.addShopScreenRoute);
+        },
         title: getShopData(shopModel: shopModel),
+    additionalInfo: IconButton(onPressed: (){
+      showQrCodeDialog(context);
+    }, icon: Icon(CupertinoIcons.qrcode,color: Theme.of(context).primaryColor,size: 40.w,)),
         trailing: Icon(
           Icons.arrow_forward_ios,
           color: AppColors.secondaryColor,
