@@ -29,6 +29,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: getAppBar(
+            route: AppBarRoutes.save,
             context: context,
             title: AppText(text:"Add new ride",fontSize: 16.sp,color: AppColors.white,),
           )),
@@ -175,8 +176,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       info: "ZS",
       destination: Routes.multiSelectionScreenRoute,
       leadingIcon: CupertinoIcons.car_detailed,
-      fieldType: FieldType.date,
-      inputType: TextInputType.datetime,
+      fieldType: FieldType.listTile,
       onChanged: (text) {
 
       },

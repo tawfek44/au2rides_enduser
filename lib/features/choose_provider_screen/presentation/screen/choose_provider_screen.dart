@@ -40,6 +40,8 @@ class _ChooseProviderScreenState extends State<ChooseProviderScreen> {
           padding: EdgeInsets.all(15.w),
           child: Column(
             children: [
+              getSearchBar(),
+              gap(height: 15.h),
               getProvidersList(),
             ],
           ),
@@ -82,6 +84,26 @@ class _ChooseProviderScreenState extends State<ChooseProviderScreen> {
         ),
       );
 
+  getSearchBar() => CupertinoListSection.insetGrouped(
+    margin: EdgeInsets.zero,
+    children: [
+      CupertinoListTile(
+        leading: const Icon(
+          Icons.search,
+          color: AppColors.greyColor,
+        ),
+        leadingToTitle: 5.w,
+        title: CupertinoTextField(
+          style: TextStyle(fontSize: fontSize),
+          placeholder: "Search...",
+          decoration:
+          BoxDecoration(border: Border.all(style: BorderStyle.none)),
+          onChanged: (String text) {
+          },
+        ),
+      )
+    ],
+  );
   getProvidersList() => CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
         children: [

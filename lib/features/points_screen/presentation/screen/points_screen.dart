@@ -47,10 +47,19 @@ class _PointsScreenState extends State<PointsScreen> {
                 children: [
                   getButtonsWidget(
                       buttonTitle: "Transaction History",
-                      screenRoute: ScreenRoute.transactionHistory),
-                  const Divider(height: 0,thickness: .5,color: AppColors.greyColor,),
+                      screenRoute: ScreenRoute.transactionHistory,
+                      icon: Icon(
+                        Icons.history,
+                        color: Theme.of(context).primaryColor,
+                      )),
+                   Divider(height: 0,indent: 60.w,thickness: 0.5,),
                   getButtonsWidget(
-                      buttonTitle: "Coupons", screenRoute: ScreenRoute.coupons),
+                      buttonTitle: "Coupons",
+                      screenRoute: ScreenRoute.coupons,
+                      icon: Icon(
+                        CupertinoIcons.star_circle,
+                        color: Theme.of(context).primaryColor,
+                      )),
                 ],
               ),
               gap(height: 10.h),
@@ -113,7 +122,9 @@ class _PointsScreenState extends State<PointsScreen> {
       );
 
   getButtonsWidget(
-          {required String buttonTitle, required ScreenRoute screenRoute}) =>
+          {required String buttonTitle,
+          required ScreenRoute screenRoute,
+          required Icon icon}) =>
       CupertinoListTile(
         onTap: () {
           switch (screenRoute) {
@@ -125,13 +136,16 @@ class _PointsScreenState extends State<PointsScreen> {
               break;
           }
         },
-        trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
+        leading: icon,
+        trailing: const Icon(
+          CupertinoIcons.right_chevron,
+          color: AppColors.greyColor,
+        ),
         title: AppText(
           fontSize: fontSize,
           text: buttonTitle,
           fontWeight: FontWeight.bold,
           maxLines: 2,
-          color: Theme.of(context).primaryColor,
         ),
       );
 

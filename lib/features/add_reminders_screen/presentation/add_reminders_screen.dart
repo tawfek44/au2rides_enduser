@@ -131,16 +131,10 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                    text: "Reminder!",
+                    text: "Reminder Type ",
                     fontSize: fontSize,
                     fontWeight: FontWeight.bold,
                   )),
-              content: AppText(
-                text: "Choose Reminder Type...",
-                textAlign: TextAlign.center,
-                fontSize: fontSize,
-                maxLines: 10,
-              ),
               actions: <Widget>[
                 CupertinoDialogAction(
                   child: AppText(text:"Expense",fontSize: fontSize,),
