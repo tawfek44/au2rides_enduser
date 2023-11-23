@@ -1,5 +1,8 @@
 {
   "appLanguageText": "App Language",
+  "arabicLanguageText": "Arabic",
+  "englishLanguageText": "English",
+  "continueText": "Continue",
   "about": "About",
   "followUS": "Follow us",
   "privacyPolicyAndTermsOfUse": "Privacy policy and terms of use",

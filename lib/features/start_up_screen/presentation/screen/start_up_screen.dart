@@ -1,3 +1,6 @@
+
+import 'dart:io';
+
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/constants/constants.dart';
@@ -16,8 +19,17 @@ class StartUpScreen extends StatefulWidget {
 }
 
 class _StartUpScreenState extends State<StartUpScreen> {
+  late String  deviceLanguage;
   @override
   Widget build(BuildContext context) {
+     deviceLanguage= Platform.localeName.substring(0,2);
+     //save it in shared pref
+     if(deviceLanguage=='ar'){
+       deviceLanguage=AppLocalizations.of(context)!.arabicLanguageText;
+     }
+     else{
+       deviceLanguage=AppLocalizations.of(context)!.englishLanguageText;
+     }
     return Scaffold(
       body: Center(child: createStateBlock()),
     );
@@ -48,7 +60,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
   getContinueButton()=> Padding(
     padding:  EdgeInsets.all(15.w),
     child: AppButton(
-      label: 'Continue',
+      label: AppLocalizations.of(context)!.continueText,
       height: 40.h,
       onPressed: () {
         NamedNavigatorImpl().push(Routes.splashScreenRoute);
@@ -73,6 +85,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 text: AppLocalizations.of(context)?.appLanguageText??"",
                 fontSize: fontSize,
               ),
+              additionalInfo: AppText(text: deviceLanguage,fontSize: fontSize,color: AppColors.greyColor,),
               trailing: const Icon(
                 CupertinoIcons.right_chevron,
                 color: AppColors.greyColor,

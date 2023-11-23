@@ -8,6 +8,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appLanguageText => 'لغة التطبيق';
 
   @override
+  String get arabicLanguageText => 'العربية';
+
+  @override
+  String get englishLanguageText => 'الإنجليزية';
+
+  @override
+  String get continueText => 'أكمل';
+
+  @override
   String get about => 'عننا';
 
   @override

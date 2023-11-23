@@ -99,6 +99,24 @@ abstract class AppLocalizations {
   /// **'App Language'**
   String get appLanguageText;
 
+  /// No description provided for @arabicLanguageText.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabicLanguageText;
+
+  /// No description provided for @englishLanguageText.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get englishLanguageText;
+
+  /// No description provided for @continueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueText;
+
   /// No description provided for @about.
   ///
   /// In en, this message translates to:

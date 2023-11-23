@@ -8,6 +8,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appLanguageText => 'App Language';
 
   @override
+  String get arabicLanguageText => 'Arabic';
+
+  @override
+  String get englishLanguageText => 'English';
+
+  @override
+  String get continueText => 'Continue';
+
+  @override
   String get about => 'About';
 
   @override

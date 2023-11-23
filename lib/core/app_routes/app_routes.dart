@@ -274,10 +274,7 @@ class NamedNavigatorImpl implements NamedNavigator {
           child: AddMaintenanceScreen(),
         ));
       case Routes.languagesScreenRoute:
-        return MaterialPageRoute(builder: (_) => const Directionality(
-          textDirection: TextDirection.ltr,
-          child: LanguageScreen(),
-        ));
+        return MaterialPageRoute(builder: (_) => const LanguageScreen());
       case Routes.rideDetailsScreenRoute:
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
@@ -344,10 +341,7 @@ class NamedNavigatorImpl implements NamedNavigator {
           child: AllShopsScreen(),
         ));
       case Routes.startUpScreenRoute:
-        return MaterialPageRoute(builder: (_) => const Directionality(
-          textDirection: TextDirection.ltr,
-          child: StartUpScreen(),
-        ));
+        return MaterialPageRoute(builder: (_) => const StartUpScreen());
       case Routes.showPaymentMethodsScreenRoute:
         return MaterialPageRoute(builder: (_) => const Directionality(
           textDirection: TextDirection.ltr,
