@@ -1,6 +1,8 @@
 
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:au2rides/core/constants/constants.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,14 +11,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
 import 'core/styles/theme.dart';
-import 'dart:developer' as logDev;
-Future main() async {
+import 'dart:developer' as log_dev;
 
-
-  WidgetsFlutterBinding.ensureInitialized();
-  //configureInjection();
-  launchApp();
-}
 
 void launchApp() => runApp(const MyApp());
 
@@ -43,16 +39,19 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.system,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: const Locale('en',''),
-          theme: getLightThemeData(context),
-          initialRoute: Routes.startUpScreenRoute,
-          onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
-          navigatorKey: NamedNavigatorImpl.navigatorState,
+        return Directionality(
+          textDirection: isArabicLocalization()? TextDirection.rtl:TextDirection.ltr,
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.system,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(Platform.localeName.substring(0,2),''),
+            theme: getLightThemeData(context),
+            initialRoute: Routes.startUpScreenRoute,
+            onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
+            navigatorKey: NamedNavigatorImpl.navigatorState,
+          ),
         );
       },
     );
@@ -61,9 +60,7 @@ class _MyAppState extends State<MyApp> {
     DeviceInfoPlugin().deviceInfo.then((device) {
       if (device.data.isNotEmpty) {
         deviceInfo = device.data;
-        print("-------------------------deviceInfo-------------------------------------");
-        logDev.log(json.encode(deviceInfo));
-        print("-------------------------deviceInfo-------------------------------------");
+        log_dev.log(json.encode(deviceInfo));
       }
       }
     );
@@ -74,9 +71,7 @@ class _MyAppState extends State<MyApp> {
       packageName = value.packageName;
       packageVersion = double.parse(
           value.version.split(".")[0] + value.version.split(".")[1]);
-      print("-------------------------PackageName-------------------------------------");
       debugPrint(packageName);
-      print("-------------------------PackageName-------------------------------------");
     });
   }
 }
