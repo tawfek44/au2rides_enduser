@@ -24,16 +24,27 @@ class LanguageScreen extends StatefulWidget {
 
 class _LanguageScreenState extends State<LanguageScreen> {
   late List<Language> languagesList;
+  late List<Language> tempLanguagesList=[];
   late int markIndex;
-
-
+  late TextEditingController languagesSearchText ;
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     markIndex = widget.userRepository.userLanguage == 'ar' ? 0 : 1;
     languagesList = [
       Language(langName: S.current.arabicLanguageText, langCode: 'ar'),
       Language(langName: S.current.englishLanguageText, langCode: 'en'),
     ];
+    tempLanguagesList = languagesList;
+    languagesSearchText = TextEditingController();
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    languagesList = [
+      Language(langName: S.current.arabicLanguageText, langCode: 'ar'),
+      Language(langName: S.current.englishLanguageText, langCode: 'en'),
+    ];
+    tempLanguagesList = languagesList;
     return Directionality(
       textDirection: isArabicLocalization() ? TextDirection.rtl : TextDirection
           .ltr,
@@ -78,7 +89,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         height: 0,
                         thickness: 0.5,
                       ),
-                      itemCount: languagesList.length,
+                      itemCount: tempLanguagesList.length,
                     ),
                   ],
                 )
@@ -93,16 +104,16 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget getLanguageItem({required int itemIndex}) =>
       CupertinoListTile(
         onTap: () async {
-          await S.load(Locale(languagesList[itemIndex].langCode));
+          await S.load(Locale(tempLanguagesList[itemIndex].langCode));
           setState(() {
             markIndex = itemIndex;
             widget.userRepository.setUserLanguage(
-                languagesList[itemIndex].langCode);
+                tempLanguagesList[itemIndex].langCode);
           });
           // NamedNavigatorImpl().push(Routes.startUpScreenRoute);
         },
         title: AppText(
-          text: languagesList[itemIndex].langName,
+          text: tempLanguagesList[itemIndex].langName,
           fontSize: fontSize,
         ),
         trailing: markIndex == itemIndex
@@ -130,7 +141,24 @@ class _LanguageScreenState extends State<LanguageScreen> {
               placeholder: "${S.current.search}...",
               decoration:
               BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {},
+              onChanged: (String text) {
+                List<Language> temp = [];
+                if (text.isNotEmpty) {
+                  for (var element in tempLanguagesList) {
+                    if (element.langName.toLowerCase().contains(text)) {
+                      temp.add(element);
+                    }
+                  }
+                }
+                setState(() {
+                  if (temp.isNotEmpty) {
+                    tempLanguagesList = temp;
+                  } else {
+                    tempLanguagesList = languagesList;
+                  }
+                });
+
+              },
             ),
           )
         ],
