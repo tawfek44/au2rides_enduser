@@ -9,6 +9,8 @@ import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n.dart';
+
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
 
@@ -25,7 +27,7 @@ class _AboutScreenState extends State<AboutScreen> {
           child: getAppBar(
             context: context,
             title: AppText(
-              text: AppLocalizations.of(context)!.about,
+              text: S.current.about,
               fontSize: 16.sp,
               color: AppColors.white,
             ),
@@ -68,7 +70,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget getPrivacyPolicyTextButton()=> TextButton(
     onPressed: () {},
     child: AppText(
-      text: AppLocalizations.of(context)!.privacyPolicyAndTermsOfUse,
+      text: S.current.privacyPolicyAndTermsOfUse,
       decoration: TextDecoration.underline,
       fontSize: 13.sp,
     ),
@@ -112,7 +114,7 @@ class _AboutScreenState extends State<AboutScreen> {
     ],
   );
   Widget getFollowUsWidget()=>AppText(
-    text: AppLocalizations.of(context)!.followUS,
+    text: S.current.followUS,
     fontSize: 15.sp,
     fontWeight: FontWeight.bold,
   );

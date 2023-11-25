@@ -60,4 +60,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notes => 'NOTES';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get languages => 'Languages';
 }

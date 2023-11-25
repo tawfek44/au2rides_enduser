@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
@@ -11,9 +12,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class StartUpScreen extends StatefulWidget {
-  const StartUpScreen({super.key});
 
+import '../../../../generated/l10n.dart';
+class StartUpScreen extends StatefulWidget {
+  const StartUpScreen({super.key, required this.userRepository});
+  final UserRepository userRepository;
   @override
   State<StartUpScreen> createState() => _StartUpScreenState();
 }
@@ -22,16 +25,18 @@ class _StartUpScreenState extends State<StartUpScreen> {
   late String  deviceLanguage;
   @override
   Widget build(BuildContext context) {
-     deviceLanguage= Platform.localeName.substring(0,2);
-     //save it in shared pref
+     deviceLanguage=widget.userRepository.userLanguage;
      if(deviceLanguage=='ar'){
-       deviceLanguage=AppLocalizations.of(context)!.arabicLanguageText;
+       deviceLanguage=S.current.arabicLanguageText;
      }
      else{
-       deviceLanguage=AppLocalizations.of(context)!.englishLanguageText;
+       deviceLanguage=S.current.englishLanguageText;
      }
-    return Scaffold(
-      body: Center(child: createStateBlock()),
+    return Directionality(
+      textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
+      child: Scaffold(
+        body: Center(child: createStateBlock()),
+      ),
     );
   }
 
@@ -60,7 +65,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
   getContinueButton()=> Padding(
     padding:  EdgeInsets.all(15.w),
     child: AppButton(
-      label: AppLocalizations.of(context)!.continueText,
+      label: S.current.continueText,
       height: 40.h,
       onPressed: () {
         NamedNavigatorImpl().push(Routes.splashScreenRoute);
@@ -82,7 +87,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
                 color: Theme.of(context).primaryColor,
               ),
               title: AppText(
-                text: AppLocalizations.of(context)?.appLanguageText??"",
+                text: S.current.appLanguageText??"",
                 fontSize: fontSize,
               ),
               additionalInfo: AppText(text: deviceLanguage,fontSize: fontSize,color: AppColors.greyColor,),

@@ -10,6 +10,8 @@ import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n.dart';
+
 class AcquisitionScreen extends StatefulWidget {
   const AcquisitionScreen({super.key});
 
@@ -32,7 +34,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
           context: context,
           route: AppBarRoutes.save,
           title: AppText(
-            text: AppLocalizations.of(context)!.acquisitionDetails,
+            text: S.current.acquisitionDetails,
             fontSize: 15.sp,
             color: AppColors.white,
           ),
@@ -63,7 +65,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
 
   getOdometerListTile()=>CupertinoListTile(
     title: AppText(
-      text: AppLocalizations.of(context)!.odometer,
+      text: S.current.odometer,
       fontSize: fontSize,
     ),
     trailing: AppText(text: "KM",color: AppColors.greyColor,fontSize: fontSize,),
@@ -89,7 +91,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
   );
   getPriceListTile() =>CupertinoListTile(
     title: AppText(
-      text: AppLocalizations.of(context)!.price,
+      text: S.current.price,
       fontSize: fontSize,
     ),
     trailing: AppText(text: "EGP",color: AppColors.greyColor,fontSize: fontSize,),
@@ -118,7 +120,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
       showAcquisitionDialog(context);
     },
         title: AppText(
-          text: AppLocalizations.of(context)!.type,
+          text: S.current.type,
           fontSize: fontSize,
         ),
         trailing: const Icon(Icons.unfold_more,color: AppColors.greyColor,),
@@ -134,14 +136,14 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                    text:AppLocalizations.of(context)!.acquisitionType,
+                    text:S.current.acquisitionType,
                     fontSize: fontSize,
                     fontWeight: FontWeight.bold,
                   )),
               actions: <Widget>[
                 CupertinoDialogAction(
                   child: AppText(
-                    text: AppLocalizations.of(context)!.purchase,
+                    text: S.current.purchase,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
@@ -150,7 +152,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
                 ),
                 CupertinoDialogAction(
                   child: AppText(
-                    text: AppLocalizations.of(context)!.lease,
+                    text: S.current.lease,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
@@ -159,7 +161,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
                 ),
                 CupertinoDialogAction(
                   child: AppText(
-                    text: AppLocalizations.of(context)!.cancel,
+                    text: S.current.cancel,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
@@ -173,7 +175,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
   }
   Widget addAttachment() => CupertinoListSection.insetGrouped(
         header: AppText(
-          text: AppLocalizations.of(context)!.attachment,
+          text: S.current.attachment,
           fontSize: fontSize,
           color: AppColors.greyColor,
         ),
@@ -182,7 +184,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
           CupertinoListTile(
             onTap: () {},
             title: AppText(
-              text: AppLocalizations.of(context)!.attachmentTitle,
+              text: S.current.attachmentTitle,
               fontSize: fontSize,
               color: AppColors.greyColor,
             ),
@@ -198,7 +200,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
 
   Widget getDateSection() => CupertinoListTile(
         title: AppText(
-          text: AppLocalizations.of(context)!.date,
+          text: S.current.date,
           fontSize: fontSize,
         ),
         leading: Icon(

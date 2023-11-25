@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 
 import '../shared_preference_manager/shared_preference_manager.dart';
@@ -5,7 +7,6 @@ import '../shared_preference_manager/shared_preference_manager.dart';
 @singleton
 class UserRepository {
   final IPrefsManager _prefs;
-
   UserRepository._(this._prefs);
 
   @factoryMethod
@@ -40,13 +41,8 @@ class UserRepository {
   }
 
 
-  String get getCourierId  => _prefs.getString('courierId')??'';
-  String get getCourierName  => _prefs.getString('courierName')??'';
-  String get getCourierEmail  => _prefs.getString('courierEmail')??'';
-  String get getCourierAddress  => _prefs.getString('courierAddress')??'';
-  String get getCourierNumber  => _prefs.getString('courierNumber')??'';
   String get getAccessToken => 'Bearer ${_prefs.getString('token')}'??'';
-  String get userLanguage => _prefs.getString('lang') ?? 'ar';
+  String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
 
 

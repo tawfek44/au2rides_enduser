@@ -60,4 +60,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notes => 'ملاحظات';
+
+  @override
+  String get search => 'البحث';
+
+  @override
+  String get languages => 'اللغات';
 }

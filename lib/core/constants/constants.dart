@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart' as intl;
 
+import '../../generated/l10n.dart';
 import '../widgets/app_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -74,7 +75,7 @@ Widget getAppBar(
     );
 Widget getNotesSection({required context}) => CupertinoListSection.insetGrouped(
   header: AppText(
-    text: AppLocalizations.of(context)!.notes,
+    text: S.current.notes,
     color: AppColors.greyColor,
     fontSize: fontSize,
   ),

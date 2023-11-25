@@ -17,5 +17,7 @@
   "odometer": "Odometer",
   "attachment": "ATTACHMENTS",
   "attachmentTitle": "Attachments...",
-  "notes": "NOTES"
+  "notes": "NOTES",
+  "search": "Search",
+  "languages": "Languages"
 }

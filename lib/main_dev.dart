@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'core/dependancy_injection/injection.dart';
 import 'core/storage/network/sqlite.dart';
 import 'main.dart';
-
+late var languageTableCount;
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();
   Au2ridesDatabase.instance.database;
-  var languageTableCount = await Au2ridesDatabase.instance.getTableCount(tableName: 'language');
+   languageTableCount = await Au2ridesDatabase.instance.getTableCount(tableName: 'language');
   if(languageTableCount==0){
     Au2ridesDatabase.instance.insert(
         tableName: 'language',
