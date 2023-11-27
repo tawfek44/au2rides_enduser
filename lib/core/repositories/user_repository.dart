@@ -21,6 +21,9 @@ class UserRepository {
   Future setUserLanguage(String lang) async {
     await _prefs.setString('lang', lang);
   }
+  Future setUserCode(int langCode) async {
+    await _prefs.setInt('langCode', langCode);
+  }
   void cacheAccessToken (String token) {
       _prefs.setString('token',token);
     }

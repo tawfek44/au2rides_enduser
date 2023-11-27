@@ -1,16 +1,19 @@
-import 'package:au2rides/core/styles/colors.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart' as intl;
 
+import '../styles/colors.dart';
 import '../../generated/l10n.dart';
 import '../widgets/app_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
+const enLanguageNumberCode = 56;
+const arLanguageNumberCode = 9;
 const apiBaseUrl = 'http://fomoisreal-001-site3.btempurl.com/api/v1';
 void showQrCodeDialog(BuildContext context) {
   showDialog(

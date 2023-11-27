@@ -1,8 +1,7 @@
 
 import 'dart:io';
 
-import 'package:au2rides/core/app_routes/app_routes.dart';
-import 'package:au2rides/core/app_routes/app_routes_names.dart';
+
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
@@ -12,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/app_routes/app_routes.dart';
+import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/widgets/file_picker_utils.dart';
 
 class AddRideScreen extends StatefulWidget {

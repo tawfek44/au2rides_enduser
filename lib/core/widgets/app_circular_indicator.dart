@@ -4,6 +4,8 @@ import '../styles/colors.dart';
 
 
 
+
+
 class AppCircularProgressIndicator extends StatelessWidget {
   const AppCircularProgressIndicator({Key? key}) : super(key: key);
 
@@ -11,7 +13,7 @@ class AppCircularProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  CircularProgressIndicator(
-      color: AppColors.primaryColor,
+      color: Theme.of(context).primaryColor,
     );
   }
 }

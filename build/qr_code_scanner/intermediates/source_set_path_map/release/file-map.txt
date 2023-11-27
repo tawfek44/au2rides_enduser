@@ -1,0 +1,23 @@
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-appcompat-resources-1.4.2-0 C:\Users\USER\.gradle\caches\transforms-3\2d45615c3a925b1ee621302637da5d44\transformed\jetified-appcompat-resources-1.4.2\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-emoji2-1.0.0-1 C:\Users\USER\.gradle\caches\transforms-3\3b6c7dc6cbc8f15ed4fc8595d32d7a76\transformed\jetified-emoji2-1.0.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-annotation-experimental-1.1.0-2 C:\Users\USER\.gradle\caches\transforms-3\424fe90f0bd6d50b9ed38cb53548737f\transformed\jetified-annotation-experimental-1.1.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-fragment-1.3.6-3 C:\Users\USER\.gradle\caches\transforms-3\5c7c8a4ad57e268c3eb9d21468202c0a\transformed\fragment-1.3.6\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-window-java-1.0.0-beta04-4 C:\Users\USER\.gradle\caches\transforms-3\5ddc55be9a1f9ca3021e908092377266\transformed\jetified-window-java-1.0.0-beta04\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-lifecycle-viewmodel-2.3.1-5 C:\Users\USER\.gradle\caches\transforms-3\5fb376ef84ef01aa8e38edc696032fff\transformed\lifecycle-viewmodel-2.3.1\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-appcompat-1.4.2-6 C:\Users\USER\.gradle\caches\transforms-3\7400fa0d6fe67bcfd0fac4c937fb9d7a\transformed\appcompat-1.4.2\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-lifecycle-process-2.4.0-7 C:\Users\USER\.gradle\caches\transforms-3\75a413c26bce89090dcc872dc5427672\transformed\jetified-lifecycle-process-2.4.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-savedstate-1.1.0-8 C:\Users\USER\.gradle\caches\transforms-3\7d52ba151ca08c653c462098895c9fdb\transformed\jetified-savedstate-1.1.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-core-1.7.0-9 C:\Users\USER\.gradle\caches\transforms-3\8256846774e8e57b64cf1d527f044d82\transformed\core-1.7.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-lifecycle-runtime-2.4.0-10 C:\Users\USER\.gradle\caches\transforms-3\8b9e77fe29a417db4401072a0039d8fd\transformed\lifecycle-runtime-2.4.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-zxing-android-embedded-4.3.0-11 C:\Users\USER\.gradle\caches\transforms-3\8f8933b6cba1f490c45210d7fd6f615a\transformed\jetified-zxing-android-embedded-4.3.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-startup-runtime-1.0.0-12 C:\Users\USER\.gradle\caches\transforms-3\95c333e4747cb79c7ee76efc5b4e995a\transformed\jetified-startup-runtime-1.0.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-emoji2-views-helper-1.0.0-13 C:\Users\USER\.gradle\caches\transforms-3\a6177ecc87ac6ec325e6d26da7235e34\transformed\jetified-emoji2-views-helper-1.0.0\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-jetified-window-1.0.0-beta04-14 C:\Users\USER\.gradle\caches\transforms-3\beb1df14a36789fd46f1fa73f36b9595\transformed\jetified-window-1.0.0-beta04\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-main-15 C:\Users\USER\AppData\Local\Pub\Cache\hosted\pub.dev\qr_code_scanner-1.0.1\android\src\main\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-release-16 C:\Users\USER\AppData\Local\Pub\Cache\hosted\pub.dev\qr_code_scanner-1.0.1\android\src\release\res
+net.touchcapture.qr.flutterqr.qr_code_scanner-pngs-17 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\generated\res\pngs\release
+net.touchcapture.qr.flutterqr.qr_code_scanner-resValues-18 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\generated\res\resValues\release
+net.touchcapture.qr.flutterqr.qr_code_scanner-rs-19 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\generated\res\rs\release
+net.touchcapture.qr.flutterqr.qr_code_scanner-mergeReleaseResources-20 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\intermediates\incremental\release\mergeReleaseResources\merged.dir
+net.touchcapture.qr.flutterqr.qr_code_scanner-mergeReleaseResources-21 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+net.touchcapture.qr.flutterqr.qr_code_scanner-merged_res-22 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\qr_code_scanner\intermediates\merged_res\release

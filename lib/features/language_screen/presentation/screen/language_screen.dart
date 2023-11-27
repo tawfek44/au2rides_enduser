@@ -1,17 +1,19 @@
-import 'package:au2rides/core/app_routes/app_routes.dart';
+
 import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart' as intl;
-
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
+import '../../../../core/widgets/app_circular_indicator.dart';
 import '../../../../core/widgets/app_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../domain/entities/language_entity.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key, required this.userRepository});
@@ -23,28 +25,25 @@ class LanguageScreen extends StatefulWidget {
 }
 
 class _LanguageScreenState extends State<LanguageScreen> {
-  late List<Language> languagesList;
-  late List<Language> tempLanguagesList=[];
-  late int markIndex;
+  late var languagesList;
+  var tempLanguagesList=[];
+  late int languageCode = 0;
   late TextEditingController languagesSearchText ;
   @override
   void initState() {
-    markIndex = widget.userRepository.userLanguage == 'ar' ? 0 : 1;
-    languagesList = [
-      Language(langName: S.current.arabicLanguageText, langCode: 'ar'),
-      Language(langName: S.current.englishLanguageText, langCode: 'en'),
-    ];
-    tempLanguagesList = languagesList;
+    languageCode = widget.userRepository.userLanguage == 'ar' ? arLanguageNumberCode : enLanguageNumberCode;
     languagesSearchText = TextEditingController();
     super.initState();
   }
   @override
+  Future<void> didChangeDependencies() async {
+    languagesList = await context.read<LanguageCubit>().getAllLanguages();
+    languagesList=languagesList.data;
+    tempLanguagesList=languagesList;
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
-    languagesList = [
-      Language(langName: S.current.arabicLanguageText, langCode: 'ar'),
-      Language(langName: S.current.englishLanguageText, langCode: 'en'),
-    ];
-    tempLanguagesList = languagesList;
     return Directionality(
       textDirection: isArabicLocalization() ? TextDirection.rtl : TextDirection
           .ltr,
@@ -69,33 +68,47 @@ class _LanguageScreenState extends State<LanguageScreen> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(15.w),
-            child: Column(
-              children: [
-                getSearchBar(),
-                gap(height: 15.h),
-                CupertinoListSection.insetGrouped(
-                  margin: EdgeInsets.zero,
-                  children: [
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) =>
-                          getLanguageItem(itemIndex: index),
-                      separatorBuilder: (context, index) =>
-                      const Divider(
-                        height: 0,
-                        thickness: 0.5,
-                      ),
-                      itemCount: tempLanguagesList.length,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
+        body: BlocBuilder<LanguageCubit,LanguageState>(
+         builder: (context,state){
+           if(state is Loaded){
+             return SingleChildScrollView(
+               child: Padding(
+                 padding: EdgeInsets.all(15.w),
+                 child: Column(
+                   children: [
+                     getSearchBar(),
+                     gap(height: 15.h),
+                     CupertinoListSection.insetGrouped(
+                       margin: EdgeInsets.zero,
+                       children: [
+                         ListView.separated(
+                           shrinkWrap: true,
+                           physics: const NeverScrollableScrollPhysics(),
+                           itemBuilder: (context, index) =>
+                               getLanguageItem(itemIndex: index),
+                           separatorBuilder: (context, index) =>
+                           const Divider(
+                             height: 0,
+                             thickness: 0.5,
+                           ),
+                           itemCount: tempLanguagesList.length,
+                         ),
+                       ],
+                     )
+                   ],
+                 ),
+               ),
+             );
+           }
+           else if(state is Error){
+             return Center(child: Text(state.e.toString()));
+           }
+           else{
+             return const Center(
+               child: AppCircularProgressIndicator(),
+             );
+           }
+         },
         ),
     ),
       ),);
@@ -104,19 +117,19 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget getLanguageItem({required int itemIndex}) =>
       CupertinoListTile(
         onTap: () async {
-          await S.load(Locale(tempLanguagesList[itemIndex].langCode));
+          await S.load(Locale(tempLanguagesList[itemIndex]["language_code"]));
           setState(() {
-            markIndex = itemIndex;
             widget.userRepository.setUserLanguage(
-                tempLanguagesList[itemIndex].langCode);
+                tempLanguagesList[itemIndex]["language_code"]);
+            languageCode = widget.userRepository.userLanguage == 'ar' ? arLanguageNumberCode : enLanguageNumberCode;
           });
-          // NamedNavigatorImpl().push(Routes.startUpScreenRoute);
+           NamedNavigatorImpl().push(Routes.startUpScreenRoute);
         },
         title: AppText(
-          text: tempLanguagesList[itemIndex].langName,
+          text: tempLanguagesList[itemIndex]["language_name"],
           fontSize: fontSize,
         ),
-        trailing: markIndex == itemIndex
+        trailing: languageCode == tempLanguagesList[itemIndex]["_language_id"]
             ? Icon(
           CupertinoIcons.check_mark,
           color: Theme
@@ -142,10 +155,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
               decoration:
               BoxDecoration(border: Border.all(style: BorderStyle.none)),
               onChanged: (String text) {
-                List<Language> temp = [];
+                var temp = [];
                 if (text.isNotEmpty) {
                   for (var element in tempLanguagesList) {
-                    if (element.langName.toLowerCase().contains(text)) {
+                    if (element["language_name"].toLowerCase().contains(text)) {
                       temp.add(element);
                     }
                   }
@@ -163,11 +176,4 @@ class _LanguageScreenState extends State<LanguageScreen> {
           )
         ],
       );
-}
-
-class Language {
-  final String langName;
-  final String langCode;
-
-  Language({required this.langName, required this.langCode});
 }

@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

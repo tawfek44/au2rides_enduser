@@ -1,0 +1,12 @@
+dev.fluttercommunity.plus.packageinfo.package_info_plus-core-1.6.0-0 C:\Users\USER\.gradle\caches\transforms-3\1033e36e972b24f495cbeb7edb0f8401\transformed\core-1.6.0\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-jetified-annotation-experimental-1.1.0-1 C:\Users\USER\.gradle\caches\transforms-3\424fe90f0bd6d50b9ed38cb53548737f\transformed\jetified-annotation-experimental-1.1.0\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-jetified-window-java-1.0.0-beta04-2 C:\Users\USER\.gradle\caches\transforms-3\5ddc55be9a1f9ca3021e908092377266\transformed\jetified-window-java-1.0.0-beta04\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-jetified-window-1.0.0-beta04-3 C:\Users\USER\.gradle\caches\transforms-3\beb1df14a36789fd46f1fa73f36b9595\transformed\jetified-window-1.0.0-beta04\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-main-4 C:\Users\USER\AppData\Local\Pub\Cache\hosted\pub.dev\package_info_plus-4.1.0\android\src\main\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-release-5 C:\Users\USER\AppData\Local\Pub\Cache\hosted\pub.dev\package_info_plus-4.1.0\android\src\release\res
+dev.fluttercommunity.plus.packageinfo.package_info_plus-pngs-6 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\generated\res\pngs\release
+dev.fluttercommunity.plus.packageinfo.package_info_plus-resValues-7 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\generated\res\resValues\release
+dev.fluttercommunity.plus.packageinfo.package_info_plus-rs-8 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\generated\res\rs\release
+dev.fluttercommunity.plus.packageinfo.package_info_plus-mergeReleaseResources-9 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\intermediates\incremental\release\mergeReleaseResources\merged.dir
+dev.fluttercommunity.plus.packageinfo.package_info_plus-mergeReleaseResources-10 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+dev.fluttercommunity.plus.packageinfo.package_info_plus-merged_res-11 D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\package_info_plus\intermediates\merged_res\release

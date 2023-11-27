@@ -6,14 +6,16 @@ part of 'error.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GenericApiError _$$_GenericApiErrorFromJson(Map<String, dynamic> json) =>
-    _$_GenericApiError(
+_$GenericApiErrorImpl _$$GenericApiErrorImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GenericApiErrorImpl(
       status: json['status'] as int?,
       error: json['error'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$_GenericApiErrorToJson(_$_GenericApiError instance) =>
+Map<String, dynamic> _$$GenericApiErrorImplToJson(
+        _$GenericApiErrorImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'error': instance.error,

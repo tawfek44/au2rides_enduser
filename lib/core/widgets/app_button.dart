@@ -2,7 +2,6 @@ import 'package:au2rides/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../styles/colors.dart';
 import 'app_text.dart';
 
 class AppButton extends StatelessWidget {

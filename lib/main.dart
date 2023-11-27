@@ -2,26 +2,27 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'dart:developer' as log_dev;
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
+import 'core/storage/local/sqlite.dart';
+import 'core/storage/tables/languages.dart';
 import 'core/styles/theme.dart';
-import 'dart:developer' as log_dev;
 import 'core/dependancy_injection/injection_utils.dart' as di;
+import 'env.dart';
 import 'generated/l10n.dart';
 import 'main_dev.dart';
 
 
-void launchApp() => runApp(MyApp(getIt<UserRepository>()) );
+void launchApp() => runApp(di.provideApp(MyApp( getIt<UserRepository>()))  );
 
 class MyApp extends StatefulWidget {
   const MyApp(this._userRepository,{key}) : super(key: key);
@@ -30,7 +31,33 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
+late var languageTableCount;
+Future main() async {
+  AppEnvironment.setUpEnv(Environment.dev);
+  WidgetsFlutterBinding.ensureInitialized();
+  configureInjection();
+  Au2ridesDatabase.instance.database;
+  languageTableCount = await Au2ridesDatabase.instance.getTableCount(tableName: 'language');
+  if(languageTableCount==0){
+    Au2ridesDatabase.instance.insert(
+        tableName: 'language',
+        values: Language(
+            languageId: 9,
+            languageCode: "ar",
+            languageName: "العربية",
+            directionality: "rtl")
+            .toJson());
+    Au2ridesDatabase.instance.insert(
+        tableName: 'language',
+        values: Language(
+            languageId: 56,
+            languageCode: "en",
+            languageName: "English",
+            directionality: "ltr")
+            .toJson());
+  }
+  launchApp();
+}
 class _MyAppState extends State<MyApp> {
   String? packageName;
   double packageVersion = 0;
@@ -39,7 +66,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     //awel mara a5osh el app

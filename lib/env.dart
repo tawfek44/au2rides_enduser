@@ -9,7 +9,7 @@ abstract class AppEnvironment{
     _environment = env;
     switch(env) {
       case Environment.dev:
-        // TODO: Handle this case.
+        baseAPIUrl = "https://au2rides-mobile-development.azurewebsites.net";
         break;
       case Environment.prod:
         // TODO: Handle this case.

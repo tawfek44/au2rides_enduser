@@ -1,10 +1,11 @@
-import 'package:au2rides/core/app_routes/app_routes.dart';
-import 'package:au2rides/core/app_routes/app_routes_names.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/styles/colors.dart';
 import '../../../../core/widgets/app_text.dart';

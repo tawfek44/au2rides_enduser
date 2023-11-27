@@ -80,11 +80,11 @@ class _$GenericApiErrorCopyWithImpl<$Res, $Val extends GenericApiError>
 }
 
 /// @nodoc
-abstract class _$$_GenericApiErrorCopyWith<$Res>
+abstract class _$$GenericApiErrorImplCopyWith<$Res>
     implements $GenericApiErrorCopyWith<$Res> {
-  factory _$$_GenericApiErrorCopyWith(
-          _$_GenericApiError value, $Res Function(_$_GenericApiError) then) =
-      __$$_GenericApiErrorCopyWithImpl<$Res>;
+  factory _$$GenericApiErrorImplCopyWith(_$GenericApiErrorImpl value,
+          $Res Function(_$GenericApiErrorImpl) then) =
+      __$$GenericApiErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,11 +94,11 @@ abstract class _$$_GenericApiErrorCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GenericApiErrorCopyWithImpl<$Res>
-    extends _$GenericApiErrorCopyWithImpl<$Res, _$_GenericApiError>
-    implements _$$_GenericApiErrorCopyWith<$Res> {
-  __$$_GenericApiErrorCopyWithImpl(
-      _$_GenericApiError _value, $Res Function(_$_GenericApiError) _then)
+class __$$GenericApiErrorImplCopyWithImpl<$Res>
+    extends _$GenericApiErrorCopyWithImpl<$Res, _$GenericApiErrorImpl>
+    implements _$$GenericApiErrorImplCopyWith<$Res> {
+  __$$GenericApiErrorImplCopyWithImpl(
+      _$GenericApiErrorImpl _value, $Res Function(_$GenericApiErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ class __$$_GenericApiErrorCopyWithImpl<$Res>
     Object? error = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$_GenericApiError(
+    return _then(_$GenericApiErrorImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -127,14 +127,14 @@ class __$$_GenericApiErrorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GenericApiError implements _GenericApiError {
-  _$_GenericApiError(
+class _$GenericApiErrorImpl implements _GenericApiError {
+  _$GenericApiErrorImpl(
       {@JsonKey(name: 'status') this.status,
       @JsonKey(name: 'error') this.error,
       @JsonKey(name: 'message') this.message});
 
-  factory _$_GenericApiError.fromJson(Map<String, dynamic> json) =>
-      _$$_GenericApiErrorFromJson(json);
+  factory _$GenericApiErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenericApiErrorImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -155,7 +155,7 @@ class _$_GenericApiError implements _GenericApiError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GenericApiError &&
+            other is _$GenericApiErrorImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.message, message) || other.message == message));
@@ -168,12 +168,13 @@ class _$_GenericApiError implements _GenericApiError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenericApiErrorCopyWith<_$_GenericApiError> get copyWith =>
-      __$$_GenericApiErrorCopyWithImpl<_$_GenericApiError>(this, _$identity);
+  _$$GenericApiErrorImplCopyWith<_$GenericApiErrorImpl> get copyWith =>
+      __$$GenericApiErrorImplCopyWithImpl<_$GenericApiErrorImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenericApiErrorToJson(
+    return _$$GenericApiErrorImplToJson(
       this,
     );
   }
@@ -183,10 +184,10 @@ abstract class _GenericApiError implements GenericApiError {
   factory _GenericApiError(
       {@JsonKey(name: 'status') final int? status,
       @JsonKey(name: 'error') final String? error,
-      @JsonKey(name: 'message') final String? message}) = _$_GenericApiError;
+      @JsonKey(name: 'message') final String? message}) = _$GenericApiErrorImpl;
 
   factory _GenericApiError.fromJson(Map<String, dynamic> json) =
-      _$_GenericApiError.fromJson;
+      _$GenericApiErrorImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
@@ -199,6 +200,6 @@ abstract class _GenericApiError implements GenericApiError {
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$_GenericApiErrorCopyWith<_$_GenericApiError> get copyWith =>
+  _$$GenericApiErrorImplCopyWith<_$GenericApiErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

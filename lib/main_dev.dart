@@ -3,7 +3,7 @@ import 'package:au2rides/env.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'core/dependancy_injection/injection.dart';
-import 'core/storage/network/sqlite.dart';
+import 'core/storage/local/sqlite.dart';
 import 'main.dart';
 late var languageTableCount;
 Future main() async {

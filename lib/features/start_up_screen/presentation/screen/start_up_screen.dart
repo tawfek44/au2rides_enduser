@@ -1,8 +1,5 @@
 
 import 'dart:io';
-
-import 'package:au2rides/core/app_routes/app_routes.dart';
-import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/styles/colors.dart';
@@ -13,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../generated/l10n.dart';
 class StartUpScreen extends StatefulWidget {
   const StartUpScreen({super.key, required this.userRepository});
