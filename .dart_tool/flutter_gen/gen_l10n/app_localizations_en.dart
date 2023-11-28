@@ -66,4 +66,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languages => 'Languages';
+
+  @override
+  String get wrongText => 'There is an error here, check your connectivity!';
+
+  @override
+  String get downloadingText => 'Downloading Information ...';
 }

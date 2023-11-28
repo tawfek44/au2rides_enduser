@@ -21,6 +21,9 @@ class UserRepository {
   Future setUserLanguage(String lang) async {
     await _prefs.setString('lang', lang);
   }
+  Future setFirstTimeOpenApp(bool flag) async {
+    await _prefs.setBool('firstTimeOpenApp', flag);
+  }
   Future setUserCode(int langCode) async {
     await _prefs.setInt('langCode', langCode);
   }
@@ -47,6 +50,8 @@ class UserRepository {
   String get getAccessToken => 'Bearer ${_prefs.getString('token')}'??'';
   String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
+
+  bool get getFirstTimeOpenApp => _prefs.getBool('firstTimeOpenApp')??true;
 
 
 

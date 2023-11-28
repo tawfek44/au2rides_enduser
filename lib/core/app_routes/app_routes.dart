@@ -1,4 +1,5 @@
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/features/Qr_code_Details_screen/presentation/screen/qr_code_details_screen.dart';
 import 'package:au2rides/features/about_screen/presentation/screen/about_screen.dart';
@@ -39,7 +40,7 @@ import 'package:au2rides/features/multiselection_screen/presentation/screen/mult
 import 'package:au2rides/features/notifications_screen/presentation/screen/notifications_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
-import 'package:au2rides/features/redirection_screen/presentation/screen/redirection_screen.dart';
+import 'package:au2rides/features/redirection_screen/presentation/screen/download_screen.dart';
 import 'package:au2rides/features/ride_details/presentation/screen/ride_details.dart';
 import 'package:au2rides/features/scheduled_maintenance_screen/presentation/screen/scheduled_maintenance_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
@@ -65,365 +66,370 @@ import 'app_routes_names.dart';
 
 class NamedNavigatorImpl implements NamedNavigator {
   static final GlobalKey<NavigatorState> navigatorState =
-  GlobalKey<NavigatorState>();
+      GlobalKey<NavigatorState>();
 
   static Route<dynamic> onGenerateRoute(
-      RouteSettings settings,
-      ) {
+    RouteSettings settings,
+  ) {
     switch (settings.name) {
       case Routes.splashScreenRoute:
         return MaterialPageRoute(
-            builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: SplashScreen(),
-            ));
+            builder: (_) =>  Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: SplashScreen(networkInfo: getIt<NetworkInfo>()),
+                ));
       case Routes.otpScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: OTPScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: OTPScreen(),
+                ));
       case Routes.loginScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: LoginScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: LoginScreen(),
+                ));
       case Routes.bottomNavBarScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: BottomNavBarScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: BottomNavBarScreen(),
+                ));
       case Routes.enterUserInfoScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: EnterUserInfoScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: EnterUserInfoScreen(),
+                ));
       case Routes.genderScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: GenderScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: GenderScreen(),
+                ));
       case Routes.countriesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: CountriesScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: CountriesScreen(),
+                ));
       case Routes.addRideScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddRideScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddRideScreen(),
+                ));
       case Routes.addFuelScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddFuelScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddFuelScreen(),
+                ));
       case Routes.addOdometerScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddOdometerScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddOdometerScreen(),
+                ));
       case Routes.aboutScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AboutScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AboutScreen(),
+                ));
       case Routes.contactUsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ContactUsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ContactUsScreen(),
+                ));
       case Routes.searchQRScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: SearchScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: SearchScreen(),
+                ));
       case Routes.myPointsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: PointsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: PointsScreen(),
+                ));
       case Routes.currencyScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: CurrencyScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: CurrencyScreen(),
+                ));
       case Routes.transactionHistoryScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: TransactionHistoryScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: TransactionHistoryScreen(),
+                ));
       case Routes.couponsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: CouponsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: CouponsScreen(),
+                ));
       case Routes.qrCodeDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: QrCodeDetailsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: QrCodeDetailsScreen(),
+                ));
       case Routes.multiSelectionScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: MultiSelectionScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: MultiSelectionScreen(),
+                ));
       case Routes.profileScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ProfileScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ProfileScreen(),
+                ));
       case Routes.changePasswordScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ChangePasswordScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ChangePasswordScreen(),
+                ));
       case Routes.myDocumentsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: IdentityCardOrPassportScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: IdentityCardOrPassportScreen(),
+                ));
       case Routes.myDrivingLicensesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: DrivingLicenseScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: DrivingLicenseScreen(),
+                ));
       case Routes.walletScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: WalletScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: WalletScreen(),
+                ));
       case Routes.addWalletScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddWalletItemScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddWalletItemScreen(),
+                ));
       case Routes.providersScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ChooseProviderScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ChooseProviderScreen(),
+                ));
       case Routes.showFuelUpScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowFuelUpScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowFuelUpScreen(),
+                ));
       case Routes.showOdometerScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowOdometerScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowOdometerScreen(),
+                ));
       case Routes.showTripsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowTripsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowTripsScreen(),
+                ));
       case Routes.showMaintenanceScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowMaintenanceScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowMaintenanceScreen(),
+                ));
       case Routes.showRemindersScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowRemindersScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowRemindersScreen(),
+                ));
       case Routes.addReminderScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddReminderScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddReminderScreen(),
+                ));
       case Routes.addTripScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddTripScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddTripScreen(),
+                ));
       case Routes.addShopScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddShopScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddShopScreen(),
+                ));
       case Routes.showExpensesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowExpenseScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ShowExpenseScreen(),
+                ));
       case Routes.addExpensesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddExpensesScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddExpensesScreen(),
+                ));
       case Routes.addItemScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddItemScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddItemScreen(),
+                ));
       case Routes.createNewItemScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: CreateItemScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: CreateItemScreen(),
+                ));
       case Routes.departmentsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: DepartmentsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: DepartmentsScreen(),
+                ));
       case Routes.itemRemindersScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ItemRemindersScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ItemRemindersScreen(),
+                ));
       case Routes.addMaintenanceScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddMaintenanceScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddMaintenanceScreen(),
+                ));
       case Routes.languagesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => Directionality(
-              textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
-              child: LanguageScreen(
-                userRepository: getIt<UserRepository>(),
-              ),
-            ));
+                  textDirection: isArabicLocalization()
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: LanguageScreen(
+                    userRepository: getIt<UserRepository>(),
+                  ),
+                ));
       case Routes.rideDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: RideDetails(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: RideDetails(),
+                ));
       case Routes.scheduledMaintenanceScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ScheduledMaintenanceScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: ScheduledMaintenanceScreen(),
+                ));
       case Routes.tirePressureScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: TirePressureDetailsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: TirePressureDetailsScreen(),
+                ));
       case Routes.licenceDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: LicenceDetailsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: LicenceDetailsScreen(),
+                ));
       case Routes.insurancePolicyScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: InsurancePolicyScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: InsurancePolicyScreen(),
+                ));
       case Routes.acquisitionScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AcquisitionScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AcquisitionScreen(),
+                ));
       case Routes.addNewIdentityCardOrPassportScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddIdentityCardOrPasswordScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddIdentityCardOrPasswordScreen(),
+                ));
       case Routes.addDrivingLicenceScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AddDrivingLicenceScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AddDrivingLicenceScreen(),
+                ));
       case Routes.webViewScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: WebViewScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: WebViewScreen(),
+                ));
       case Routes.dashboardScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: DashboardSignsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: DashboardSignsScreen(),
+                ));
       case Routes.messagesScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: MessagesScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: MessagesScreen(),
+                ));
       case Routes.notificationScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: NotificationsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: NotificationsScreen(),
+                ));
       case Routes.allShopsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: AllShopsScreen(),
-            ));
+                  textDirection: TextDirection.ltr,
+                  child: AllShopsScreen(),
+                ));
       case Routes.startUpScreenRoute:
         return MaterialPageRoute(
             builder: (_) => Directionality(
-              textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
-              child: StartUpScreen(
-                userRepository: getIt<UserRepository>(),
-              ),
-            ));
+                  textDirection: isArabicLocalization()
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: StartUpScreen(
+                    userRepository: getIt<UserRepository>(),
+                  ),
+                ));
       case Routes.showPaymentMethodsScreenRoute:
         return MaterialPageRoute(
             builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: ShowPaymentMethodsScreen(),
-            ));
-      case Routes.redirectionScreenRoute:
+                  textDirection: TextDirection.ltr,
+                  child: ShowPaymentMethodsScreen(),
+                ));
+      case Routes.downloadScreen:
         return MaterialPageRoute(
-            builder: (_) => const Directionality(
-              textDirection: TextDirection.ltr,
-              child: RedirectionScreen(),
-            ));
-    /* case Routes.SurahScreenRoute:
+            builder: (_) =>  Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: DownloadScreen(
+                      userRepository: getIt<UserRepository>()),
+                ));
+      /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(
           builder: (_) => Directionality(
               textDirection: TextDirection.rtl,

@@ -1,0 +1,27 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'check_primary_data_body_entity.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CheckPrimaryDataBodyEntity _$CheckPrimaryDataBodyEntityFromJson(
+        Map<String, dynamic> json) =>
+    CheckPrimaryDataBodyEntity(
+      tableId: json['table_id'] as int,
+      tableName: json['table_name'] as String,
+      languageId: json['language_id'] as int,
+      schemaVersion: json['schema_version'] as int,
+      dataVersion: json['data_version'] as int,
+    );
+
+Map<String, dynamic> _$CheckPrimaryDataBodyEntityToJson(
+        CheckPrimaryDataBodyEntity instance) =>
+    <String, dynamic>{
+      'table_id': instance.tableId,
+      'table_name': instance.tableName,
+      'language_id': instance.languageId,
+      'schema_version': instance.schemaVersion,
+      'data_version': instance.dataVersion,
+    };

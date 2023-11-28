@@ -13,9 +13,15 @@ class CountryRepositoryImpl extends CountryRepository{
   CountryRepositoryImpl(this._countryDataSource);
 
   @override
-   getCountries() async {
-      final  response = await _countryDataSource.getAllCountriesFromAPI();
+   getCountries({required String lang}) async {
+      final  response = await _countryDataSource.getAllCountriesFromAPI(lang: lang);
       return response;
+  }
+
+  @override
+  saveCountriesInLocalDatabase({required dynamic values}) async {
+    final response = await _countryDataSource.saveAllCountriesInDatabase(values: values);
+    return response;
   }
 
 }

@@ -61,7 +61,7 @@ class Routes {
   static const allShopsScreenRoute = "ALL_SHOPS_SCREEN_ROUTE";
   static const startUpScreenRoute = "START_UP_SCREEN_ROUTE";
   static const showPaymentMethodsScreenRoute = "SHOW_PAYMENT_METHOD_SCREEN_ROUTE";
-  static const redirectionScreenRoute = "REDIRECTION_SCREEN_ROUTE";
+  static const downloadScreen = "DOWNLOAD_SCREEN_ROUTE";
   static const xx = "xx";
 }
 

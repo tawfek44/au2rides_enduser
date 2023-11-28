@@ -259,6 +259,26 @@ class S {
       args: [],
     );
   }
+
+  /// `There is an error here, check your connectivity!`
+  String get wrongText {
+    return Intl.message(
+      'There is an error here, check your connectivity!',
+      name: 'wrongText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Downloading Information ...`
+  String get downloadingText {
+    return Intl.message(
+      'Downloading Information ...',
+      name: 'downloadingText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

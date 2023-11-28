@@ -66,4 +66,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languages => 'اللغات';
+
+  @override
+  String get wrongText => 'هناك خطأ ما, تحقق من إتصالك بالإنترنت!';
+
+  @override
+  String get downloadingText => 'تحميل بيانات ...';
 }

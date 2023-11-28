@@ -19,5 +19,7 @@
   "attachmentTitle": "Attachments...",
   "notes": "NOTES",
   "search": "Search",
-  "languages": "Languages"
+  "languages": "Languages",
+  "wrongText": "There is an error here, check your connectivity!",
+  "downloadingText": "Downloading Information ..."
 }

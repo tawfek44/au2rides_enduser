@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "downloadingText":
+            MessageLookupByLibrary.simpleMessage("Downloading Information ..."),
         "englishLanguageText": MessageLookupByLibrary.simpleMessage("English"),
         "followUS": MessageLookupByLibrary.simpleMessage("Follow us"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
@@ -46,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Privacy policy and terms of use"),
         "purchase": MessageLookupByLibrary.simpleMessage("Purchase"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
-        "type": MessageLookupByLibrary.simpleMessage("Type")
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "wrongText": MessageLookupByLibrary.simpleMessage(
+            "There is an error here, check your connectivity!")
       };
 }

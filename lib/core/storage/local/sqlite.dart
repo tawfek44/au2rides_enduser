@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:au2rides/core/storage/tables/languages.dart';
+import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../constants/constants.dart';
 import '../tables/countries.dart';
+import '../tables/currency.dart';
 
 class Au2ridesDatabase{
   static final Au2ridesDatabase instance = Au2ridesDatabase._init();
@@ -24,15 +27,33 @@ class Au2ridesDatabase{
 
   Future _createDB(Database db, int version) async{
     const idType ="INTEGER PRIMARY KEY";
+    const intType = "INTEGER NOT NULL";
     const textType ="TEXT NOT NULL";
+    const boolType ="BOOLEAN NOT NULL";
+
+    //Table Definition
+    await db.execute('''
+    CREATE TABLE $tableDefinitionsTableName (
+    ${TableDefinitionsFields.tableId} $idType,
+    ${TableDefinitionsFields.tableName} $textType,
+    ${TableDefinitionsFields.languageId} $intType,
+    ${TableDefinitionsFields.schemaVersion} $intType,
+    ${TableDefinitionsFields.dataVersion} $intType
+    )
+    ''');
+
+    //Language
     await db.execute('''
     CREATE TABLE $languageTableName (
     ${LanguageFields.languageId} $idType,
     ${LanguageFields.languageCode} $textType,
     ${LanguageFields.languageName} $textType,
-    ${LanguageFields.directionality} $textType
+    ${LanguageFields.directionality} $textType,
+    ${LanguageFields.isDownloaded} $boolType
     )
     ''');
+
+    //Country
     await db.execute('''
     CREATE TABLE $countryTableName (
     ${CountryFields.countryId} $idType,
@@ -43,11 +64,24 @@ class Au2ridesDatabase{
     )
     ''');
 
+    //Currency
+    await db.execute('''
+    CREATE TABLE $currencyTableName (
+    ${CurrencyFields.currencyId} $idType,
+    ${CurrencyFields.languageId} $intType,
+    ${CurrencyFields.currencyCode} $textType,
+    ${CurrencyFields.currencyName} $textType,
+    ${CurrencyFields.currencyImageUrl} $textType
+    )
+    ''');
+
+
+
   }
 
-  Future insert({required String tableName,required Map<String, Object?> values}) async{
+   insert({required String tableName,required dynamic values}) async{
     final db = await instance.database;
-    await db.insert(tableName, values);
+    return await db.insert(tableName, values);
 }
 
   Future<int?> getTableCount({required String tableName}) async {
@@ -63,6 +97,12 @@ class Au2ridesDatabase{
     var data = await db.query(tableName);
     return data;
   }
+
+  Future getLanguagesIsDownloaded({required String tableName,required String where}) async {
+  Database db = await instance.database;
+  var data = await db.query(tableName,where:where );
+  return data;
+}
   Future closeDB() async{
     final db = await instance.database;
     db.close();

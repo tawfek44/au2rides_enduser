@@ -218,6 +218,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Languages'**
   String get languages;
+
+  /// No description provided for @wrongText.
+  ///
+  /// In en, this message translates to:
+  /// **'There is an error here, check your connectivity!'**
+  String get wrongText;
+
+  /// No description provided for @downloadingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading Information ...'**
+  String get downloadingText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -21,16 +20,16 @@ import 'env.dart';
 import 'generated/l10n.dart';
 import 'main_dev.dart';
 
-
-void launchApp() => runApp(di.provideApp(MyApp( getIt<UserRepository>()))  );
+void launchApp() => runApp(di.provideApp(MyApp(getIt<UserRepository>())));
 
 class MyApp extends StatefulWidget {
-  const MyApp(this._userRepository,{key}) : super(key: key);
+  const MyApp(this._userRepository, {key}) : super(key: key);
   final UserRepository _userRepository;
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
 /*
 late var languageTableCount;
 Future main() async {
@@ -64,15 +63,18 @@ class _MyAppState extends State<MyApp> {
   String? packageName;
   double packageVersion = 0;
   late Map<String, dynamic> deviceInfo;
+
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     //awel mara a5osh el app
-    if(languageTableCount==0){
-      widget._userRepository.setUserLanguage(Platform.localeName.substring(0,2));
+    if (languageTableCount == 0) {
+      widget._userRepository
+          .setUserLanguage(Platform.localeName.substring(0, 2));
     }
     return ScreenUtilInit(
       designSize: const Size(360, 740),
@@ -94,21 +96,23 @@ class _MyAppState extends State<MyApp> {
           ],
           locale: Locale(widget._userRepository.userLanguage),
           theme: getLightThemeData(context),
-          initialRoute: Routes.startUpScreenRoute,
+          initialRoute: widget._userRepository.getFirstTimeOpenApp
+              ? Routes.startUpScreenRoute
+              : Routes.splashScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );
       },
     );
   }
+
   getDeviceIfo() {
     DeviceInfoPlugin().deviceInfo.then((device) {
       if (device.data.isNotEmpty) {
         deviceInfo = device.data;
         log_dev.log(json.encode(deviceInfo));
       }
-      }
-    );
+    });
   }
 
   getPackageData() {
@@ -120,4 +124,3 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
-

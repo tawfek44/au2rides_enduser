@@ -4,14 +4,14 @@ import 'package:au2rides/features/redirection_screen/domain/repository/country_r
 import 'package:injectable/injectable.dart';
 
 @injectable
-class CountryUseCase implements UseCase<dynamic,void>{
+class CountryUseCase implements UseCase<dynamic,String>{
   final CountryRepository _countryRepository;
 
   CountryUseCase(this._countryRepository);
 
   @override
-   call({void param}) async {
-    final response = await _countryRepository.getCountries();
+   call({String? param}) async {
+    final response = await _countryRepository.getCountries(lang: param!);
     return response;
   }
 

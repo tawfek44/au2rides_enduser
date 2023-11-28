@@ -14,7 +14,12 @@ const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
 const enLanguageNumberCode = 56;
 const arLanguageNumberCode = 9;
+const String countryTableName = 'world_countries';
+const String languageTableName = 'languages';
+const String currencyTableName = 'currencies';
+const String tableDefinitionsTableName = 'tables_definitions';
 const allCountriesEndpoint = "/api/geolocations/v1.0/countries";
+const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 void showQrCodeDialog(BuildContext context) {
   showDialog(
       context: context,

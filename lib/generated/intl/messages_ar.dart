@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "downloadingText":
+            MessageLookupByLibrary.simpleMessage("تحميل بيانات ..."),
         "englishLanguageText":
             MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
@@ -45,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "سياسة الخصوصية وشروط الإستخدام"),
         "purchase": MessageLookupByLibrary.simpleMessage("شراء"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
-        "type": MessageLookupByLibrary.simpleMessage("النوع")
+        "type": MessageLookupByLibrary.simpleMessage("النوع"),
+        "wrongText": MessageLookupByLibrary.simpleMessage(
+            "هناك خطأ ما, تحقق من إتصالك بالإنترنت!")
       };
 }

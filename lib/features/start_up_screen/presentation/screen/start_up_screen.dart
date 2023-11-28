@@ -67,7 +67,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
       label: S.current.continueText,
       height: 40.h,
       onPressed: () {
-        NamedNavigatorImpl().push(Routes.redirectionScreenRoute);
+        NamedNavigatorImpl().push(Routes.splashScreenRoute);
       },
     ),
   );
@@ -78,7 +78,6 @@ class _StartUpScreenState extends State<StartUpScreen> {
           children: [
             CupertinoListTile(
               onTap: () {
-
                 NamedNavigatorImpl().push(Routes.languagesScreenRoute);
               },
               leading: Icon(

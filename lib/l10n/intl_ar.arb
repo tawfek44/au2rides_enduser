@@ -19,5 +19,7 @@
   "attachmentTitle": "المرفقات...",
   "notes": "ملاحظات",
   "search": "البحث",
-  "languages": "اللغات"
+  "languages": "اللغات",
+  "wrongText": "هناك خطأ ما, تحقق من إتصالك بالإنترنت!",
+  "downloadingText": "تحميل بيانات ..."
 }

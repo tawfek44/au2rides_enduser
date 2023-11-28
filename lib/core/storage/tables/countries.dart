@@ -1,4 +1,4 @@
-const String countryTableName = 'countries';
+
 
 class CountryFields {
   static const String countryId = "country_id";
