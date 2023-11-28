@@ -13,8 +13,8 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\debug\AndroidManifest.xml:6:5-66
-15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\debug\AndroidManifest.xml:6:22-64
+15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.WAKE_LOCK" />
 16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-68
 16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-65

@@ -14,7 +14,7 @@ const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
 const enLanguageNumberCode = 56;
 const arLanguageNumberCode = 9;
-const apiBaseUrl = 'http://fomoisreal-001-site3.btempurl.com/api/v1';
+const allCountriesEndpoint = "/api/geolocations/v1.0/countries";
 void showQrCodeDialog(BuildContext context) {
   showDialog(
       context: context,

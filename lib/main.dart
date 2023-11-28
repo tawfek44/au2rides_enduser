@@ -31,6 +31,7 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
+/*
 late var languageTableCount;
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);
@@ -58,6 +59,7 @@ Future main() async {
   }
   launchApp();
 }
+ */
 class _MyAppState extends State<MyApp> {
   String? packageName;
   double packageVersion = 0;

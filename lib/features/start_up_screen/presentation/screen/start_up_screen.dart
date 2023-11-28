@@ -67,7 +67,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
       label: S.current.continueText,
       height: 40.h,
       onPressed: () {
-        NamedNavigatorImpl().push(Routes.splashScreenRoute);
+        NamedNavigatorImpl().push(Routes.redirectionScreenRoute);
       },
     ),
   );
