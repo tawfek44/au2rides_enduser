@@ -24,4 +24,10 @@ class CountryRepositoryImpl extends CountryRepository{
     return response;
   }
 
+  @override
+  clearCountriesFromLocalDB({required String tableName}) async {
+    final response = await _countryDataSource.deleteAllCountriesInDatabase(tableName: tableName);
+    return response;
+  }
+
 }

@@ -20,21 +20,23 @@ import 'package:au2rides/features/language_screen/data/repositories/langauge_rep
 import 'package:au2rides/features/language_screen/domain/repositories/language_repository.dart'
     as _i17;
 import 'package:au2rides/features/language_screen/domain/use_cases/language_use_case.dart'
-    as _i24;
-import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart'
     as _i25;
+import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart'
+    as _i26;
 import 'package:au2rides/features/redirection_screen/data/datasources/country_datasource.dart'
     as _i7;
 import 'package:au2rides/features/redirection_screen/data/repositories/country_repository.dart'
     as _i9;
 import 'package:au2rides/features/redirection_screen/domain/repository/country_repository.dart'
     as _i8;
+import 'package:au2rides/features/redirection_screen/domain/usecase/clear_all_data_country_usecase.dart'
+    as _i23;
 import 'package:au2rides/features/redirection_screen/domain/usecase/country_usecase.dart'
     as _i10;
 import 'package:au2rides/features/redirection_screen/domain/usecase/save_country_usecase.dart'
     as _i20;
 import 'package:au2rides/features/redirection_screen/presentation/bloc/country_cubit.dart'
-    as _i23;
+    as _i24;
 import 'package:au2rides/features/splash_screen/data/datasources/check_primary_data_data_scource.dart'
     as _i3;
 import 'package:au2rides/features/splash_screen/data/datasources/isDownloaded_data_scource.dart'
@@ -102,14 +104,17 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i6.CheckPrimaryDataUseCase>(),
           gh<_i15.IsDownloadedUseCase>(),
         ));
-    gh.factory<_i23.CountryCubit>(() => _i23.CountryCubit(
+    gh.factory<_i23.ClearCountryUseCase>(
+        () => _i23.ClearCountryUseCase(gh<_i8.CountryRepository>()));
+    gh.factory<_i24.CountryCubit>(() => _i24.CountryCubit(
           gh<_i10.CountryUseCase>(),
           gh<_i20.SaveCountriesUseCase>(),
+          gh<_i23.ClearCountryUseCase>(),
         ));
-    gh.factory<_i24.GetLanguagesUseCase>(
-        () => _i24.GetLanguagesUseCase(gh<_i17.LanguageRepository>()));
-    gh.factory<_i25.LanguageCubit>(
-        () => _i25.LanguageCubit(gh<_i24.GetLanguagesUseCase>()));
+    gh.factory<_i25.GetLanguagesUseCase>(
+        () => _i25.GetLanguagesUseCase(gh<_i17.LanguageRepository>()));
+    gh.factory<_i26.LanguageCubit>(
+        () => _i26.LanguageCubit(gh<_i25.GetLanguagesUseCase>()));
     return this;
   }
 }

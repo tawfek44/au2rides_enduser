@@ -21,7 +21,6 @@ mixin _$CountryState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
     required TResult Function(Object e) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +29,6 @@ mixin _$CountryState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
     TResult? Function(Object e)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +37,6 @@ mixin _$CountryState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) =>
@@ -49,7 +46,6 @@ mixin _$CountryState {
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
     required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +54,6 @@ mixin _$CountryState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
     TResult? Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +62,6 @@ mixin _$CountryState {
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
@@ -133,7 +127,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
     required TResult Function(Object e) error,
   }) {
     return initial();
@@ -145,7 +138,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
     TResult? Function(Object e)? error,
   }) {
     return initial?.call();
@@ -157,7 +149,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -173,7 +164,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
     required TResult Function(Error value) error,
   }) {
     return initial(this);
@@ -185,7 +175,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
     TResult? Function(Error value)? error,
   }) {
     return initial?.call(this);
@@ -197,7 +186,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -253,7 +241,6 @@ class _$LoadingImpl implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
     required TResult Function(Object e) error,
   }) {
     return loading();
@@ -265,7 +252,6 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
     TResult? Function(Object e)? error,
   }) {
     return loading?.call();
@@ -277,7 +263,6 @@ class _$LoadingImpl implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -293,7 +278,6 @@ class _$LoadingImpl implements Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
     required TResult Function(Error value) error,
   }) {
     return loading(this);
@@ -305,7 +289,6 @@ class _$LoadingImpl implements Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
     TResult? Function(Error value)? error,
   }) {
     return loading?.call(this);
@@ -317,7 +300,6 @@ class _$LoadingImpl implements Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -400,7 +382,6 @@ class _$LoadedImpl implements Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
     required TResult Function(Object e) error,
   }) {
     return loaded(countriesResponse);
@@ -412,7 +393,6 @@ class _$LoadedImpl implements Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
     TResult? Function(Object e)? error,
   }) {
     return loaded?.call(countriesResponse);
@@ -424,7 +404,6 @@ class _$LoadedImpl implements Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -440,7 +419,6 @@ class _$LoadedImpl implements Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
     required TResult Function(Error value) error,
   }) {
     return loaded(this);
@@ -452,7 +430,6 @@ class _$LoadedImpl implements Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
     TResult? Function(Error value)? error,
   }) {
     return loaded?.call(this);
@@ -464,7 +441,6 @@ class _$LoadedImpl implements Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -482,126 +458,6 @@ abstract class Loaded implements CountryState {
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SavedInLocalDBImplCopyWith<$Res> {
-  factory _$$SavedInLocalDBImplCopyWith(_$SavedInLocalDBImpl value,
-          $Res Function(_$SavedInLocalDBImpl) then) =
-      __$$SavedInLocalDBImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SavedInLocalDBImplCopyWithImpl<$Res>
-    extends _$CountryStateCopyWithImpl<$Res, _$SavedInLocalDBImpl>
-    implements _$$SavedInLocalDBImplCopyWith<$Res> {
-  __$$SavedInLocalDBImplCopyWithImpl(
-      _$SavedInLocalDBImpl _value, $Res Function(_$SavedInLocalDBImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SavedInLocalDBImpl implements SavedInLocalDB {
-  const _$SavedInLocalDBImpl();
-
-  @override
-  String toString() {
-    return 'CountryState.savedInLocalDB()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SavedInLocalDBImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
-    required TResult Function(Object e) error,
-  }) {
-    return savedInLocalDB();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
-    TResult? Function(Object e)? error,
-  }) {
-    return savedInLocalDB?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
-    TResult Function(Object e)? error,
-    required TResult orElse(),
-  }) {
-    if (savedInLocalDB != null) {
-      return savedInLocalDB();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
-    required TResult Function(Error value) error,
-  }) {
-    return savedInLocalDB(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
-    TResult? Function(Error value)? error,
-  }) {
-    return savedInLocalDB?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
-    TResult Function(Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (savedInLocalDB != null) {
-      return savedInLocalDB(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SavedInLocalDB implements CountryState {
-  const factory SavedInLocalDB() = _$SavedInLocalDBImpl;
 }
 
 /// @nodoc
@@ -669,7 +525,6 @@ class _$ErrorImpl implements Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic countriesResponse) loaded,
-    required TResult Function() savedInLocalDB,
     required TResult Function(Object e) error,
   }) {
     return error(e);
@@ -681,7 +536,6 @@ class _$ErrorImpl implements Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic countriesResponse)? loaded,
-    TResult? Function()? savedInLocalDB,
     TResult? Function(Object e)? error,
   }) {
     return error?.call(e);
@@ -693,7 +547,6 @@ class _$ErrorImpl implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic countriesResponse)? loaded,
-    TResult Function()? savedInLocalDB,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -709,7 +562,6 @@ class _$ErrorImpl implements Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Loaded value) loaded,
-    required TResult Function(SavedInLocalDB value) savedInLocalDB,
     required TResult Function(Error value) error,
   }) {
     return error(this);
@@ -721,7 +573,6 @@ class _$ErrorImpl implements Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Loaded value)? loaded,
-    TResult? Function(SavedInLocalDB value)? savedInLocalDB,
     TResult? Function(Error value)? error,
   }) {
     return error?.call(this);
@@ -733,7 +584,6 @@ class _$ErrorImpl implements Error {
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Loaded value)? loaded,
-    TResult Function(SavedInLocalDB value)? savedInLocalDB,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {

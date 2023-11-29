@@ -16,7 +16,7 @@ class IsDownloadedImpl extends IsDownloadedRepository {
   @override
   isDownloaded({required String tableName}) async {
     final response = await isDownloadedDataSource.isDownloaded(
-        tableName: tableName, where: 'language_name= ${getIt<UserRepository>().userLanguage}');
+        tableName: tableName, where: 'language_code = ?',whereArgs: [getIt<UserRepository>().userLanguage]);
     return response;
   }
 }

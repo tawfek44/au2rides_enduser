@@ -3,6 +3,7 @@ import 'package:au2rides/features/language_screen/domain/entities/language_entit
 import 'package:au2rides/features/language_screen/domain/repositories/language_repository.dart';
 import 'package:au2rides/features/language_screen/domain/use_cases/language_use_case.dart';
 import 'package:au2rides/features/redirection_screen/domain/entity/country_entity.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/clear_all_data_country_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/country_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/save_country_usecase.dart';
 import 'package:bloc/bloc.dart';
@@ -17,11 +18,14 @@ part 'country_cubit.freezed.dart';
 
 @injectable
 class CountryCubit extends Cubit<CountryState> {
-  CountryCubit(this.countryUseCase,this.saveCountryUseCase) : super(const CountryState.initial());
+  CountryCubit(
+      this.countryUseCase, this.saveCountryUseCase, this.clearCountryUseCase)
+      : super(const CountryState.initial());
   CountryUseCase countryUseCase;
   SaveCountriesUseCase saveCountryUseCase;
+  ClearCountryUseCase clearCountryUseCase;
 
-   getAllCountries({required String lang}) async {
+  getAllCountries({required String lang}) async {
     try {
       emit(const CountryState.loading());
       final response = await countryUseCase(param: lang);
@@ -34,12 +38,21 @@ class CountryCubit extends Cubit<CountryState> {
       emit(CountryState.error(e));
     }
   }
+
   saveCountriesInLocalDatabase({required dynamic values}) async {
     try {
       await saveCountryUseCase(param: values);
-      emit(const CountryState.savedInLocalDB());
+      //emit(const CountryState.savedInLocalDB());
     } catch (e) {
       emit(CountryState.error(e));
+    }
+  }
+
+  clearCountriesInLocalDatabase({required String tableName}) async {
+    try {
+      await clearCountryUseCase(param: tableName);
+    } catch (e) {
+      print(e);
     }
   }
 }

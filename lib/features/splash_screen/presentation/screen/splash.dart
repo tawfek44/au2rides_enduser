@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:au2rides/core/network_state/network_state.dart';
+import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/local/sqlite.dart';
+import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:au2rides/features/splash_screen/presentation/bloc/check_primary_data_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,30 +14,42 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
-
+import '../../../../generated/l10n.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key, required this.networkInfo});
+  const SplashScreen(
+      {super.key, required this.networkInfo, required this.userRepository});
+
   final NetworkInfo networkInfo;
+  final UserRepository userRepository;
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool continueFlag = false;
+  bool continueFlag = true;
+
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     checkPrimaryData();
-
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: createStateBlock(),
+      body: continueFlag==false ? errorWidget() : createStateBlock(),
     );
   }
+
+  Widget errorWidget() => Center(
+        child: AppText(
+          text: S.current.wrongText,
+          fontSize: fontSize,
+        ),
+      );
 
   Widget createLogo(BuildContext context) {
     return SizedBox(
@@ -48,12 +62,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget createStateBlock() {
-    return  Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         createLogo(context),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 20.h,horizontal: 80.w),
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 80.w),
           child: const LinearProgressIndicator(),
         )
       ],
@@ -61,31 +75,61 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   checkPrimaryData() async {
-    if(await widget.networkInfo.isConnected){
-      var responseBody = await Au2ridesDatabase.instance.getAllDate(tableName: tableDefinitionsTableName);
-      List<dynamic>list =  responseBody
+    if (await widget.networkInfo.isConnected) {
+      var responseBody = await Au2ridesDatabase.instance
+          .getAllDate(tableName: tableDefinitionsTableName);
+      List<dynamic> list = responseBody
           .cast<Map<String, dynamic>>()
           .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
           .toList();
-      final response = await context.read<CheckPrimaryDataCubit>().checkPrimaryData(values: list);
-      var x= 4;
-    }
-    else{
-      final isDownloaded  = await context.read<CheckPrimaryDataCubit>().isDownloaded();
-      if(isDownloaded == true){
-        setState(() {
-          continueFlag = true;
+      context
+          .read<CheckPrimaryDataCubit>()
+          .checkPrimaryData(values: list)
+          .then((value) {
+        final response = value
+            .cast<Map<String, dynamic>>()
+            .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
+            .toList();
+        if (response.length > 0) {
+          NamedNavigatorImpl().push(Routes.downloadScreen, arguments: response);
+        } else {
           Timer(const Duration(seconds: 2), () {
-            NamedNavigatorImpl().push(Routes.loginScreenRoute,clean: true);
+            widget.userRepository.setFirstTimeOpenApp(true);
+            NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
           });
-        });
-      }
-      else{
-        setState(() {
-          continueFlag = false;
-        });
-      }
+        }
+      });
+    } else {
+      await context
+          .read<CheckPrimaryDataCubit>()
+          .isDownloaded()
+          .then((value)  {
+                for(var langRow in value){
+                  if (langRow["language_code"] == widget.userRepository.userLanguage && langRow["is_downloaded"] == 1)
+                  {
+                    continueFlag = true;
+                      break;
+                  }
+                  else {
+                    continueFlag = false;
+                  }
+                }
+                if(continueFlag){
+                  setState(() {
+                    Timer(const Duration(seconds: 2), () {
+                      widget.userRepository.setFirstTimeOpenApp(true);
+                      NamedNavigatorImpl()
+                          .push(Routes.loginScreenRoute, clean: true);
+                    });
+                  });
+                }
+                else{
+                  setState(() {
+                    continueFlag = false;
+
+                  });
+                }
+              });
     }
   }
 }
-

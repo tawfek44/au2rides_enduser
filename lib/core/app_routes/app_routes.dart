@@ -74,9 +74,11 @@ class NamedNavigatorImpl implements NamedNavigator {
     switch (settings.name) {
       case Routes.splashScreenRoute:
         return MaterialPageRoute(
-            builder: (_) =>  Directionality(
+            builder: (_) => Directionality(
                   textDirection: TextDirection.ltr,
-                  child: SplashScreen(networkInfo: getIt<NetworkInfo>()),
+                  child: SplashScreen(
+                      networkInfo: getIt<NetworkInfo>(),
+                      userRepository: getIt<UserRepository>()),
                 ));
       case Routes.otpScreenRoute:
         return MaterialPageRoute(
@@ -424,10 +426,13 @@ class NamedNavigatorImpl implements NamedNavigator {
                 ));
       case Routes.downloadScreen:
         return MaterialPageRoute(
-            builder: (_) =>  Directionality(
+            builder: (_) => Directionality(
                   textDirection: TextDirection.ltr,
                   child: DownloadScreen(
-                      userRepository: getIt<UserRepository>()),
+                    userRepository: getIt<UserRepository>(),
+                    tablesNames: settings.arguments,
+                    networkInfo: getIt<NetworkInfo>(),
+                  ),
                 ));
       /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

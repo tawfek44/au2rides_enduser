@@ -98,9 +98,22 @@ class Au2ridesDatabase{
     return data;
   }
 
-  Future getLanguagesIsDownloaded({required String tableName,required String where}) async {
+  Future getLanguagesIsDownloaded({required String tableName,required String where,required whereArgs}) async {
   Database db = await instance.database;
-  var data = await db.query(tableName,where:where );
+  var data = await db.query(tableName,where:where,whereArgs: whereArgs);
+  return data;
+}
+Future clearAllData({required String tableName}) async {
+  Database db = await instance.database;
+  var data = await db.delete(tableName);
+  return data;
+}
+Future updateData({required String tableName,required String queryText,required values}) async {
+  Database db = await instance.database;
+  var data = await db.rawUpdate('''
+    UPDATE $tableName 
+    $queryText
+    ''',values);
   return data;
 }
   Future closeDB() async{

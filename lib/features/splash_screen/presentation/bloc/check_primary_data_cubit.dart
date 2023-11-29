@@ -18,26 +18,20 @@ class CheckPrimaryDataCubit extends Cubit<CheckPrimaryDataState> {
   CheckPrimaryDataUseCase checkPrimaryDataUseCase;
   IsDownloadedUseCase isDownloadedUseCase;
 
-  checkPrimaryData({required List<dynamic> values}) async {
+  Future checkPrimaryData({required List<dynamic> values}) async {
     try {
       emit(const CheckPrimaryDataState.loading());
       final response = await checkPrimaryDataUseCase(param: values,);
-      emit(CheckPrimaryDataState.loaded(response.data
-          .cast<Map<String, dynamic>>()
-          .map((e) => CheckPrimaryDataModel.fromJson(e))
-          .toList()));
-      return response.data
-          .cast<Map<String, dynamic>>()
-          .map((e) => CheckPrimaryDataModel.fromJson(e))
-          .toList();
+      emit(CheckPrimaryDataState.loaded(response.data));
+      return response.data;
     } catch (e) {
       emit(CheckPrimaryDataState.error(e));
     }
   }
-  isDownloaded() async {
+  Future isDownloaded() async {
     try {
       final response = await isDownloadedUseCase(param: languageTableName);
-      return response.data;
+      return response;
     } catch (e) {
      print(e);
     }
