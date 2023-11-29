@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:bloc/bloc.dart';
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
@@ -41,25 +41,28 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.initState();
   }
 
-  Future<void> downloadPrimaryData() async {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  Future downloadPrimaryData() async {
     if (await widget.networkInfo.isConnected) {
       for (var table in widget.tablesNames) {
         switch (table.tableName) {
           case countryTableName:
-            await context
-                .read<CountryCubit>()
-                .clearCountriesInLocalDatabase(tableName: table.tableName);
-            await context
-                .read<CountryCubit>()
-                .getAllCountries(lang: widget.userRepository.userLanguage);
-            return;
+            downloadPrimaryDataForCountryTable(table: table);
+            break;
+          case currencyTableName:
+            downloadPrimaryDataForCurrencyTable(table: table);
+            break;
         }
+        await context.read<CountryCubit>().updateUserLanguageTable(
+            appLanguage: widget.userRepository.userLanguage);
       }
-
-      //update definitions table
-      //update language table (isDownloaded)
     } else {}
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +78,6 @@ class _DownloadScreenState extends State<DownloadScreen> {
                   .map((e) => CountryModel.fromJson(e))
                   .toList();
               saveCountriesInDatabase(response: response).then((value) {
-                Au2ridesDatabase.instance.updateData(
-                    tableName: languageTableName,
-                    queryText: " SET is_downloaded = ? WHERE language_code = ?",
-                    values: [1, widget.userRepository.userLanguage]);
                 redirectToSplashScreen();
               });
               return createStateBlock();
@@ -104,7 +103,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     widget.userRepository.setFirstTimeOpenApp(false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Timer(const Duration(seconds: 5), () {
-        //  NamedNavigatorImpl().push(Routes.splashScreenRoute,clean: true);
+        //NamedNavigatorImpl().push(Routes.splashScreenRoute);
         NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
       });
     });
@@ -139,5 +138,34 @@ class _DownloadScreenState extends State<DownloadScreen> {
       await context.read<CountryCubit>().saveCountriesInLocalDatabase(
           values: (element as CountryModel).toJson());
     }
+  }
+
+  Future downloadPrimaryDataForCountryTable({required table}) async {
+    await context
+        .read<CountryCubit>()
+        .clearCountriesInLocalDatabase(tableName: table.tableName);
+    await context
+        .read<CountryCubit>()
+        .getAllCountries(lang: widget.userRepository.userLanguage);
+    await context
+        .read<CountryCubit>()
+        .updateTableDefinitionTable(table: table);
+  }
+
+  Future downloadPrimaryDataForCurrencyTable({required table}) async {
+    await context
+        .read<CountryCubit>()
+        .clearCurrenciesInLocalDatabase(tableName: table.tableName);
+    await context
+        .read<CountryCubit>()
+        .getAllCurrenciesFromNetworkDB(appLang: widget.userRepository.userLanguage).then((value) {
+          //save currency in local DB
+    });
+
+    await context
+        .read<CountryCubit>()
+        .updateTableDefinitionTable(table: table);
+
+    var x= 0;
   }
 }

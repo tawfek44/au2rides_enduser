@@ -5,11 +5,15 @@ import 'package:au2rides/features/language_screen/domain/use_cases/language_use_
 import 'package:au2rides/features/redirection_screen/domain/entity/country_entity.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/clear_all_data_country_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/country_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/currency_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/get_all_currencies_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/save_country_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/local/sqlite.dart';
 import '../../data/models/country_model.dart';
 
 part 'country_state.dart';
@@ -19,11 +23,17 @@ part 'country_cubit.freezed.dart';
 @injectable
 class CountryCubit extends Cubit<CountryState> {
   CountryCubit(
-      this.countryUseCase, this.saveCountryUseCase, this.clearCountryUseCase)
+      this.countryUseCase,
+      this.saveCountryUseCase,
+      this.clearCountryUseCase,
+      this.clearCurrencyUseCase,
+      this.getAllCurrencyUseCase)
       : super(const CountryState.initial());
   CountryUseCase countryUseCase;
   SaveCountriesUseCase saveCountryUseCase;
   ClearCountryUseCase clearCountryUseCase;
+  ClearCurrencyUseCase clearCurrencyUseCase;
+  GetAllCurrencyUseCase getAllCurrencyUseCase;
 
   getAllCountries({required String lang}) async {
     try {
@@ -39,7 +49,36 @@ class CountryCubit extends Cubit<CountryState> {
     }
   }
 
-  saveCountriesInLocalDatabase({required dynamic values}) async {
+  Future updateUserLanguageTable({required appLanguage}) async {
+    try {
+      await Au2ridesDatabase.instance.updateData(
+          queryText:
+              "UPDATE $languageTableName SET is_downloaded = ? WHERE language_code = ?",
+          values: [true, appLanguage]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future updateTableDefinitionTable({required table}) async {
+    try {
+      await Au2ridesDatabase.instance.updateData(
+          queryText:
+              "UPDATE $tableDefinitionsTableName SET table_id = ?, table_name = ?, language_id = ?, schema_version = ?, data_version = ? WHERE table_name = ?",
+          values: [
+            table.tableId,
+            table.tableName,
+            table.languageId,
+            table.schemaVersion,
+            table.dataVersion,
+            table.tableName
+          ]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future saveCountriesInLocalDatabase({required dynamic values}) async {
     try {
       await saveCountryUseCase(param: values);
       //emit(const CountryState.savedInLocalDB());
@@ -48,9 +87,25 @@ class CountryCubit extends Cubit<CountryState> {
     }
   }
 
-  clearCountriesInLocalDatabase({required String tableName}) async {
+  Future clearCountriesInLocalDatabase({required String tableName}) async {
     try {
       await clearCountryUseCase(param: tableName);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future clearCurrenciesInLocalDatabase({required String tableName}) async {
+    try {
+      await clearCurrencyUseCase(param: tableName);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future getAllCurrenciesFromNetworkDB({required String appLang}) async {
+    try {
+      return await getAllCurrencyUseCase(param: appLang);
     } catch (e) {
       print(e);
     }

@@ -49,7 +49,7 @@ class Au2ridesDatabase{
     ${LanguageFields.languageCode} $textType,
     ${LanguageFields.languageName} $textType,
     ${LanguageFields.directionality} $textType,
-    ${LanguageFields.isDownloaded} $boolType
+    ${LanguageFields.isDownloaded} $intType
     )
     ''');
 
@@ -108,10 +108,9 @@ Future clearAllData({required String tableName}) async {
   var data = await db.delete(tableName);
   return data;
 }
-Future updateData({required String tableName,required String queryText,required values}) async {
+Future updateData({required String queryText, values}) async {
   Database db = await instance.database;
   var data = await db.rawUpdate('''
-    UPDATE $tableName 
     $queryText
     ''',values);
   return data;

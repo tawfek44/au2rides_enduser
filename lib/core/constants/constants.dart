@@ -19,6 +19,7 @@ const String languageTableName = 'languages';
 const String currencyTableName = 'currencies';
 const String tableDefinitionsTableName = 'tables_definitions';
 const allCountriesEndpoint = "/api/geolocations/v1.0/countries";
+const allCurrenciesEndPoint = "/api/currencies/v1.0";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 void showQrCodeDialog(BuildContext context) {
   showDialog(
