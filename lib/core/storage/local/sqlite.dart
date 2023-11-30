@@ -68,7 +68,6 @@ class Au2ridesDatabase{
     await db.execute('''
     CREATE TABLE $currencyTableName (
     ${CurrencyFields.currencyId} $idType,
-    ${CurrencyFields.languageId} $intType,
     ${CurrencyFields.currencyCode} $textType,
     ${CurrencyFields.currencyName} $textType,
     ${CurrencyFields.currencyImageUrl} $textType

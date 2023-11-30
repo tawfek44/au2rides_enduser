@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:au2rides/features/redirection_screen/data/models/currency_model.dart';
+import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
@@ -7,7 +9,7 @@ import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/local/sqlite.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/redirection_screen/domain/entity/country_entity.dart';
-import 'package:au2rides/features/redirection_screen/presentation/bloc/country_cubit.dart';
+import 'package:au2rides/features/redirection_screen/presentation/bloc/country_cubit/country_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,7 @@ import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/app_circular_indicator.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country_model.dart';
+import '../bloc/currency_cubit/currency_cubit.dart';
 
 class DownloadScreen extends StatefulWidget {
   const DownloadScreen(
@@ -144,9 +147,12 @@ class _DownloadScreenState extends State<DownloadScreen> {
     await context
         .read<CountryCubit>()
         .clearCountriesInLocalDatabase(tableName: table.tableName);
-    await context
+     await context
         .read<CountryCubit>()
-        .getAllCountries(lang: widget.userRepository.userLanguage);
+        .getAllCountries(lang: widget.userRepository.userLanguage).then((value) {
+       saveCountriesInDatabase(response: value);
+     });
+
     await context
         .read<CountryCubit>()
         .updateTableDefinitionTable(table: table);
@@ -154,18 +160,23 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future downloadPrimaryDataForCurrencyTable({required table}) async {
     await context
-        .read<CountryCubit>()
+        .read<CurrencyCubit>()
         .clearCurrenciesInLocalDatabase(tableName: table.tableName);
     await context
-        .read<CountryCubit>()
-        .getAllCurrenciesFromNetworkDB(appLang: widget.userRepository.userLanguage).then((value) {
+        .read<CurrencyCubit>()
+        .getAllCurrenciesFromNetworkDB(appLang: widget.userRepository.userLanguage).then((value) async {
           //save currency in local DB
+      value = value.data.cast<Map<String, dynamic>>()
+          .map((e) => CurrencyModel.fromJson(e))
+          .toList();
+      for(var element in value){
+       final response = await  context.read<CurrencyCubit>().saveAllCurrenciesInLocalDB(tableName: table.tableName, values: (element as CurrencyModel).toJson());
+     var x=0;
+      }
     });
 
     await context
         .read<CountryCubit>()
         .updateTableDefinitionTable(table: table);
-
-    var x= 0;
   }
 }

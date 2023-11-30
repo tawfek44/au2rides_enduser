@@ -3,5 +3,5 @@ import 'package:au2rides/features/redirection_screen/domain/entity/country_entit
 abstract class CurrencyRepository{
   getCurrencies({required String lang});
   clearCurrenciesFromLocalDB({required String tableName});
-  //saveCountriesInLocalDatabase({required dynamic values});
+  saveCurrenciesInLocalDatabase({required String tableName,required dynamic values});
 }

@@ -27,6 +27,12 @@ class CurrencyRepositoryImpl extends CurrencyRepository{
     return response;
   }
 
+  @override
+  saveCurrenciesInLocalDatabase({required String tableName,required values}) async {
+    final response = await _currencyDataSource.saveAllCurrencyInDatabase(tableName: tableName, values: values);
+    return response;
+  }
+
 
 
 }

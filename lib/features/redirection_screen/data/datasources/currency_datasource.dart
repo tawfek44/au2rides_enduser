@@ -15,5 +15,9 @@ class CurrencyDataSource{
      final response = await DioClient().fetchData(endPoint: allCurrenciesEndPoint, lang: lang);
      return response;
    }
+   saveAllCurrencyInDatabase({required String tableName,required values}) async {
+     final response = await Au2ridesDatabase.instance.insert(tableName:tableName,values: values);
+     return response;
+   }
 
 }

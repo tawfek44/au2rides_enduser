@@ -1,9 +1,9 @@
 class CurrencyFields {
   static const String currencyId = "currency_id";
-  static const String languageId = "language_id";
+  //static const String languageId = "language_id";
   static const String currencyName = "currency_name";
   static const String currencyCode = "currency_code";
-  static const String currencyImageUrl = "currency_image_url";
+  static const String currencyImageUrl = "image_url";
 }
 
 class Currency {
@@ -22,7 +22,7 @@ class Currency {
 
   Map<String, Object> toJson() => {
     CurrencyFields.currencyId: currencyId,
-    CurrencyFields.languageId: languageId,
+    //CurrencyFields.languageId: languageId,
     CurrencyFields.currencyCode: currencyCode,
     CurrencyFields.currencyName: currencyName,
     CurrencyFields.currencyImageUrl:currencyImageUrl
