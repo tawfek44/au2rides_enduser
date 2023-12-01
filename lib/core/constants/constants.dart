@@ -18,9 +18,20 @@ const String countryTableName = 'world_countries';
 const String languageTableName = 'languages';
 const String currencyTableName = 'currencies';
 const String tableDefinitionsTableName = 'tables_definitions';
-const allCountriesEndpoint = "/api/geolocations/v1.0/countries";
+const String userGenderTableName = 'user_genders';
+const String weatherMeasuringUnitsTableName = 'weather_measuring_units';
+const String rideTypesTableName = 'ride_types';
+const String paymentMethodTableName = 'payment_methods';
 const allCurrenciesEndPoint = "/api/currencies/v1.0";
+const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
+Widget errorWidget() => Center(
+  child: AppText(
+    text: S.current.wrongText,
+    fontSize: fontSize,
+  ),
+);
+
 void showQrCodeDialog(BuildContext context) {
   showDialog(
       context: context,

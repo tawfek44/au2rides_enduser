@@ -1,16 +1,13 @@
-import 'package:au2rides/features/redirection_screen/domain/usecase/clear_all_data_country_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/country_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/currency_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/get_all_currencies_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/save_country_usecase.dart';
+
+import 'package:au2rides/features/redirection_screen/domain/usecase/currency/currency_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/constants/constants.dart';
-import '../../../../../core/storage/local/sqlite.dart';
-import '../../../data/models/country_model.dart';
-import '../../../domain/usecase/save_currencies_in_local_db_usecase.dart';
+import '../../../../splash_screen/data/models/check_primary_data_body_model.dart';
+import '../../../data/models/currency/currency_model.dart';
+import '../../../domain/usecase/currency/get_all_currencies_usecase.dart';
+import '../../../domain/usecase/currency/save_currencies_in_local_db_usecase.dart';
 
 part 'currency_state.dart';
 
@@ -36,9 +33,15 @@ class CurrencyCubit extends Cubit<CurrencyState> {
     }
   }
 
-  Future getAllCurrenciesFromNetworkDB({required String appLang}) async {
+  Future getAllCurrenciesFromNetworkDB({required String appLang,required tableDefinitions}) async {
     try {
-      return await getAllCurrencyUseCase(param: appLang);
+      tableDefinitions = (tableDefinitions as CheckPrimaryDataBodyModel).toJson();
+
+      final response = await getAllCurrencyUseCase(param: [appLang,tableDefinitions]);
+      return response.data["data_rows"]
+          .cast<Map<String, dynamic>>()
+          .map((e) => CurrencyModel.fromJson(e))
+          .toList();
     } catch (e) {
       print(e);
     }

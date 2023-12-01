@@ -1,21 +1,15 @@
-import 'package:au2rides/core/resources/data_state.dart';
-import 'package:au2rides/features/language_screen/domain/entities/language_entity.dart';
-import 'package:au2rides/features/language_screen/domain/repositories/language_repository.dart';
-import 'package:au2rides/features/language_screen/domain/use_cases/language_use_case.dart';
-import 'package:au2rides/features/redirection_screen/domain/entity/country_entity.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/clear_all_data_country_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/country_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/currency_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/get_all_currencies_usecase.dart';
-import 'package:au2rides/features/redirection_screen/domain/usecase/save_country_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/country/clear_all_data_country_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/country/country_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/currency/currency_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/country/save_country_usecase.dart';
+import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/storage/local/sqlite.dart';
-import '../../../data/models/country_model.dart';
-import '../../../domain/usecase/save_currencies_in_local_db_usecase.dart';
+import '../../../data/models/country/country_model.dart';
 
 part 'country_state.dart';
 
@@ -27,23 +21,20 @@ class CountryCubit extends Cubit<CountryState> {
       this.countryUseCase,
       this.saveCountryUseCase,
       this.clearCountryUseCase,
-      this.clearCurrencyUseCase,
-      this.getAllCurrencyUseCase,
-      this.saveCurrenciesInLocalDbUseCase)
+      this.clearCurrencyUseCase,)
       : super(const CountryState.initial());
   CountryUseCase countryUseCase;
   SaveCountriesUseCase saveCountryUseCase;
   ClearCountryUseCase clearCountryUseCase;
   ClearCurrencyUseCase clearCurrencyUseCase;
-  GetAllCurrencyUseCase getAllCurrencyUseCase;
-  SaveCurrenciesInLocalDbUseCase saveCurrenciesInLocalDbUseCase;
 
-  Future getAllCountries({required String lang}) async {
+  Future getAllCountries({required String lang,required tableDefinitions}) async {
     try {
       emit(const CountryState.loading());
-      final response = await countryUseCase(param: lang);
+      tableDefinitions = (tableDefinitions as CheckPrimaryDataBodyModel).toJson();
+      final response = await countryUseCase(param: [lang,tableDefinitions]);
       emit(CountryState.loaded(response));
-      return response.data
+      return response.data["data_rows"]
           .cast<Map<String, dynamic>>()
           .map((e) => CountryModel.fromJson(e))
           .toList();

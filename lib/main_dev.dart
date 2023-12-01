@@ -12,8 +12,16 @@ import 'core/storage/local/sqlite.dart';
 import 'main.dart';
 
 late var languageTableCount;
-
+List<String> tableNames = [
+  countryTableName,
+  currencyTableName,
+  userGenderTableName,
+  weatherMeasuringUnitsTableName,
+  rideTypesTableName,
+  paymentMethodTableName
+];
 Future main() async {
+
   AppEnvironment.setUpEnv(Environment.dev);
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();
@@ -48,24 +56,15 @@ Future main() async {
 insertTableNamesInTablesDefinitions(
     {required Au2ridesDatabase databaseObject}) {
 
-
-  databaseObject.insert(
-      tableName: tableDefinitionsTableName,
-      values: TableDefinitions(
-          tableId: 1,
-          tableName: countryTableName,
-          languageId: getIt<UserRepository>().userLanguage=="ar"?9:56,
-          schemaVersion: 1,
-          dataVersion: 0).toJson());
-
-
-  databaseObject.insert(
-      tableName: tableDefinitionsTableName,
-      values: TableDefinitions(
-          tableId: 2,
-          tableName: currencyTableName,
-          languageId: getIt<UserRepository>().userLanguage=="ar"?9:56,
-          schemaVersion: 1,
-          dataVersion: 0).toJson());
-
+  for(var i=0;i<tableNames.length;i++){
+    databaseObject.insert(
+        tableName: tableDefinitionsTableName,
+        values: TableDefinitions(
+            tableId: i+1,
+            tableName: tableNames[i],
+            languageId: getIt<UserRepository>().userLanguage == "ar" ? 9 : 56,
+            schemaVersion: 1,
+            dataVersion: 0)
+            .toJson());
+  }
 }

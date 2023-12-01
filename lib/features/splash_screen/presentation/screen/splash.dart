@@ -44,12 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Widget errorWidget() => Center(
-        child: AppText(
-          text: S.current.wrongText,
-          fontSize: fontSize,
-        ),
-      );
+
 
   Widget createLogo(BuildContext context) {
     return SizedBox(
@@ -94,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
           NamedNavigatorImpl().push(Routes.downloadScreen, arguments: response);
         } else {
           Timer(const Duration(seconds: 2), () {
-            widget.userRepository.setFirstTimeOpenApp(true);
+            widget.userRepository.setFirstTimeOpenApp(false);
             NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
           });
         }
@@ -117,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 if(continueFlag){
                   setState(() {
                     Timer(const Duration(seconds: 2), () {
-                      widget.userRepository.setFirstTimeOpenApp(true);
+                      widget.userRepository.setFirstTimeOpenApp(false);
                       NamedNavigatorImpl()
                           .push(Routes.loginScreenRoute, clean: true);
                     });

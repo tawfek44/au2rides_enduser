@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../constants/constants.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/user_gender.dart';
 
 class Au2ridesDatabase{
   static final Au2ridesDatabase instance = Au2ridesDatabase._init();
@@ -71,6 +72,15 @@ class Au2ridesDatabase{
     ${CurrencyFields.currencyCode} $textType,
     ${CurrencyFields.currencyName} $textType,
     ${CurrencyFields.currencyImageUrl} $textType
+    )
+    ''');
+
+    //gender
+    await db.execute('''
+    CREATE TABLE $userGenderTableName (
+    ${GenderFields.genderId} $idType,
+    ${GenderFields.languageId} $intType,
+    ${GenderFields.genderName} $textType
     )
     ''');
 

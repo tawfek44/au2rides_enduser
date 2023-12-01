@@ -6,18 +6,26 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
 
 @injectable
-class CurrencyDataSource{
-   deleteAllCurrencyInDatabase({required String tableName}) async {
-     final response = await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
-     return response;
-   }
-   getAllCurrencyFromNetworkDatabase({required String lang}) async {
-     final response = await DioClient().fetchData(endPoint: allCurrenciesEndPoint, lang: lang);
-     return response;
-   }
-   saveAllCurrencyInDatabase({required String tableName,required values}) async {
-     final response = await Au2ridesDatabase.instance.insert(tableName:tableName,values: values);
-     return response;
-   }
+class CurrencyDataSource {
+  deleteAllCurrencyInDatabase({required String tableName}) async {
+    final response =
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+    return response;
+  }
 
+  getAllCurrencyFromNetworkDatabase(
+      {required String lang, required tableDefinitions}) async {
+    final response = await DioClient().fetchPrimaryData(
+        endPoint: downloadPrimaryDataEndPoint,
+        lang: lang,
+        tableDefinitions: tableDefinitions);
+    return response;
+  }
+
+  saveAllCurrencyInDatabase(
+      {required String tableName, required values}) async {
+    final response = await Au2ridesDatabase.instance
+        .insert(tableName: tableName, values: values);
+    return response;
+  }
 }
