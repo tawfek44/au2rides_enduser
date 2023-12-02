@@ -2,6 +2,7 @@ import 'package:au2rides/features/redirection_screen/data/models/user_gender/use
 import 'package:au2rides/features/redirection_screen/domain/usecase/currency/currency_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/gender/clear_gender_local_usecase.dart';
 import 'package:au2rides/features/redirection_screen/domain/usecase/gender/download_gender_network_usecase.dart';
+import 'package:au2rides/features/redirection_screen/domain/usecase/gender/save_gender_data_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -17,10 +18,12 @@ part 'gender_cubit.freezed.dart';
 
 @injectable
 class GenderCubit extends Cubit<GenderState> {
-  GenderCubit(this.clearGenderUseCase, this.downloadGenderUseCase)
+  GenderCubit(this.clearGenderUseCase, this.downloadGenderUseCase,
+      this.saveGenderDataInLocalDb)
       : super(const GenderState.initial());
   final ClearGenderUseCase clearGenderUseCase;
   final DownloadGenderUseCase downloadGenderUseCase;
+  final SaveGenderDataInLocalDb saveGenderDataInLocalDb;
 
   Future clearGenderInLocalDatabase({required String tableName}) async {
     try {
@@ -46,14 +49,15 @@ class GenderCubit extends Cubit<GenderState> {
       print(e);
     }
   }
-/*
-  Future saveAllCurrenciesInLocalDB({required String tableName,required values}) async {
+
+  Future saveGenderDataInLocalDB(
+      {required String tableName, required values}) async {
     try {
-      final response =await saveCurrenciesInLocalDbUseCase(param: [tableName,values]);
+      final response =
+          await saveGenderDataInLocalDb(param: [tableName,values],);
       return response;
     } catch (e) {
       print(e);
     }
   }
-*/
 }

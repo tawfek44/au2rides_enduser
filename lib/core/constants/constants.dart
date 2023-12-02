@@ -22,7 +22,6 @@ const String userGenderTableName = 'user_genders';
 const String weatherMeasuringUnitsTableName = 'weather_measuring_units';
 const String rideTypesTableName = 'ride_types';
 const String paymentMethodTableName = 'payment_methods';
-const allCurrenciesEndPoint = "/api/currencies/v1.0";
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 Widget errorWidget() => Center(

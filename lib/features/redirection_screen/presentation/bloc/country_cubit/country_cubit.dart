@@ -48,7 +48,7 @@ class CountryCubit extends Cubit<CountryState> {
       await Au2ridesDatabase.instance.updateData(
           queryText:
               "UPDATE $languageTableName SET is_downloaded = ? WHERE language_code = ?",
-          values: [true, appLanguage]);
+          values: [1, appLanguage]);
     } catch (e) {
       print(e);
     }

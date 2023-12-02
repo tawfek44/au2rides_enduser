@@ -30,4 +30,10 @@ class GenderRepositoryImpl extends GenderRepository {
     final response = await _genderDataSource.downloadAllGenderDataFromNetworkDb(tableDefinitions: tableDefinitions,appLang: appLang);
     return response;
   }
+
+  @override
+  saveGenderDataInLocalDB({required values, required tableName}) async {
+    final response = await _genderDataSource.saveGenderDataInLocalDb(tableName: tableName,values: values);
+    return response;
+  }
 }

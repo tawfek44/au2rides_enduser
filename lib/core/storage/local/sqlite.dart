@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
+import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../constants/constants.dart';
@@ -30,7 +31,6 @@ class Au2ridesDatabase{
     const idType ="INTEGER PRIMARY KEY";
     const intType = "INTEGER NOT NULL";
     const textType ="TEXT NOT NULL";
-    const boolType ="BOOLEAN NOT NULL";
 
     //Table Definition
     await db.execute('''
@@ -83,8 +83,17 @@ class Au2ridesDatabase{
     ${GenderFields.genderName} $textType
     )
     ''');
-
-
+    //weather_measuring_units;
+    await db.execute('''
+    CREATE TABLE $weatherMeasuringUnitsTableName (
+    ${WeatherMeasuringUnitsFields.measuringUnitId} $idType,
+    ${WeatherMeasuringUnitsFields.languageId} $intType,
+    ${WeatherMeasuringUnitsFields.measuringUnitName} $textType,
+    ${WeatherMeasuringUnitsFields.measuringUnitCode} $textType
+    )
+    ''');
+    //ride_types = 5;
+    //payment_methods = 6;
 
   }
 

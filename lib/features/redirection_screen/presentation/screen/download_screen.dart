@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:au2rides/env.dart';
+import 'package:au2rides/features/redirection_screen/data/models/user_gender/user_gender_model.dart';
+import 'package:au2rides/features/redirection_screen/data/models/weather_units_model/weather_units_model.dart';
+import 'package:au2rides/features/redirection_screen/presentation/bloc/weather_units/weather_units_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:au2rides/core/app_routes/app_routes.dart';
@@ -23,11 +26,10 @@ import '../../data/models/currency/currency_model.dart';
 import '../bloc/currency_cubit/currency_cubit.dart';
 
 class DownloadScreen extends StatefulWidget {
-  const DownloadScreen(
-      {super.key,
-      required this.userRepository,
-      this.tablesNames,
-      required this.networkInfo});
+  const DownloadScreen({super.key,
+    required this.userRepository,
+    this.tablesNames,
+    required this.networkInfo});
 
   final UserRepository userRepository;
   final NetworkInfo networkInfo;
@@ -66,6 +68,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case userGenderTableName:
             downloadPrimaryDataForGenderTable(table: table);
             break;
+          case weatherMeasuringUnitsTableName:
+            downloadPrimaryDataForWeatherMeasuringUnitsTable(table: table);
+            break;
         }
       }
 
@@ -78,7 +83,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection:
-          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         body: createStateBlock(),
       ),
@@ -119,21 +124,41 @@ class _DownloadScreenState extends State<DownloadScreen> {
     );
   }
 
+  downloadPrimaryDataForWeatherMeasuringUnitsTable({required table}) async {
+    //TODO 1. clear weather units table in local db
+    await context.read<WeatherUnitsCubit>().clearWeatherUnitsInLocalDatabase(
+        tableName: table.tableName);
+    //TODO 2. get weather units data  from network db
+    await context.read<WeatherUnitsCubit>()
+        .getWeatherUnitsDataFromNetworkDB(
+        appLang: widget.userRepository.userLanguage, tableDefinitions: table)
+        .then((value) async {
+      await saveWeatherUnitsInDatabase(response: value);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
   downloadPrimaryDataForGenderTable({required table}) async {
     //TODO 1.Clear user gender table
     await context
         .read<GenderCubit>()
         .clearGenderInLocalDatabase(tableName: table.tableName);
     //TODO 2.Download user gender data
-     await context.read<GenderCubit>().getAllGenderFromNetworkDB(
-    appLang: widget.userRepository.userLanguage,
-     tableDefinitions: table).then((value) {
-    print(value);
-
+    await context.read<GenderCubit>().getAllGenderFromNetworkDB(
+        appLang: widget.userRepository.userLanguage,
+        tableDefinitions: table).then((value) {
+      //TODO 3.Save user gender data in local db
+      saveGenderDataInLocalDb(table: table, response: value);
     });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
 
-
-    //TODO 3.Save user gender data in local db
+  Future saveWeatherUnitsInDatabase({required response}) async {
+    for (var element in response) {
+      await context.read<WeatherUnitsCubit>().saveWeatherUnitsDataInLocalDB(
+          values: (element as WeatherUnitsModel).toJson(),
+          tableName: weatherMeasuringUnitsTableName);
+    }
   }
 
   Future saveCountriesInDatabase({required response}) async {
@@ -144,14 +169,17 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future downloadPrimaryDataForCountryTable({required table}) async {
+    //TODO 1. clear countries table in local db
     await context
         .read<CountryCubit>()
         .clearCountriesInLocalDatabase(tableName: table.tableName);
+    //TODO 2. get countries table from network db
     await context
         .read<CountryCubit>()
         .getAllCountries(
-            lang: widget.userRepository.userLanguage, tableDefinitions: table)
+        lang: widget.userRepository.userLanguage, tableDefinitions: table)
         .then((value) {
+      //TODO 3. save new countries data in local db
       saveCountriesInDatabase(response: value);
     });
 
@@ -159,16 +187,19 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future downloadPrimaryDataForCurrencyTable({required table}) async {
+    //TODO 1. clear currency table in local db
     await context
         .read<CurrencyCubit>()
         .clearCurrenciesInLocalDatabase(tableName: table.tableName);
+    //TODO 2. get currency data from network db
     await context
         .read<CurrencyCubit>()
         .getAllCurrenciesFromNetworkDB(
-            appLang: widget.userRepository.userLanguage,
-            tableDefinitions: table)
+        appLang: widget.userRepository.userLanguage,
+        tableDefinitions: table)
         .then((value) async {
       //save currency in local DB
+      //TODO 3. save currency data in local db
       await saveCurrenciesInLocalDb(response: value, table: table);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
@@ -179,8 +210,19 @@ class _DownloadScreenState extends State<DownloadScreen> {
       final response = await context
           .read<CurrencyCubit>()
           .saveAllCurrenciesInLocalDB(
-              tableName: table.tableName,
-              values: (element as CurrencyModel).toJson());
+          tableName: table.tableName,
+          values: (element as CurrencyModel).toJson());
+    }
+  }
+
+  Future<void> saveGenderDataInLocalDb(
+      {required response, required table}) async {
+    for (var element in response) {
+      final response = await context
+          .read<GenderCubit>()
+          .saveGenderDataInLocalDB(
+          tableName: table.tableName,
+          values: (element as UserGenderModel).toJson());
     }
   }
 }

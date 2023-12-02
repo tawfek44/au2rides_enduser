@@ -19,4 +19,9 @@ class GenderDataSource {
         tableDefinitions: tableDefinitions);
     return response;
   }
+  Future saveGenderDataInLocalDb({required values,required tableName}) async {
+    final response = await Au2ridesDatabase.instance.insert(tableName: tableName, values: values);
+    return response;
+
+  }
 }
