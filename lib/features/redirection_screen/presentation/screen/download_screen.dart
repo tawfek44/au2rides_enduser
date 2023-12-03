@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:au2rides/env.dart';
+import 'package:au2rides/features/redirection_screen/data/models/ride_types/ride_types_model.dart';
 import 'package:au2rides/features/redirection_screen/data/models/user_gender/user_gender_model.dart';
 import 'package:au2rides/features/redirection_screen/data/models/weather_units_model/weather_units_model.dart';
+import 'package:au2rides/features/redirection_screen/presentation/bloc/ride_types/ride_types_cubit.dart';
 import 'package:au2rides/features/redirection_screen/presentation/bloc/weather_units/weather_units_cubit.dart';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 import 'package:au2rides/core/app_routes/app_routes.dart';
 import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
@@ -18,9 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
-import '../../../../core/storage/network/dio_client.dart';
 import '../../../../generated/l10n.dart';
-import '../../../splash_screen/data/models/check_primary_data_body_model.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
 import '../bloc/currency_cubit/currency_cubit.dart';
@@ -70,6 +66,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case weatherMeasuringUnitsTableName:
             downloadPrimaryDataForWeatherMeasuringUnitsTable(table: table);
+            break;
+          case rideTypesTableName:
+            downloadPrimaryDataForRideTypesTable(table: table);
             break;
         }
       }
@@ -123,7 +122,19 @@ class _DownloadScreenState extends State<DownloadScreen> {
       ],
     );
   }
-
+  downloadPrimaryDataForRideTypesTable({required table}) async {
+    //TODO 1. clear ride types table in local db
+    await context.read<RideTypesCubit>().clearRideTypesInLocalDatabase(
+        tableName: table.tableName);
+    //TODO 2. get ride types data from network db
+    await context.read<RideTypesCubit>()
+        .getRideTypesFromNetworkDB(
+        appLang: widget.userRepository.userLanguage, tableDefinitions: table)
+        .then((value) async {
+      //TODO 3. save ride types  data  in local db
+      saveRideTypesInDatabase(response: value);
+    });
+      }
   downloadPrimaryDataForWeatherMeasuringUnitsTable({required table}) async {
     //TODO 1. clear weather units table in local db
     await context.read<WeatherUnitsCubit>().clearWeatherUnitsInLocalDatabase(
@@ -133,6 +144,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
         .getWeatherUnitsDataFromNetworkDB(
         appLang: widget.userRepository.userLanguage, tableDefinitions: table)
         .then((value) async {
+      //TODO 3. save weather units data  in local db
       await saveWeatherUnitsInDatabase(response: value);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
@@ -152,7 +164,13 @@ class _DownloadScreenState extends State<DownloadScreen> {
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
-
+  Future saveRideTypesInDatabase({required response}) async {
+    for (var element in response) {
+      await context.read<RideTypesCubit>().saveRideTypesDataInLocalDB(
+          values: (element as RideTypesModel).toJson(),
+          tableName: rideTypesTableName);
+    }
+  }
   Future saveWeatherUnitsInDatabase({required response}) async {
     for (var element in response) {
       await context.read<WeatherUnitsCubit>().saveWeatherUnitsDataInLocalDB(

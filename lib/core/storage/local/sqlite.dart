@@ -8,6 +8,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../constants/constants.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/ride_types.dart';
 import '../tables/user_gender.dart';
 
 class Au2ridesDatabase{
@@ -92,7 +93,15 @@ class Au2ridesDatabase{
     ${WeatherMeasuringUnitsFields.measuringUnitCode} $textType
     )
     ''');
-    //ride_types = 5;
+    //ride_types
+    await db.execute('''
+    CREATE TABLE $rideTypesTableName (
+    ${RideTypesFields.rideTypeId} $idType,
+    ${RideTypesFields.languageId} $intType,
+    ${RideTypesFields.rideTypeName} $textType,
+    ${RideTypesFields.rideTypeLogoUrl} $textType
+    )
+    ''');
     //payment_methods = 6;
 
   }

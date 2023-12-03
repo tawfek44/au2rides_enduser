@@ -2,6 +2,7 @@
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:au2rides/features/redirection_screen/presentation/bloc/country_cubit/country_cubit.dart';
 import 'package:au2rides/features/redirection_screen/presentation/bloc/gender_cubit/gender_cubit.dart';
+import 'package:au2rides/features/redirection_screen/presentation/bloc/ride_types/ride_types_cubit.dart';
 import 'package:au2rides/features/redirection_screen/presentation/bloc/weather_units/weather_units_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<CheckPrimaryDataCubit>()),
         BlocProvider(create: (_) => getIt<GenderCubit>()),
         BlocProvider(create: (_) => getIt<WeatherUnitsCubit>()),
+        BlocProvider(create: (_) => getIt<RideTypesCubit>()),
 
       ],
       child: child,
