@@ -40,7 +40,6 @@ import 'package:au2rides/features/multiselection_screen/presentation/screen/mult
 import 'package:au2rides/features/notifications_screen/presentation/screen/notifications_screen.dart';
 import 'package:au2rides/features/points_screen/presentation/screen/points_screen.dart';
 import 'package:au2rides/features/profile_screen/presentation/screen/profile_screen.dart';
-import 'package:au2rides/features/redirection_screen/presentation/screen/download_screen.dart';
 import 'package:au2rides/features/ride_details/presentation/screen/ride_details.dart';
 import 'package:au2rides/features/scheduled_maintenance_screen/presentation/screen/scheduled_maintenance_screen.dart';
 import 'package:au2rides/features/search_screen/presentation/screen/search_Screen.dart';
@@ -58,6 +57,7 @@ import 'package:au2rides/features/transaction_history_screen/presentation/screen
 import 'package:au2rides/features/wallet_screen/presentation/screen/wallet_screen.dart';
 import 'package:au2rides/features/web_view_screen/web_view_screen.dart';
 import 'package:flutter/material.dart';
+import '../../features/download_screen/presentation/screen/download_screen.dart';
 import '../../features/identity_card_passport_screen/presentation/screen/identity_card_passport_screen.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
 import '../../features/xx.dart';

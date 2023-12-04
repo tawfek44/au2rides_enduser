@@ -8,6 +8,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../constants/constants.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
 import '../tables/user_gender.dart';
 
@@ -32,6 +33,7 @@ class Au2ridesDatabase{
     const idType ="INTEGER PRIMARY KEY";
     const intType = "INTEGER NOT NULL";
     const textType ="TEXT NOT NULL";
+    const textNullType ="TEXT NULL";
 
     //Table Definition
     await db.execute('''
@@ -103,7 +105,16 @@ class Au2ridesDatabase{
     )
     ''');
     //payment_methods = 6;
-
+    await db.execute('''
+    CREATE TABLE $paymentMethodTableName (
+    ${PaymentMethodsFields.paymentMethodId} $idType,
+    ${PaymentMethodsFields.languageId} $intType,
+    ${PaymentMethodsFields.allowedCountries} $textNullType,
+    ${PaymentMethodsFields.paymentMethodName} $textType,
+    ${PaymentMethodsFields.paymentMethodImageUrl} $textType,
+    ${PaymentMethodsFields.auPaymentMethodId} $intType
+    )
+    ''');
   }
 
    insert({required String tableName,required dynamic values}) async{
