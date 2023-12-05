@@ -4,6 +4,7 @@ import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -138,6 +139,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
       //TODO 3. save ride types  data  in local db
       saveRideTypesInDatabase(response: value);
     });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
       }
   downloadPrimaryDataForWeatherMeasuringUnitsTable({required table}) async {
     //TODO 1. clear weather units table in local db
@@ -249,22 +251,30 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future<void> downloadPrimaryDataForPaymentMethodsTable({required table}) async {
-    //TODO 1. clear currency table in local db
+    //TODO 1. clear payment methods table in local db
     await context
         .read<PaymentMethodsCubit>()
         .clearPaymentMethodsInLocalDatabase(tableName: table.tableName);
-    //TODO 2. get currency data from network db
+    //TODO 2. get payment methods data from network db
     await context
         .read<PaymentMethodsCubit>()
         .getPaymentMethodsFromNetworkDB(
         appLang: widget.userRepository.userLanguage,
         tableDefinitions: table)
         .then((value) async {
-      //save currency in local DB
-      //TODO 3. save currency data in local db
-      var x =0;
-     // await saveCurrenciesInLocalDb(response: value, table: table);
+      //TODO 3. save payment methods data in local db
+      await savePaymentMethodsInLocalDb(response: value, table: table);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+  Future<void> savePaymentMethodsInLocalDb(
+      {required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<GenderCubit>()
+          .saveGenderDataInLocalDB(
+          tableName: table.tableName,
+          values: (element as PaymentMethodsModel).toJson());
+    }
   }
 }
