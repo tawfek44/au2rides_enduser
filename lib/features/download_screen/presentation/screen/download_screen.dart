@@ -4,7 +4,9 @@ import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +26,11 @@ import '../bloc/ride_types/ride_types_cubit.dart';
 import '../bloc/weather_units/weather_units_cubit.dart';
 
 class DownloadScreen extends StatefulWidget {
-  const DownloadScreen({super.key,
-    required this.userRepository,
-    this.tablesNames,
-    required this.networkInfo});
+  const DownloadScreen(
+      {super.key,
+      required this.userRepository,
+      this.tablesNames,
+      required this.networkInfo});
 
   final UserRepository userRepository;
   final NetworkInfo networkInfo;
@@ -75,6 +78,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case paymentMethodTableName:
             downloadPrimaryDataForPaymentMethodsTable(table: table);
             break;
+          case monthTableName:
+            downloadPrimaryDataForMonthsTable(table: table);
+            break;
         }
       }
 
@@ -87,7 +93,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection:
-      isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         body: createStateBlock(),
       ),
@@ -127,28 +133,36 @@ class _DownloadScreenState extends State<DownloadScreen> {
       ],
     );
   }
+
   downloadPrimaryDataForRideTypesTable({required table}) async {
     //TODO 1. clear ride types table in local db
-    await context.read<RideTypesCubit>().clearRideTypesInLocalDatabase(
-        tableName: table.tableName);
+    await context
+        .read<RideTypesCubit>()
+        .clearRideTypesInLocalDatabase(tableName: table.tableName);
     //TODO 2. get ride types data from network db
-    await context.read<RideTypesCubit>()
+    await context
+        .read<RideTypesCubit>()
         .getRideTypesFromNetworkDB(
-        appLang: widget.userRepository.userLanguage, tableDefinitions: table)
+            appLang: widget.userRepository.userLanguage,
+            tableDefinitions: table)
         .then((value) async {
       //TODO 3. save ride types  data  in local db
       saveRideTypesInDatabase(response: value);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
-      }
+  }
+
   downloadPrimaryDataForWeatherMeasuringUnitsTable({required table}) async {
     //TODO 1. clear weather units table in local db
-    await context.read<WeatherUnitsCubit>().clearWeatherUnitsInLocalDatabase(
-        tableName: table.tableName);
+    await context
+        .read<WeatherUnitsCubit>()
+        .clearWeatherUnitsInLocalDatabase(tableName: table.tableName);
     //TODO 2. get weather units data  from network db
-    await context.read<WeatherUnitsCubit>()
+    await context
+        .read<WeatherUnitsCubit>()
         .getWeatherUnitsDataFromNetworkDB(
-        appLang: widget.userRepository.userLanguage, tableDefinitions: table)
+            appLang: widget.userRepository.userLanguage,
+            tableDefinitions: table)
         .then((value) async {
       //TODO 3. save weather units data  in local db
       await saveWeatherUnitsInDatabase(response: value);
@@ -162,14 +176,18 @@ class _DownloadScreenState extends State<DownloadScreen> {
         .read<GenderCubit>()
         .clearGenderInLocalDatabase(tableName: table.tableName);
     //TODO 2.Download user gender data
-    await context.read<GenderCubit>().getAllGenderFromNetworkDB(
-        appLang: widget.userRepository.userLanguage,
-        tableDefinitions: table).then((value) {
+    await context
+        .read<GenderCubit>()
+        .getAllGenderFromNetworkDB(
+            appLang: widget.userRepository.userLanguage,
+            tableDefinitions: table)
+        .then((value) {
       //TODO 3.Save user gender data in local db
       saveGenderDataInLocalDb(table: table, response: value);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
+
   Future saveRideTypesInDatabase({required response}) async {
     for (var element in response) {
       await context.read<RideTypesCubit>().saveRideTypesDataInLocalDB(
@@ -177,6 +195,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
           tableName: rideTypesTableName);
     }
   }
+
   Future saveWeatherUnitsInDatabase({required response}) async {
     for (var element in response) {
       await context.read<WeatherUnitsCubit>().saveWeatherUnitsDataInLocalDB(
@@ -201,7 +220,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     await context
         .read<CountryCubit>()
         .getAllCountries(
-        lang: widget.userRepository.userLanguage, tableDefinitions: table)
+            lang: widget.userRepository.userLanguage, tableDefinitions: table)
         .then((value) {
       //TODO 3. save new countries data in local db
       saveCountriesInDatabase(response: value);
@@ -219,8 +238,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
     await context
         .read<CurrencyCubit>()
         .getAllCurrenciesFromNetworkDB(
-        appLang: widget.userRepository.userLanguage,
-        tableDefinitions: table)
+            appLang: widget.userRepository.userLanguage,
+            tableDefinitions: table)
         .then((value) async {
       //save currency in local DB
       //TODO 3. save currency data in local db
@@ -234,8 +253,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
       final response = await context
           .read<CurrencyCubit>()
           .saveAllCurrenciesInLocalDB(
-          tableName: table.tableName,
-          values: (element as CurrencyModel).toJson());
+              tableName: table.tableName,
+              values: (element as CurrencyModel).toJson());
     }
   }
 
@@ -245,12 +264,13 @@ class _DownloadScreenState extends State<DownloadScreen> {
       final response = await context
           .read<GenderCubit>()
           .saveGenderDataInLocalDB(
-          tableName: table.tableName,
-          values: (element as UserGenderModel).toJson());
+              tableName: table.tableName,
+              values: (element as UserGenderModel).toJson());
     }
   }
 
-  Future<void> downloadPrimaryDataForPaymentMethodsTable({required table}) async {
+  Future<void> downloadPrimaryDataForPaymentMethodsTable(
+      {required table}) async {
     //TODO 1. clear payment methods table in local db
     await context
         .read<PaymentMethodsCubit>()
@@ -259,22 +279,46 @@ class _DownloadScreenState extends State<DownloadScreen> {
     await context
         .read<PaymentMethodsCubit>()
         .getPaymentMethodsFromNetworkDB(
-        appLang: widget.userRepository.userLanguage,
-        tableDefinitions: table)
+            appLang: widget.userRepository.userLanguage,
+            tableDefinitions: table)
         .then((value) async {
       //TODO 3. save payment methods data in local db
       await savePaymentMethodsInLocalDb(response: value, table: table);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
+
   Future<void> savePaymentMethodsInLocalDb(
       {required response, required table}) async {
     for (var element in response) {
-      await context
-          .read<GenderCubit>()
-          .saveGenderDataInLocalDB(
+      await context.read<GenderCubit>().saveGenderDataInLocalDB(
           tableName: table.tableName,
           values: (element as PaymentMethodsModel).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForMonthsTable({required table}) async {
+    //TODO 1. clear months table in local db
+    await context
+        .read<MonthCubit>()
+        .clearCountriesInLocalDatabase(tableName: table.tableName);
+    //TODO 2. get months data from network db
+    await context
+        .read<MonthCubit>()
+        .getAllMonths(
+            tableDefinitions: table, lang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save months data in local db
+      await saveMonthsInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+  Future<void> saveMonthsInLocalDb(
+      {required response, required table}) async {
+    for (var element in response) {
+      await context.read<MonthCubit>().saveMonthInLocalDatabase(
+          tableName: table.tableName,
+          values: (element as MonthModel).toJson());
     }
   }
 }

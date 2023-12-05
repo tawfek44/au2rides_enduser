@@ -8,6 +8,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../constants/constants.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
 import '../tables/user_gender.dart';
@@ -113,6 +114,14 @@ class Au2ridesDatabase{
     ${PaymentMethodsFields.paymentMethodName} $textType,
     ${PaymentMethodsFields.paymentMethodImageUrl} $textType,
     ${PaymentMethodsFields.auPaymentMethodId} $intType
+    )
+    ''');
+    //months
+    await db.execute('''
+    CREATE TABLE $monthTableName (
+    ${MonthFields.monthId} $idType,
+    ${MonthFields.languageId} $intType,
+    ${MonthFields.monthName} $textType
     )
     ''');
   }
