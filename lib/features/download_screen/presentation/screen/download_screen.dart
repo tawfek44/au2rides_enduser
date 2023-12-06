@@ -6,8 +6,10 @@ import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
+import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +83,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case monthTableName:
             downloadPrimaryDataForMonthsTable(table: table);
             break;
+          case pressureUnitsTableName:
+            downloadPrimaryDataForPressureUnitsTable(table: table);
+            break;
         }
       }
 
@@ -133,7 +138,23 @@ class _DownloadScreenState extends State<DownloadScreen> {
       ],
     );
   }
-
+  downloadPrimaryDataForPressureUnitsTable({required table})async{
+    //TODO 1. clear ride types table in local db
+    await context
+        .read<PressureUnitsCubit>()
+        .clearPressureUnitsInLocalDatabase(tableName: table.tableName);
+    //TODO 2. get ride types data from network db
+    await context
+        .read<PressureUnitsCubit>()
+        .getAllPressureUnitsData(
+        lang: widget.userRepository.userLanguage,
+        tableDefinitions: table)
+        .then((value) async {
+      //TODO 3. save ride types  data  in local db
+      savePressureUnitsInDatabase(response: value);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
   downloadPrimaryDataForRideTypesTable({required table}) async {
     //TODO 1. clear ride types table in local db
     await context
@@ -319,6 +340,13 @@ class _DownloadScreenState extends State<DownloadScreen> {
       await context.read<MonthCubit>().saveMonthInLocalDatabase(
           tableName: table.tableName,
           values: (element as MonthModel).toJson());
+    }
+  }
+
+  Future<void> savePressureUnitsInDatabase({required response}) async {
+    for (var element in response) {
+      await context.read<PressureUnitsCubit>().savePressureUnitsInLocalDatabase(
+          values: (element as PressureUnitsModel).toJson);
     }
   }
 }

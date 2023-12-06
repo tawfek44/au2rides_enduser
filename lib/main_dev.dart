@@ -19,7 +19,8 @@ List<String> tableNames = [
   weatherMeasuringUnitsTableName,
   rideTypesTableName,
   paymentMethodTableName,
-  monthTableName
+  monthTableName,
+  pressureUnitsTableName
 ];
 Future main() async {
 
@@ -56,7 +57,6 @@ Future main() async {
 
 insertTableNamesInTablesDefinitions(
     {required Au2ridesDatabase databaseObject}) {
-
   for(var i=0;i<tableNames.length;i++){
     databaseObject.insert(
         tableName: tableDefinitionsTableName,

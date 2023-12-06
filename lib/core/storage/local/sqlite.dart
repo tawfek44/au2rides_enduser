@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:au2rides/core/storage/tables/languages.dart';
+import 'package:au2rides/core/storage/tables/pressure_units.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
 import 'package:sqflite/sqflite.dart';
@@ -122,6 +123,16 @@ class Au2ridesDatabase{
     ${MonthFields.monthId} $idType,
     ${MonthFields.languageId} $intType,
     ${MonthFields.monthName} $textType
+    )
+    ''');
+
+    //pressure_units
+    await db.execute('''
+    CREATE TABLE $pressureUnitsTableName (
+    ${PressureUnitsFields.pressureUnitId} $idType,
+    ${PressureUnitsFields.languageId} $intType,
+    ${PressureUnitsFields.pressureUnitName} $textType,
+    ${PressureUnitsFields.pressureUnitCode} $textType
     )
     ''');
   }

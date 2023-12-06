@@ -1,0 +1,24 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'pressure_units_entity.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+PressureUnitsEntity _$PressureUnitsEntityFromJson(Map<String, dynamic> json) =>
+    PressureUnitsEntity(
+      pressureUnitId: json['pressure_unit_id'] as int,
+      languageId: json['language_id'] as int,
+      pressureUnitName: json['pressure_unit_name'] as String,
+      pressureUnitCode: json['pressure_unit_code'] as String,
+    );
+
+Map<String, dynamic> _$PressureUnitsEntityToJson(
+        PressureUnitsEntity instance) =>
+    <String, dynamic>{
+      'pressure_unit_id': instance.pressureUnitId,
+      'language_id': instance.languageId,
+      'pressure_unit_name': instance.pressureUnitName,
+      'pressure_unit_code': instance.pressureUnitCode,
+    };
