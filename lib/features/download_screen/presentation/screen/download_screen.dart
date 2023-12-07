@@ -151,7 +151,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
         tableDefinitions: table)
         .then((value) async {
       //TODO 3. save ride types  data  in local db
-      savePressureUnitsInDatabase(response: value);
+      savePressureUnitsInDatabase(response: value,table: table);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
@@ -343,10 +343,11 @@ class _DownloadScreenState extends State<DownloadScreen> {
     }
   }
 
-  Future<void> savePressureUnitsInDatabase({required response}) async {
+  Future<void> savePressureUnitsInDatabase({required response,required table}) async {
     for (var element in response) {
       await context.read<PressureUnitsCubit>().savePressureUnitsInLocalDatabase(
-          values: (element as PressureUnitsModel).toJson);
+          tableName: table.tableName,
+          values: (element as PressureUnitsModel).toJson());
     }
   }
 }

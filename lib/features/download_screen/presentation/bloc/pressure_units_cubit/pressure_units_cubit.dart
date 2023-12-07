@@ -42,9 +42,9 @@ class PressureUnitsCubit extends Cubit<PressureUnitsState> {
     }
   }
 
-  Future savePressureUnitsInLocalDatabase({required dynamic values}) async {
+  Future savePressureUnitsInLocalDatabase({required dynamic values, required tableName}) async {
     try {
-      return await savePressureUnitsInLocalDbUseCase(param: [pressureUnitsTableName,values]);
+      return await savePressureUnitsInLocalDbUseCase(param: [tableName,values]);
       //emit(const CountryState.savedInLocalDB());
     } catch (e) {
       //emit(CountryState.error(e));
