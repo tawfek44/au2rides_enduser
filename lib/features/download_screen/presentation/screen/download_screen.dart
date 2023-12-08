@@ -138,28 +138,29 @@ class _DownloadScreenState extends State<DownloadScreen> {
       ],
     );
   }
-  downloadPrimaryDataForPressureUnitsTable({required table})async{
+
+  downloadPrimaryDataForPressureUnitsTable({required table}) async {
     //TODO 1. clear ride types table in local db
     await context
         .read<PressureUnitsCubit>()
-        .clearPressureUnitsInLocalDatabase(tableName: table.tableName);
+        .clearPressureUnitsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
     //TODO 2. get ride types data from network db
     await context
         .read<PressureUnitsCubit>()
         .getAllPressureUnitsData(
-        lang: widget.userRepository.userLanguage,
-        tableDefinitions: table)
+            lang: widget.userRepository.userLanguage, tableDefinitions: table)
         .then((value) async {
       //TODO 3. save ride types  data  in local db
-      savePressureUnitsInDatabase(response: value,table: table);
+      savePressureUnitsInDatabase(response: value, table: table);
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
+
   downloadPrimaryDataForRideTypesTable({required table}) async {
     //TODO 1. clear ride types table in local db
     await context
         .read<RideTypesCubit>()
-        .clearRideTypesInLocalDatabase(tableName: table.tableName);
+        .clearRideTypesInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
     //TODO 2. get ride types data from network db
     await context
         .read<RideTypesCubit>()
@@ -177,7 +178,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     //TODO 1. clear weather units table in local db
     await context
         .read<WeatherUnitsCubit>()
-        .clearWeatherUnitsInLocalDatabase(tableName: table.tableName);
+        .clearWeatherUnitsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
     //TODO 2. get weather units data  from network db
     await context
         .read<WeatherUnitsCubit>()
@@ -193,9 +194,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   downloadPrimaryDataForGenderTable({required table}) async {
     //TODO 1.Clear user gender table
-    await context
-        .read<GenderCubit>()
-        .clearGenderInLocalDatabase(tableName: table.tableName);
+    await context.read<GenderCubit>().clearGenderInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2.Download user gender data
     await context
         .read<GenderCubit>()
@@ -234,9 +234,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future downloadPrimaryDataForCountryTable({required table}) async {
     //TODO 1. clear countries table in local db
-    await context
-        .read<CountryCubit>()
-        .clearCountriesInLocalDatabase(tableName: table.tableName);
+    await context.read<CountryCubit>().clearCountriesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get countries table from network db
     await context
         .read<CountryCubit>()
@@ -252,9 +251,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future downloadPrimaryDataForCurrencyTable({required table}) async {
     //TODO 1. clear currency table in local db
-    await context
-        .read<CurrencyCubit>()
-        .clearCurrenciesInLocalDatabase(tableName: table.tableName);
+    await context.read<CurrencyCubit>().clearCurrenciesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get currency data from network db
     await context
         .read<CurrencyCubit>()
@@ -295,7 +293,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     //TODO 1. clear payment methods table in local db
     await context
         .read<PaymentMethodsCubit>()
-        .clearPaymentMethodsInLocalDatabase(tableName: table.tableName);
+        .clearPaymentMethodsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
     //TODO 2. get payment methods data from network db
     await context
         .read<PaymentMethodsCubit>()
@@ -320,9 +318,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForMonthsTable({required table}) async {
     //TODO 1. clear months table in local db
-    await context
-        .read<MonthCubit>()
-        .clearCountriesInLocalDatabase(tableName: table.tableName);
+    await context.read<MonthCubit>().clearCountriesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get months data from network db
     await context
         .read<MonthCubit>()
@@ -334,16 +331,16 @@ class _DownloadScreenState extends State<DownloadScreen> {
     });
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
-  Future<void> saveMonthsInLocalDb(
-      {required response, required table}) async {
+
+  Future<void> saveMonthsInLocalDb({required response, required table}) async {
     for (var element in response) {
       await context.read<MonthCubit>().saveMonthInLocalDatabase(
-          tableName: table.tableName,
-          values: (element as MonthModel).toJson());
+          tableName: table.tableName, values: (element as MonthModel).toJson());
     }
   }
 
-  Future<void> savePressureUnitsInDatabase({required response,required table}) async {
+  Future<void> savePressureUnitsInDatabase(
+      {required response, required table}) async {
     for (var element in response) {
       await context.read<PressureUnitsCubit>().savePressureUnitsInLocalDatabase(
           tableName: table.tableName,

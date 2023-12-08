@@ -19,9 +19,9 @@ class WeatherUnitsCubit extends Cubit<WeatherUnitsState> {
   final DownloadWeatherUnitsUseCase _downloadWeatherUnitsUseCase;
   final SaveWeatherUnitsDataInLocalDb _saveWeatherUnitsDataInLocalDb;
 
-  Future clearWeatherUnitsInLocalDatabase({required String tableName}) async {
+  Future clearWeatherUnitsInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearWeatherUnitsUseCase(param: tableName);
+      await clearWeatherUnitsUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

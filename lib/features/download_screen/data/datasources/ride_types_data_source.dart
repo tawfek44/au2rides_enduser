@@ -7,9 +7,9 @@ import '../../../../core/storage/network/dio_client.dart';
 
 @injectable
 class RideTypesDataSource {
-  Future clearAllRideTypesDataFromLocalDb({required tableName}) async {
+  Future clearAllRideTypesDataFromLocalDb({required tableName,required languageId}) async {
     final response =
-        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 

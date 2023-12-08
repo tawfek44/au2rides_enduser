@@ -12,9 +12,9 @@ class MonthRepositoryImpl extends MonthRepository {
   MonthRepositoryImpl(this._monthDataSource);
 
   @override
-  clearMonthsFromLocalDB({required String tableName}) async {
+  clearMonthsFromLocalDB({required String tableName,required languageId}) async {
     final response = await _monthDataSource.deleteAllMonthsInDatabase(
-        tableName: tableName);
+        tableName: tableName,languageId: languageId);
     return response;
   }
 

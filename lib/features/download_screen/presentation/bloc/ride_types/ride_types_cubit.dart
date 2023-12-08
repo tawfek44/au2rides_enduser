@@ -20,9 +20,9 @@ class RideTypesCubit extends Cubit<RideTypesState> {
   final DownloadRideTypesUseCase downloadRideTypesUseCase;
   final SaveRideTypesDataInLocalDbUseCase _saveRideTypesDataInLocalDbUseCase;
 
-  Future clearRideTypesInLocalDatabase({required String tableName}) async {
+  Future clearRideTypesInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearRideTypesUseCase(param: tableName);
+      await clearRideTypesUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

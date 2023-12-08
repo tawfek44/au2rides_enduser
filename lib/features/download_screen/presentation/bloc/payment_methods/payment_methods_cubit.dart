@@ -24,9 +24,9 @@ class PaymentMethodsCubit extends Cubit<PaymentMethodsState> {
   final DownloadPaymentMethodsUseCase downloadPaymentMethodsUseCase;
   final SavePaymentMethodsDataInLocalDbUseCase savePaymentMethodsDataInLocalDbUseCase;
 
-  Future clearPaymentMethodsInLocalDatabase({required String tableName}) async {
+  Future clearPaymentMethodsInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearPaymentMethodsUseCase(param: tableName);
+      await clearPaymentMethodsUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

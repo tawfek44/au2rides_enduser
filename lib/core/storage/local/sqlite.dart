@@ -62,77 +62,88 @@ class Au2ridesDatabase{
     //Country
     await db.execute('''
     CREATE TABLE $countryTableName (
-    ${CountryFields.countryId} $idType,
+    ${CountryFields.countryId} $intType,
+    ${CountryFields.languageId} $intType,
     ${CountryFields.countryName} $textType,
     ${CountryFields.countryCode} $textType,
     ${CountryFields.callingCode} $textType,
-    ${CountryFields.countryFlagImage} $textType
+    ${CountryFields.countryFlagImage} $textType,
+    PRIMARY KEY (${CountryFields.countryId}, ${CountryFields.languageId})
     )
     ''');
 
     //Currency
     await db.execute('''
     CREATE TABLE $currencyTableName (
-    ${CurrencyFields.currencyId} $idType,
+    ${CurrencyFields.currencyId} $intType,
+    ${CurrencyFields.languageId} $intType,
     ${CurrencyFields.currencyCode} $textType,
     ${CurrencyFields.currencyName} $textType,
-    ${CurrencyFields.currencyImageUrl} $textType
+    ${CurrencyFields.currencyImageUrl} $textType,
+    PRIMARY KEY (${CurrencyFields.currencyId}, ${CurrencyFields.languageId})
     )
     ''');
 
     //gender
     await db.execute('''
     CREATE TABLE $userGenderTableName (
-    ${GenderFields.genderId} $idType,
+    ${GenderFields.genderId} $intType,
     ${GenderFields.languageId} $intType,
-    ${GenderFields.genderName} $textType
+    ${GenderFields.genderName} $textType,
+    PRIMARY KEY (${GenderFields.genderId}, ${GenderFields.languageId})
     )
     ''');
     //weather_measuring_units;
     await db.execute('''
     CREATE TABLE $weatherMeasuringUnitsTableName (
-    ${WeatherMeasuringUnitsFields.measuringUnitId} $idType,
+    ${WeatherMeasuringUnitsFields.measuringUnitId} $intType,
     ${WeatherMeasuringUnitsFields.languageId} $intType,
     ${WeatherMeasuringUnitsFields.measuringUnitName} $textType,
-    ${WeatherMeasuringUnitsFields.measuringUnitCode} $textType
+    ${WeatherMeasuringUnitsFields.measuringUnitCode} $textType,
+    PRIMARY KEY (${WeatherMeasuringUnitsFields.measuringUnitId}, ${WeatherMeasuringUnitsFields.languageId})
     )
     ''');
     //ride_types
     await db.execute('''
     CREATE TABLE $rideTypesTableName (
-    ${RideTypesFields.rideTypeId} $idType,
+    ${RideTypesFields.rideTypeId} $intType,
     ${RideTypesFields.languageId} $intType,
     ${RideTypesFields.rideTypeName} $textType,
-    ${RideTypesFields.rideTypeLogoUrl} $textType
+    ${RideTypesFields.rideTypeLogoUrl} $textType,
+     PRIMARY KEY (${RideTypesFields.rideTypeId}, ${RideTypesFields.languageId})
+    
     )
     ''');
     //payment_methods = 6;
     await db.execute('''
     CREATE TABLE $paymentMethodTableName (
-    ${PaymentMethodsFields.paymentMethodId} $idType,
+    ${PaymentMethodsFields.paymentMethodId} $intType,
     ${PaymentMethodsFields.languageId} $intType,
     ${PaymentMethodsFields.allowedCountries} $textNullType,
     ${PaymentMethodsFields.paymentMethodName} $textType,
     ${PaymentMethodsFields.paymentMethodImageUrl} $textType,
-    ${PaymentMethodsFields.auPaymentMethodId} $intType
+    ${PaymentMethodsFields.auPaymentMethodId} $intType,
+    PRIMARY KEY (${PaymentMethodsFields.paymentMethodId}, ${PaymentMethodsFields.languageId})
     )
     ''');
     //months
     await db.execute('''
     CREATE TABLE $monthTableName (
-    ${MonthFields.monthId} $idType,
+    ${MonthFields.monthId} $intType,
     ${MonthFields.languageId} $intType,
-    ${MonthFields.monthName} $textType
+    ${MonthFields.monthName} $textType,
+    PRIMARY KEY (${MonthFields.monthId}, ${MonthFields.languageId})
     )
     ''');
 
     //pressure_units
     await db.execute('''
     CREATE TABLE $pressureUnitsTableName (
-    ${PressureUnitsFields.pressureUnitId} $idType,
+    ${PressureUnitsFields.pressureUnitId} $intType,
     ${PressureUnitsFields.languageId} $intType,
     ${PressureUnitsFields.pressureUnitName} $textType,
-    ${PressureUnitsFields.pressureUnitCode} $textType
+    ${PressureUnitsFields.pressureUnitCode} $textType,
+    PRIMARY KEY (${PressureUnitsFields.pressureUnitId}, ${PressureUnitsFields.languageId})
     )
     ''');
   }
@@ -161,9 +172,9 @@ class Au2ridesDatabase{
   var data = await db.query(tableName,where:where,whereArgs: whereArgs);
   return data;
 }
-Future clearAllData({required String tableName}) async {
+Future clearAllData({required String tableName,required languageId}) async {
   Database db = await instance.database;
-  var data = await db.delete(tableName);
+  var data = await db.delete(tableName,where:"language_id = ?",whereArgs: [languageId] );
   return data;
 }
 Future updateData({required String queryText, values}) async {

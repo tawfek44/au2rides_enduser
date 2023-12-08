@@ -12,9 +12,12 @@ class CurrencyRepositoryImpl extends CurrencyRepository {
   CurrencyRepositoryImpl(this._currencyDataSource);
 
   @override
-  clearCurrenciesFromLocalDB({required String tableName}) async {
+  clearCurrenciesFromLocalDB(
+      {required String tableName, required languageId}) async {
     final response = await _currencyDataSource.deleteAllCurrencyInDatabase(
-        tableName: tableName);
+      tableName: tableName,
+      languageId: languageId
+    );
     return response;
   }
 

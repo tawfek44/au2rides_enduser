@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import '../../domain/repository/country_repository.dart';
 import '../datasources/country_datasource.dart';
 
-
 @Injectable(as: CountryRepository)
 class CountryRepositoryImpl extends CountryRepository {
   final CountryDataSource _countryDataSource;
@@ -24,9 +23,12 @@ class CountryRepositoryImpl extends CountryRepository {
   }
 
   @override
-  clearCountriesFromLocalDB({required String tableName}) async {
+  clearCountriesFromLocalDB(
+      {required String tableName, required languageId}) async {
     final response = await _countryDataSource.deleteAllCountriesInDatabase(
-        tableName: tableName);
+      tableName: tableName,
+      languageId: languageId
+    );
     return response;
   }
 }

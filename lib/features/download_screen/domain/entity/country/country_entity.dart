@@ -1,10 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'country_entity.g.dart';
+
 @JsonSerializable()
-class CountryEntity extends Equatable{
+class CountryEntity extends Equatable {
   @JsonKey(name: "country_id")
   final int countryId;
+  @JsonKey(name: "language_id")
+  final int languageId;
   @JsonKey(name: "count_name")
   final String countryName;
   @JsonKey(name: "country_key_code")
@@ -14,17 +18,22 @@ class CountryEntity extends Equatable{
   @JsonKey(name: "flag_image_url")
   final String countryImageUrl;
 
-  CountryEntity({required this.countryId,required this.countryName,required this.countryKeyCode,
-    required this.countryCallingCode,required this.countryImageUrl});
+  const CountryEntity(
+      {required this.countryId,
+      required this.languageId,
+      required this.countryName,
+      required this.countryKeyCode,
+      required this.countryCallingCode,
+      required this.countryImageUrl});
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    countryId,
-    countryName,
-    countryKeyCode,
-    countryCallingCode,
-    countryImageUrl
-  ];
-
+        countryId,
+        languageId,
+        countryName,
+        countryKeyCode,
+        countryCallingCode,
+        countryImageUrl
+      ];
 }

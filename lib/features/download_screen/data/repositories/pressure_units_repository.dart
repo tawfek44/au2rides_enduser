@@ -13,9 +13,9 @@ class PressureUnitsRepositoryImpl extends PressureUnitsRepository {
   PressureUnitsRepositoryImpl(this._pressureUnitsDataSource);
 
   @override
-  clearPressureUnitsDataInLocalDB({required tableName}) async {
+  clearPressureUnitsDataInLocalDB({required tableName,required languageId}) async {
     final response = await _pressureUnitsDataSource
-        .deleteAllPressureUnitsInDatabase(tableName: tableName);
+        .deleteAllPressureUnitsInDatabase(tableName: tableName,languageId: languageId);
     return response;
   }
 

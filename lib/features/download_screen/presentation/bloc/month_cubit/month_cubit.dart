@@ -55,9 +55,9 @@ class MonthCubit extends Cubit<MonthState> {
     }
   }
 
-  Future clearCountriesInLocalDatabase({required String tableName}) async {
+  Future clearCountriesInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearMonthUseCase(param: tableName);
+      await clearMonthUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

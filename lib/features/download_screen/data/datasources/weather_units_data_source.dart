@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class WeatherUnitsDataSource {
-  Future clearAllWeatherUnitsDataFromLocalDb({required tableName}) async {
+  Future clearAllWeatherUnitsDataFromLocalDb({required tableName,required languageId}) async {
     final response =
-        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 

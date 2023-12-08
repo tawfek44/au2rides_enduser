@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,7 +12,7 @@ class PaymentMethodsEntity extends Equatable {
   @JsonKey(name: "language_id")
   final int languageId;
   @JsonKey(name: "allowed_countries")
-  final List<int>? allowedCountries;
+  @Uint8ListConverter() Uint8List? allowedCountries;
   @JsonKey(name: "payment_method_name")
   final String paymentMethodName;
   @JsonKey(name: "payment_method_image_url")
@@ -18,7 +20,7 @@ class PaymentMethodsEntity extends Equatable {
   @JsonKey(name: "au_payment_method_id")
   final int auPaymentMethodId;
 
-  const PaymentMethodsEntity(
+   PaymentMethodsEntity(
       {required this.paymentMethodId,
       required this.languageId,
       required this.allowedCountries,
@@ -36,4 +38,17 @@ class PaymentMethodsEntity extends Equatable {
         paymentMethodImageUrl,
         auPaymentMethodId
       ];
+}
+class Uint8ListConverter implements JsonConverter<Uint8List?, List<dynamic>?> {
+  const Uint8ListConverter();
+
+  @override
+  Uint8List? fromJson(List<dynamic>? json) {
+    return json == null ? null : Uint8List.fromList(json.cast<int>());
+  }
+
+  @override
+  List<int>? toJson(Uint8List? object) {
+    return object?.toList();
+  }
 }

@@ -24,9 +24,9 @@ class CurrencyCubit extends Cubit<CurrencyState> {
   SaveCurrenciesInLocalDbUseCase saveCurrenciesInLocalDbUseCase;
 
 
-  Future clearCurrenciesInLocalDatabase({required String tableName}) async {
+  Future clearCurrenciesInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearCurrencyUseCase(param: tableName);
+      await clearCurrencyUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

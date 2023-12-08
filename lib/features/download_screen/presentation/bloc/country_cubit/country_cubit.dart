@@ -81,9 +81,9 @@ class CountryCubit extends Cubit<CountryState> {
     }
   }
 
-  Future clearCountriesInLocalDatabase({required String tableName}) async {
+  Future clearCountriesInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearCountryUseCase(param: tableName);
+      await clearCountryUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

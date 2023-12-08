@@ -4,7 +4,7 @@ import '../../../domain/entity/currency/currency_entity.dart';
 part 'currency_model.g.dart';
 @JsonSerializable()
 class CurrencyModel extends CurrencyEntity{
-  const CurrencyModel({required super.currencyId, required super.currencyCode, required super.currencyName, required super.currencyImageUrl});
+  const CurrencyModel({required super.currencyId, required super.languageId,required super.currencyCode, required super.currencyName, required super.currencyImageUrl});
   factory CurrencyModel.fromJson(final Map<String, dynamic> json) {
     return _$CurrencyModelFromJson(json);
   }

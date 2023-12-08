@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class PaymentMethodsDataSource {
-  Future clearAllPaymentMethodsDataFromLocalDb({required tableName}) async {
+  Future clearAllPaymentMethodsDataFromLocalDb({required tableName,required languageId}) async {
     final response =
-        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 

@@ -51,9 +51,9 @@ class PressureUnitsCubit extends Cubit<PressureUnitsState> {
     }
   }
 
-  Future clearPressureUnitsInLocalDatabase({required String tableName}) async {
+  Future clearPressureUnitsInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearPressureUnitsUseCase(param: tableName);
+      await clearPressureUnitsUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

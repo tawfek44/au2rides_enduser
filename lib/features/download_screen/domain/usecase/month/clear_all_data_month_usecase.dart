@@ -5,14 +5,14 @@ import '../../../../../core/use_case/use_case.dart';
 import '../../repository/country_repository.dart';
 
 @injectable
-class ClearMonthUseCase implements UseCase<dynamic,String>{
+class ClearMonthUseCase implements UseCase<dynamic,dynamic>{
   final MonthRepository monthRepository;
 
   ClearMonthUseCase(this.monthRepository);
 
   @override
-  call({String? param}) async {
-    final response = await monthRepository.clearMonthsFromLocalDB(tableName:param!);
+  call({param}) async {
+    final response = await monthRepository.clearMonthsFromLocalDB(tableName:param[0],languageId: param[1]);
     return response;
   }
 

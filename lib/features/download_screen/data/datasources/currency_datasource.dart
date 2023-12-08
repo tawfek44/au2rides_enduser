@@ -7,9 +7,9 @@ import '../../../../core/constants/constants.dart';
 
 @injectable
 class CurrencyDataSource {
-  deleteAllCurrencyInDatabase({required String tableName}) async {
+  deleteAllCurrencyInDatabase({required String tableName,required languageId}) async {
     final response =
-        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 

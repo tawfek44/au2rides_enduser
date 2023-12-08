@@ -10,9 +10,9 @@ class WeatherUnitsRepositoryImpl extends WeatherUnitsRepository {
   WeatherUnitsRepositoryImpl(this._weatherUnitsDataSource);
 
   @override
-  clearWeatherUnitsDataInLocalDB({required tableName}) async {
+  clearWeatherUnitsDataInLocalDB({required tableName,required languageId}) async {
     final response = await _weatherUnitsDataSource
-        .clearAllWeatherUnitsDataFromLocalDb(tableName: tableName);
+        .clearAllWeatherUnitsDataFromLocalDb(tableName: tableName,languageId: languageId);
     return response;
   }
 

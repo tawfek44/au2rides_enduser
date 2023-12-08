@@ -4,15 +4,15 @@ import 'package:injectable/injectable.dart';
 import '../../repository/currency_repository.dart';
 
 @injectable
-class ClearCurrencyUseCase implements UseCase<dynamic,String>{
+class ClearCurrencyUseCase implements UseCase<dynamic, dynamic> {
   final CurrencyRepository _currencyRepository;
 
   ClearCurrencyUseCase(this._currencyRepository);
 
   @override
-   call({String? param}) async {
-    final response = await _currencyRepository.clearCurrenciesFromLocalDB(tableName: param!);
+  call({param}) async {
+    final response = await _currencyRepository.clearCurrenciesFromLocalDB(
+        tableName: param[0], languageId: param[1]);
     return response;
   }
-
 }

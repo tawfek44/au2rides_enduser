@@ -22,9 +22,9 @@ class MonthDataSource {
     return response;
   }
 
-  deleteAllMonthsInDatabase({required String tableName}) async {
+  deleteAllMonthsInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: countryTableName);
+        .clearAllData(tableName: countryTableName,languageId: languageId);
     return response;
   }
 }

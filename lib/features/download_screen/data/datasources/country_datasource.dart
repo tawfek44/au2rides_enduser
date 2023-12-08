@@ -22,9 +22,9 @@ class CountryDataSource {
     return response;
   }
 
-  deleteAllCountriesInDatabase({required String tableName}) async {
+  deleteAllCountriesInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: countryTableName);
+        .clearAllData(tableName: countryTableName,languageId: languageId);
     return response;
   }
 }

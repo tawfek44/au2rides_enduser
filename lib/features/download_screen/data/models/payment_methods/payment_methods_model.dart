@@ -8,7 +8,7 @@ part 'payment_methods_model.g.dart';
 @JsonSerializable()
 class PaymentMethodsModel extends PaymentMethodsEntity {
 
-  const PaymentMethodsModel({required super.paymentMethodId, required super.languageId, required super.allowedCountries, required super.paymentMethodName, required super.paymentMethodImageUrl, required super.auPaymentMethodId});
+   PaymentMethodsModel({required super.paymentMethodId, required super.languageId, required super.allowedCountries, required super.paymentMethodName, required super.paymentMethodImageUrl, required super.auPaymentMethodId});
 
   factory PaymentMethodsModel.fromJson(final Map<String, dynamic> json) {
     return _$PaymentMethodsModelFromJson(json);

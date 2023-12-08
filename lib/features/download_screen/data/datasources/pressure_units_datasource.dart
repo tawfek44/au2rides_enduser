@@ -20,9 +20,9 @@ class PressureUnitsDataSource {
     return response;
   }
 
-  deleteAllPressureUnitsInDatabase({required String tableName}) async {
+  deleteAllPressureUnitsInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: pressureUnitsTableName);
+        .clearAllData(tableName: pressureUnitsTableName,languageId: languageId);
     return response;
   }
 }

@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GenderDataSource {
-  Future clearAllGenderDataFromLocalDb({required tableName}) async {
+  Future clearAllGenderDataFromLocalDb({required tableName,required languageId}) async {
     final response =
-        await Au2ridesDatabase.instance.clearAllData(tableName: tableName);
+        await Au2ridesDatabase.instance.clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 

@@ -24,9 +24,9 @@ class GenderCubit extends Cubit<GenderState> {
   final DownloadGenderUseCase downloadGenderUseCase;
   final SaveGenderDataInLocalDb saveGenderDataInLocalDb;
 
-  Future clearGenderInLocalDatabase({required String tableName}) async {
+  Future clearGenderInLocalDatabase({required String tableName,required languageId}) async {
     try {
-      await clearGenderUseCase(param: tableName);
+      await clearGenderUseCase(param: [tableName,languageId]);
     } catch (e) {
       print(e);
     }

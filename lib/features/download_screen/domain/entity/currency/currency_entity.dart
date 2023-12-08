@@ -7,8 +7,8 @@ part 'currency_entity.g.dart';
 class CurrencyEntity extends Equatable {
   @JsonKey(name: "currency_id")
   final int currencyId;
- // @JsonKey(name: "language_id")
- // final int languageId;
+  @JsonKey(name: "language_id")
+  final int languageId;
   @JsonKey(name: "currency_code")
   final String currencyCode;
   @JsonKey(name: "currency_name")
@@ -18,6 +18,7 @@ class CurrencyEntity extends Equatable {
 
   const CurrencyEntity(
       {required this.currencyId,
+        required this.languageId,
       required this.currencyCode,
       required this.currencyName,
       required this.currencyImageUrl});
