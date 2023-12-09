@@ -4,9 +4,11 @@ import 'package:au2rides/core/app_routes/app_routes_names.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
@@ -86,6 +88,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case pressureUnitsTableName:
             downloadPrimaryDataForPressureUnitsTable(table: table);
             break;
+          case acquisitionTypesTableName:
+            downloadPrimaryDataForAcquisitionTypesTable(table: table);
+            break;
         }
       }
 
@@ -141,9 +146,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   downloadPrimaryDataForPressureUnitsTable({required table}) async {
     //TODO 1. clear ride types table in local db
-    await context
-        .read<PressureUnitsCubit>()
-        .clearPressureUnitsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
+    await context.read<PressureUnitsCubit>().clearPressureUnitsInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get ride types data from network db
     await context
         .read<PressureUnitsCubit>()
@@ -158,9 +162,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   downloadPrimaryDataForRideTypesTable({required table}) async {
     //TODO 1. clear ride types table in local db
-    await context
-        .read<RideTypesCubit>()
-        .clearRideTypesInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
+    await context.read<RideTypesCubit>().clearRideTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get ride types data from network db
     await context
         .read<RideTypesCubit>()
@@ -176,9 +179,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   downloadPrimaryDataForWeatherMeasuringUnitsTable({required table}) async {
     //TODO 1. clear weather units table in local db
-    await context
-        .read<WeatherUnitsCubit>()
-        .clearWeatherUnitsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
+    await context.read<WeatherUnitsCubit>().clearWeatherUnitsInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get weather units data  from network db
     await context
         .read<WeatherUnitsCubit>()
@@ -293,7 +295,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
     //TODO 1. clear payment methods table in local db
     await context
         .read<PaymentMethodsCubit>()
-        .clearPaymentMethodsInLocalDatabase(tableName: table.tableName,languageId: table.languageId);
+        .clearPaymentMethodsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get payment methods data from network db
     await context
         .read<PaymentMethodsCubit>()
@@ -345,6 +348,36 @@ class _DownloadScreenState extends State<DownloadScreen> {
       await context.read<PressureUnitsCubit>().savePressureUnitsInLocalDatabase(
           tableName: table.tableName,
           values: (element as PressureUnitsModel).toJson());
+    }
+  }
+
+  downloadPrimaryDataForAcquisitionTypesTable({required table}) async {
+    //TODO 1. clear acquisition types table in local db
+    await context
+        .read<AcquisitionTypesCubit>()
+        .clearAcquisitionTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get acquisition types data from network db
+    await context
+        .read<AcquisitionTypesCubit>()
+        .getAllAcquisitionTypesFromNetworkDB(
+            tableDefinitions: table,
+            appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save acquisition types data in local db
+      await saveAcquisitionTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  Future<void> saveAcquisitionTypesInLocalDb(
+      {required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<AcquisitionTypesCubit>()
+          .saveAllAcquisitionTypesInLocalDB(
+              tableName: table.tableName,
+              values: (element as AcquisitionTypesModel).toJson());
     }
   }
 }

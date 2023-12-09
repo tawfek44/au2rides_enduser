@@ -1,4 +1,5 @@
 
+import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
@@ -26,6 +27,7 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<PaymentMethodsCubit>()),
         BlocProvider(create: (_) => getIt<MonthCubit>()),
         BlocProvider(create: (_) => getIt<PressureUnitsCubit>()),
+        BlocProvider(create: (_) => getIt<AcquisitionTypesCubit>()),
 
       ],
       child: child,
