@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:au2rides/core/storage/tables/languages.dart';
+import 'package:au2rides/core/storage/tables/metric_units_types.dart';
 import 'package:au2rides/core/storage/tables/pressure_units.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
@@ -154,6 +155,17 @@ class Au2ridesDatabase{
     ${AcquisitionTypesFields.languageId} $intType,
     ${AcquisitionTypesFields.acquisitionTypeName} $textType,
     PRIMARY KEY (${AcquisitionTypesFields.acquisitionTypeId}, ${AcquisitionTypesFields.languageId})
+    )
+    ''');
+
+    //metric units
+    await db.execute('''
+    CREATE TABLE $metricUnitsTableName (
+    ${MetricUnitsFields.metricUnitId} $intType,
+    ${MetricUnitsFields.languageId} $intType,
+    ${MetricUnitsFields.metricUnitName} $textType,
+    ${MetricUnitsFields.metricUnitCode} $textType,
+    PRIMARY KEY (${MetricUnitsFields.metricUnitId}, ${MetricUnitsFields.languageId})
     )
     ''');
   }

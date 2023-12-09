@@ -21,7 +21,8 @@ List<String> tableNames = [
   paymentMethodTableName,
   monthTableName,
   pressureUnitsTableName,
-  acquisitionTypesTableName
+  acquisitionTypesTableName,
+  metricUnitsTableName
 ];
 Future main() async {
 
