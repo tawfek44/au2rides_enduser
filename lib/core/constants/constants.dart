@@ -26,6 +26,7 @@ const String monthTableName = 'months';
 const String pressureUnitsTableName = 'pressure_units';
 const String acquisitionTypesTableName = 'acquisition_types';
 const String metricUnitsTableName = 'metric_units';
+const String engineTransmissionTypes = 'engine_transmission_types';
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 Widget errorWidget() => Center(

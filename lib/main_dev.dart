@@ -22,7 +22,8 @@ List<String> tableNames = [
   monthTableName,
   pressureUnitsTableName,
   acquisitionTypesTableName,
-  metricUnitsTableName
+  metricUnitsTableName,
+  engineTransmissionTypes
 ];
 Future main() async {
 

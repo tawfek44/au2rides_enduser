@@ -5,11 +5,13 @@ import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/engine_transmission_types/engine_transmission_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
@@ -96,6 +98,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case metricUnitsTableName:
             downloadPrimaryDataForMetricUnitsTable(table: table);
             break;
+          case engineTransmissionTypes:
+            downloadPrimaryDataForEngineTransmissionTypesTable(table: table);
+            break;
         }
       }
 
@@ -118,7 +123,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
   redirectToSplashScreen() {
     //widget.userRepository.setFirstTimeOpenApp(false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 6), () {
         NamedNavigatorImpl().push(Routes.splashScreenRoute);
         // NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
       });
@@ -412,6 +417,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllMetricUnitsInLocalDB(
           tableName: table.tableName,
           values: (element as MetricUnitsModel).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForEngineTransmissionTypesTable({required table}) async {
+    //TODO 1. clear EngineTransmissionTypes table in local db
+    await context
+        .read<EngineTransmissionTypesCubit>()
+        .clearEngineTransmissionTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get EngineTransmissionTypes data from network db
+    await context
+        .read<EngineTransmissionTypesCubit>()
+        .getAllEngineTransmissionTypesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save EngineTransmissionTypes data in local db
+      await saveEngineTransmissionTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveEngineTransmissionTypesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+    await context
+        .read<EngineTransmissionTypesCubit>()
+        .saveAllEngineTransmissionTypesInLocalDB(
+        tableName: table.tableName,
+        values: (element as EngineTransmissionTypesModel).toJson());
     }
   }
 }

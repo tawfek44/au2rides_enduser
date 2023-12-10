@@ -1,6 +1,6 @@
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
-import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/clear_acquisition_types_usecase.dart';
-import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/get_all_acquisition_types_usecase.dart';
+import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/engine_transmission_types_usecase.dart';
+import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/get_all_engine_transmission_types_usecase.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/save_acquisition_types_in_local_db_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,6 +8,8 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../splash_screen/data/models/check_primary_data_body_model.dart';
 import '../../../data/models/currency/currency_model.dart';
+import '../../../domain/usecase/acquisition_types/clear_acquisition_types_usecase.dart';
+import '../../../domain/usecase/acquisition_types/get_all_acquisition_types_usecase.dart';
 import '../../../domain/usecase/currency/currency_usecase.dart';
 import '../../../domain/usecase/currency/get_all_currencies_usecase.dart';
 import '../../../domain/usecase/currency/save_currencies_in_local_db_usecase.dart';

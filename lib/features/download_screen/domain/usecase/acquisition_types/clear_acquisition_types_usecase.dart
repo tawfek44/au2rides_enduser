@@ -2,7 +2,6 @@ import 'package:au2rides/core/use_case/use_case.dart';
 import 'package:au2rides/features/download_screen/domain/repository/acquisition_types_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../repository/currency_repository.dart';
 
 @injectable
 class ClearAcquisitionTypesUseCase implements UseCase<dynamic, dynamic> {

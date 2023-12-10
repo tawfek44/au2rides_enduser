@@ -1,7 +1,7 @@
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
-import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/clear_acquisition_types_usecase.dart';
-import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/get_all_acquisition_types_usecase.dart';
+import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/engine_transmission_types_usecase.dart';
+import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/get_all_engine_transmission_types_usecase.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/save_acquisition_types_in_local_db_usecase.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/metric_units/clear_metric_units_usecase.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/metric_units/get_all_metric_units_usecase.dart';
