@@ -12,6 +12,7 @@ import '../../constants/constants.dart';
 import '../tables/acquisition_types.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/engine_fuel_types.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
@@ -178,6 +179,16 @@ class Au2ridesDatabase {
     ${EngineTransmissionTypesFields.languageId} $intType,
     ${EngineTransmissionTypesFields.engineTransmissionTypeName} $textType,
     PRIMARY KEY (${EngineTransmissionTypesFields.engineTransmissionTypeId}, ${EngineTransmissionTypesFields.languageId})
+    )
+    ''');
+    //engine_fuel_types
+
+    await db.execute('''
+    CREATE TABLE $engineFuelTypes (
+    ${EngineFuelTypesFields.engineFuelTypeId} $intType,
+    ${EngineFuelTypesFields.languageId} $intType,
+    ${EngineFuelTypesFields.engineFuelTypeName} $textType,
+    PRIMARY KEY (${EngineFuelTypesFields.engineFuelTypeId}, ${EngineFuelTypesFields.languageId})
     )
     ''');
   }

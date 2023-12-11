@@ -1,0 +1,19 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+EngineFuelTypesEntity _$EngineFuelTypesEntityFromJson(
+        Map<String, dynamic> json) =>
+    EngineFuelTypesEntity(
+      engineFuelTypeId: json['engine_fuel_type_id'] as int,
+      languageId: json['language_id'] as int,
+      engineFuelTypeName: json['engine_fuel_type_name'] as String,
+    );
+
+Map<String, dynamic> _$EngineFuelTypesEntityToJson(
+        EngineFuelTypesEntity instance) =>
+    <String, dynamic>{
+      'engine_fuel_type_id': instance.engineFuelTypeId,
+      'language_id': instance.languageId,
+      'engine_fuel_type_name': instance.engineFuelTypeName,
+    };

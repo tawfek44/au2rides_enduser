@@ -5,12 +5,14 @@ import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_transmission_types/engine_transmission_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
@@ -100,6 +102,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case engineTransmissionTypes:
             downloadPrimaryDataForEngineTransmissionTypesTable(table: table);
+            break;
+          case engineFuelTypes:
+            downloadPrimaryDataForEngineFuelTypesTable(table: table);
             break;
         }
       }
@@ -446,6 +451,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
         .saveAllEngineTransmissionTypesInLocalDB(
         tableName: table.tableName,
         values: (element as EngineTransmissionTypesModel).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForEngineFuelTypesTable({required table}) async {
+    //TODO 1. clear EngineFuelTypes table in local db
+    await context
+        .read<EngineFuelTypesCubit>()
+        .clearEngineFuelTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get EngineFuelTypes data from network db
+    await context
+        .read<EngineFuelTypesCubit>()
+        .getAllEngineFuelTypesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save EngineFuelTypes data in local db
+      await saveEngineFuelTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveEngineFuelTypesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<EngineFuelTypesCubit>()
+          .saveAllEngineFuelTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as EngineFuelTypesModel).toJson());
     }
   }
 }
