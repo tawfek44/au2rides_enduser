@@ -24,10 +24,10 @@ List<String> tableNames = [
   acquisitionTypesTableName,
   metricUnitsTableName,
   engineTransmissionTypes,
-  engineFuelTypes
+  engineFuelTypes,
+  reminderTypesTableName
 ];
 Future main() async {
-
   AppEnvironment.setUpEnv(Environment.dev);
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();

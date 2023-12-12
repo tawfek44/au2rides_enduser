@@ -12,11 +12,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:developer' as log_dev;
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
-import 'core/storage/local/sqlite.dart';
-import 'core/storage/tables/languages.dart';
 import 'core/styles/theme.dart';
 import 'core/dependancy_injection/injection_utils.dart' as di;
-import 'env.dart';
 import 'generated/l10n.dart';
 import 'main_dev.dart';
 

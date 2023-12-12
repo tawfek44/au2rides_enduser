@@ -8,6 +8,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<AcquisitionTypesCubit>()),
         BlocProvider(create: (_) => getIt<MetricUnitsCubit>()),
         BlocProvider(create: (_) => getIt<EngineTransmissionTypesCubit>()),
-        BlocProvider(create: (_) => getIt<EngineFuelTypesCubit>())
+        BlocProvider(create: (_) => getIt<EngineFuelTypesCubit>()),
+        BlocProvider(create: (_) => getIt<ReminderTypesCubit>())
       ],
       child: child,
     );

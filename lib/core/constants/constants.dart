@@ -28,6 +28,7 @@ const String acquisitionTypesTableName = 'acquisition_types';
 const String metricUnitsTableName = 'metric_units';
 const String engineTransmissionTypes = 'engine_transmission_types';
 const String engineFuelTypes = 'engine_fuel_types';
+const String reminderTypesTableName = 'reminder_types';
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 Widget errorWidget() => Center(
