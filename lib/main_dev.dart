@@ -25,7 +25,9 @@ List<String> tableNames = [
   metricUnitsTableName,
   engineTransmissionTypes,
   engineFuelTypes,
-  reminderTypesTableName
+  reminderTypesTableName,
+  reminderTypeServices,
+  recurrencePeriodTypesTableName
 ];
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);

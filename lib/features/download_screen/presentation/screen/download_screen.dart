@@ -11,6 +11,7 @@ import 'package:au2rides/features/download_screen/data/models/metric_units/metri
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
+import 'package:au2rides/features/download_screen/data/models/recurrence_period_types/recurrence_period_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
@@ -19,6 +20,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +112,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case reminderTypesTableName:
             downloadPrimaryDataForReminderTypesTable(table: table);
+            break;
+          case recurrencePeriodTypesTableName:
+            downloadPrimaryDataForRecurrencePeriodTypesTable(table: table);
             break;
         }
       }
@@ -511,6 +516,32 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveReminderTypesInLocalDatabase(
           tableName: table.tableName,
           values: (element as ReminderTypesModel).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForRecurrencePeriodTypesTable({required table}) async {
+    //TODO 1. clear RecurrencePeriodTypes table in local db
+    await context.read<RecurrencePeriodTypesCubit>().clearRecurrencePeriodTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get RecurrencePeriodTypes data from network db
+    await context
+        .read<RecurrencePeriodTypesCubit>()
+        .getAllRecurrencePeriodTypesFromNetworkDB(
+        tableDefinitions: table, appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save RecurrencePeriodTypes data in local db
+      await saveRecurrencePeriodTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveRecurrencePeriodTypesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<RecurrencePeriodTypesCubit>()
+          .saveAllRecurrencePeriodTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as RecurrencePeriodTypesModel).toJson());
     }
   }
 }
