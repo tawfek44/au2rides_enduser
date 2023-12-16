@@ -12,6 +12,7 @@ import 'package:au2rides/features/download_screen/data/models/month/month_model.
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/recurrence_period_types/recurrence_period_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/reminder_type_service_types/reminder_type_service_model.dart';
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
@@ -21,6 +22,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -115,6 +117,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case recurrencePeriodTypesTableName:
             downloadPrimaryDataForRecurrencePeriodTypesTable(table: table);
+            break;
+          case reminderTypeServicesTableName:
+            downloadPrimaryDataForReminderTypeServiceTable(table: table);
             break;
         }
       }
@@ -511,23 +516,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   saveReminderTypesInLocalDb({required response, required table}) async {
     for (var element in response) {
-      await context
-          .read<ReminderTypesCubit>()
-          .saveReminderTypesInLocalDatabase(
+      await context.read<ReminderTypesCubit>().saveReminderTypesInLocalDatabase(
           tableName: table.tableName,
           values: (element as ReminderTypesModel).toJson());
     }
   }
 
-  Future<void> downloadPrimaryDataForRecurrencePeriodTypesTable({required table}) async {
+  Future<void> downloadPrimaryDataForRecurrencePeriodTypesTable(
+      {required table}) async {
     //TODO 1. clear RecurrencePeriodTypes table in local db
-    await context.read<RecurrencePeriodTypesCubit>().clearRecurrencePeriodTypesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    await context
+        .read<RecurrencePeriodTypesCubit>()
+        .clearRecurrencePeriodTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get RecurrencePeriodTypes data from network db
     await context
         .read<RecurrencePeriodTypesCubit>()
         .getAllRecurrencePeriodTypesFromNetworkDB(
-        tableDefinitions: table, appLang: widget.userRepository.userLanguage)
+            tableDefinitions: table,
+            appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save RecurrencePeriodTypes data in local db
       await saveRecurrencePeriodTypesInLocalDb(response: value, table: table);
@@ -535,13 +542,44 @@ class _DownloadScreenState extends State<DownloadScreen> {
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
   }
 
-  saveRecurrencePeriodTypesInLocalDb({required response, required table}) async {
+  saveRecurrencePeriodTypesInLocalDb(
+      {required response, required table}) async {
     for (var element in response) {
       await context
           .read<RecurrencePeriodTypesCubit>()
           .saveAllRecurrencePeriodTypesInLocalDB(
-          tableName: table.tableName,
-          values: (element as RecurrencePeriodTypesModel).toJson());
+              tableName: table.tableName,
+              values: (element as RecurrencePeriodTypesModel).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForReminderTypeServiceTable(
+      {required table}) async {
+    //TODO 1. clear ReminderTypeService table in local db
+    await context
+        .read<ReminderTypeServiceCubit>()
+        .clearReminderTypeServiceInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get RecurrencePeriodTypes data from network db
+    await context
+        .read<ReminderTypeServiceCubit>()
+        .getAllReminderTypeServiceFromNetworkDB(
+            tableDefinitions: table,
+            appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save RecurrencePeriodTypes data in local db
+      await saveReminderTypeServiceInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveReminderTypeServiceInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<ReminderTypeServiceCubit>()
+          .saveAllReminderTypeServiceInLocalDB(
+              tableName: table.tableName,
+              values: (element as ReminderTypeServiceModel ).toJson());
     }
   }
 }

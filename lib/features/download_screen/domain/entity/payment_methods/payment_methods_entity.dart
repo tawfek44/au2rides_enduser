@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../core/resources/list_converter.dart';
+
 part 'payment_methods_entity.g.dart';
 
 @JsonSerializable()
@@ -39,16 +41,4 @@ class PaymentMethodsEntity extends Equatable {
         auPaymentMethodId
       ];
 }
-class Uint8ListConverter implements JsonConverter<Uint8List?, List<dynamic>?> {
-  const Uint8ListConverter();
 
-  @override
-  Uint8List? fromJson(List<dynamic>? json) {
-    return json == null ? null : Uint8List.fromList(json.cast<int>());
-  }
-
-  @override
-  List<int>? toJson(Uint8List? object) {
-    return object?.toList();
-  }
-}

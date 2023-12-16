@@ -1,6 +1,7 @@
 import 'package:au2rides/features/download_screen/domain/entity/payment_methods/payment_methods_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../core/resources/list_converter.dart';
 import '../../../domain/entity/ride_types/ride_types_entity.dart';
 
 part 'payment_methods_model.g.dart';

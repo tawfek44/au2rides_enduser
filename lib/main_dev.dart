@@ -26,7 +26,7 @@ List<String> tableNames = [
   engineTransmissionTypes,
   engineFuelTypes,
   reminderTypesTableName,
-  reminderTypeServices,
+  reminderTypeServicesTableName,
   recurrencePeriodTypesTableName
 ];
 Future main() async {

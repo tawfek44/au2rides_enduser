@@ -5,6 +5,7 @@ import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/metric_units_types.dart';
 import 'package:au2rides/core/storage/tables/pressure_units.dart';
 import 'package:au2rides/core/storage/tables/recurrence_period_types.dart';
+import 'package:au2rides/core/storage/tables/reminder_type_service.dart';
 import 'package:au2rides/core/storage/tables/reminder_types.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
@@ -212,6 +213,16 @@ class Au2ridesDatabase {
     ${RecurrencePeriodTypesFields.recurrencePeriodTypeName} $textType,
     ${RecurrencePeriodTypesFields.recurrencePeriodTypeDaysCount} $intType,
     PRIMARY KEY (${RecurrencePeriodTypesFields.recurrencePeriodTypeId}, ${RecurrencePeriodTypesFields.languageId})
+    )
+    ''');
+    //reminder_type_service
+    await db.execute('''
+    CREATE TABLE $reminderTypeServicesTableName (
+    ${ReminderTypeServiceFields.reminderTypeServiceId} $intType,
+    ${ReminderTypeServiceFields.languageId} $intType,
+    ${ReminderTypeServiceFields.allowedReminderTypes} $textType,
+    ${ReminderTypeServiceFields.reminderTypeServiceName} $intType,
+    PRIMARY KEY (${ReminderTypeServiceFields.reminderTypeServiceId}, ${ReminderTypeServiceFields.languageId})
     )
     ''');
   }
