@@ -7,6 +7,7 @@ import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_transmission_types/engine_transmission_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/fuel_brands/fuel_brands_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
@@ -37,6 +38,7 @@ import '../../data/models/user_gender/user_gender_model.dart';
 import '../../data/models/weather_units_model/weather_units_model.dart';
 import '../bloc/country_cubit/country_cubit.dart';
 import '../bloc/currency_cubit/currency_cubit.dart';
+import '../bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
 import '../bloc/gender_cubit/gender_cubit.dart';
 import '../bloc/ride_types/ride_types_cubit.dart';
 import '../bloc/weather_units/weather_units_cubit.dart';
@@ -120,6 +122,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case reminderTypeServicesTableName:
             downloadPrimaryDataForReminderTypeServiceTable(table: table);
+            break;
+          case fuelBrandsTableName:
+            downloadPrimaryDataForFuelBrandsTable(table: table);
             break;
         }
       }
@@ -580,6 +585,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllReminderTypeServiceInLocalDB(
               tableName: table.tableName,
               values: (element as ReminderTypeServiceModel ).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForFuelBrandsTable({required table}) async {
+    //TODO 1. clear FuelBrands table in local db
+    await context
+        .read<FuelBrandsCubit>()
+        .clearFuelBrandsInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get FuelBrands data from network db
+    await context
+        .read<FuelBrandsCubit>()
+        .getAllAcquisitionTypesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save FuelBrands data in local db
+      await saveFuelBrandsInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveFuelBrandsInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<FuelBrandsCubit>()
+          .saveAllAcquisitionTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as FuelBrandsModel ).toJson());
     }
   }
 }

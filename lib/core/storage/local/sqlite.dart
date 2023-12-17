@@ -16,6 +16,7 @@ import '../tables/acquisition_types.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
 import '../tables/engine_fuel_types.dart';
+import '../tables/fuel_brands.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
@@ -223,6 +224,17 @@ class Au2ridesDatabase {
     ${ReminderTypeServiceFields.allowedReminderTypes} $textType,
     ${ReminderTypeServiceFields.reminderTypeServiceName} $intType,
     PRIMARY KEY (${ReminderTypeServiceFields.reminderTypeServiceId}, ${ReminderTypeServiceFields.languageId})
+    )
+    ''');
+    //fuel_brands
+    await db.execute('''
+    CREATE TABLE $fuelBrandsTableName (
+    ${FuelBrandsFields.fuelBrandId} $intType,
+    ${FuelBrandsFields.languageId} $intType,
+    ${FuelBrandsFields.fuelBrandName} $textType,
+    ${FuelBrandsFields.brandImageUrl} $textType,
+    ${FuelBrandsFields.auFuelBrandId} $intType,
+    PRIMARY KEY (${FuelBrandsFields.fuelBrandId}, ${FuelBrandsFields.languageId})
     )
     ''');
   }

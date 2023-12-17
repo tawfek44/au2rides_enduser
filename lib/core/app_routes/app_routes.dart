@@ -60,7 +60,6 @@ import 'package:flutter/material.dart';
 import '../../features/download_screen/presentation/screen/download_screen.dart';
 import '../../features/identity_card_passport_screen/presentation/screen/identity_card_passport_screen.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
-import '../../features/xx.dart';
 import '../dependancy_injection/injection.dart';
 import 'app_routes_names.dart';
 

@@ -31,6 +31,7 @@ const String engineFuelTypes = 'engine_fuel_types';
 const String reminderTypesTableName = 'reminder_types';
 const String reminderTypeServicesTableName = 'reminder_type_services';
 const String recurrencePeriodTypesTableName = 'recurrence_period_types';
+const String fuelBrandsTableName = 'fuel_brands';
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 Widget errorWidget() => Center(
