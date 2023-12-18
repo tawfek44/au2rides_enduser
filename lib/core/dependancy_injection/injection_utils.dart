@@ -1,10 +1,12 @@
 
+import 'package:au2rides/core/storage/tables/fuel_consumption_unit_types.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
 import 'package:au2rides/features/download_screen/domain/entity/metric_units_types/metric_units_entity.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_consumption_unit_types_cubit/fuel_consumption_unit_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
@@ -43,7 +45,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ReminderTypesCubit>()),
         BlocProvider(create: (_) => getIt<RecurrencePeriodTypesCubit>()),
         BlocProvider(create: (_) => getIt<ReminderTypeServiceCubit>()),
-        BlocProvider(create: (_) => getIt<FuelBrandsCubit>())
+        BlocProvider(create: (_) => getIt<FuelBrandsCubit>()),
+        BlocProvider(create: (_) => getIt<FuelConsumptionUnitTypesCubit>())
       ],
       child: child,
     );

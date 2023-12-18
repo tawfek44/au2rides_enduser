@@ -8,6 +8,7 @@ import 'package:au2rides/features/download_screen/data/models/acquisition_types/
 import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_transmission_types/engine_transmission_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/fuel_brands/fuel_brands_model.dart';
+import 'package:au2rides/features/download_screen/data/models/fuel_consumption_unit_types/fuel_consumption_unit_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
@@ -39,6 +40,7 @@ import '../../data/models/weather_units_model/weather_units_model.dart';
 import '../bloc/country_cubit/country_cubit.dart';
 import '../bloc/currency_cubit/currency_cubit.dart';
 import '../bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
+import '../bloc/fuel_consumption_unit_types_cubit/fuel_consumption_unit_types_cubit.dart';
 import '../bloc/gender_cubit/gender_cubit.dart';
 import '../bloc/ride_types/ride_types_cubit.dart';
 import '../bloc/weather_units/weather_units_cubit.dart';
@@ -79,52 +81,55 @@ class _DownloadScreenState extends State<DownloadScreen> {
       for (var table in widget.tablesNames) {
         switch (table.tableName) {
           case countryTableName:
-            downloadPrimaryDataForCountryTable(table: table);
+            await downloadPrimaryDataForCountryTable(table: table);
             break;
           case currencyTableName:
-            downloadPrimaryDataForCurrencyTable(table: table);
+            await downloadPrimaryDataForCurrencyTable(table: table);
             break;
           case userGenderTableName:
-            downloadPrimaryDataForGenderTable(table: table);
+            await downloadPrimaryDataForGenderTable(table: table);
             break;
           case weatherMeasuringUnitsTableName:
-            downloadPrimaryDataForWeatherMeasuringUnitsTable(table: table);
+            await downloadPrimaryDataForWeatherMeasuringUnitsTable(table: table);
             break;
           case rideTypesTableName:
-            downloadPrimaryDataForRideTypesTable(table: table);
+            await downloadPrimaryDataForRideTypesTable(table: table);
             break;
           case paymentMethodTableName:
-            downloadPrimaryDataForPaymentMethodsTable(table: table);
+            await  downloadPrimaryDataForPaymentMethodsTable(table: table);
             break;
           case monthTableName:
-            downloadPrimaryDataForMonthsTable(table: table);
+            await downloadPrimaryDataForMonthsTable(table: table);
             break;
           case pressureUnitsTableName:
-            downloadPrimaryDataForPressureUnitsTable(table: table);
+            await downloadPrimaryDataForPressureUnitsTable(table: table);
             break;
           case acquisitionTypesTableName:
-            downloadPrimaryDataForAcquisitionTypesTable(table: table);
+            await downloadPrimaryDataForAcquisitionTypesTable(table: table);
             break;
           case metricUnitsTableName:
-            downloadPrimaryDataForMetricUnitsTable(table: table);
+            await downloadPrimaryDataForMetricUnitsTable(table: table);
             break;
           case engineTransmissionTypes:
-            downloadPrimaryDataForEngineTransmissionTypesTable(table: table);
+            await downloadPrimaryDataForEngineTransmissionTypesTable(table: table);
             break;
           case engineFuelTypes:
-            downloadPrimaryDataForEngineFuelTypesTable(table: table);
+            await downloadPrimaryDataForEngineFuelTypesTable(table: table);
             break;
           case reminderTypesTableName:
-            downloadPrimaryDataForReminderTypesTable(table: table);
+            await downloadPrimaryDataForReminderTypesTable(table: table);
             break;
           case recurrencePeriodTypesTableName:
-            downloadPrimaryDataForRecurrencePeriodTypesTable(table: table);
+            await downloadPrimaryDataForRecurrencePeriodTypesTable(table: table);
             break;
           case reminderTypeServicesTableName:
-            downloadPrimaryDataForReminderTypeServiceTable(table: table);
+            await downloadPrimaryDataForReminderTypeServiceTable(table: table);
             break;
           case fuelBrandsTableName:
-            downloadPrimaryDataForFuelBrandsTable(table: table);
+            await downloadPrimaryDataForFuelBrandsTable(table: table);
+            break;
+          case fuelConsumptionUnitTypesTableName:
+            await downloadPrimaryDataForFuelConsumptionUnitTypesTable(table: table);
             break;
         }
       }
@@ -614,6 +619,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllAcquisitionTypesInLocalDB(
           tableName: table.tableName,
           values: (element as FuelBrandsModel ).toJson());
+    }
+  }
+
+  Future<void> downloadPrimaryDataForFuelConsumptionUnitTypesTable({required table}) async {
+    //TODO 1. clear FuelConsumptionUnitTypes table in local db
+    await context
+        .read<FuelConsumptionUnitTypesCubit>()
+        .clearFuelConsumptionUnitTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get FuelConsumptionUnitTypes data from network db
+    await context
+        .read<FuelConsumptionUnitTypesCubit>()
+        .getAllFuelConsumptionUnitTypesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save FuelConsumptionUnitTypes data in local db
+      await saveFuelConsumptionUnitTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveFuelConsumptionUnitTypesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<FuelConsumptionUnitTypesCubit>()
+          .saveAllFuelConsumptionUnitTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as FuelConsumptionUnitTypesModel ).toJson());
     }
   }
 }
