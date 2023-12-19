@@ -26,6 +26,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/pressure_uni
 import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
 import '../../data/models/ride_types/ride_types_model.dart';
+import '../../data/models/services_departments/service_departments_model.dart';
 import '../../data/models/user_gender/user_gender_model.dart';
 import '../../data/models/weather_units_model/weather_units_model.dart';
 import '../bloc/country_cubit/country_cubit.dart';
@@ -130,6 +132,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case fuelConsumptionUnitTypesTableName:
             await downloadPrimaryDataForFuelConsumptionUnitTypesTable(table: table);
+            break;
+          case servicesDepartmentsTableName:
+            await downloadPrimaryDataForServiceDepartmentsTable(table: table);
             break;
         }
       }
@@ -648,6 +653,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllFuelConsumptionUnitTypesInLocalDB(
           tableName: table.tableName,
           values: (element as FuelConsumptionUnitTypesModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForServiceDepartmentsTable({required table}) async {
+    //TODO 1. clear ServiceDepartments table in local db
+    await context
+        .read<ServiceDepartmentsCubit>()
+        .clearServiceDepartmentsInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get ServiceDepartments data from network db
+    await context
+        .read<ServiceDepartmentsCubit>()
+        .getAllServiceDepartmentsFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save ServiceDepartments data in local db
+      await saveServiceDepartmentsInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveServiceDepartmentsInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<ServiceDepartmentsCubit>()
+          .saveAllServiceDepartmentsInLocalDB(
+          tableName: table.tableName,
+          values: (element as ServiceDepartmentsModel ).toJson());
     }
   }
 }

@@ -21,6 +21,7 @@ import '../tables/fuel_consumption_unit_types.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
+import '../tables/services_departments.dart';
 import '../tables/user_gender.dart';
 
 class Au2ridesDatabase {
@@ -238,13 +239,23 @@ class Au2ridesDatabase {
     PRIMARY KEY (${FuelBrandsFields.fuelBrandId}, ${FuelBrandsFields.languageId})
     )
     ''');
-    //fuel_brands
+    //fuel_consumption_units_types
     await db.execute('''
     CREATE TABLE $fuelConsumptionUnitTypesTableName (
     ${FuelConsumptionUnitTypesFields.fuelConsumptionUnitTypeId} $intType,
     ${FuelConsumptionUnitTypesFields.languageId} $intType,
     ${FuelConsumptionUnitTypesFields.fuelConsumptionUnitTypeName} $textType,
     PRIMARY KEY (${FuelConsumptionUnitTypesFields.fuelConsumptionUnitTypeId}, ${FuelConsumptionUnitTypesFields.languageId})
+    )
+    ''');
+
+    //service_departments
+    await db.execute('''
+    CREATE TABLE $servicesDepartmentsTableName (
+    ${ServiceDepartmentsFields.serviceDepartmentId} $intType,
+    ${ServiceDepartmentsFields.languageId} $intType,
+    ${ServiceDepartmentsFields.serviceDepartmentName} $textType,
+    PRIMARY KEY (${ServiceDepartmentsFields.serviceDepartmentId}, ${ServiceDepartmentsFields.languageId})
     )
     ''');
   }

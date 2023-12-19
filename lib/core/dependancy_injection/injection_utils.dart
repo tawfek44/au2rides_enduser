@@ -14,6 +14,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/pressure_uni
 import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +47,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<RecurrencePeriodTypesCubit>()),
         BlocProvider(create: (_) => getIt<ReminderTypeServiceCubit>()),
         BlocProvider(create: (_) => getIt<FuelBrandsCubit>()),
-        BlocProvider(create: (_) => getIt<FuelConsumptionUnitTypesCubit>())
+        BlocProvider(create: (_) => getIt<FuelConsumptionUnitTypesCubit>()),
+        BlocProvider(create: (_) => getIt<ServiceDepartmentsCubit>())
       ],
       child: child,
     );
