@@ -7,6 +7,7 @@ import 'package:au2rides/core/storage/tables/pressure_units.dart';
 import 'package:au2rides/core/storage/tables/recurrence_period_types.dart';
 import 'package:au2rides/core/storage/tables/reminder_type_service.dart';
 import 'package:au2rides/core/storage/tables/reminder_types.dart';
+import 'package:au2rides/core/storage/tables/service_types.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
 import 'package:sqflite/sqflite.dart';
@@ -256,6 +257,15 @@ class Au2ridesDatabase {
     ${ServiceDepartmentsFields.languageId} $intType,
     ${ServiceDepartmentsFields.serviceDepartmentName} $textType,
     PRIMARY KEY (${ServiceDepartmentsFields.serviceDepartmentId}, ${ServiceDepartmentsFields.languageId})
+    )
+    ''');
+    //service_types
+    await db.execute('''
+    CREATE TABLE $servicesTypesTableName (
+    ${ServiceTypesFields.serviceTypeId} $intType,
+    ${ServiceTypesFields.languageId} $intType,
+    ${ServiceTypesFields.serviceTypeName} $textType,
+    PRIMARY KEY (${ServiceTypesFields.serviceTypeId}, ${ServiceTypesFields.languageId})
     )
     ''');
   }

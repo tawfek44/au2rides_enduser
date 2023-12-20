@@ -16,6 +16,7 @@ import 'package:au2rides/features/download_screen/data/models/pressure_units/pre
 import 'package:au2rides/features/download_screen/data/models/recurrence_period_types/recurrence_period_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/reminder_type_service_types/reminder_type_service_model.dart';
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/service_types/service_types_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
@@ -27,6 +28,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_p
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -135,6 +137,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case servicesDepartmentsTableName:
             await downloadPrimaryDataForServiceDepartmentsTable(table: table);
+            break;
+          case servicesTypesTableName:
+            await downloadPrimaryDataForServiceTypesTable(table: table);
             break;
         }
       }
@@ -682,6 +687,35 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllServiceDepartmentsInLocalDB(
           tableName: table.tableName,
           values: (element as ServiceDepartmentsModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForServiceTypesTable({required table}) async {
+    //TODO 1. clear ServiceTypes table in local db
+    await context
+        .read<ServiceTypesCubit>()
+        .clearServiceTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get ServiceTypes data from network db
+    await context
+        .read<ServiceTypesCubit>()
+        .getAllServiceTypesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save ServiceTypes data in local db
+      await saveServiceTypesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveServiceTypesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<ServiceTypesCubit>()
+          .saveAllServiceTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as ServiceTypesModel ).toJson());
     }
   }
 }
