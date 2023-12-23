@@ -1,10 +1,8 @@
 import 'package:au2rides/core/repositories/user_repository.dart';
-import 'package:au2rides/core/storage/network/dio_client.dart';
 import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/env.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 import 'core/constants/constants.dart';
 import 'core/dependancy_injection/injection.dart';
@@ -33,7 +31,8 @@ List<String> tableNames = [
   fuelOctaneNumbersTableName,
   servicesDepartmentsTableName,
   servicesTypesTableName,
-  departmentServiceItemsTableName
+  departmentServiceItemsTableName,
+  modelGenerationSpecificationKeys
 ];
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);

@@ -9,8 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:au2rides/core/network_state/network_state.dart' as _i61;
-import 'package:au2rides/core/repositories/user_repository.dart' as _i104;
+import 'package:au2rides/core/network_state/network_state.dart' as _i64;
+import 'package:au2rides/core/repositories/user_repository.dart' as _i108;
 import 'package:au2rides/core/shared_preference_manager/shared_preference_manager.dart'
     as _i47;
 import 'package:au2rides/features/download_screen/data/datasources/acquisition_types_datasource.dart'
@@ -35,26 +35,28 @@ import 'package:au2rides/features/download_screen/data/datasources/gender_data_s
     as _i36;
 import 'package:au2rides/features/download_screen/data/datasources/metric_units_datasource.dart'
     as _i55;
-import 'package:au2rides/features/download_screen/data/datasources/month_datasource.dart'
+import 'package:au2rides/features/download_screen/data/datasources/model_generation_specification_keys_datasource.dart'
     as _i58;
+import 'package:au2rides/features/download_screen/data/datasources/month_datasource.dart'
+    as _i61;
 import 'package:au2rides/features/download_screen/data/datasources/payment_methods_data_source.dart'
-    as _i62;
-import 'package:au2rides/features/download_screen/data/datasources/pressure_units_datasource.dart'
     as _i65;
-import 'package:au2rides/features/download_screen/data/datasources/reccurence_period_types_datasource.dart'
+import 'package:au2rides/features/download_screen/data/datasources/pressure_units_datasource.dart'
     as _i68;
-import 'package:au2rides/features/download_screen/data/datasources/reminder_type_service_datasource.dart'
+import 'package:au2rides/features/download_screen/data/datasources/reccurence_period_types_datasource.dart'
     as _i71;
-import 'package:au2rides/features/download_screen/data/datasources/reminder_types_datasource.dart'
+import 'package:au2rides/features/download_screen/data/datasources/reminder_type_service_datasource.dart'
     as _i74;
-import 'package:au2rides/features/download_screen/data/datasources/ride_types_data_source.dart'
+import 'package:au2rides/features/download_screen/data/datasources/reminder_types_datasource.dart'
     as _i77;
+import 'package:au2rides/features/download_screen/data/datasources/ride_types_data_source.dart'
+    as _i80;
 import 'package:au2rides/features/download_screen/data/datasources/service_departments_datasource.dart'
-    as _i98;
+    as _i102;
 import 'package:au2rides/features/download_screen/data/datasources/service_types_datasource.dart'
-    as _i99;
+    as _i103;
 import 'package:au2rides/features/download_screen/data/datasources/weather_units_data_source.dart'
-    as _i105;
+    as _i109;
 import 'package:au2rides/features/download_screen/data/repositories/acquisition_types_repository.dart'
     as _i5;
 import 'package:au2rides/features/download_screen/data/repositories/country_repository.dart'
@@ -77,26 +79,28 @@ import 'package:au2rides/features/download_screen/data/repositories/gender_repos
     as _i38;
 import 'package:au2rides/features/download_screen/data/repositories/metric_units_repository.dart'
     as _i57;
-import 'package:au2rides/features/download_screen/data/repositories/month_repository.dart'
+import 'package:au2rides/features/download_screen/data/repositories/model_generation_specification_keys_repository.dart'
     as _i60;
+import 'package:au2rides/features/download_screen/data/repositories/month_repository.dart'
+    as _i63;
 import 'package:au2rides/features/download_screen/data/repositories/payment_methods_repository.dart'
-    as _i64;
-import 'package:au2rides/features/download_screen/data/repositories/pressure_units_repository.dart'
     as _i67;
-import 'package:au2rides/features/download_screen/data/repositories/recurrence_period_types_repository.dart'
+import 'package:au2rides/features/download_screen/data/repositories/pressure_units_repository.dart'
     as _i70;
-import 'package:au2rides/features/download_screen/data/repositories/reminder_type_service_repository.dart'
+import 'package:au2rides/features/download_screen/data/repositories/recurrence_period_types_repository.dart'
     as _i73;
-import 'package:au2rides/features/download_screen/data/repositories/reminder_types_repository.dart'
+import 'package:au2rides/features/download_screen/data/repositories/reminder_type_service_repository.dart'
     as _i76;
-import 'package:au2rides/features/download_screen/data/repositories/ride_types_repository.dart'
+import 'package:au2rides/features/download_screen/data/repositories/reminder_types_repository.dart'
     as _i79;
+import 'package:au2rides/features/download_screen/data/repositories/ride_types_repository.dart'
+    as _i82;
 import 'package:au2rides/features/download_screen/data/repositories/service_types_repository.dart'
-    as _i101;
+    as _i105;
 import 'package:au2rides/features/download_screen/data/repositories/services_departments_repository.dart'
-    as _i103;
-import 'package:au2rides/features/download_screen/data/repositories/weather_units_repository.dart'
     as _i107;
+import 'package:au2rides/features/download_screen/data/repositories/weather_units_repository.dart'
+    as _i111;
 import 'package:au2rides/features/download_screen/domain/repository/acquisition_types_repository.dart'
     as _i4;
 import 'package:au2rides/features/download_screen/domain/repository/country_repository.dart'
@@ -119,194 +123,204 @@ import 'package:au2rides/features/download_screen/domain/repository/gender_repos
     as _i37;
 import 'package:au2rides/features/download_screen/domain/repository/metric_units_repository.dart'
     as _i56;
-import 'package:au2rides/features/download_screen/domain/repository/month_repository.dart'
+import 'package:au2rides/features/download_screen/domain/repository/model_generation_specification_keys_repository.dart'
     as _i59;
+import 'package:au2rides/features/download_screen/domain/repository/month_repository.dart'
+    as _i62;
 import 'package:au2rides/features/download_screen/domain/repository/payment_methods_repository.dart'
-    as _i63;
-import 'package:au2rides/features/download_screen/domain/repository/pressure_units_repository.dart'
     as _i66;
-import 'package:au2rides/features/download_screen/domain/repository/recurrence_period_types_repository.dart'
+import 'package:au2rides/features/download_screen/domain/repository/pressure_units_repository.dart'
     as _i69;
-import 'package:au2rides/features/download_screen/domain/repository/reminder_type_service_repository.dart'
+import 'package:au2rides/features/download_screen/domain/repository/recurrence_period_types_repository.dart'
     as _i72;
-import 'package:au2rides/features/download_screen/domain/repository/reminder_types_repository.dart'
+import 'package:au2rides/features/download_screen/domain/repository/reminder_type_service_repository.dart'
     as _i75;
-import 'package:au2rides/features/download_screen/domain/repository/ride_types_repository.dart'
+import 'package:au2rides/features/download_screen/domain/repository/reminder_types_repository.dart'
     as _i78;
+import 'package:au2rides/features/download_screen/domain/repository/ride_types_repository.dart'
+    as _i81;
 import 'package:au2rides/features/download_screen/domain/repository/service_types_repository.dart'
-    as _i100;
+    as _i104;
 import 'package:au2rides/features/download_screen/domain/repository/services_departments_repository.dart'
-    as _i102;
-import 'package:au2rides/features/download_screen/domain/repository/weather_measuring_units_repository.dart'
     as _i106;
+import 'package:au2rides/features/download_screen/domain/repository/weather_measuring_units_repository.dart'
+    as _i110;
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/clear_acquisition_types_usecase.dart'
     as _i10;
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/get_all_acquisition_types_usecase.dart'
     as _i39;
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/save_acquisition_types_in_local_db_usecase.dart'
-    as _i80;
+    as _i83;
 import 'package:au2rides/features/download_screen/domain/usecase/country/clear_all_data_country_usecase.dart'
-    as _i110;
+    as _i114;
 import 'package:au2rides/features/download_screen/domain/usecase/country/country_usecase.dart'
     as _i14;
 import 'package:au2rides/features/download_screen/domain/usecase/country/save_country_usecase.dart'
-    as _i81;
+    as _i84;
 import 'package:au2rides/features/download_screen/domain/usecase/currency/currency_usecase.dart'
-    as _i111;
+    as _i115;
 import 'package:au2rides/features/download_screen/domain/usecase/currency/get_all_currencies_usecase.dart'
     as _i40;
 import 'package:au2rides/features/download_screen/domain/usecase/currency/save_currencies_in_local_db_usecase.dart'
-    as _i82;
+    as _i85;
 import 'package:au2rides/features/download_screen/domain/usecase/department_service_items/clear_department_service_items_usecase.dart'
-    as _i112;
+    as _i116;
 import 'package:au2rides/features/download_screen/domain/usecase/department_service_items/get_all_department_service_items_usecase.dart'
     as _i41;
 import 'package:au2rides/features/download_screen/domain/usecase/department_service_items/save_department_service_items_in_local_db_usecase.dart'
-    as _i83;
+    as _i86;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_fuel_types/engine_fuel_types_usecase.dart'
-    as _i113;
+    as _i117;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_fuel_types/get_all_engine_fuel_types_usecase.dart'
     as _i42;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_fuel_types/save_engine_fuel_types_in_local_db_usecase.dart'
-    as _i84;
+    as _i87;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/engine_transmission_types_usecase.dart'
-    as _i114;
+    as _i118;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/get_all_engine_transmission_types_usecase.dart'
     as _i43;
 import 'package:au2rides/features/download_screen/domain/usecase/engine_transmission_types/save_engine_transmission_types_in_local_db_usecase.dart'
-    as _i85;
+    as _i88;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_brands/clear_fuel_brands_usecase.dart'
-    as _i115;
+    as _i119;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_brands/get_all_fuel_brands_usecase.dart'
     as _i44;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_brands/save_fuel_brands_in_local_db_usecase.dart'
-    as _i86;
+    as _i89;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_consumption_unit_types/clear_fuel_consumption_unit_types_usecase.dart'
-    as _i116;
+    as _i120;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_consumption_unit_types/get_all_fuel_consumption_unit_types_usecase.dart'
     as _i45;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_consumption_unit_types/save_fuel_consumption_unit_types_in_local_db_usecase.dart'
-    as _i87;
+    as _i90;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_octane_number/clear_fuel_octane_number_usecase.dart'
-    as _i117;
+    as _i121;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_octane_number/get_all_fuel_octane_number_usecase.dart'
     as _i46;
 import 'package:au2rides/features/download_screen/domain/usecase/fuel_octane_number/save_fuel_octane_number_in_local_db_usecase.dart'
-    as _i88;
-import 'package:au2rides/features/download_screen/domain/usecase/gender/clear_gender_local_usecase.dart'
-    as _i118;
-import 'package:au2rides/features/download_screen/domain/usecase/gender/download_gender_network_usecase.dart'
-    as _i133;
-import 'package:au2rides/features/download_screen/domain/usecase/gender/save_gender_data_usecase.dart'
-    as _i89;
-import 'package:au2rides/features/download_screen/domain/usecase/metric_units/clear_metric_units_usecase.dart'
-    as _i119;
-import 'package:au2rides/features/download_screen/domain/usecase/metric_units/get_all_metric_units_usecase.dart'
-    as _i143;
-import 'package:au2rides/features/download_screen/domain/usecase/metric_units/save_metric_units_in_local_db_usecase.dart'
-    as _i90;
-import 'package:au2rides/features/download_screen/domain/usecase/month/clear_all_data_month_usecase.dart'
-    as _i120;
-import 'package:au2rides/features/download_screen/domain/usecase/month/get_months_usecase.dart'
-    as _i150;
-import 'package:au2rides/features/download_screen/domain/usecase/month/save_months_usecase.dart'
     as _i91;
-import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/clear_payment_methods_local_usecase.dart'
-    as _i121;
-import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/download_payment_methods_network_usecase.dart'
-    as _i134;
-import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/save_payment_methods_data_usecase.dart'
-    as _i92;
-import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/clear_all_pressure_units_usecase.dart'
+import 'package:au2rides/features/download_screen/domain/usecase/gender/clear_gender_local_usecase.dart'
     as _i122;
-import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/get_all_pressure_units_usecase.dart'
-    as _i144;
-import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/save_pressure_units_in_local_db_usecase.dart'
-    as _i93;
-import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/clear_recurrence_period_types_usecase.dart'
-    as _i123;
-import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/get_all_recurrence_period_types_usecase.dart'
-    as _i145;
-import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/save_recurrence_period_types_in_local_db_usecase.dart'
-    as _i94;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/clear_reminder_type_service_usecase.dart'
-    as _i124;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/get_all_reminder_type_service_usecase.dart'
-    as _i146;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/save_reminder_type_service_in_local_db_usecase.dart'
-    as _i95;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/clear_all_data_reminder_types_usecase.dart'
-    as _i125;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/get_reminder_types_usecase.dart'
-    as _i151;
-import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/save_reminder_types_usecase.dart'
-    as _i96;
-import 'package:au2rides/features/download_screen/domain/usecase/ride_types/clear_ride_types_local_usecase.dart'
-    as _i126;
-import 'package:au2rides/features/download_screen/domain/usecase/ride_types/download_ride_types_network_usecase.dart'
-    as _i135;
-import 'package:au2rides/features/download_screen/domain/usecase/ride_types/save_ride_types_data_usecase.dart'
-    as _i97;
-import 'package:au2rides/features/download_screen/domain/usecase/service_types/clear_service_types_usecase.dart'
-    as _i127;
-import 'package:au2rides/features/download_screen/domain/usecase/service_types/get_all_service_types_usecase.dart'
-    as _i147;
-import 'package:au2rides/features/download_screen/domain/usecase/service_types/save_service_types_in_local_db_usecase.dart'
-    as _i162;
-import 'package:au2rides/features/download_screen/domain/usecase/services_departments/clear_services_departments_usecase.dart'
-    as _i128;
-import 'package:au2rides/features/download_screen/domain/usecase/services_departments/get_all_services_departments_usecase.dart'
-    as _i148;
-import 'package:au2rides/features/download_screen/domain/usecase/services_departments/save_services_departments_in_local_db_usecase.dart'
-    as _i161;
-import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/clear_weather_units_local_usecase.dart'
-    as _i129;
-import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/download_weather_units_network_usecase.dart'
-    as _i136;
-import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/save_weather_units_data_usecase.dart'
-    as _i163;
-import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart'
-    as _i108;
-import 'package:au2rides/features/download_screen/presentation/bloc/country_cubit/country_cubit.dart'
-    as _i130;
-import 'package:au2rides/features/download_screen/presentation/bloc/currency_cubit/currency_cubit.dart'
-    as _i131;
-import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart'
-    as _i132;
-import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart'
-    as _i137;
-import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart'
+import 'package:au2rides/features/download_screen/domain/usecase/gender/download_gender_network_usecase.dart'
     as _i138;
-import 'package:au2rides/features/download_screen/presentation/bloc/fuel_brands_cubit/fuel_brands_cubit.dart'
-    as _i139;
-import 'package:au2rides/features/download_screen/presentation/bloc/fuel_consumption_unit_types_cubit/fuel_consumption_unit_types_cubit.dart'
-    as _i140;
-import 'package:au2rides/features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart'
-    as _i141;
-import 'package:au2rides/features/download_screen/presentation/bloc/gender_cubit/gender_cubit.dart'
-    as _i142;
-import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart'
-    as _i153;
-import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart'
-    as _i154;
-import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart'
-    as _i155;
-import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart'
+import 'package:au2rides/features/download_screen/domain/usecase/gender/save_gender_data_usecase.dart'
+    as _i92;
+import 'package:au2rides/features/download_screen/domain/usecase/metric_units/clear_metric_units_usecase.dart'
+    as _i123;
+import 'package:au2rides/features/download_screen/domain/usecase/metric_units/get_all_metric_units_usecase.dart'
+    as _i148;
+import 'package:au2rides/features/download_screen/domain/usecase/metric_units/save_metric_units_in_local_db_usecase.dart'
+    as _i93;
+import 'package:au2rides/features/download_screen/domain/usecase/model_generation_specification_keys/clear_model_generation_specification_keys_usecase.dart'
+    as _i124;
+import 'package:au2rides/features/download_screen/domain/usecase/model_generation_specification_keys/get_all_model_generation_specification_keys_usecase.dart'
+    as _i149;
+import 'package:au2rides/features/download_screen/domain/usecase/model_generation_specification_keys/save_model_generation_specification_keys_in_local_db_usecase.dart'
+    as _i94;
+import 'package:au2rides/features/download_screen/domain/usecase/month/clear_all_data_month_usecase.dart'
+    as _i125;
+import 'package:au2rides/features/download_screen/domain/usecase/month/get_months_usecase.dart'
     as _i156;
-import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart'
+import 'package:au2rides/features/download_screen/domain/usecase/month/save_months_usecase.dart'
+    as _i95;
+import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/clear_payment_methods_local_usecase.dart'
+    as _i126;
+import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/download_payment_methods_network_usecase.dart'
+    as _i139;
+import 'package:au2rides/features/download_screen/domain/usecase/payment_methods/save_payment_methods_data_usecase.dart'
+    as _i96;
+import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/clear_all_pressure_units_usecase.dart'
+    as _i127;
+import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/get_all_pressure_units_usecase.dart'
+    as _i150;
+import 'package:au2rides/features/download_screen/domain/usecase/pressure_units/save_pressure_units_in_local_db_usecase.dart'
+    as _i97;
+import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/clear_recurrence_period_types_usecase.dart'
+    as _i128;
+import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/get_all_recurrence_period_types_usecase.dart'
+    as _i151;
+import 'package:au2rides/features/download_screen/domain/usecase/recurrence_period_types/save_recurrence_period_types_in_local_db_usecase.dart'
+    as _i98;
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/clear_reminder_type_service_usecase.dart'
+    as _i129;
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/get_all_reminder_type_service_usecase.dart'
+    as _i152;
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_type_service_types/save_reminder_type_service_in_local_db_usecase.dart'
+    as _i99;
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/clear_all_data_reminder_types_usecase.dart'
+    as _i130;
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/get_reminder_types_usecase.dart'
     as _i157;
-import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart'
-    as _i158;
-import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart'
+import 'package:au2rides/features/download_screen/domain/usecase/reminder_types/save_reminder_types_usecase.dart'
+    as _i100;
+import 'package:au2rides/features/download_screen/domain/usecase/ride_types/clear_ride_types_local_usecase.dart'
+    as _i131;
+import 'package:au2rides/features/download_screen/domain/usecase/ride_types/download_ride_types_network_usecase.dart'
+    as _i140;
+import 'package:au2rides/features/download_screen/domain/usecase/ride_types/save_ride_types_data_usecase.dart'
+    as _i101;
+import 'package:au2rides/features/download_screen/domain/usecase/service_types/clear_service_types_usecase.dart'
+    as _i132;
+import 'package:au2rides/features/download_screen/domain/usecase/service_types/get_all_service_types_usecase.dart'
+    as _i153;
+import 'package:au2rides/features/download_screen/domain/usecase/service_types/save_service_types_in_local_db_usecase.dart'
+    as _i169;
+import 'package:au2rides/features/download_screen/domain/usecase/services_departments/clear_services_departments_usecase.dart'
+    as _i133;
+import 'package:au2rides/features/download_screen/domain/usecase/services_departments/get_all_services_departments_usecase.dart'
+    as _i154;
+import 'package:au2rides/features/download_screen/domain/usecase/services_departments/save_services_departments_in_local_db_usecase.dart'
+    as _i168;
+import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/clear_weather_units_local_usecase.dart'
+    as _i134;
+import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/download_weather_units_network_usecase.dart'
+    as _i141;
+import 'package:au2rides/features/download_screen/domain/usecase/weather_measuring_units/save_weather_units_data_usecase.dart'
+    as _i170;
+import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart'
+    as _i112;
+import 'package:au2rides/features/download_screen/presentation/bloc/country_cubit/country_cubit.dart'
+    as _i135;
+import 'package:au2rides/features/download_screen/presentation/bloc/currency_cubit/currency_cubit.dart'
+    as _i136;
+import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart'
+    as _i137;
+import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart'
+    as _i142;
+import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart'
+    as _i143;
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_brands_cubit/fuel_brands_cubit.dart'
+    as _i144;
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_consumption_unit_types_cubit/fuel_consumption_unit_types_cubit.dart'
+    as _i145;
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart'
+    as _i146;
+import 'package:au2rides/features/download_screen/presentation/bloc/gender_cubit/gender_cubit.dart'
+    as _i147;
+import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart'
     as _i159;
-import 'package:au2rides/features/download_screen/presentation/bloc/ride_types/ride_types_cubit.dart'
+import 'package:au2rides/features/download_screen/presentation/bloc/model_generation_specification_keys_cubit/model_generation_specification_keys_cubit.dart'
     as _i160;
-import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart'
+import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart'
+    as _i161;
+import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart'
+    as _i162;
+import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart'
+    as _i163;
+import 'package:au2rides/features/download_screen/presentation/bloc/recurrence_period_types_cubit/recurrence_period_types_cubit.dart'
     as _i164;
-import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart'
+import 'package:au2rides/features/download_screen/presentation/bloc/reminder_type_service_cubit/reminder_type_service_cubit.dart'
     as _i165;
-import 'package:au2rides/features/download_screen/presentation/bloc/weather_units/weather_units_cubit.dart'
+import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart'
     as _i166;
+import 'package:au2rides/features/download_screen/presentation/bloc/ride_types/ride_types_cubit.dart'
+    as _i167;
+import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart'
+    as _i171;
+import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart'
+    as _i172;
+import 'package:au2rides/features/download_screen/presentation/bloc/weather_units/weather_units_cubit.dart'
+    as _i173;
 import 'package:au2rides/features/language_screen/data/data_sources/local/language_local_database.dart'
     as _i52;
 import 'package:au2rides/features/language_screen/data/repositories/langauge_repository_impl.dart'
@@ -314,9 +328,9 @@ import 'package:au2rides/features/language_screen/data/repositories/langauge_rep
 import 'package:au2rides/features/language_screen/domain/repositories/language_repository.dart'
     as _i53;
 import 'package:au2rides/features/language_screen/domain/use_cases/language_use_case.dart'
-    as _i149;
+    as _i155;
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart'
-    as _i152;
+    as _i158;
 import 'package:au2rides/features/splash_screen/data/datasources/check_primary_data_data_scource.dart'
     as _i6;
 import 'package:au2rides/features/splash_screen/data/datasources/isDownloaded_data_scource.dart'
@@ -334,7 +348,7 @@ import 'package:au2rides/features/splash_screen/domain/usecases/check_primary_da
 import 'package:au2rides/features/splash_screen/domain/usecases/is_downloaded_usecase.dart'
     as _i51;
 import 'package:au2rides/features/splash_screen/presentation/bloc/check_primary_data_cubit.dart'
-    as _i109;
+    as _i113;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -442,301 +456,322 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i55.MetricUnitsDataSource>(() => _i55.MetricUnitsDataSource());
     gh.factory<_i56.MetricUnitsRepository>(
         () => _i57.MetricUnitsRepositoryImpl(gh<_i55.MetricUnitsDataSource>()));
-    gh.factory<_i58.MonthDataSource>(() => _i58.MonthDataSource());
-    gh.factory<_i59.MonthRepository>(
-        () => _i60.MonthRepositoryImpl(gh<_i58.MonthDataSource>()));
-    gh.factory<_i61.NetworkInfo>(() => _i61.NetworkInfoImpl.create());
-    gh.factory<_i62.PaymentMethodsDataSource>(
-        () => _i62.PaymentMethodsDataSource());
-    gh.factory<_i63.PaymentMethodsRepository>(() =>
-        _i64.PaymentMethodsRepositoryImpl(gh<_i62.PaymentMethodsDataSource>()));
-    gh.factory<_i65.PressureUnitsDataSource>(
-        () => _i65.PressureUnitsDataSource());
-    gh.factory<_i66.PressureUnitsRepository>(() =>
-        _i67.PressureUnitsRepositoryImpl(gh<_i65.PressureUnitsDataSource>()));
-    gh.factory<_i68.RecurrencePeriodTypesDataSource>(
-        () => _i68.RecurrencePeriodTypesDataSource());
-    gh.factory<_i69.RecurrencePeriodTypesRepository>(() =>
-        _i70.RecurrencePeriodTypesRepositoryImpl(
-            gh<_i68.RecurrencePeriodTypesDataSource>()));
-    gh.factory<_i71.ReminderTypeServiceDataSource>(
-        () => _i71.ReminderTypeServiceDataSource());
-    gh.factory<_i72.ReminderTypeServiceRepository>(() =>
-        _i73.ReminderTypeServiceRepositoryImpl(
-            gh<_i71.ReminderTypeServiceDataSource>()));
-    gh.factory<_i74.ReminderTypesDataSource>(
-        () => _i74.ReminderTypesDataSource());
-    gh.factory<_i75.ReminderTypesRepository>(() =>
-        _i76.ReminderTypesRepositoryImpl(gh<_i74.ReminderTypesDataSource>()));
-    gh.factory<_i77.RideTypesDataSource>(() => _i77.RideTypesDataSource());
-    gh.factory<_i78.RideTypesRepository>(
-        () => _i79.RideTypesRepositoryImpl(gh<_i77.RideTypesDataSource>()));
-    gh.factory<_i80.SaveAcquisitionTypesInLocalDbUseCase>(() =>
-        _i80.SaveAcquisitionTypesInLocalDbUseCase(
+    gh.factory<_i58.ModelGenerationSpecificationKeysDataSource>(
+        () => _i58.ModelGenerationSpecificationKeysDataSource());
+    gh.factory<_i59.ModelGenerationSpecificationKeysRepository>(() =>
+        _i60.ModelGenerationSpecificationKeysRepositoryImpl(
+            gh<_i58.ModelGenerationSpecificationKeysDataSource>()));
+    gh.factory<_i61.MonthDataSource>(() => _i61.MonthDataSource());
+    gh.factory<_i62.MonthRepository>(
+        () => _i63.MonthRepositoryImpl(gh<_i61.MonthDataSource>()));
+    gh.factory<_i64.NetworkInfo>(() => _i64.NetworkInfoImpl.create());
+    gh.factory<_i65.PaymentMethodsDataSource>(
+        () => _i65.PaymentMethodsDataSource());
+    gh.factory<_i66.PaymentMethodsRepository>(() =>
+        _i67.PaymentMethodsRepositoryImpl(gh<_i65.PaymentMethodsDataSource>()));
+    gh.factory<_i68.PressureUnitsDataSource>(
+        () => _i68.PressureUnitsDataSource());
+    gh.factory<_i69.PressureUnitsRepository>(() =>
+        _i70.PressureUnitsRepositoryImpl(gh<_i68.PressureUnitsDataSource>()));
+    gh.factory<_i71.RecurrencePeriodTypesDataSource>(
+        () => _i71.RecurrencePeriodTypesDataSource());
+    gh.factory<_i72.RecurrencePeriodTypesRepository>(() =>
+        _i73.RecurrencePeriodTypesRepositoryImpl(
+            gh<_i71.RecurrencePeriodTypesDataSource>()));
+    gh.factory<_i74.ReminderTypeServiceDataSource>(
+        () => _i74.ReminderTypeServiceDataSource());
+    gh.factory<_i75.ReminderTypeServiceRepository>(() =>
+        _i76.ReminderTypeServiceRepositoryImpl(
+            gh<_i74.ReminderTypeServiceDataSource>()));
+    gh.factory<_i77.ReminderTypesDataSource>(
+        () => _i77.ReminderTypesDataSource());
+    gh.factory<_i78.ReminderTypesRepository>(() =>
+        _i79.ReminderTypesRepositoryImpl(gh<_i77.ReminderTypesDataSource>()));
+    gh.factory<_i80.RideTypesDataSource>(() => _i80.RideTypesDataSource());
+    gh.factory<_i81.RideTypesRepository>(
+        () => _i82.RideTypesRepositoryImpl(gh<_i80.RideTypesDataSource>()));
+    gh.factory<_i83.SaveAcquisitionTypesInLocalDbUseCase>(() =>
+        _i83.SaveAcquisitionTypesInLocalDbUseCase(
             gh<_i4.AcquisitionTypesRepository>()));
-    gh.factory<_i81.SaveCountriesUseCase>(
-        () => _i81.SaveCountriesUseCase(gh<_i12.CountryRepository>()));
-    gh.factory<_i82.SaveCurrenciesInLocalDbUseCase>(() =>
-        _i82.SaveCurrenciesInLocalDbUseCase(gh<_i16.CurrencyRepository>()));
-    gh.factory<_i83.SaveDepartmentServiceItemsInLocalDbUseCase>(() =>
-        _i83.SaveDepartmentServiceItemsInLocalDbUseCase(
+    gh.factory<_i84.SaveCountriesUseCase>(
+        () => _i84.SaveCountriesUseCase(gh<_i12.CountryRepository>()));
+    gh.factory<_i85.SaveCurrenciesInLocalDbUseCase>(() =>
+        _i85.SaveCurrenciesInLocalDbUseCase(gh<_i16.CurrencyRepository>()));
+    gh.factory<_i86.SaveDepartmentServiceItemsInLocalDbUseCase>(() =>
+        _i86.SaveDepartmentServiceItemsInLocalDbUseCase(
             gh<_i19.DepartmentServiceItemsRepository>()));
-    gh.factory<_i84.SaveEngineFuelTypesInLocalDbUseCase>(() =>
-        _i84.SaveEngineFuelTypesInLocalDbUseCase(
+    gh.factory<_i87.SaveEngineFuelTypesInLocalDbUseCase>(() =>
+        _i87.SaveEngineFuelTypesInLocalDbUseCase(
             gh<_i22.EngineFuelTypesRepository>()));
-    gh.factory<_i85.SaveEngineTransmissionTypesInLocalDbUseCase>(() =>
-        _i85.SaveEngineTransmissionTypesInLocalDbUseCase(
+    gh.factory<_i88.SaveEngineTransmissionTypesInLocalDbUseCase>(() =>
+        _i88.SaveEngineTransmissionTypesInLocalDbUseCase(
             gh<_i25.EngineTransmissionTypesRepository>()));
-    gh.factory<_i86.SaveFuelBrandInLocalDbUseCase>(() =>
-        _i86.SaveFuelBrandInLocalDbUseCase(gh<_i28.FuelBrandsRepository>()));
-    gh.factory<_i87.SaveFuelConsumptionUnitTypesInLocalDbUseCase>(() =>
-        _i87.SaveFuelConsumptionUnitTypesInLocalDbUseCase(
+    gh.factory<_i89.SaveFuelBrandInLocalDbUseCase>(() =>
+        _i89.SaveFuelBrandInLocalDbUseCase(gh<_i28.FuelBrandsRepository>()));
+    gh.factory<_i90.SaveFuelConsumptionUnitTypesInLocalDbUseCase>(() =>
+        _i90.SaveFuelConsumptionUnitTypesInLocalDbUseCase(
             gh<_i31.FuelConsumptionUnitTypesRepository>()));
-    gh.factory<_i88.SaveFuelOctaneNumberInLocalDbUseCase>(() =>
-        _i88.SaveFuelOctaneNumberInLocalDbUseCase(
+    gh.factory<_i91.SaveFuelOctaneNumberInLocalDbUseCase>(() =>
+        _i91.SaveFuelOctaneNumberInLocalDbUseCase(
             gh<_i34.FuelOctaneNumberRepository>()));
-    gh.factory<_i89.SaveGenderDataInLocalDb>(
-        () => _i89.SaveGenderDataInLocalDb(gh<_i37.GenderRepository>()));
-    gh.factory<_i90.SaveMetricUnitsInLocalDbUseCase>(() =>
-        _i90.SaveMetricUnitsInLocalDbUseCase(gh<_i56.MetricUnitsRepository>()));
-    gh.factory<_i91.SaveMonthsUseCase>(
-        () => _i91.SaveMonthsUseCase(gh<_i59.MonthRepository>()));
-    gh.factory<_i92.SavePaymentMethodsDataInLocalDbUseCase>(() =>
-        _i92.SavePaymentMethodsDataInLocalDbUseCase(
-            gh<_i63.PaymentMethodsRepository>()));
-    gh.factory<_i93.SavePressureUnitsInLocalDbUseCase>(() =>
-        _i93.SavePressureUnitsInLocalDbUseCase(
-            gh<_i66.PressureUnitsRepository>()));
-    gh.factory<_i94.SaveRecurrencePeriodTypesInLocalDbUseCase>(() =>
-        _i94.SaveRecurrencePeriodTypesInLocalDbUseCase(
-            gh<_i69.RecurrencePeriodTypesRepository>()));
-    gh.factory<_i95.SaveReminderTypeServiceInLocalDbUseCase>(() =>
-        _i95.SaveReminderTypeServiceInLocalDbUseCase(
-            gh<_i72.ReminderTypeServiceRepository>()));
-    gh.factory<_i96.SaveReminderTypesUseCase>(() =>
-        _i96.SaveReminderTypesUseCase(gh<_i75.ReminderTypesRepository>()));
-    gh.factory<_i97.SaveRideTypesDataInLocalDbUseCase>(() =>
-        _i97.SaveRideTypesDataInLocalDbUseCase(gh<_i78.RideTypesRepository>()));
-    gh.factory<_i98.ServiceDepartmentsDataSource>(
-        () => _i98.ServiceDepartmentsDataSource());
-    gh.factory<_i99.ServiceTypesDataSource>(
-        () => _i99.ServiceTypesDataSource());
-    gh.factory<_i100.ServiceTypesRepository>(() =>
-        _i101.ServiceTypesRepositoryImpl(gh<_i99.ServiceTypesDataSource>()));
-    gh.factory<_i102.ServicesDepartmentsRepository>(() =>
-        _i103.ServiceDepartmentsRepositoryImpl(
-            gh<_i98.ServiceDepartmentsDataSource>()));
-    gh.singleton<_i104.UserRepository>(_i104.UserRepository.create(
+    gh.factory<_i92.SaveGenderDataInLocalDb>(
+        () => _i92.SaveGenderDataInLocalDb(gh<_i37.GenderRepository>()));
+    gh.factory<_i93.SaveMetricUnitsInLocalDbUseCase>(() =>
+        _i93.SaveMetricUnitsInLocalDbUseCase(gh<_i56.MetricUnitsRepository>()));
+    gh.factory<_i94.SaveModelGenerationSpecificationKeysInLocalDbUseCase>(() =>
+        _i94.SaveModelGenerationSpecificationKeysInLocalDbUseCase(
+            gh<_i59.ModelGenerationSpecificationKeysRepository>()));
+    gh.factory<_i95.SaveMonthsUseCase>(
+        () => _i95.SaveMonthsUseCase(gh<_i62.MonthRepository>()));
+    gh.factory<_i96.SavePaymentMethodsDataInLocalDbUseCase>(() =>
+        _i96.SavePaymentMethodsDataInLocalDbUseCase(
+            gh<_i66.PaymentMethodsRepository>()));
+    gh.factory<_i97.SavePressureUnitsInLocalDbUseCase>(() =>
+        _i97.SavePressureUnitsInLocalDbUseCase(
+            gh<_i69.PressureUnitsRepository>()));
+    gh.factory<_i98.SaveRecurrencePeriodTypesInLocalDbUseCase>(() =>
+        _i98.SaveRecurrencePeriodTypesInLocalDbUseCase(
+            gh<_i72.RecurrencePeriodTypesRepository>()));
+    gh.factory<_i99.SaveReminderTypeServiceInLocalDbUseCase>(() =>
+        _i99.SaveReminderTypeServiceInLocalDbUseCase(
+            gh<_i75.ReminderTypeServiceRepository>()));
+    gh.factory<_i100.SaveReminderTypesUseCase>(() =>
+        _i100.SaveReminderTypesUseCase(gh<_i78.ReminderTypesRepository>()));
+    gh.factory<_i101.SaveRideTypesDataInLocalDbUseCase>(() =>
+        _i101.SaveRideTypesDataInLocalDbUseCase(
+            gh<_i81.RideTypesRepository>()));
+    gh.factory<_i102.ServiceDepartmentsDataSource>(
+        () => _i102.ServiceDepartmentsDataSource());
+    gh.factory<_i103.ServiceTypesDataSource>(
+        () => _i103.ServiceTypesDataSource());
+    gh.factory<_i104.ServiceTypesRepository>(() =>
+        _i105.ServiceTypesRepositoryImpl(gh<_i103.ServiceTypesDataSource>()));
+    gh.factory<_i106.ServicesDepartmentsRepository>(() =>
+        _i107.ServiceDepartmentsRepositoryImpl(
+            gh<_i102.ServiceDepartmentsDataSource>()));
+    gh.singleton<_i108.UserRepository>(_i108.UserRepository.create(
         gh<_i47.IPrefsManager>(instanceName: 'prefs')));
-    gh.factory<_i105.WeatherUnitsDataSource>(
-        () => _i105.WeatherUnitsDataSource());
-    gh.factory<_i106.WeatherUnitsRepository>(() =>
-        _i107.WeatherUnitsRepositoryImpl(gh<_i105.WeatherUnitsDataSource>()));
-    gh.factory<_i108.AcquisitionTypesCubit>(() => _i108.AcquisitionTypesCubit(
+    gh.factory<_i109.WeatherUnitsDataSource>(
+        () => _i109.WeatherUnitsDataSource());
+    gh.factory<_i110.WeatherUnitsRepository>(() =>
+        _i111.WeatherUnitsRepositoryImpl(gh<_i109.WeatherUnitsDataSource>()));
+    gh.factory<_i112.AcquisitionTypesCubit>(() => _i112.AcquisitionTypesCubit(
           gh<_i10.ClearAcquisitionTypesUseCase>(),
           gh<_i39.GetAllAcquisitionTypesUseCase>(),
-          gh<_i80.SaveAcquisitionTypesInLocalDbUseCase>(),
+          gh<_i83.SaveAcquisitionTypesInLocalDbUseCase>(),
         ));
-    gh.factory<_i109.CheckPrimaryDataCubit>(() => _i109.CheckPrimaryDataCubit(
+    gh.factory<_i113.CheckPrimaryDataCubit>(() => _i113.CheckPrimaryDataCubit(
           gh<_i9.CheckPrimaryDataUseCase>(),
           gh<_i51.IsDownloadedUseCase>(),
         ));
-    gh.factory<_i110.ClearCountryUseCase>(
-        () => _i110.ClearCountryUseCase(gh<_i12.CountryRepository>()));
-    gh.factory<_i111.ClearCurrencyUseCase>(
-        () => _i111.ClearCurrencyUseCase(gh<_i16.CurrencyRepository>()));
-    gh.factory<_i112.ClearDepartmentServiceItemsUseCase>(() =>
-        _i112.ClearDepartmentServiceItemsUseCase(
+    gh.factory<_i114.ClearCountryUseCase>(
+        () => _i114.ClearCountryUseCase(gh<_i12.CountryRepository>()));
+    gh.factory<_i115.ClearCurrencyUseCase>(
+        () => _i115.ClearCurrencyUseCase(gh<_i16.CurrencyRepository>()));
+    gh.factory<_i116.ClearDepartmentServiceItemsUseCase>(() =>
+        _i116.ClearDepartmentServiceItemsUseCase(
             gh<_i19.DepartmentServiceItemsRepository>()));
-    gh.factory<_i113.ClearEngineFuelTypesUseCase>(() =>
-        _i113.ClearEngineFuelTypesUseCase(
+    gh.factory<_i117.ClearEngineFuelTypesUseCase>(() =>
+        _i117.ClearEngineFuelTypesUseCase(
             gh<_i22.EngineFuelTypesRepository>()));
-    gh.factory<_i114.ClearEngineTransmissionTypesUseCase>(() =>
-        _i114.ClearEngineTransmissionTypesUseCase(
+    gh.factory<_i118.ClearEngineTransmissionTypesUseCase>(() =>
+        _i118.ClearEngineTransmissionTypesUseCase(
             gh<_i25.EngineTransmissionTypesRepository>()));
-    gh.factory<_i115.ClearFuelBrandsUseCase>(
-        () => _i115.ClearFuelBrandsUseCase(gh<_i28.FuelBrandsRepository>()));
-    gh.factory<_i116.ClearFuelConsumptionUnitTypesUseCase>(() =>
-        _i116.ClearFuelConsumptionUnitTypesUseCase(
+    gh.factory<_i119.ClearFuelBrandsUseCase>(
+        () => _i119.ClearFuelBrandsUseCase(gh<_i28.FuelBrandsRepository>()));
+    gh.factory<_i120.ClearFuelConsumptionUnitTypesUseCase>(() =>
+        _i120.ClearFuelConsumptionUnitTypesUseCase(
             gh<_i31.FuelConsumptionUnitTypesRepository>()));
-    gh.factory<_i117.ClearFuelOctaneNumberUseCase>(() =>
-        _i117.ClearFuelOctaneNumberUseCase(
+    gh.factory<_i121.ClearFuelOctaneNumberUseCase>(() =>
+        _i121.ClearFuelOctaneNumberUseCase(
             gh<_i34.FuelOctaneNumberRepository>()));
-    gh.factory<_i118.ClearGenderUseCase>(
-        () => _i118.ClearGenderUseCase(gh<_i37.GenderRepository>()));
-    gh.factory<_i119.ClearMetricUnitsUseCase>(
-        () => _i119.ClearMetricUnitsUseCase(gh<_i56.MetricUnitsRepository>()));
-    gh.factory<_i120.ClearMonthUseCase>(
-        () => _i120.ClearMonthUseCase(gh<_i59.MonthRepository>()));
-    gh.factory<_i121.ClearPaymentMethodsUseCase>(() =>
-        _i121.ClearPaymentMethodsUseCase(gh<_i63.PaymentMethodsRepository>()));
-    gh.factory<_i122.ClearPressureUnitsUseCase>(() =>
-        _i122.ClearPressureUnitsUseCase(gh<_i66.PressureUnitsRepository>()));
-    gh.factory<_i123.ClearRecurrencePeriodTypesUseCase>(() =>
-        _i123.ClearRecurrencePeriodTypesUseCase(
-            gh<_i69.RecurrencePeriodTypesRepository>()));
-    gh.factory<_i124.ClearReminderTypeServiceUseCase>(() =>
-        _i124.ClearReminderTypeServiceUseCase(
-            gh<_i72.ReminderTypeServiceRepository>()));
-    gh.factory<_i125.ClearReminderTypeUseCase>(() =>
-        _i125.ClearReminderTypeUseCase(gh<_i75.ReminderTypesRepository>()));
-    gh.factory<_i126.ClearRideTypesUseCase>(
-        () => _i126.ClearRideTypesUseCase(gh<_i78.RideTypesRepository>()));
-    gh.factory<_i127.ClearServiceTypesUseCase>(() =>
-        _i127.ClearServiceTypesUseCase(gh<_i100.ServiceTypesRepository>()));
-    gh.factory<_i128.ClearServicesDepartmentsUseCase>(() =>
-        _i128.ClearServicesDepartmentsUseCase(
-            gh<_i102.ServicesDepartmentsRepository>()));
-    gh.factory<_i129.ClearWeatherUnitsUseCase>(() =>
-        _i129.ClearWeatherUnitsUseCase(gh<_i106.WeatherUnitsRepository>()));
-    gh.factory<_i130.CountryCubit>(() => _i130.CountryCubit(
+    gh.factory<_i122.ClearGenderUseCase>(
+        () => _i122.ClearGenderUseCase(gh<_i37.GenderRepository>()));
+    gh.factory<_i123.ClearMetricUnitsUseCase>(
+        () => _i123.ClearMetricUnitsUseCase(gh<_i56.MetricUnitsRepository>()));
+    gh.factory<_i124.ClearModelGenerationSpecificationKeysUseCase>(() =>
+        _i124.ClearModelGenerationSpecificationKeysUseCase(
+            gh<_i59.ModelGenerationSpecificationKeysRepository>()));
+    gh.factory<_i125.ClearMonthUseCase>(
+        () => _i125.ClearMonthUseCase(gh<_i62.MonthRepository>()));
+    gh.factory<_i126.ClearPaymentMethodsUseCase>(() =>
+        _i126.ClearPaymentMethodsUseCase(gh<_i66.PaymentMethodsRepository>()));
+    gh.factory<_i127.ClearPressureUnitsUseCase>(() =>
+        _i127.ClearPressureUnitsUseCase(gh<_i69.PressureUnitsRepository>()));
+    gh.factory<_i128.ClearRecurrencePeriodTypesUseCase>(() =>
+        _i128.ClearRecurrencePeriodTypesUseCase(
+            gh<_i72.RecurrencePeriodTypesRepository>()));
+    gh.factory<_i129.ClearReminderTypeServiceUseCase>(() =>
+        _i129.ClearReminderTypeServiceUseCase(
+            gh<_i75.ReminderTypeServiceRepository>()));
+    gh.factory<_i130.ClearReminderTypeUseCase>(() =>
+        _i130.ClearReminderTypeUseCase(gh<_i78.ReminderTypesRepository>()));
+    gh.factory<_i131.ClearRideTypesUseCase>(
+        () => _i131.ClearRideTypesUseCase(gh<_i81.RideTypesRepository>()));
+    gh.factory<_i132.ClearServiceTypesUseCase>(() =>
+        _i132.ClearServiceTypesUseCase(gh<_i104.ServiceTypesRepository>()));
+    gh.factory<_i133.ClearServicesDepartmentsUseCase>(() =>
+        _i133.ClearServicesDepartmentsUseCase(
+            gh<_i106.ServicesDepartmentsRepository>()));
+    gh.factory<_i134.ClearWeatherUnitsUseCase>(() =>
+        _i134.ClearWeatherUnitsUseCase(gh<_i110.WeatherUnitsRepository>()));
+    gh.factory<_i135.CountryCubit>(() => _i135.CountryCubit(
           gh<_i14.CountryUseCase>(),
-          gh<_i81.SaveCountriesUseCase>(),
-          gh<_i110.ClearCountryUseCase>(),
-          gh<_i111.ClearCurrencyUseCase>(),
+          gh<_i84.SaveCountriesUseCase>(),
+          gh<_i114.ClearCountryUseCase>(),
+          gh<_i115.ClearCurrencyUseCase>(),
         ));
-    gh.factory<_i131.CurrencyCubit>(() => _i131.CurrencyCubit(
-          gh<_i111.ClearCurrencyUseCase>(),
+    gh.factory<_i136.CurrencyCubit>(() => _i136.CurrencyCubit(
+          gh<_i115.ClearCurrencyUseCase>(),
           gh<_i40.GetAllCurrencyUseCase>(),
-          gh<_i82.SaveCurrenciesInLocalDbUseCase>(),
+          gh<_i85.SaveCurrenciesInLocalDbUseCase>(),
         ));
-    gh.factory<_i132.DepartmentServiceItemsCubit>(
-        () => _i132.DepartmentServiceItemsCubit(
-              gh<_i112.ClearDepartmentServiceItemsUseCase>(),
+    gh.factory<_i137.DepartmentServiceItemsCubit>(
+        () => _i137.DepartmentServiceItemsCubit(
+              gh<_i116.ClearDepartmentServiceItemsUseCase>(),
               gh<_i41.GetAllDepartmentServiceItemsUseCase>(),
-              gh<_i83.SaveDepartmentServiceItemsInLocalDbUseCase>(),
+              gh<_i86.SaveDepartmentServiceItemsInLocalDbUseCase>(),
             ));
-    gh.factory<_i133.DownloadGenderUseCase>(
-        () => _i133.DownloadGenderUseCase(gh<_i37.GenderRepository>()));
-    gh.factory<_i134.DownloadPaymentMethodsUseCase>(() =>
-        _i134.DownloadPaymentMethodsUseCase(
-            gh<_i63.PaymentMethodsRepository>()));
-    gh.factory<_i135.DownloadRideTypesUseCase>(
-        () => _i135.DownloadRideTypesUseCase(gh<_i78.RideTypesRepository>()));
-    gh.factory<_i136.DownloadWeatherUnitsUseCase>(() =>
-        _i136.DownloadWeatherUnitsUseCase(gh<_i106.WeatherUnitsRepository>()));
-    gh.factory<_i137.EngineFuelTypesCubit>(() => _i137.EngineFuelTypesCubit(
-          gh<_i113.ClearEngineFuelTypesUseCase>(),
+    gh.factory<_i138.DownloadGenderUseCase>(
+        () => _i138.DownloadGenderUseCase(gh<_i37.GenderRepository>()));
+    gh.factory<_i139.DownloadPaymentMethodsUseCase>(() =>
+        _i139.DownloadPaymentMethodsUseCase(
+            gh<_i66.PaymentMethodsRepository>()));
+    gh.factory<_i140.DownloadRideTypesUseCase>(
+        () => _i140.DownloadRideTypesUseCase(gh<_i81.RideTypesRepository>()));
+    gh.factory<_i141.DownloadWeatherUnitsUseCase>(() =>
+        _i141.DownloadWeatherUnitsUseCase(gh<_i110.WeatherUnitsRepository>()));
+    gh.factory<_i142.EngineFuelTypesCubit>(() => _i142.EngineFuelTypesCubit(
+          gh<_i117.ClearEngineFuelTypesUseCase>(),
           gh<_i42.GetAllEngineFuelTypesUseCase>(),
-          gh<_i84.SaveEngineFuelTypesInLocalDbUseCase>(),
+          gh<_i87.SaveEngineFuelTypesInLocalDbUseCase>(),
         ));
-    gh.factory<_i138.EngineTransmissionTypesCubit>(
-        () => _i138.EngineTransmissionTypesCubit(
-              gh<_i114.ClearEngineTransmissionTypesUseCase>(),
+    gh.factory<_i143.EngineTransmissionTypesCubit>(
+        () => _i143.EngineTransmissionTypesCubit(
+              gh<_i118.ClearEngineTransmissionTypesUseCase>(),
               gh<_i43.GetAllEngineTransmissionTypesUseCase>(),
-              gh<_i85.SaveEngineTransmissionTypesInLocalDbUseCase>(),
+              gh<_i88.SaveEngineTransmissionTypesInLocalDbUseCase>(),
             ));
-    gh.factory<_i139.FuelBrandsCubit>(() => _i139.FuelBrandsCubit(
-          gh<_i115.ClearFuelBrandsUseCase>(),
+    gh.factory<_i144.FuelBrandsCubit>(() => _i144.FuelBrandsCubit(
+          gh<_i119.ClearFuelBrandsUseCase>(),
           gh<_i44.GetAllFuelBrandUseCase>(),
-          gh<_i86.SaveFuelBrandInLocalDbUseCase>(),
+          gh<_i89.SaveFuelBrandInLocalDbUseCase>(),
         ));
-    gh.factory<_i140.FuelConsumptionUnitTypesCubit>(
-        () => _i140.FuelConsumptionUnitTypesCubit(
-              gh<_i116.ClearFuelConsumptionUnitTypesUseCase>(),
+    gh.factory<_i145.FuelConsumptionUnitTypesCubit>(
+        () => _i145.FuelConsumptionUnitTypesCubit(
+              gh<_i120.ClearFuelConsumptionUnitTypesUseCase>(),
               gh<_i45.GetAllFuelConsumptionUnitTypesUseCase>(),
-              gh<_i87.SaveFuelConsumptionUnitTypesInLocalDbUseCase>(),
+              gh<_i90.SaveFuelConsumptionUnitTypesInLocalDbUseCase>(),
             ));
-    gh.factory<_i141.FuelOctaneNumberCubit>(() => _i141.FuelOctaneNumberCubit(
-          gh<_i117.ClearFuelOctaneNumberUseCase>(),
+    gh.factory<_i146.FuelOctaneNumberCubit>(() => _i146.FuelOctaneNumberCubit(
+          gh<_i121.ClearFuelOctaneNumberUseCase>(),
           gh<_i46.GetAllFuelOctaneNumberUseCase>(),
-          gh<_i88.SaveFuelOctaneNumberInLocalDbUseCase>(),
+          gh<_i91.SaveFuelOctaneNumberInLocalDbUseCase>(),
         ));
-    gh.factory<_i142.GenderCubit>(() => _i142.GenderCubit(
-          gh<_i118.ClearGenderUseCase>(),
-          gh<_i133.DownloadGenderUseCase>(),
-          gh<_i89.SaveGenderDataInLocalDb>(),
+    gh.factory<_i147.GenderCubit>(() => _i147.GenderCubit(
+          gh<_i122.ClearGenderUseCase>(),
+          gh<_i138.DownloadGenderUseCase>(),
+          gh<_i92.SaveGenderDataInLocalDb>(),
         ));
-    gh.factory<_i143.GetAllMetricUnitsUseCase>(
-        () => _i143.GetAllMetricUnitsUseCase(gh<_i56.MetricUnitsRepository>()));
-    gh.factory<_i144.GetAllPressureUnitsUseCase>(() =>
-        _i144.GetAllPressureUnitsUseCase(gh<_i66.PressureUnitsRepository>()));
-    gh.factory<_i145.GetAllRecurrencePeriodTypesUseCase>(() =>
-        _i145.GetAllRecurrencePeriodTypesUseCase(
-            gh<_i69.RecurrencePeriodTypesRepository>()));
-    gh.factory<_i146.GetAllReminderTypeServiceUseCase>(() =>
-        _i146.GetAllReminderTypeServiceUseCase(
-            gh<_i72.ReminderTypeServiceRepository>()));
-    gh.factory<_i147.GetAllServiceTypesUseCase>(() =>
-        _i147.GetAllServiceTypesUseCase(gh<_i100.ServiceTypesRepository>()));
-    gh.factory<_i148.GetAllServicesDepartmentsUseCase>(() =>
-        _i148.GetAllServicesDepartmentsUseCase(
-            gh<_i102.ServicesDepartmentsRepository>()));
-    gh.factory<_i149.GetLanguagesUseCase>(
-        () => _i149.GetLanguagesUseCase(gh<_i53.LanguageRepository>()));
-    gh.factory<_i150.GetMonthsUseCase>(
-        () => _i150.GetMonthsUseCase(gh<_i59.MonthRepository>()));
-    gh.factory<_i151.GetReminderTypesUseCase>(() =>
-        _i151.GetReminderTypesUseCase(gh<_i75.ReminderTypesRepository>()));
-    gh.factory<_i152.LanguageCubit>(
-        () => _i152.LanguageCubit(gh<_i149.GetLanguagesUseCase>()));
-    gh.factory<_i153.MetricUnitsCubit>(() => _i153.MetricUnitsCubit(
-          gh<_i119.ClearMetricUnitsUseCase>(),
-          gh<_i143.GetAllMetricUnitsUseCase>(),
-          gh<_i90.SaveMetricUnitsInLocalDbUseCase>(),
+    gh.factory<_i148.GetAllMetricUnitsUseCase>(
+        () => _i148.GetAllMetricUnitsUseCase(gh<_i56.MetricUnitsRepository>()));
+    gh.factory<_i149.GetAllModelGenerationSpecificationKeysUseCase>(() =>
+        _i149.GetAllModelGenerationSpecificationKeysUseCase(
+            gh<_i59.ModelGenerationSpecificationKeysRepository>()));
+    gh.factory<_i150.GetAllPressureUnitsUseCase>(() =>
+        _i150.GetAllPressureUnitsUseCase(gh<_i69.PressureUnitsRepository>()));
+    gh.factory<_i151.GetAllRecurrencePeriodTypesUseCase>(() =>
+        _i151.GetAllRecurrencePeriodTypesUseCase(
+            gh<_i72.RecurrencePeriodTypesRepository>()));
+    gh.factory<_i152.GetAllReminderTypeServiceUseCase>(() =>
+        _i152.GetAllReminderTypeServiceUseCase(
+            gh<_i75.ReminderTypeServiceRepository>()));
+    gh.factory<_i153.GetAllServiceTypesUseCase>(() =>
+        _i153.GetAllServiceTypesUseCase(gh<_i104.ServiceTypesRepository>()));
+    gh.factory<_i154.GetAllServicesDepartmentsUseCase>(() =>
+        _i154.GetAllServicesDepartmentsUseCase(
+            gh<_i106.ServicesDepartmentsRepository>()));
+    gh.factory<_i155.GetLanguagesUseCase>(
+        () => _i155.GetLanguagesUseCase(gh<_i53.LanguageRepository>()));
+    gh.factory<_i156.GetMonthsUseCase>(
+        () => _i156.GetMonthsUseCase(gh<_i62.MonthRepository>()));
+    gh.factory<_i157.GetReminderTypesUseCase>(() =>
+        _i157.GetReminderTypesUseCase(gh<_i78.ReminderTypesRepository>()));
+    gh.factory<_i158.LanguageCubit>(
+        () => _i158.LanguageCubit(gh<_i155.GetLanguagesUseCase>()));
+    gh.factory<_i159.MetricUnitsCubit>(() => _i159.MetricUnitsCubit(
+          gh<_i123.ClearMetricUnitsUseCase>(),
+          gh<_i148.GetAllMetricUnitsUseCase>(),
+          gh<_i93.SaveMetricUnitsInLocalDbUseCase>(),
         ));
-    gh.factory<_i154.MonthCubit>(() => _i154.MonthCubit(
-          gh<_i150.GetMonthsUseCase>(),
-          gh<_i91.SaveMonthsUseCase>(),
-          gh<_i120.ClearMonthUseCase>(),
+    gh.factory<_i160.ModelGenerationSpecificationKeysCubit>(
+        () => _i160.ModelGenerationSpecificationKeysCubit(
+              gh<_i124.ClearModelGenerationSpecificationKeysUseCase>(),
+              gh<_i149.GetAllModelGenerationSpecificationKeysUseCase>(),
+              gh<_i94.SaveModelGenerationSpecificationKeysInLocalDbUseCase>(),
+            ));
+    gh.factory<_i161.MonthCubit>(() => _i161.MonthCubit(
+          gh<_i156.GetMonthsUseCase>(),
+          gh<_i95.SaveMonthsUseCase>(),
+          gh<_i125.ClearMonthUseCase>(),
         ));
-    gh.factory<_i155.PaymentMethodsCubit>(() => _i155.PaymentMethodsCubit(
-          gh<_i121.ClearPaymentMethodsUseCase>(),
-          gh<_i134.DownloadPaymentMethodsUseCase>(),
-          gh<_i92.SavePaymentMethodsDataInLocalDbUseCase>(),
+    gh.factory<_i162.PaymentMethodsCubit>(() => _i162.PaymentMethodsCubit(
+          gh<_i126.ClearPaymentMethodsUseCase>(),
+          gh<_i139.DownloadPaymentMethodsUseCase>(),
+          gh<_i96.SavePaymentMethodsDataInLocalDbUseCase>(),
         ));
-    gh.factory<_i156.PressureUnitsCubit>(() => _i156.PressureUnitsCubit(
+    gh.factory<_i163.PressureUnitsCubit>(() => _i163.PressureUnitsCubit(
           gh<_i14.CountryUseCase>(),
-          gh<_i93.SavePressureUnitsInLocalDbUseCase>(),
-          gh<_i122.ClearPressureUnitsUseCase>(),
-          gh<_i144.GetAllPressureUnitsUseCase>(),
+          gh<_i97.SavePressureUnitsInLocalDbUseCase>(),
+          gh<_i127.ClearPressureUnitsUseCase>(),
+          gh<_i150.GetAllPressureUnitsUseCase>(),
         ));
-    gh.factory<_i157.RecurrencePeriodTypesCubit>(
-        () => _i157.RecurrencePeriodTypesCubit(
-              gh<_i123.ClearRecurrencePeriodTypesUseCase>(),
-              gh<_i145.GetAllRecurrencePeriodTypesUseCase>(),
-              gh<_i94.SaveRecurrencePeriodTypesInLocalDbUseCase>(),
+    gh.factory<_i164.RecurrencePeriodTypesCubit>(
+        () => _i164.RecurrencePeriodTypesCubit(
+              gh<_i128.ClearRecurrencePeriodTypesUseCase>(),
+              gh<_i151.GetAllRecurrencePeriodTypesUseCase>(),
+              gh<_i98.SaveRecurrencePeriodTypesInLocalDbUseCase>(),
             ));
-    gh.factory<_i158.ReminderTypeServiceCubit>(
-        () => _i158.ReminderTypeServiceCubit(
-              gh<_i124.ClearReminderTypeServiceUseCase>(),
-              gh<_i146.GetAllReminderTypeServiceUseCase>(),
-              gh<_i95.SaveReminderTypeServiceInLocalDbUseCase>(),
+    gh.factory<_i165.ReminderTypeServiceCubit>(
+        () => _i165.ReminderTypeServiceCubit(
+              gh<_i129.ClearReminderTypeServiceUseCase>(),
+              gh<_i152.GetAllReminderTypeServiceUseCase>(),
+              gh<_i99.SaveReminderTypeServiceInLocalDbUseCase>(),
             ));
-    gh.factory<_i159.ReminderTypesCubit>(() => _i159.ReminderTypesCubit(
-          gh<_i151.GetReminderTypesUseCase>(),
-          gh<_i96.SaveReminderTypesUseCase>(),
-          gh<_i125.ClearReminderTypeUseCase>(),
+    gh.factory<_i166.ReminderTypesCubit>(() => _i166.ReminderTypesCubit(
+          gh<_i157.GetReminderTypesUseCase>(),
+          gh<_i100.SaveReminderTypesUseCase>(),
+          gh<_i130.ClearReminderTypeUseCase>(),
         ));
-    gh.factory<_i160.RideTypesCubit>(() => _i160.RideTypesCubit(
-          gh<_i126.ClearRideTypesUseCase>(),
-          gh<_i135.DownloadRideTypesUseCase>(),
-          gh<_i97.SaveRideTypesDataInLocalDbUseCase>(),
+    gh.factory<_i167.RideTypesCubit>(() => _i167.RideTypesCubit(
+          gh<_i131.ClearRideTypesUseCase>(),
+          gh<_i140.DownloadRideTypesUseCase>(),
+          gh<_i101.SaveRideTypesDataInLocalDbUseCase>(),
         ));
-    gh.factory<_i161.SaveServiceDepartmentsInLocalDbUseCase>(() =>
-        _i161.SaveServiceDepartmentsInLocalDbUseCase(
-            gh<_i102.ServicesDepartmentsRepository>()));
-    gh.factory<_i162.SaveServiceTypesInLocalDbUseCase>(() =>
-        _i162.SaveServiceTypesInLocalDbUseCase(
-            gh<_i100.ServiceTypesRepository>()));
-    gh.factory<_i163.SaveWeatherUnitsDataInLocalDb>(() =>
-        _i163.SaveWeatherUnitsDataInLocalDb(
-            gh<_i106.WeatherUnitsRepository>()));
-    gh.factory<_i164.ServiceDepartmentsCubit>(
-        () => _i164.ServiceDepartmentsCubit(
-              gh<_i128.ClearServicesDepartmentsUseCase>(),
-              gh<_i148.GetAllServicesDepartmentsUseCase>(),
-              gh<_i161.SaveServiceDepartmentsInLocalDbUseCase>(),
+    gh.factory<_i168.SaveServiceDepartmentsInLocalDbUseCase>(() =>
+        _i168.SaveServiceDepartmentsInLocalDbUseCase(
+            gh<_i106.ServicesDepartmentsRepository>()));
+    gh.factory<_i169.SaveServiceTypesInLocalDbUseCase>(() =>
+        _i169.SaveServiceTypesInLocalDbUseCase(
+            gh<_i104.ServiceTypesRepository>()));
+    gh.factory<_i170.SaveWeatherUnitsDataInLocalDb>(() =>
+        _i170.SaveWeatherUnitsDataInLocalDb(
+            gh<_i110.WeatherUnitsRepository>()));
+    gh.factory<_i171.ServiceDepartmentsCubit>(
+        () => _i171.ServiceDepartmentsCubit(
+              gh<_i133.ClearServicesDepartmentsUseCase>(),
+              gh<_i154.GetAllServicesDepartmentsUseCase>(),
+              gh<_i168.SaveServiceDepartmentsInLocalDbUseCase>(),
             ));
-    gh.factory<_i165.ServiceTypesCubit>(() => _i165.ServiceTypesCubit(
-          gh<_i127.ClearServiceTypesUseCase>(),
-          gh<_i147.GetAllServiceTypesUseCase>(),
-          gh<_i162.SaveServiceTypesInLocalDbUseCase>(),
+    gh.factory<_i172.ServiceTypesCubit>(() => _i172.ServiceTypesCubit(
+          gh<_i132.ClearServiceTypesUseCase>(),
+          gh<_i153.GetAllServiceTypesUseCase>(),
+          gh<_i169.SaveServiceTypesInLocalDbUseCase>(),
         ));
-    gh.factory<_i166.WeatherUnitsCubit>(() => _i166.WeatherUnitsCubit(
-          gh<_i129.ClearWeatherUnitsUseCase>(),
-          gh<_i136.DownloadWeatherUnitsUseCase>(),
-          gh<_i163.SaveWeatherUnitsDataInLocalDb>(),
+    gh.factory<_i173.WeatherUnitsCubit>(() => _i173.WeatherUnitsCubit(
+          gh<_i134.ClearWeatherUnitsUseCase>(),
+          gh<_i141.DownloadWeatherUnitsUseCase>(),
+          gh<_i170.SaveWeatherUnitsDataInLocalDb>(),
         ));
     return this;
   }

@@ -21,6 +21,7 @@ import '../tables/engine_fuel_types.dart';
 import '../tables/fuel_brands.dart';
 import '../tables/fuel_consumption_unit_types.dart';
 import '../tables/fuel_octane_number.dart';
+import '../tables/model_generation_specification_keys.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
@@ -290,6 +291,17 @@ class Au2ridesDatabase {
     ${DepartmentServiceItemsFields.serviceDepartmentId} $textType,
     ${DepartmentServiceItemsFields.serviceImageUrl} $textType,
     PRIMARY KEY (${DepartmentServiceItemsFields.departmentServiceItemId}, ${DepartmentServiceItemsFields.languageId})
+    )
+    ''');
+
+    //model_generation_specification_keys
+    await db.execute('''
+    CREATE TABLE $modelGenerationSpecificationKeys (
+    ${ModelGenerationSpecificationKeysFields.specificationItemId} $intType,
+    ${ModelGenerationSpecificationKeysFields.languageId} $intType,
+    ${ModelGenerationSpecificationKeysFields.specificationItemName} $textType,
+    ${ModelGenerationSpecificationKeysFields.specificationItemImageUrl} $textType,
+    PRIMARY KEY (${ModelGenerationSpecificationKeysFields.specificationItemId}, ${ModelGenerationSpecificationKeysFields.languageId})
     )
     ''');
   }

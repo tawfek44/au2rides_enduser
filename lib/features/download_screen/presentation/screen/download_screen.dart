@@ -12,6 +12,7 @@ import 'package:au2rides/features/download_screen/data/models/fuel_brands/fuel_b
 import 'package:au2rides/features/download_screen/data/models/fuel_consumption_unit_types/fuel_consumption_unit_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/fuel_octane_number/fuel_octane_number_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
+import 'package:au2rides/features/download_screen/data/models/model_generation_specification_keys/model_generation_specification_keys_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
 import 'package:au2rides/features/download_screen/data/models/pressure_units/pressure_units_model.dart';
@@ -25,6 +26,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/model_generation_specification_keys_cubit/model_generation_specification_keys_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
@@ -38,6 +40,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/tables/model_generation_specification_keys.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
@@ -150,6 +153,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case departmentServiceItemsTableName:
             await downloadPrimaryDataForDepartmentServiceItemsTable(table: table);
+            break;
+          case modelGenerationSpecificationKeys:
+            await downloadPrimaryDataForModelGenerationSpecificationKeysTable(table: table);
             break;
         }
       }
@@ -785,6 +791,36 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllAcquisitionTypesInLocalDB(
           tableName: table.tableName,
           values: (element as DepartmentServiceItemsModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForModelGenerationSpecificationKeysTable({required table}) async {
+    //TODO 1. clear ModelGenerationSpecificationKeys table in local db
+    await context
+        .read<ModelGenerationSpecificationKeysCubit>()
+        .clearModelGenerationSpecificationKeysInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get ModelGenerationSpecificationKeys data from network db
+    await context
+        .read<ModelGenerationSpecificationKeysCubit>()
+        .getAllModelGenerationSpecificationKeysFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save ModelGenerationSpecificationKeys data in local db
+      await saveModelGenerationSpecificationKeysInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+
+  }
+
+  saveModelGenerationSpecificationKeysInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<ModelGenerationSpecificationKeysCubit>()
+          .saveAllModelGenerationSpecificationKeysInLocalDB(
+          tableName: table.tableName,
+          values: (element as ModelGenerationSpecificationKeysModel ).toJson());
     }
   }
 }

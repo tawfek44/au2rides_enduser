@@ -8,6 +8,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/engine_trans
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_consumption_unit_types_cubit/fuel_consumption_unit_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/model_generation_specification_keys_cubit/model_generation_specification_keys_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/pressure_units_cubit/pressure_units_cubit.dart';
@@ -54,7 +55,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ServiceDepartmentsCubit>()),
         BlocProvider(create: (_) => getIt<ServiceTypesCubit>()),
         BlocProvider(create: (_) => getIt<FuelOctaneNumberCubit>()),
-        BlocProvider(create: (_) => getIt<DepartmentServiceItemsCubit>())
+        BlocProvider(create: (_) => getIt<DepartmentServiceItemsCubit>()),
+        BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>())
       ],
       child: child,
     );
