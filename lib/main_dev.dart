@@ -32,7 +32,8 @@ List<String> tableNames = [
   fuelConsumptionUnitTypesTableName,
   fuelOctaneNumbersTableName,
   servicesDepartmentsTableName,
-  servicesTypesTableName
+  servicesTypesTableName,
+  departmentServiceItemsTableName
 ];
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);

@@ -36,6 +36,7 @@ const String fuelOctaneNumbersTableName = 'fuel_octane_numbers';
 const String servicesDepartmentsTableName = 'services_departments';
 const String servicesTypesTableName = 'service_types';
 const String fuelConsumptionUnitTypesTableName = 'fuel_consumption_unit_types';
+const String departmentServiceItemsTableName = 'department_service_items';
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
 Widget errorWidget() => Center(

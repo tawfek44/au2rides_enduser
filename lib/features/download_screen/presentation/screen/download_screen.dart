@@ -5,10 +5,12 @@ import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/department_service_items/department_service_items_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/engine_transmission_types/engine_transmission_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/fuel_brands/fuel_brands_model.dart';
 import 'package:au2rides/features/download_screen/data/models/fuel_consumption_unit_types/fuel_consumption_unit_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/fuel_octane_number/fuel_octane_number_model.dart';
 import 'package:au2rides/features/download_screen/data/models/metric_units/metric_units_model.dart';
 import 'package:au2rides/features/download_screen/data/models/month/month_model.dart';
 import 'package:au2rides/features/download_screen/data/models/payment_methods/payment_methods_model.dart';
@@ -18,8 +20,10 @@ import 'package:au2rides/features/download_screen/data/models/reminder_type_serv
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/service_types/service_types_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/month_cubit/month_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/payment_methods/payment_methods_cubit.dart';
@@ -140,6 +144,12 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case servicesTypesTableName:
             await downloadPrimaryDataForServiceTypesTable(table: table);
+            break;
+          case fuelOctaneNumbersTableName:
+            await downloadPrimaryDataForFuelOctaneNumbersTable(table: table);
+            break;
+          case departmentServiceItemsTableName:
+            await downloadPrimaryDataForDepartmentServiceItemsTable(table: table);
             break;
         }
       }
@@ -716,6 +726,65 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllServiceTypesInLocalDB(
           tableName: table.tableName,
           values: (element as ServiceTypesModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForFuelOctaneNumbersTable({required table}) async {
+    //TODO 1. clear FuelOctaneNumbers table in local db
+    await context
+        .read<FuelOctaneNumberCubit>()
+        .clearFuelOctaneNumberInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get FuelOctaneNumbers data from network db
+    await context
+        .read<FuelOctaneNumberCubit>()
+        .getAllFuelOctaneNumberFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save FuelOctaneNumbers data in local db
+      await saveFuelOctaneNumberInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+  }
+
+  saveFuelOctaneNumberInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<FuelOctaneNumberCubit>()
+          .saveAllFuelOctaneNumberInLocalDB(
+          tableName: table.tableName,
+          values: (element as FuelOctaneNumberModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForDepartmentServiceItemsTable({required table}) async {
+    //TODO 1. clear DepartmentService table in local db
+    await context
+        .read<DepartmentServiceItemsCubit>()
+        .clearAcquisitionTypesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get DepartmentService data from network db
+    await context
+        .read<DepartmentServiceItemsCubit>()
+        .getAllDepartmentServiceItemsFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save DepartmentService data in local db
+      await saveDepartmentServiceItemsInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+
+  }
+
+  saveDepartmentServiceItemsInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<DepartmentServiceItemsCubit>()
+          .saveAllAcquisitionTypesInLocalDB(
+          tableName: table.tableName,
+          values: (element as DepartmentServiceItemsModel ).toJson());
     }
   }
 }

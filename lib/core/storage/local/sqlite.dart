@@ -16,9 +16,11 @@ import '../../constants/constants.dart';
 import '../tables/acquisition_types.dart';
 import '../tables/countries.dart';
 import '../tables/currency.dart';
+import '../tables/department_service_items.dart';
 import '../tables/engine_fuel_types.dart';
 import '../tables/fuel_brands.dart';
 import '../tables/fuel_consumption_unit_types.dart';
+import '../tables/fuel_octane_number.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
@@ -266,6 +268,28 @@ class Au2ridesDatabase {
     ${ServiceTypesFields.languageId} $intType,
     ${ServiceTypesFields.serviceTypeName} $textType,
     PRIMARY KEY (${ServiceTypesFields.serviceTypeId}, ${ServiceTypesFields.languageId})
+    )
+    ''');
+    //fuel_octane_number
+    await db.execute('''
+    CREATE TABLE $fuelOctaneNumbersTableName (
+    ${FuelOctaneNumberFields.fuelOctaneNumberId} $intType,
+    ${FuelOctaneNumberFields.languageId} $intType,
+    ${FuelOctaneNumberFields.fuelOctaneNumber} $textType,
+    PRIMARY KEY (${FuelOctaneNumberFields.fuelOctaneNumberId}, ${FuelOctaneNumberFields.languageId})
+    )
+    ''');
+
+    //department_service_items
+    await db.execute('''
+    CREATE TABLE $departmentServiceItemsTableName (
+    ${DepartmentServiceItemsFields.departmentServiceItemId} $intType,
+    ${DepartmentServiceItemsFields.languageId} $intType,
+    ${DepartmentServiceItemsFields.departmentServiceItemName} $textType,
+    ${DepartmentServiceItemsFields.serviceTypeId} $textType,
+    ${DepartmentServiceItemsFields.serviceDepartmentId} $textType,
+    ${DepartmentServiceItemsFields.serviceImageUrl} $textType,
+    PRIMARY KEY (${DepartmentServiceItemsFields.departmentServiceItemId}, ${DepartmentServiceItemsFields.languageId})
     )
     ''');
   }
