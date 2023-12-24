@@ -20,6 +20,7 @@ import 'package:au2rides/features/download_screen/data/models/recurrence_period_
 import 'package:au2rides/features/download_screen/data/models/reminder_type_service_types/reminder_type_service_model.dart';
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/service_types/service_types_model.dart';
+import 'package:au2rides/features/download_screen/data/models/workflow_statuses/workflow_statuses_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
@@ -35,6 +36,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/reminder_typ
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/workflow_statuses_cubit/workflow_statuses_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -156,6 +158,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case modelGenerationSpecificationKeys:
             await downloadPrimaryDataForModelGenerationSpecificationKeysTable(table: table);
+            break;
+          case workflowStatusesTableName:
+            await downloadPrimaryDataForModelWorkflowStatusesTable(table: table);
             break;
         }
       }
@@ -821,6 +826,36 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllModelGenerationSpecificationKeysInLocalDB(
           tableName: table.tableName,
           values: (element as ModelGenerationSpecificationKeysModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForModelWorkflowStatusesTable({required table}) async {
+    //TODO 1. clear WorkflowStatuses table in local db
+    await context
+        .read<WorkflowStatusesCubit>()
+        .clearWorkflowStatusesInLocalDatabase(
+        tableName: table.tableName, languageId: table.languageId);
+    //TODO 2. get WorkflowStatuses data from network db
+    await context
+        .read<WorkflowStatusesCubit>()
+        .getAllWorkflowStatusesFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save WorkflowStatuses data in local db
+      await saveWorkflowStatusesInLocalDb(response: value, table: table);
+    });
+    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+
+  }
+
+  saveWorkflowStatusesInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<WorkflowStatusesCubit>()
+          .saveAllWorkflowStatusesInLocalDB(
+          tableName: table.tableName,
+          values: (element as WorkflowStatusesModel ).toJson());
     }
   }
 }

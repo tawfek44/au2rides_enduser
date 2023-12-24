@@ -4,14 +4,14 @@
             "outputFile": "com.example.au2rides_mobile_enduser.app-mergeDebugResources-35:/values-night-v31/values-night-v31.xml",
             "map": [
                 {
-                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
+                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
                     "from": {
                         "startLines": "3,15",
                         "startColumns": "4,4",
-                        "startOffsets": "173,881",
+                        "startOffsets": "176,896",
                         "endLines": "8,17",
                         "endColumns": "12,12",
-                        "endOffsets": "530,1045"
+                        "endOffsets": "538,1062"
                     },
                     "to": {
                         "startLines": "2,8",

@@ -32,7 +32,8 @@ List<String> tableNames = [
   servicesDepartmentsTableName,
   servicesTypesTableName,
   departmentServiceItemsTableName,
-  modelGenerationSpecificationKeys
+  modelGenerationSpecificationKeys,
+  workflowStatusesTableName
 ];
 Future main() async {
   AppEnvironment.setUpEnv(Environment.dev);

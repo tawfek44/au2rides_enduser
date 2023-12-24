@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'workflow_statuses_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+WorkflowStatusesModel _$WorkflowStatusesModelFromJson(
+        Map<String, dynamic> json) =>
+    WorkflowStatusesModel(
+      workflowStatusId: json['workflow_status_id'] as int,
+      languageId: json['language_id'] as int,
+      workflowStatusName: json['workflow_status_name'] as String,
+    );
+
+Map<String, dynamic> _$WorkflowStatusesModelToJson(
+        WorkflowStatusesModel instance) =>
+    <String, dynamic>{
+      'workflow_status_id': instance.workflowStatusId,
+      'language_id': instance.languageId,
+      'workflow_status_name': instance.workflowStatusName,
+    };

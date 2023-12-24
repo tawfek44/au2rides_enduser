@@ -17,6 +17,7 @@ import 'package:au2rides/features/download_screen/presentation/bloc/reminder_typ
 import 'package:au2rides/features/download_screen/presentation/bloc/reminder_types_cubit/reminder_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/workflow_statuses_cubit/workflow_statuses_cubit.dart';
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +57,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ServiceTypesCubit>()),
         BlocProvider(create: (_) => getIt<FuelOctaneNumberCubit>()),
         BlocProvider(create: (_) => getIt<DepartmentServiceItemsCubit>()),
-        BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>())
+        BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>()),
+        BlocProvider(create: (_) => getIt<WorkflowStatusesCubit>())
       ],
       child: child,
     );

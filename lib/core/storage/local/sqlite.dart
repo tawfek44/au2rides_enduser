@@ -27,6 +27,7 @@ import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
 import '../tables/services_departments.dart';
 import '../tables/user_gender.dart';
+import '../tables/workflow_statuses.dart';
 
 class Au2ridesDatabase {
   static final Au2ridesDatabase instance = Au2ridesDatabase._init();
@@ -302,6 +303,15 @@ class Au2ridesDatabase {
     ${ModelGenerationSpecificationKeysFields.specificationItemName} $textType,
     ${ModelGenerationSpecificationKeysFields.specificationItemImageUrl} $textType,
     PRIMARY KEY (${ModelGenerationSpecificationKeysFields.specificationItemId}, ${ModelGenerationSpecificationKeysFields.languageId})
+    )
+    ''');
+    //model_generation_specification_keys
+    await db.execute('''
+    CREATE TABLE $workflowStatusesTableName (
+    ${WorkflowStatusesFields.workflowStatusId} $intType,
+    ${WorkflowStatusesFields.languageId} $intType,
+    ${WorkflowStatusesFields.workflowStatusName} $textType,
+    PRIMARY KEY (${WorkflowStatusesFields.workflowStatusId}, ${WorkflowStatusesFields.languageId})
     )
     ''');
   }

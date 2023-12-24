@@ -13,44 +13,44 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\main\AndroidManifest.xml:3:5-66
-15-->D:\Work Projects\Au2rides App\au2rides_mobile_enduser\android\app\src\main\AndroidManifest.xml:3:22-64
+15-->D:\Work Projects\Au2rides App\au2rides_enduser\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->D:\Work Projects\Au2rides App\au2rides_enduser\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.WAKE_LOCK" />
-16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-68
-16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-65
+16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-68
+16-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-65
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permissions options for the `notification` group -->
-17-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-79
-17-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-76
+17-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-79
+17-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-76
 18    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-18-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-77
-18-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-74
+18-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-77
+18-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-74
 19    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-19-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
-19-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
+19-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
+19-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
 20
 21    <queries>
-21-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-17:15
+21-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-17:15
 22        <intent>
-22-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:18
+22-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:18
 23            <action android:name="android.intent.action.GET_CONTENT" />
-23-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-72
-23-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:21-69
+23-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-72
+23-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:21-69
 24
 25            <data android:mimeType="*/*" />
-25-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
-25-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:19-41
+25-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
+25-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:19-41
 26        </intent>
 27    </queries>
 28
 29    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-29-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-81
-29-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-78
+29-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-81
+29-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-78
 30    <uses-permission android:name="android.permission.VIBRATE" />
-30-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-66
-30-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-63
+30-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-66
+30-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-63
 31    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-31-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-81
-31-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-78
+31-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-81
+31-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-78
 32    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 32-->[com.google.firebase:firebase-messaging:23.2.0] C:\Users\USER\.gradle\caches\transforms-3\cc5a9fa5a4d471b1b4612819fbbde27b\transformed\jetified-firebase-messaging-23.2.0\AndroidManifest.xml:28:5-82
 32-->[com.google.firebase:firebase-messaging:23.2.0] C:\Users\USER\.gradle\caches\transforms-3\cc5a9fa5a4d471b1b4612819fbbde27b\transformed\jetified-firebase-messaging-23.2.0\AndroidManifest.xml:28:22-79
@@ -151,48 +151,48 @@
 101            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
 102            android:exported="false" >
 103            <intent-filter>
-103-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-21:29
+103-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-21:29
 104                <action android:name="android.intent.action.BOOT_COMPLETED" />
-104-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-79
-104-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:25-76
+104-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-79
+104-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:25-76
 105                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-105-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:17-84
-105-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:25-81
+105-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:17-84
+105-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:25-81
 106                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-106-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-82
-106-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-79
+106-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-82
+106-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-79
 107                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-107-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-82
-107-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-79
+107-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-82
+107-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-79
 108            </intent-filter>
 109        </receiver>
 110
 111        <service
-111-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+111-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
 112            android:name="com.google.firebase.components.ComponentDiscoveryService"
-112-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
+112-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
 113            android:directBootAware="true"
 113-->[com.google.firebase:firebase-common:20.3.3] C:\Users\USER\.gradle\caches\transforms-3\d094a130cf547d5ac7c1aaf8e1e179f6\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:34:13-43
 114            android:exported="false" >
 114-->[com.google.firebase:firebase-auth:22.1.0] C:\Users\USER\.gradle\caches\transforms-3\ccae3fca6397bf572ac3a52bb645eed1\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:68:13-37
 115            <meta-data
-115-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+115-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 116                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
-116-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+116-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
 117                android:value="com.google.firebase.components.ComponentRegistrar" />
-117-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+117-->[:firebase_auth] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 118            <meta-data
-118-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:38:13-40:85
+118-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:38:13-40:85
 119                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
-119-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:39:17-128
+119-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:39:17-128
 120                android:value="com.google.firebase.components.ComponentRegistrar" />
-120-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:40:17-82
+120-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:40:17-82
 121            <meta-data
-121-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+121-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 122                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
-122-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+122-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
 123                android:value="com.google.firebase.components.ComponentRegistrar" />
-123-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+123-->[:firebase_core] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 124            <meta-data
 124-->[com.google.firebase:firebase-auth:22.1.0] C:\Users\USER\.gradle\caches\transforms-3\ccae3fca6397bf572ac3a52bb645eed1\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:69:13-71:85
 125                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
@@ -225,86 +225,86 @@
 138-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\USER\.gradle\caches\transforms-3\b90cb4a76ff515f3666ccefebe034957\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
 139        </service>
 140        <service
-140-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-19:72
+140-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-19:72
 141            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
-141-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-107
+141-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-107
 142            android:exported="false"
-142-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
+142-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
 143            android:permission="android.permission.BIND_JOB_SERVICE" />
-143-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-69
+143-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-69
 144        <service
-144-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-26:19
+144-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-26:19
 145            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
-145-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-97
+145-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-97
 146            android:exported="false" >
-146-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-37
+146-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-37
 147            <intent-filter>
-147-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-25:29
+147-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-25:29
 148                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-148-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-78
-148-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-75
+148-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-78
+148-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-75
 149            </intent-filter>
 150        </service>
 151
 152        <receiver
-152-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:28:9-35:20
+152-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:28:9-35:20
 153            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
-153-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:29:13-98
+153-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:29:13-98
 154            android:exported="true"
-154-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-36
+154-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-36
 155            android:permission="com.google.android.c2dm.permission.SEND" >
-155-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:31:13-73
+155-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:31:13-73
 156            <intent-filter>
-156-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-34:29
+156-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-34:29
 157                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-157-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:17-81
-157-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:25-78
+157-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:17-81
+157-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:25-78
 158            </intent-filter>
 159        </receiver>
 160
 161        <provider
-161-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:43:9-47:38
+161-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:43:9-47:38
 162            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
-162-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:44:13-102
+162-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:44:13-102
 163            android:authorities="com.example.au2rides_mobile_enduser.flutterfirebasemessaginginitprovider"
-163-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:45:13-88
+163-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:45:13-88
 164            android:exported="false"
-164-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:46:13-37
+164-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:46:13-37
 165            android:initOrder="99" />
-165-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:47:13-35
+165-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:47:13-35
 166
 167        <service
-167-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:56
+167-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:56
 168            android:name="com.baseflow.geolocator.GeolocatorLocationService"
-168-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-77
+168-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-77
 169            android:enabled="true"
-169-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-35
+169-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-35
 170            android:exported="false"
-170-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+170-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
 171            android:foregroundServiceType="location" />
-171-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-53
+171-->[:geolocator_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-53
 172
 173        <provider
-173-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+173-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
 174            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-174-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
+174-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
 175            android:authorities="com.example.au2rides_mobile_enduser.flutter.image_provider"
-175-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+175-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
 176            android:exported="false"
-176-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+176-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
 177            android:grantUriPermissions="true" >
-177-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+177-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
 178            <meta-data
-178-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+178-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
 179                android:name="android.support.FILE_PROVIDER_PATHS"
-179-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+179-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 180                android:resource="@xml/flutter_image_picker_file_paths" />
-180-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+180-->[:image_picker_android] D:\Work Projects\Au2rides App\au2rides_enduser\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
 181        </provider>
 182
 183        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
-183-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-106
-183-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:19-103
+183-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-106
+183-->[:flutter_local_notifications] D:\Work Projects\Au2rides App\au2rides_enduser\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:14:19-103
 184
 185        <activity
 185-->[com.google.firebase:firebase-auth:22.1.0] C:\Users\USER\.gradle\caches\transforms-3\ccae3fca6397bf572ac3a52bb645eed1\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:29:9-46:20
@@ -332,7 +332,7 @@
 195-->[com.google.firebase:firebase-auth:22.1.0] C:\Users\USER\.gradle\caches\transforms-3\ccae3fca6397bf572ac3a52bb645eed1\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:39:27-75
 196
 197                <data
-197-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
+197-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
 198                    android:host="firebase.auth"
 199                    android:path="/"
 200                    android:scheme="genericidp" />
@@ -364,7 +364,7 @@
 213-->[com.google.firebase:firebase-auth:22.1.0] C:\Users\USER\.gradle\caches\transforms-3\ccae3fca6397bf572ac3a52bb645eed1\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:39:27-75
 214
 215                <data
-215-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
+215-->[:file_picker] D:\Work Projects\Au2rides App\au2rides_enduser\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
 216                    android:host="firebase.auth"
 217                    android:path="/"
 218                    android:scheme="recaptcha" />
@@ -380,10 +380,10 @@
 225            android:permission="com.google.android.c2dm.permission.SEND" >
 225-->[com.google.firebase:firebase-messaging:23.2.0] C:\Users\USER\.gradle\caches\transforms-3\cc5a9fa5a4d471b1b4612819fbbde27b\transformed\jetified-firebase-messaging-23.2.0\AndroidManifest.xml:34:13-73
 226            <intent-filter>
-226-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-34:29
+226-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-34:29
 227                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-227-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:17-81
-227-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:25-78
+227-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:17-81
+227-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:33:25-78
 228            </intent-filter>
 229        </receiver>
 230        <!--
@@ -399,10 +399,10 @@
 237            android:exported="false" >
 237-->[com.google.firebase:firebase-messaging:23.2.0] C:\Users\USER\.gradle\caches\transforms-3\cc5a9fa5a4d471b1b4612819fbbde27b\transformed\jetified-firebase-messaging-23.2.0\AndroidManifest.xml:47:13-37
 238            <intent-filter android:priority="-500" >
-238-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-25:29
+238-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-25:29
 239                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-239-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-78
-239-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_mobile_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-75
+239-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-78
+239-->[:firebase_messaging] D:\Work Projects\Au2rides App\au2rides_enduser\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-75
 240            </intent-filter>
 241        </service>
 242

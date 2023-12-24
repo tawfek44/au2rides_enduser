@@ -548,14 +548,14 @@
             "outputFile": "com.example.au2rides_mobile_enduser.app-merged_res-37:/values-night-v31_values-night-v31.arsc.flat",
             "map": [
                 {
-                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
+                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
                     "from": {
                         "startLines": "3,15",
                         "startColumns": "4,4",
-                        "startOffsets": "173,881",
+                        "startOffsets": "176,896",
                         "endLines": "8,17",
                         "endColumns": "12,12",
-                        "endOffsets": "530,1045"
+                        "endOffsets": "538,1062"
                     },
                     "to": {
                         "startLines": "2,8",
@@ -3853,25 +3853,6 @@
             "outputFile": "com.example.au2rides_mobile_enduser.app-merged_res-37:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,18",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,1095",
-                        "endLines": "11,20",
-                        "endColumns": "12,12",
-                        "endOffsets": "748,1259"
-                    },
-                    "to": {
-                        "startLines": "1482,1490",
-                        "startColumns": "4,4",
-                        "startOffsets": "96647,97099",
-                        "endLines": "1489,1492",
-                        "endColumns": "12,12",
-                        "endOffsets": "97094,97263"
-                    }
-                },
-                {
                     "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-3\\beb1df14a36789fd46f1fa73f36b9595\\transformed\\jetified-window-1.0.0-beta04\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,7,8,9,10,11,19,23,34,51",
@@ -4155,6 +4136,25 @@
                         "endLines": "5,24,25,42,43,74,75,190,191,192,193,194,195,196,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,275,276,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,318,348,349,350,351,352,353,354,389,1764,1768,1770,1776,1778,1923,1924,2587,2625,2704,2725,2767,2773",
                         "endColumns": "59,71,87,64,65,68,62,69,67,71,69,60,73,72,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,64,58,58,59,59,59,59,59,59,59,59,59,59,58,59,59,59,59,59,59,59,59,59,59,58,59,59,58,58,58,58,58,58,34,34,54,62,54,57,57,60,62,56,50,49,60,56,65,33,34,34,69,66,71,68,68,73,71,87,70,116,12,109,12,128,71,66,24,24,24,24,24,24",
                         "endOffsets": "309,1376,1464,2738,2804,4897,4960,12723,12791,12863,12933,12994,13068,13141,13986,14047,14109,14173,14235,14296,14364,14464,14524,14590,14663,14732,14789,14841,14903,15640,15716,15781,15840,15899,15959,16019,16079,16139,16199,16259,16319,16379,16439,16499,16558,16618,16678,16738,16798,16858,16918,16978,17038,17098,17158,17217,17277,17337,17396,17455,17514,17573,17632,17691,18082,18117,18421,18484,18539,18597,18655,18716,18779,18836,18887,18937,18998,19055,19121,19155,19190,19225,20358,22440,22512,22581,22650,22724,22796,22884,26839,118266,118467,118643,119027,119222,130656,130723,152481,154152,157812,158493,159494,159661"
+                    }
+                },
+                {
+                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,18",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,1107",
+                        "endLines": "11,20",
+                        "endColumns": "12,12",
+                        "endOffsets": "758,1273"
+                    },
+                    "to": {
+                        "startLines": "1482,1490",
+                        "startColumns": "4,4",
+                        "startOffsets": "96647,97099",
+                        "endLines": "1489,1492",
+                        "endColumns": "12,12",
+                        "endOffsets": "97094,97263"
                     }
                 }
             ]
@@ -7441,14 +7441,14 @@
                     }
                 },
                 {
-                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,18",
                         "startColumns": "4,4",
-                        "startOffsets": "172,1094",
+                        "startOffsets": "175,1106",
                         "endLines": "11,20",
                         "endColumns": "12,12",
-                        "endOffsets": "747,1258"
+                        "endOffsets": "757,1272"
                     },
                     "to": {
                         "startLines": "2,10",
@@ -8521,14 +8521,14 @@
             "outputFile": "com.example.au2rides_mobile_enduser.app-merged_res-37:/values-v31_values-v31.arsc.flat",
             "map": [
                 {
-                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_mobile_enduser\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
+                    "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
                     "from": {
                         "startLines": "3,15",
                         "startColumns": "4,4",
-                        "startOffsets": "173,881",
+                        "startOffsets": "176,896",
                         "endLines": "8,17",
                         "endColumns": "12,12",
-                        "endOffsets": "530,1045"
+                        "endOffsets": "538,1062"
                     },
                     "to": {
                         "startLines": "2,8",
