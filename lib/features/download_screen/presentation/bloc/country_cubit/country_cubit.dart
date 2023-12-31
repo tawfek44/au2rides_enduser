@@ -20,13 +20,11 @@ class CountryCubit extends Cubit<CountryState> {
   CountryCubit(
       this.countryUseCase,
       this.saveCountryUseCase,
-      this.clearCountryUseCase,
-      this.clearCurrencyUseCase,)
+      this.clearCountryUseCase,)
       : super(const CountryState.initial());
   CountryUseCase countryUseCase;
   SaveCountriesUseCase saveCountryUseCase;
   ClearCountryUseCase clearCountryUseCase;
-  ClearCurrencyUseCase clearCurrencyUseCase;
 
   Future getAllCountries({required String lang,required tableDefinitions}) async {
     try {

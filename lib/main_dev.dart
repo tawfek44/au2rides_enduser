@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/env.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 
 import 'core/constants/constants.dart';
 import 'core/dependancy_injection/injection.dart';
@@ -35,10 +42,24 @@ List<String> tableNames = [
   modelGenerationSpecificationKeys,
   workflowStatusesTableName
 ];
+
 Future main() async {
-  AppEnvironment.setUpEnv(Environment.dev);
+  AppEnvironment.setUpEnv(EnvironmentType.dev);
   WidgetsFlutterBinding.ensureInitialized();
-  configureInjection();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+          apiKey: "AIzaSyB6yJxYSASdbAnEmWxQZIOovzsHZUnE46Q",
+          appId: "1:814804161658:android:238fee2bf31ab7b72157c3",
+          messagingSenderId: "814804161658",
+          projectId: "au2rides-enduser",
+        ))
+      : await Firebase.initializeApp(
+          // options: DefaultFirebaseOptions.currentPlatform,
+          );
+  var token = await FirebaseMessaging.instance.getToken();
+  await configureInjection();
+  await getIt<UserRepository>().setUserToken(token??"");
   Au2ridesDatabase.instance.database;
   languageTableCount =
       await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
@@ -69,15 +90,16 @@ Future main() async {
 
 insertTableNamesInTablesDefinitions(
     {required Au2ridesDatabase databaseObject}) {
-  for(var i=0;i<tableNames.length;i++){
+  for (var i = 0; i < tableNames.length; i++) {
     databaseObject.insert(
         tableName: tableDefinitionsTableName,
         values: TableDefinitions(
-            tableId: i+1,
-            tableName: tableNames[i],
-            languageId: getIt<UserRepository>().userLanguage == "ar" ? 9 : 56,
-            schemaVersion: 1,
-            dataVersion: 0)
+                tableId: i + 1,
+                tableName: tableNames[i],
+                languageId:
+                    getIt<UserRepository>().userLanguage == "ar" ? 9 : 56,
+                schemaVersion: 1,
+                dataVersion: 0)
             .toJson());
   }
 }

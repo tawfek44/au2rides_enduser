@@ -41,6 +41,12 @@ const String modelGenerationSpecificationKeys = 'model_generation_specification_
 const String workflowStatusesTableName = 'workflow_statuses';
 const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
 const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
+const authorizeEndPoint= "/api/oauth/client/v1.0/authorize";
+const tenantId = "96a97855-8463-492d-a5ec-5758e3ace3bf";
+const responseType = "authorization_code";
+const applicationId = "e199c942-3735-4b48-b2c7-01646b1bed89";
+const applicationSecret = "y5A7CaFcHeMhPkRpUrWuZw3y6B8DaGdJfMjQmSqV";
+const applicationIdentifierName = "com.au2rides.end_user";
 Widget errorWidget() => Center(
   child: AppText(
     text: S.current.wrongText,

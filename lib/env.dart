@@ -1,17 +1,19 @@
-enum Environment{dev,prod}
+enum EnvironmentType{dev,prod}
 
 abstract class AppEnvironment{
-  static late Environment _environment;
+  static late EnvironmentType _environment;
   static late String baseAPIUrl;
-  static Environment get environment =>_environment;
+  static late String authAPIUrl;
+  static EnvironmentType get environment =>_environment;
 
-  static setUpEnv(Environment env){
+  static setUpEnv(EnvironmentType env){
     _environment = env;
     switch(env) {
-      case Environment.dev:
+      case EnvironmentType.dev:
         baseAPIUrl = "https://au2rides-mobile-development.azurewebsites.net";
+        authAPIUrl = "https://au2rides-oauth-development.azurewebsites.net";
         break;
-      case Environment.prod:
+      case EnvironmentType.prod:
         // TODO: Handle this case.
         break;
     }

@@ -1974,4 +1974,5 @@ int styleable zxing_finder_zxing_viewfinder_mask 4
 int[] styleable zxing_view { 0x7f03013a }
 int styleable zxing_view_zxing_scanner_layout 0
 int xml flutter_image_picker_file_paths 0x7f110000
-int xml image_share_filepaths 0x7f110001
+int xml ga_ad_services_config 0x7f110001
+int xml image_share_filepaths 0x7f110002

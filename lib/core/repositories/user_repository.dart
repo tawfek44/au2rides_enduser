@@ -21,6 +21,9 @@ class UserRepository {
   Future setUserLanguage(String lang) async {
     await _prefs.setString('lang', lang);
   }
+  Future setUserToken(String token) async {
+    await _prefs.setString('token', token);
+  }
   Future setFirstTimeOpenApp(bool flag) async {
     await _prefs.setBool('firstTimeOpenApp', flag);
   }
@@ -52,6 +55,7 @@ class UserRepository {
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
 
   bool get getFirstTimeOpenApp => _prefs.getBool('firstTimeOpenApp')??true;
+  String get getUserToken => _prefs.getString('token')??'';
 
 
 

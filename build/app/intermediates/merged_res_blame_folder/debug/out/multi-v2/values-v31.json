@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeDebugResources-35:/values-v31/values-v31.xml",
+            "outputFile": "com.au2rides.au2rides_end_user.app-mergeDebugResources-38:/values-v31/values-v31.xml",
             "map": [
                 {
                     "source": "D:\\Work Projects\\Au2rides App\\au2rides_enduser\\android\\app\\src\\main\\res\\values-v31\\styles.xml",

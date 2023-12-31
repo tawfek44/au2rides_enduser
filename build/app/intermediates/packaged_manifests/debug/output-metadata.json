@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.example.au2rides_mobile_enduser",
+  "applicationId": "com.au2rides.au2rides_end_user",
   "variantName": "debug",
   "elements": [
     {

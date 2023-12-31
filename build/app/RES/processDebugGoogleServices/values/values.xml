@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">814804161658-4npmiusnptfkclajglrfcchd90q3vpm8.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">814804161658</string>
+    <string name="google_api_key" translatable="false">AIzaSyB6yJxYSASdbAnEmWxQZIOovzsHZUnE46Q</string>
+    <string name="google_app_id" translatable="false">1:814804161658:android:238fee2bf31ab7b72157c3</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB6yJxYSASdbAnEmWxQZIOovzsHZUnE46Q</string>
+    <string name="google_storage_bucket" translatable="false">au2rides-enduser.appspot.com</string>
+    <string name="project_id" translatable="false">au2rides-enduser</string>
+</resources>

@@ -5,7 +5,7 @@ import 'env.dart';
 import 'main.dart';
 
 Future main() async {
-  AppEnvironment.setUpEnv(Environment.prod);
+  AppEnvironment.setUpEnv(EnvironmentType.prod);
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();
   launchApp();

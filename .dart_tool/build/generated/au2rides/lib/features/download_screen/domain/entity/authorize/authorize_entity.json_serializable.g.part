@@ -1,0 +1,33 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AuthorizeEntity _$AuthorizeEntityFromJson(Map<String, dynamic> json) =>
+    AuthorizeEntity(
+      RefreshToken.fromJson(json['refresh_token'] as Map<String, dynamic>),
+      AccessToken.fromJson(json['access_token'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AuthorizeEntityToJson(AuthorizeEntity instance) =>
+    <String, dynamic>{
+      'refresh_token': instance.refreshToken,
+      'access_token': instance.accessToken,
+    };
+
+RefreshToken _$RefreshTokenFromJson(Map<String, dynamic> json) => RefreshToken(
+      refreshToken: json['refresh_token'] as String,
+    );
+
+Map<String, dynamic> _$RefreshTokenToJson(RefreshToken instance) =>
+    <String, dynamic>{
+      'refresh_token': instance.refreshToken,
+    };
+
+AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) => AccessToken(
+      accessToken: json['access_token'] as String,
+    );
+
+Map<String, dynamic> _$AccessTokenToJson(AccessToken instance) =>
+    <String, dynamic>{
+      'access_token': instance.accessToken,
+    };

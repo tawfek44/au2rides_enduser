@@ -22,6 +22,7 @@ import 'package:au2rides/features/download_screen/data/models/reminder_types/rem
 import 'package:au2rides/features/download_screen/data/models/service_types/service_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/workflow_statuses/workflow_statuses_model.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
@@ -42,7 +43,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
-import '../../../../core/storage/tables/model_generation_specification_keys.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
@@ -78,8 +78,11 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   @override
   void initState() {
-    downloadPrimaryData().then((value) {
-      redirectToSplashScreen();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await authorizeFun();
+      downloadPrimaryData().then((value) {
+        redirectToSplashScreen();
+      });
     });
     super.initState();
   }
@@ -89,6 +92,11 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.didChangeDependencies();
   }
 
+  Future authorizeFun() async {
+    if (await widget.networkInfo.isConnected) {
+       await context.read<AuthorizeCubit>().authorize();
+    }
+  }
   Future downloadPrimaryData() async {
     if (await widget.networkInfo.isConnected) {
       for (var table in widget.tablesNames) {

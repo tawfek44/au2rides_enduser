@@ -57,9 +57,7 @@ Future main() async {
 }
  */
 class _MyAppState extends State<MyApp> {
-  String? packageName;
-  double packageVersion = 0;
-  late Map<String, dynamic> deviceInfo;
+
 
   @override
   void initState() {
@@ -103,21 +101,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  getDeviceIfo() {
-    DeviceInfoPlugin().deviceInfo.then((device) {
-      if (device.data.isNotEmpty) {
-        deviceInfo = device.data;
-        log_dev.log(json.encode(deviceInfo));
-      }
-    });
-  }
 
-  getPackageData() {
-    PackageInfo.fromPlatform().then((value) {
-      packageName = value.packageName;
-      packageVersion = double.parse(
-          value.version.split(".")[0] + value.version.split(".")[1]);
-      debugPrint(packageName);
-    });
-  }
 }

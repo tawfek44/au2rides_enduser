@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.au2rides_mobile_enduser.app-mergeDebugResources-35:/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "com.au2rides.au2rides_end_user.app-mergeDebugResources-38:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-3\\7400fa0d6fe67bcfd0fac4c937fb9d7a\\transformed\\appcompat-1.4.2\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\USER\\.gradle\\caches\\transforms-3\\0897f120bd79c728459cac87dfaa8da1\\transformed\\appcompat-1.4.2\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

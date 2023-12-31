@@ -1,8 +1,6 @@
 
-import 'package:au2rides/core/storage/tables/fuel_consumption_unit_types.dart';
-import 'package:au2rides/features/download_screen/data/models/engine_fuel_types/engine_fuel_types_model.dart';
-import 'package:au2rides/features/download_screen/domain/entity/metric_units_types/metric_units_entity.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
@@ -58,7 +56,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<FuelOctaneNumberCubit>()),
         BlocProvider(create: (_) => getIt<DepartmentServiceItemsCubit>()),
         BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>()),
-        BlocProvider(create: (_) => getIt<WorkflowStatusesCubit>())
+        BlocProvider(create: (_) => getIt<WorkflowStatusesCubit>()),
+        BlocProvider(create: (_) => getIt<AuthorizeCubit>())
       ],
       child: child,
     );
