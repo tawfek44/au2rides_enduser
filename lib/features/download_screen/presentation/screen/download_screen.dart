@@ -79,7 +79,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await authorizeFun();
+
       downloadPrimaryData().then((value) {
         redirectToSplashScreen();
       });
@@ -92,11 +92,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.didChangeDependencies();
   }
 
-  Future authorizeFun() async {
-    if (await widget.networkInfo.isConnected) {
-       await context.read<AuthorizeCubit>().authorize();
-    }
-  }
+
   Future downloadPrimaryData() async {
     if (await widget.networkInfo.isConnected) {
       for (var table in widget.tablesNames) {

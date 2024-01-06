@@ -69,7 +69,7 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
       );
       final response = await _authorizeUseCase(
           param: AuthorizeBody(tenantId, responseType, client, mobileDeviceInfo).toJson());
-      await getIt<UserRepository>().setUserToken(response.data["access_token"]["access_token"]);
+          getIt<UserRepository>().setUserToken(response.data["access_token"]["access_token"]);
 
     } catch (e) {
       print(e);

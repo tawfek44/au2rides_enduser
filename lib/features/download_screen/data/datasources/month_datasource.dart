@@ -24,7 +24,7 @@ class MonthDataSource {
 
   deleteAllMonthsInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: countryTableName,languageId: languageId);
+        .clearAllData(tableName: monthTableName,languageId: languageId);
     return response;
   }
 }

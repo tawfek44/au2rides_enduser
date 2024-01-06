@@ -9,7 +9,7 @@ import '../../../../core/constants/constants.dart';
 class IsDownloadedDataSource {
   isDownloaded({required String tableName,required String where,required whereArgs}) async {
     final response =
-        await Au2ridesDatabase.instance.getLanguagesIsDownloaded(tableName: tableName, where: where,whereArgs: whereArgs);
+        await Au2ridesDatabase.instance.getAllDateWithCondition(tableName: tableName, where: where,whereArgs: whereArgs);
     return response;
   }
 }

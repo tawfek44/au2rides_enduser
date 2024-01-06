@@ -21,5 +21,15 @@
   "search": "Search",
   "languages": "Languages",
   "wrongText": "There is an error here, check your connectivity!",
-  "downloadingText": "Downloading Information ..."
+  "downloadingText": "Downloading Information ...",
+  "signIn": "Sign In",
+  "signInDetails":"SIGN IN DETAILS",
+  "country": "Country",
+  "phoneNumber": "Phone Number",
+  "numberValidation": "Number validation",
+  "areYouSureThatThisNumber": "Are you sure that this number",
+  "isCorrect": "is correct?",
+  "ok": "Ok",
+  "egyNumberPrev": "+20",
+  "countries": "Countries"
 }

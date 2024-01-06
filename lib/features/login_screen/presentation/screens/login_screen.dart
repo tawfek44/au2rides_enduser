@@ -1,4 +1,3 @@
-
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+import '../../../../generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,40 +22,44 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar:PreferredSize(
-          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-          child: getAppBar(
-            context: context,
+    return Directionality(
+      textDirection:
+          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+            child: getAppBar(
+              context: context,
               title: AppText(
-                text: "Sign In",
+                text: S.current.signIn,
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16.sp,
               ),
-          )),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(20.w),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 35.h,
-                ),
-                getLogo(),
-                SizedBox(
-                  height: 25.h,
-                ),
-                getSignInTextWidget(),
-                SizedBox(
-                  height: 10.h,
-                ),
-                getSignInSection(),
-                gap(height: 30.h),
-                getSignInButton(),
-              ],
+            )),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(20.w),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 35.h,
+                  ),
+                  getLogo(),
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  getSignInTextWidget(),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  getSignInSection(),
+                  gap(height: 30.h),
+                  getSignInButton(),
+                ],
+              ),
             ),
           ),
         ),
@@ -64,48 +68,64 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget getSignInSection() => CupertinoListSection.insetGrouped(
-    header: AppText(text: "SIGN IN DETAILS",fontSize: fontSize,color: AppColors.greyColor,),
-    margin: EdgeInsets.zero,
-    children: [
-      CupertinoListTile(
-        onTap: (){
-          NamedNavigatorImpl().push(Routes.countriesScreenRoute);
-        },
-        leading:  Icon(Icons.flag,color: Theme.of(context).primaryColor,),
-        trailing: const Icon(CupertinoIcons.right_chevron,color: AppColors.greyColor,),
-        title: AppText(text: "Country",fontSize: fontSize,color: AppColors.greyColor,),
-      ),
-      CupertinoListTile(
-        leadingToTitle: 0,
-          leading:  AppText(text: "+20",fontSize: fontSize,color: AppColors.greyColor,),
-          title:  CupertinoTextField(
-            controller: phoneController,
-            textAlignVertical: TextAlignVertical.center,
-            style: TextStyle(
-              fontSize: fontSize
+        header: AppText(
+          text: S.current.signInDetails,
+          fontSize: fontSize,
+          color: AppColors.greyColor,
+        ),
+        margin: EdgeInsets.zero,
+        children: [
+          CupertinoListTile(
+            onTap: () {
+              NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+            },
+            leading: Icon(
+              Icons.flag,
+              color: Theme.of(context).primaryColor,
             ),
-            decoration: const BoxDecoration(border: Border(right: BorderSide.none)),
-            placeholder: "Phone Number",
-            placeholderStyle: TextStyle(
+            trailing: const Icon(
+              CupertinoIcons.right_chevron,
+              color: AppColors.greyColor,
+            ),
+            title: AppText(
+              text: S.current.country,
+              fontSize: fontSize,
+              color: AppColors.greyColor,
+            ),
+          ),
+          CupertinoListTile(
+              leadingToTitle: 0,
+              leading: AppText(
+                text: S.current.egyNumberPrev,
                 fontSize: fontSize,
                 color: AppColors.greyColor,
-            ),
-          )
-      )
-    ],
-  );
+              ),
+              title: CupertinoTextField(
+                controller: phoneController,
+                textAlignVertical: TextAlignVertical.center,
+                style: TextStyle(fontSize: fontSize),
+                decoration:
+                    const BoxDecoration(border: Border(right: BorderSide.none)),
+                placeholder: S.current.phoneNumber,
+                placeholderStyle: TextStyle(
+                  fontSize: fontSize,
+                  color: AppColors.greyColor,
+                ),
+              ))
+        ],
+      );
+
   Widget getSignInButton() => AppButton(
       color: Theme.of(context).primaryColor,
       height: appButtonHeight,
-      label: "Sign In",
+      label: S.current.signIn,
       roundness: corner,
       onPressed: () async {
-         showNumberValidationDialog(context);
-
+        showNumberValidationDialog(context);
       });
 
-  showNumberValidationDialog(BuildContext context) async{
-     showDialog(
+  showNumberValidationDialog(BuildContext context) async {
+    showDialog(
         context: context,
         builder: (BuildContext context) {
           return Directionality(
@@ -113,30 +133,30 @@ class _LoginScreenState extends State<LoginScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                    text: "Number validation",
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                  )),
+                text: S.current.numberValidation,
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+              )),
               content: AppText(
-                text: "Are you sure that this number +20${phoneController.text} is correct?",
+                text:
+                    "${S.current.areYouSureThatThisNumber} ${S.current.egyNumberPrev}${phoneController.text} ${S.current.isCorrect}",
                 fontSize: fontSize,
                 maxLines: 10,
                 textAlign: TextAlign.center,
               ),
               actions: <Widget>[
-
                 CupertinoDialogAction(
                   child: AppText(
-                    text: "Cancel",
+                    text: S.current.cancel,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
-                      Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                 ),
                 CupertinoDialogAction(
                   child: AppText(
-                    text: "Ok",
+                    text: S.current.ok,
                     fontSize: fontSize,
                   ),
                   onPressed: () {
@@ -149,8 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         });
   }
+
   Widget getSignInTextWidget() => AppText(
-        text: 'Sign In',
+        text: S.current.signIn,
         fontSize: 22.sp,
         fontWeight: FontWeight.bold,
       );

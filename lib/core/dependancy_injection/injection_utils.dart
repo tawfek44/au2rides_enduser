@@ -1,4 +1,5 @@
 
+import 'package:au2rides/features/countries_screen/presentation/bloc/get_countries_cubit/get_countries_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
@@ -57,7 +58,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<DepartmentServiceItemsCubit>()),
         BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>()),
         BlocProvider(create: (_) => getIt<WorkflowStatusesCubit>()),
-        BlocProvider(create: (_) => getIt<AuthorizeCubit>())
+        BlocProvider(create: (_) => getIt<AuthorizeCubit>()),
+        BlocProvider(create: (_) => getIt<GetCountriesCubit>())
       ],
       child: child,
     );

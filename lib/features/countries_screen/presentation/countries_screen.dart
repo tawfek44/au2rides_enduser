@@ -1,14 +1,19 @@
+import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/countries_screen/presentation/bloc/get_countries_cubit/get_countries_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/countries.dart';
-
 
 import '../../../core/app_routes/app_routes.dart';
 import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/constants/constants.dart';
+import '../../../core/dependancy_injection/injection.dart';
 import '../../../core/styles/colors.dart';
+import '../../../generated/l10n.dart';
 
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
@@ -18,50 +23,73 @@ class CountriesScreen extends StatefulWidget {
 }
 
 class _CountriesScreenState extends State<CountriesScreen> {
-  List<String> countriesList = [];
-  List<String> tempCountryList = [];
+  var countriesList=[] ;
+  var tempCountryList =[];
+  var selectedIndex= -1;
   TextEditingController countriesSearchText = TextEditingController();
 
   @override
   void initState() {
-    countriesList = ["Egypt", "Qatar", "Brazil"];
-    tempCountryList = countriesList;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      countriesList =  await context.read<GetCountriesCubit>().getCountriesLocalDatabase(
+          tableName: countryTableName, languageId: getIt<UserRepository>().userLanguage=="ar"?9:56);
+      tempCountryList = countriesList;
+    });
+
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-          child: getAppBar(
-              context: context,
-              title: AppText(
-                text: "Countries",
-                fontSize: 16.sp,
-                color: AppColors.white,
-              ))),
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.all(10.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                getSearchBar(),
-                gap(height: 10.h),
-                getCountriesListSection()
-              ],
-            )),
+    return Directionality(
+      textDirection: isArabicLocalization()? TextDirection.rtl:TextDirection.ltr,
+      child: Scaffold(
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+            child: getAppBar(
+                context: context,
+                title: AppText(
+                  text: S.current.countries,
+                  fontSize: 16.sp,
+                  color: AppColors.white,
+                ))),
+        body: BlocBuilder<GetCountriesCubit,GetCountiesState>(
+          builder: (context,state){
+            if(state is GetCountiesStateLoading){
+              return const Center(child: AppCircularProgressIndicator(),);
+            }
+            else if(state is GetCountiesStateError){
+              return Center(child: AppText(text: state.e.toString()));
+            }
+            else if(state is GetCountiesStateLoaded){
+              return SingleChildScrollView(
+                child: Padding(
+                    padding: EdgeInsets.all(10.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getSearchBar(),
+                        gap(height: 10.h),
+                        getCountriesListSection()
+                      ],
+                    )),
+              );
+            }
+            else{
+              return Container();
+            }
+
+          },
+
+        ),
       ),
     );
   }
 
   getCountriesListSection() => CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
-        children: [
-          getListView(
-              countries: tempCountryList)
-        ],
+        children: [getListView(countries: tempCountryList)],
       );
 
   getSearchBar() => CupertinoListSection.insetGrouped(
@@ -75,44 +103,46 @@ class _CountriesScreenState extends State<CountriesScreen> {
             leadingToTitle: 5.w,
             title: CupertinoTextField(
               style: TextStyle(fontSize: fontSize),
-              placeholder: "Search...",
+              placeholder: S.current.search,
               controller: countriesSearchText,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
               onChanged: (String text) {
-                List<String>temp=[];
-                if(text.isNotEmpty){
-                  for(var element in tempCountryList){
-                    if(element.toLowerCase().contains(text)){
+                var temp = [];
+                if (text.isNotEmpty) {
+                  for (var element in tempCountryList) {
+                    if (element.countryName.toLowerCase().contains(text)) {
                       temp.add(element);
                     }
                   }
                 }
                 setState(() {
-                  if(temp.isNotEmpty){
-                    tempCountryList=temp;
-                  }
-                  else{
-                    tempCountryList=countriesList;
+                  if (temp.isNotEmpty) {
+                    tempCountryList = temp;
+                  } else {
+                    tempCountryList = countriesList;
                   }
                 });
-
-
               },
             ),
           )
         ],
       );
 
-  Widget getListView({required List<String> countries}) => ListView.separated(
+  Widget getListView({required var countries}) => ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => CupertinoListTile(
-          onTap: () {},
+          onTap: () {
+            setState(() {
+              selectedIndex=index;
+            });
+          },
           title: AppText(
-            text: countries[index],
+            text: countries[index].countryName,
             fontSize: fontSize,
           ),
+          trailing: index == selectedIndex?Icon(Icons.check,color: Theme.of(context).primaryColor,):Container(),
         ),
         itemCount: countries.length,
         separatorBuilder: (BuildContext context, int index) {
@@ -163,7 +193,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 ),
                 gap(width: 20.w),
                 AppText(
-                  text: countriesList[index],
+                  text: countriesList[index].countryKeyCode,
                   fontSize: 13.sp,
                   color: AppColors.greyColor,
                 ),

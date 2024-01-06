@@ -28,25 +28,38 @@ class MessageLookup extends MessageLookupByLibrary {
         "acquisitionType": MessageLookupByLibrary.simpleMessage("نوع الإمتلاك"),
         "appLanguageText": MessageLookupByLibrary.simpleMessage("لغة التطبيق"),
         "arabicLanguageText": MessageLookupByLibrary.simpleMessage("العربية"),
+        "areYouSureThatThisNumber":
+            MessageLookupByLibrary.simpleMessage("هل انت متأكد ان هذا الرقم"),
         "attachment": MessageLookupByLibrary.simpleMessage("المرفقات"),
         "attachmentTitle": MessageLookupByLibrary.simpleMessage("المرفقات..."),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
+        "countries": MessageLookupByLibrary.simpleMessage("الدول"),
+        "country": MessageLookupByLibrary.simpleMessage("البلد"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "downloadingText":
             MessageLookupByLibrary.simpleMessage("تحميل بيانات ..."),
+        "egyNumberPrev": MessageLookupByLibrary.simpleMessage("+٢٠"),
         "englishLanguageText":
             MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
+        "isCorrect": MessageLookupByLibrary.simpleMessage("صحيح ؟"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "lease": MessageLookupByLibrary.simpleMessage("إيجار"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
+        "numberValidation":
+            MessageLookupByLibrary.simpleMessage("التحقق من رقم الهاتف"),
         "odometer": MessageLookupByLibrary.simpleMessage("عداد المسافات"),
+        "ok": MessageLookupByLibrary.simpleMessage("أكد"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "سياسة الخصوصية وشروط الإستخدام"),
         "purchase": MessageLookupByLibrary.simpleMessage("شراء"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signInDetails":
+            MessageLookupByLibrary.simpleMessage("بيانات تسجيل الدخول"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
         "wrongText": MessageLookupByLibrary.simpleMessage(
             "هناك خطأ ما, تحقق من إتصالك بالإنترنت!")

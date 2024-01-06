@@ -18,7 +18,7 @@ class DioClient {
   //DioClient._();
   final String baseUrl = AppEnvironment.baseAPIUrl;
 
-  Future<Either<Failure,dynamic>> fetchPrimaryData({required String endPoint, required String lang,required tableDefinitions}) async {
+   fetchPrimaryData({required String endPoint, required String lang,required tableDefinitions}) async {
     final response = await dio.post(baseUrl + endPoint,options: Options(
       contentType: Headers.jsonContentType,
       headers: {
@@ -28,10 +28,8 @@ class DioClient {
     ),
       data: tableDefinitions
     );
-    if(response.statusCode==200){
-      return Right(response);
-    }
-    return Left(Failure(message: response.statusMessage??""));
+      return response;
+
   }
   Future postData({required String endPoint, String? lang,required dynamic data,required apiUrl}) async {
     var link = apiUrl + endPoint;
@@ -39,6 +37,7 @@ class DioClient {
       contentType: Headers.jsonContentType,
         headers: {
           'Accept-Language':lang,
+          'Authorization':getIt<UserRepository>().getUserToken
         },
     ),data: data
     );

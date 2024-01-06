@@ -72,4 +72,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get downloadingText => 'تحميل بيانات ...';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get signInDetails => 'بيانات تسجيل الدخول';
+
+  @override
+  String get country => 'البلد';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get numberValidation => 'التحقق من رقم الهاتف';
+
+  @override
+  String get areYouSureThatThisNumber => 'هل انت متأكد ان هذا الرقم';
+
+  @override
+  String get isCorrect => 'صحيح ؟';
+
+  @override
+  String get ok => 'أكد';
+
+  @override
+  String get egyNumberPrev => '+٢٠';
+
+  @override
+  String get countries => 'الدول';
 }

@@ -21,5 +21,15 @@
   "search": "البحث",
   "languages": "اللغات",
   "wrongText": "هناك خطأ ما, تحقق من إتصالك بالإنترنت!",
-  "downloadingText": "تحميل بيانات ..."
+  "downloadingText": "تحميل بيانات ...",
+  "signIn": "تسجيل الدخول",
+  "signInDetails": "بيانات تسجيل الدخول",
+  "country":"البلد",
+  "phoneNumber":"رقم الهاتف",
+  "numberValidation":"التحقق من رقم الهاتف",
+  "areYouSureThatThisNumber": "هل انت متأكد ان هذا الرقم",
+  "isCorrect":"صحيح ؟",
+  "ok": "أكد",
+  "egyNumberPrev":"+٢٠",
+  "countries": "الدول"
 }

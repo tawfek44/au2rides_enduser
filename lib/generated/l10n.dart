@@ -279,6 +279,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SIGN IN DETAILS`
+  String get signInDetails {
+    return Intl.message(
+      'SIGN IN DETAILS',
+      name: 'signInDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message(
+      'Country',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number validation`
+  String get numberValidation {
+    return Intl.message(
+      'Number validation',
+      name: 'numberValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure that this number`
+  String get areYouSureThatThisNumber {
+    return Intl.message(
+      'Are you sure that this number',
+      name: 'areYouSureThatThisNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `is correct?`
+  String get isCorrect {
+    return Intl.message(
+      'is correct?',
+      name: 'isCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+20`
+  String get egyNumberPrev {
+    return Intl.message(
+      '+20',
+      name: 'egyNumberPrev',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Countries`
+  String get countries {
+    return Intl.message(
+      'Countries',
+      name: 'countries',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

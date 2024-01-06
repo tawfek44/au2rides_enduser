@@ -17,8 +17,7 @@ class CountryDataSource {
   }
 
   saveAllCountriesInDatabase({required dynamic values}) async {
-    final response = await Au2ridesDatabase.instance
-        .insert(tableName: countryTableName, values: values);
+    final response = await Au2ridesDatabase.instance.insert(tableName: countryTableName, values: values);
     return response;
   }
 

@@ -335,7 +335,8 @@ class Au2ridesDatabase {
     return data;
   }
 
-  Future getLanguagesIsDownloaded(
+
+  Future getAllDateWithCondition(
       {required String tableName,
       required String where,
       required whereArgs}) async {

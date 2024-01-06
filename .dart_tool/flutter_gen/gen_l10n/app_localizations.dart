@@ -230,6 +230,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Downloading Information ...'**
   String get downloadingText;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @signInDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'SIGN IN DETAILS'**
+  String get signInDetails;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @numberValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Number validation'**
+  String get numberValidation;
+
+  /// No description provided for @areYouSureThatThisNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure that this number'**
+  String get areYouSureThatThisNumber;
+
+  /// No description provided for @isCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'is correct?'**
+  String get isCorrect;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
+  /// No description provided for @egyNumberPrev.
+  ///
+  /// In en, this message translates to:
+  /// **'+20'**
+  String get egyNumberPrev;
+
+  /// No description provided for @countries.
+  ///
+  /// In en, this message translates to:
+  /// **'Countries'**
+  String get countries;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

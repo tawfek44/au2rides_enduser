@@ -72,4 +72,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get downloadingText => 'Downloading Information ...';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get signInDetails => 'SIGN IN DETAILS';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get numberValidation => 'Number validation';
+
+  @override
+  String get areYouSureThatThisNumber => 'Are you sure that this number';
+
+  @override
+  String get isCorrect => 'is correct?';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get egyNumberPrev => '+20';
+
+  @override
+  String get countries => 'Countries';
 }
