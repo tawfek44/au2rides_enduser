@@ -33,7 +33,7 @@ class GenderCubit extends Cubit<GenderState> {
   }
 
   Future getAllGenderFromNetworkDB(
-      {required String appLang, required tableDefinitions}) async {
+      {required  appLang, required tableDefinitions}) async {
     try {
       tableDefinitions =
           (tableDefinitions as CheckPrimaryDataBodyModel).toJson();

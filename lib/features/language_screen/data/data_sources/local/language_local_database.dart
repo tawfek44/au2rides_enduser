@@ -7,7 +7,7 @@ import '../../../../../core/resources/data_state.dart';
 @Injectable()
 class LanguageLocalDatabase{
   getAllLanguagesFromLocalDatabase() async {
-    final localResponse = await Au2ridesDatabase.instance.getAllDate(tableName: "language");
+    final localResponse = await Au2ridesDatabase.instance.getAllDate(tableName: "languages");
     return localResponse;
   }
 }

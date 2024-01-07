@@ -9,7 +9,7 @@ class CountryRepositoryImpl extends CountryRepository {
   CountryRepositoryImpl(this._countryDataSource);
 
   @override
-  getCountries({required String lang, required tableDefinitions}) async {
+  getCountries({required  lang, required tableDefinitions}) async {
     final response = await _countryDataSource.getAllCountriesFromAPI(
         lang: lang, tableDefinitions: tableDefinitions);
     return response;

@@ -64,6 +64,9 @@ Future main() async {
   languageTableCount =
       await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
   if (languageTableCount == 0) {
+    getIt<UserRepository>().setSelectedCountry("");
+    getIt<UserRepository>().setSelectedCountryIndex(-1);
+    getIt<UserRepository>().setSelectedCountryCallingCode("");
     Au2ridesDatabase.instance.insert(
         tableName: 'languages',
         values: Language(

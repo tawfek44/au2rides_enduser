@@ -8,7 +8,7 @@ import '../../../../core/constants/constants.dart';
 @injectable
 class CountryDataSource {
   getAllCountriesFromAPI(
-      {required String lang, required tableDefinitions}) async {
+      {required  lang, required tableDefinitions}) async {
     final response = await DioClient().fetchPrimaryData(
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,

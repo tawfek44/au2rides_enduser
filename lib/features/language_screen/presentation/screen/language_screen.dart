@@ -121,6 +121,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           setState(() {
             widget.userRepository.setUserLanguage(
                 tempLanguagesList[itemIndex]["language_code"]);
+            widget.userRepository.setSelectedLanguageIndex(itemIndex);
             languageCode = widget.userRepository.userLanguage == 'ar' ? arLanguageNumberCode : enLanguageNumberCode;
           });
            NamedNavigatorImpl().push(Routes.startUpScreenRoute);
@@ -129,7 +130,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           text: tempLanguagesList[itemIndex]["language_name"],
           fontSize: fontSize,
         ),
-        trailing: languageCode == tempLanguagesList[itemIndex]["_language_id"]
+        trailing: widget.userRepository.getSelectedLanguageIndex==itemIndex
             ? Icon(
           CupertinoIcons.check_mark,
           color: Theme

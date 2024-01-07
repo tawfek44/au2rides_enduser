@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+import '../../../../core/dependancy_injection/injection.dart';
+import '../../../../core/repositories/user_repository.dart';
 import '../../../../generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -87,6 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
               CupertinoIcons.right_chevron,
               color: AppColors.greyColor,
             ),
+            additionalInfo: AppText(
+              text: getIt<UserRepository>().getSelectedCountry,
+              color: AppColors.greyColor,
+              fontSize: fontSize,
+            ),
             title: AppText(
               text: S.current.country,
               fontSize: fontSize,
@@ -96,9 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
           CupertinoListTile(
               leadingToTitle: 0,
               leading: AppText(
-                text: S.current.egyNumberPrev,
+                text:  getIt<UserRepository>()
+                    .getSelectedCountryCallingCode,
                 fontSize: fontSize,
                 color: AppColors.greyColor,
+                maxLines: 5,
               ),
               title: CupertinoTextField(
                 controller: phoneController,
