@@ -85,24 +85,8 @@ Future main() async {
                 directionality: "ltr",
                 isDownloaded: false)
             .toJson());
-    insertTableNamesInTablesDefinitions(
-        databaseObject: Au2ridesDatabase.instance);
+
   }
   launchApp();
 }
 
-insertTableNamesInTablesDefinitions(
-    {required Au2ridesDatabase databaseObject}) {
-  for (var i = 0; i < tableNames.length; i++) {
-    databaseObject.insert(
-        tableName: tableDefinitionsTableName,
-        values: TableDefinitions(
-                tableId: i + 1,
-                tableName: tableNames[i],
-                languageId:
-                    getIt<UserRepository>().userLanguage == "ar" ? 9 : 56,
-                schemaVersion: 1,
-                dataVersion: 0)
-            .toJson());
-  }
-}

@@ -91,9 +91,10 @@ class _MyAppState extends State<MyApp> {
           ],
           locale: Locale(widget._userRepository.userLanguage),
           theme: getLightThemeData(context),
-          initialRoute: widget._userRepository.getFirstTimeOpenApp
-              ? Routes.startUpScreenRoute
-              : Routes.splashScreenRoute,
+         // initialRoute: widget._userRepository.getFirstTimeOpenApp
+           //   ? Routes.startUpScreenRoute
+             // : Routes.splashScreenRoute,
+          initialRoute:Routes.loginScreenRoute,
           onGenerateRoute: NamedNavigatorImpl.onGenerateRoute,
           navigatorKey: NamedNavigatorImpl.navigatorState,
         );

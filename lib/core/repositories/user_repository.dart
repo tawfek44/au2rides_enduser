@@ -39,6 +39,9 @@ class UserRepository {
   Future setSelectedLanguageIndex(int selectedLanguageIndex) async {
     await _prefs.setInt('selectedLanguageIndex', selectedLanguageIndex);
   }
+  Future setVerificationIdForOTP(String otpVerificationId) async {
+    await _prefs.setString('otpVerificationId', otpVerificationId);
+  }
 
   String get getAccessToken => 'Bearer ${_prefs.getString('token')}'??'';
   String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
@@ -46,6 +49,7 @@ class UserRepository {
   bool get getFirstTimeOpenApp => _prefs.getBool('firstTimeOpenApp')??true;
   String get getUserToken => _prefs.getString('token')??'';
   String get getSelectedCountry => _prefs.getString('selectedCountry')??'';
+  String get getVerificationIdForOTP => _prefs.getString('otpVerificationId')??'';
   String get getSelectedCountryCallingCode => _prefs.getString('selectedCountryCallingCode')??'';
   int get getSelectedLanguageIndex => _prefs.getInt('selectedLanguageIndex')??-1;
   int get getSelectedCountryIndex => _prefs.getInt('selectedCountryIndex')??-1;

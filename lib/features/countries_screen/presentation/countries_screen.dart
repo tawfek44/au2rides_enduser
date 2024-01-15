@@ -150,7 +150,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
             text: countries[index].countryName,
             fontSize: fontSize,
           ),
-          trailing: index == getIt<UserRepository>().getSelectedCountryIndex
+          trailing: countries[index].countryName == getIt<UserRepository>().getSelectedCountry
               ? Icon(
                   Icons.check,
                   color: Theme.of(context).primaryColor,

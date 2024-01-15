@@ -12,7 +12,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+import '../../../../core/dependancy_injection/injection.dart';
+import '../../../../core/storage/local/sqlite.dart';
+import '../../../../core/storage/tables/tables_definitions.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../main_dev.dart';
 class StartUpScreen extends StatefulWidget {
   const StartUpScreen({super.key, required this.userRepository});
   final UserRepository userRepository;
@@ -67,6 +71,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
       label: S.current.continueText,
       height: 40.h,
       onPressed: () {
+        insertTableNamesInTablesDefinitions(databaseObject: Au2ridesDatabase.instance);
         NamedNavigatorImpl().push(Routes.splashScreenRoute);
       },
     ),
@@ -97,4 +102,19 @@ class _StartUpScreenState extends State<StartUpScreen> {
           ],
         ),
       );
+}
+insertTableNamesInTablesDefinitions(
+    {required Au2ridesDatabase databaseObject}) {
+  for (var i = 0; i < tableNames.length; i++) {
+    databaseObject.insert(
+        tableName: tableDefinitionsTableName,
+        values: TableDefinitions(
+            tableId: i + 1,
+            tableName: tableNames[i],
+            languageId:
+            getIt<UserRepository>().userLanguage == "ar" ? 9 : 56,
+            schemaVersion: 1,
+            dataVersion: 0)
+            .toJson());
+  }
 }

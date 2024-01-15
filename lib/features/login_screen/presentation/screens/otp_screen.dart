@@ -2,6 +2,8 @@
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +11,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+import '../../../../core/dependancy_injection/injection.dart';
+import '../../../../core/repositories/user_repository.dart';
 import '../../../../core/styles/colors.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -19,8 +23,10 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  var code="";
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -111,14 +117,26 @@ class _OTPScreenState extends State<OTPScreen> {
       color: Theme.of(context).primaryColor,
       height: 50.h,
       label: "Verify",
-        onPressed: () {
+        onPressed: () async {
+        try{
+          PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider
+              .credential(verificationId:  getIt<UserRepository>().getVerificationIdForOTP, smsCode: code,);
+          await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
           NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
+        }
+        catch(e){
+          print(e);
+        }
+
         }),
   );
   Widget getOTPTextField() =>OtpTextField(
     numberOfFields: 6,
     keyboardType: TextInputType.number,
     filled: true,
+    onSubmit: (value){
+      code=value;
+    },
     textStyle: TextStyle(
       fontSize: fontSize
     ),

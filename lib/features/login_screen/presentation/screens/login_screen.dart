@@ -2,6 +2,7 @@ import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,7 @@ import '../../../../generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
+  static String verificationIdNumber = "";
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -23,10 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final phoneController = TextEditingController();
 
   @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection:
-          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: PreferredSize(
@@ -69,7 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget getSignInSection() => CupertinoListSection.insetGrouped(
+  Widget getSignInSection() =>
+      CupertinoListSection.insetGrouped(
         header: AppText(
           text: S.current.signInDetails,
           fontSize: fontSize,
@@ -77,61 +85,71 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         margin: EdgeInsets.zero,
         children: [
-          CupertinoListTile(
-            onTap: () {
-              NamedNavigatorImpl().push(Routes.countriesScreenRoute);
-            },
-            leading: Icon(
-              Icons.flag,
-              color: Theme.of(context).primaryColor,
-            ),
-            trailing: const Icon(
-              CupertinoIcons.right_chevron,
-              color: AppColors.greyColor,
-            ),
-            additionalInfo: AppText(
-              text: getIt<UserRepository>().getSelectedCountry,
-              color: AppColors.greyColor,
-              fontSize: fontSize,
-            ),
-            title: AppText(
-              text: S.current.country,
-              fontSize: fontSize,
-              color: AppColors.greyColor,
-            ),
-          ),
-          CupertinoListTile(
-              leadingToTitle: 0,
-              leading: AppText(
-                text:  getIt<UserRepository>()
-                    .getSelectedCountryCallingCode,
-                fontSize: fontSize,
-                color: AppColors.greyColor,
-                maxLines: 5,
-              ),
-              title: CupertinoTextField(
-                controller: phoneController,
-                textAlignVertical: TextAlignVertical.center,
-                style: TextStyle(fontSize: fontSize),
-                decoration:
-                    const BoxDecoration(border: Border(right: BorderSide.none)),
-                placeholder: S.current.phoneNumber,
-                placeholderStyle: TextStyle(
-                  fontSize: fontSize,
-                  color: AppColors.greyColor,
-                ),
-              ))
+          getChooseCountryListTile(),
+          getPhoneNumberWidget(),
         ],
       );
 
-  Widget getSignInButton() => AppButton(
-      color: Theme.of(context).primaryColor,
-      height: appButtonHeight,
-      label: S.current.signIn,
-      roundness: corner,
-      onPressed: () async {
-        showNumberValidationDialog(context);
-      });
+  Widget getChooseCountryListTile() =>
+      CupertinoListTile(
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+        },
+        leading: Icon(
+          Icons.flag,
+          color: Theme
+              .of(context)
+              .primaryColor,
+        ),
+        trailing: const Icon(
+          CupertinoIcons.right_chevron,
+          color: AppColors.greyColor,
+        ),
+        additionalInfo: AppText(
+          text: getIt<UserRepository>().getSelectedCountry,
+          color: AppColors.greyColor,
+          fontSize: fontSize,
+        ),
+        title: AppText(
+          text: S.current.country,
+          fontSize: fontSize,
+          color: AppColors.greyColor,
+        ),
+      );
+
+  Widget getPhoneNumberWidget() =>
+      CupertinoListTile(
+          leadingToTitle: 0,
+          leading: AppText(
+            text: getIt<UserRepository>().getSelectedCountryCallingCode,
+            fontSize: fontSize,
+            color: AppColors.greyColor,
+            maxLines: 5,
+          ),
+          title: CupertinoTextField(
+            controller: phoneController,
+            textAlignVertical: TextAlignVertical.center,
+            style: TextStyle(fontSize: fontSize),
+            decoration: const BoxDecoration(
+                border: Border(right: BorderSide.none)),
+            placeholder: S.current.phoneNumber,
+            placeholderStyle: TextStyle(
+              fontSize: fontSize,
+              color: AppColors.greyColor,
+            ),
+          ));
+
+  Widget getSignInButton() =>
+      AppButton(
+          color: Theme
+              .of(context)
+              .primaryColor,
+          height: appButtonHeight,
+          label: S.current.signIn,
+          roundness: corner,
+          onPressed: () async {
+            showNumberValidationDialog(context);
+          });
 
   showNumberValidationDialog(BuildContext context) async {
     showDialog(
@@ -142,13 +160,15 @@ class _LoginScreenState extends State<LoginScreen> {
             child: CupertinoAlertDialog(
               title: Center(
                   child: AppText(
-                text: S.current.numberValidation,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-              )),
+                    text: S.current.numberValidation,
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  )),
               content: AppText(
                 text:
-                    "${S.current.areYouSureThatThisNumber} ${S.current.egyNumberPrev}${phoneController.text} ${S.current.isCorrect}",
+                "${S.current.areYouSureThatThisNumber} ${S.current
+                    .egyNumberPrev}${phoneController.text} ${S.current
+                    .isCorrect}",
                 fontSize: fontSize,
                 maxLines: 10,
                 textAlign: TextAlign.center,
@@ -168,9 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: S.current.ok,
                     fontSize: fontSize,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.of(context).pop();
-                    NamedNavigatorImpl().push(Routes.otpScreenRoute);
+                    await signInWithPhoneNumber(phoneNumber: getIt<UserRepository>().getSelectedCountryCallingCode+phoneController.text);
+                   // NamedNavigatorImpl().push(Routes.otpScreenRoute);
                   },
                 ),
               ],
@@ -179,17 +200,41 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 
-  Widget getSignInTextWidget() => AppText(
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
+    var auth = FirebaseAuth.instance;
+    await auth.verifyPhoneNumber(
+        phoneNumber: "+201060554333",
+        verificationCompleted: (PhoneAuthCredential cred) async {
+         // await auth.signInWithCredential(cred);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          var x =0;
+        },
+        codeSent: (String verificationId, int? resendToken) async {
+         getIt<UserRepository>().setVerificationIdForOTP(verificationId);
+          NamedNavigatorImpl().push(Routes.otpScreenRoute);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print(verificationId);
+    }
+    );
+  }
+
+  Widget getSignInTextWidget() =>
+      AppText(
         text: S.current.signIn,
         fontSize: 22.sp,
         fontWeight: FontWeight.bold,
       );
 
-  Widget getLogo() => Container(
+  Widget getLogo() =>
+      Container(
         width: 150.w,
         height: 150.h,
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme
+              .of(context)
+              .cardColor,
           shape: BoxShape.circle,
         ),
         child: Image.asset(
