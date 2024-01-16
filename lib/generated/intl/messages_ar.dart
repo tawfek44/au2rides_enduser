@@ -37,30 +37,52 @@ class MessageLookup extends MessageLookupByLibrary {
         "countries": MessageLookupByLibrary.simpleMessage("الدول"),
         "country": MessageLookupByLibrary.simpleMessage("البلد"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "didNotYouReceiveAnyCode":
+            MessageLookupByLibrary.simpleMessage("لم تتلقي أى رمز ؟"),
         "downloadingText":
             MessageLookupByLibrary.simpleMessage("تحميل بيانات ..."),
         "egyNumberPrev": MessageLookupByLibrary.simpleMessage("+٢٠"),
         "englishLanguageText":
             MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "enterYourOTPCodeHere":
+            MessageLookupByLibrary.simpleMessage("إدخل الرمز للتحقق"),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
+        "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("صحيح ؟"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "lease": MessageLookupByLibrary.simpleMessage("إيجار"),
+        "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("التحقق من رقم الهاتف"),
         "odometer": MessageLookupByLibrary.simpleMessage("عداد المسافات"),
         "ok": MessageLookupByLibrary.simpleMessage("أكد"),
+        "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف الخاص بك غير مفعل من فضلك تحدث إلينا."),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "phoneNumberMissingErrorText":
+            MessageLookupByLibrary.simpleMessage("من فضلك إدخل رقم الهاتف."),
+        "pinCodeIsMissing":
+            MessageLookupByLibrary.simpleMessage("من فضلك تأكد من الرمز"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "سياسة الخصوصية وشروط الإستخدام"),
         "purchase": MessageLookupByLibrary.simpleMessage("شراء"),
+        "resendNewCode": MessageLookupByLibrary.simpleMessage("إرسال رمز جديد"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("بيانات تسجيل الدخول"),
+        "theReCAPTCHAResponseTokenWasInvalidExpired":
+            MessageLookupByLibrary.simpleMessage(
+                "رمز استجابة reCAPTCHA كان غير صالح، ومنتهي الصلاحية"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
+        "userDisabled": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف الخاص بك قد تم تعطيله."),
+        "verification": MessageLookupByLibrary.simpleMessage("التحقق"),
+        "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "wrongText": MessageLookupByLibrary.simpleMessage(
             "هناك خطأ ما, تحقق من إتصالك بالإنترنت!")
       };

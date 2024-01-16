@@ -31,5 +31,18 @@
   "isCorrect": "is correct?",
   "ok": "Ok",
   "egyNumberPrev": "+20",
-  "countries": "Countries"
+  "countries": "Countries",
+  "verification": "Verification",
+  "enterYourOTPCodeHere": "Enter your OTP code here",
+  "didNotYouReceiveAnyCode": "Didn't you receive any code?",
+  "resendNewCode": "Resend new code",
+  "verify": "Verify",
+  "theReCAPTCHAResponseTokenWasInvalidExpired": "the reCAPTCHA response token was invalid, expired",
+  "invalidPhoneNumber": "The phone number has an invalid format, check phone number or check you choose the country code",
+  "missingPhoneNumber": "The phone number is missing.",
+  "quotaExceeded": "The SMS messages number has been exceeded",
+  "userDisabled": "Your phone number has been disabled.",
+  "operationNotAllowed": "Your phone number is not enabled, please contact us.",
+  "phoneNumberMissingErrorText": "Please enter your phone number.",
+  "pinCodeIsMissing": "Please check your pin number"
 }

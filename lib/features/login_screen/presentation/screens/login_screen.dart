@@ -1,10 +1,13 @@
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
+import 'package:au2rides/core/widgets/app_circular_indicator.dart';
+import 'package:au2rides/core/widgets/app_snack_bar.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
@@ -15,13 +18,15 @@ import '../../../../generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static String verificationIdNumber = "";
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final phoneController = TextEditingController();
+  bool isLoading = false;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -67,6 +72,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   getSignInSection(),
                   gap(height: 30.h),
                   getSignInButton(),
+                  if(isLoading)...[
+                    gap(height: 30.h),
+                    const AppCircularProgressIndicator()
+                  ]
+
+
                 ],
               ),
             ),
@@ -128,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           title: CupertinoTextField(
             controller: phoneController,
+            keyboardType: TextInputType.phone,
             textAlignVertical: TextAlignVertical.center,
             style: TextStyle(fontSize: fontSize),
             decoration: const BoxDecoration(
@@ -148,7 +160,15 @@ class _LoginScreenState extends State<LoginScreen> {
           label: S.current.signIn,
           roundness: corner,
           onPressed: () async {
-            showNumberValidationDialog(context);
+            if(phoneController.text==""){
+              var snackBar = AppSnackBar(
+                  text: S.current.phoneNumberMissingErrorText, isSuccess: false, maxLines: 10);
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+            else{
+              showNumberValidationDialog(context);
+            }
+
           });
 
   showNumberValidationDialog(BuildContext context) async {
@@ -166,8 +186,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   )),
               content: AppText(
                 text:
-                "${S.current.areYouSureThatThisNumber} ${S.current
-                    .egyNumberPrev}${phoneController.text} ${S.current
+                "${S.current.areYouSureThatThisNumber} ${ getIt<UserRepository>()
+                    .getSelectedCountryCallingCode} ${phoneController.text} ${S.current
                     .isCorrect}",
                 fontSize: fontSize,
                 maxLines: 10,
@@ -190,8 +210,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onPressed: () async {
                     Navigator.of(context).pop();
-                    await signInWithPhoneNumber(phoneNumber: getIt<UserRepository>().getSelectedCountryCallingCode+phoneController.text);
-                   // NamedNavigatorImpl().push(Routes.otpScreenRoute);
+                    setState(() {
+                      isLoading = true;
+                    });
+                      await signInWithPhoneNumber(
+                          phoneNumber: getIt<UserRepository>()
+                              .getSelectedCountryCallingCode +
+                              phoneController.text);
+
                   },
                 ),
               ],
@@ -203,21 +229,60 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
     var auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
-        phoneNumber: "+201060554333",
-        verificationCompleted: (PhoneAuthCredential cred) async {
-         // await auth.signInWithCredential(cred);
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          var x =0;
-        },
-        codeSent: (String verificationId, int? resendToken) async {
-         getIt<UserRepository>().setVerificationIdForOTP(verificationId);
-          NamedNavigatorImpl().push(Routes.otpScreenRoute);
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          print(verificationId);
-    }
-    );
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential cred) async {
+        setState(() {
+          isLoading = false;
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        setState(() {
+          isLoading = false;
+        });
+        String errorMessage="";
+        switch(e.code){
+          case "captcha-check-failed":
+            errorMessage = S.current.theReCAPTCHAResponseTokenWasInvalidExpired;
+            break;
+          case "invalid-phone-number":
+            errorMessage = S.current.invalidPhoneNumber;
+            break;
+
+          case "missing-phone-number":
+            errorMessage = S.current.missingPhoneNumber;
+            break;
+
+          case "quota-exceeded":
+            errorMessage = S.current.quotaExceeded;
+            break;
+          case "user-disabled":
+            errorMessage = S.current.userDisabled;
+            break;
+          case "operation-not-allowed":
+            errorMessage = S.current.operationNotAllowed;
+            break;
+          default:
+            errorMessage = e.message!;
+        }
+        var snackBar = AppSnackBar(
+            text: errorMessage, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        setState(() {
+          isLoading = false;
+        });
+        getIt<UserRepository>().setVerificationIdForOTP(verificationId);
+        NamedNavigatorImpl().push(Routes.otpScreenRoute);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        setState(() {
+          isLoading = false;
+        });
+      },
+    ).catchError((e){
+
+    });
   }
 
   Widget getSignInTextWidget() =>

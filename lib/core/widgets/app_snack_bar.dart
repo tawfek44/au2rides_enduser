@@ -1,9 +1,10 @@
+import 'package:au2rides/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 import 'app_text.dart';
 
 // ignore: non_constant_identifier_names
-Widget AppSnackBar({
+SnackBar AppSnackBar({
   required String text,
   required bool isSuccess,
   Duration? duration,
@@ -15,10 +16,11 @@ Widget AppSnackBar({
     content: AppText(
       text: text,
       maxLines: maxLines ?? 1,
+      fontSize: fontSize,
       color: textColor ?? Colors.white,
     ),
     backgroundColor: isSuccess ? AppColors.validColor : Colors.red,
-    duration: duration ?? const Duration(seconds: 2),
+    duration: duration ?? const Duration(seconds: 3),
     behavior: behavior ?? SnackBarBehavior.floating,
   );
 }

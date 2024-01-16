@@ -290,6 +290,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Countries'**
   String get countries;
+
+  /// No description provided for @verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification'**
+  String get verification;
+
+  /// No description provided for @enterYourOTPCodeHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your OTP code here'**
+  String get enterYourOTPCodeHere;
+
+  /// No description provided for @didNotYouReceiveAnyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t you receive any code?'**
+  String get didNotYouReceiveAnyCode;
+
+  /// No description provided for @resendNewCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend new code'**
+  String get resendNewCode;
+
+  /// No description provided for @verify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get verify;
+
+  /// No description provided for @theReCAPTCHAResponseTokenWasInvalidExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'the reCAPTCHA response token was invalid, expired'**
+  String get theReCAPTCHAResponseTokenWasInvalidExpired;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number has an invalid format, check phone number or check you choose the country code'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @missingPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number is missing.'**
+  String get missingPhoneNumber;
+
+  /// No description provided for @quotaExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'The SMS messages number has been exceeded'**
+  String get quotaExceeded;
+
+  /// No description provided for @userDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone number has been disabled.'**
+  String get userDisabled;
+
+  /// No description provided for @operationNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone number is not enabled, please contact us.'**
+  String get operationNotAllowed;
+
+  /// No description provided for @phoneNumberMissingErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number.'**
+  String get phoneNumberMissingErrorText;
+
+  /// No description provided for @pinCodeIsMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your pin number'**
+  String get pinCodeIsMissing;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

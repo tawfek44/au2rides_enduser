@@ -102,4 +102,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get countries => 'Countries';
+
+  @override
+  String get verification => 'Verification';
+
+  @override
+  String get enterYourOTPCodeHere => 'Enter your OTP code here';
+
+  @override
+  String get didNotYouReceiveAnyCode => 'Didn\'t you receive any code?';
+
+  @override
+  String get resendNewCode => 'Resend new code';
+
+  @override
+  String get verify => 'Verify';
+
+  @override
+  String get theReCAPTCHAResponseTokenWasInvalidExpired => 'the reCAPTCHA response token was invalid, expired';
+
+  @override
+  String get invalidPhoneNumber => 'The phone number has an invalid format, check phone number or check you choose the country code';
+
+  @override
+  String get missingPhoneNumber => 'The phone number is missing.';
+
+  @override
+  String get quotaExceeded => 'The SMS messages number has been exceeded';
+
+  @override
+  String get userDisabled => 'Your phone number has been disabled.';
+
+  @override
+  String get operationNotAllowed => 'Your phone number is not enabled, please contact us.';
+
+  @override
+  String get phoneNumberMissingErrorText => 'Please enter your phone number.';
+
+  @override
+  String get pinCodeIsMissing => 'Please check your pin number';
 }

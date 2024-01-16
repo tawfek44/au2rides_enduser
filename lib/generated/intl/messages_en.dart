@@ -39,29 +39,54 @@ class MessageLookup extends MessageLookupByLibrary {
         "countries": MessageLookupByLibrary.simpleMessage("Countries"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "didNotYouReceiveAnyCode": MessageLookupByLibrary.simpleMessage(
+            "Didn\'t you receive any code?"),
         "downloadingText":
             MessageLookupByLibrary.simpleMessage("Downloading Information ..."),
         "egyNumberPrev": MessageLookupByLibrary.simpleMessage("+20"),
         "englishLanguageText": MessageLookupByLibrary.simpleMessage("English"),
+        "enterYourOTPCodeHere":
+            MessageLookupByLibrary.simpleMessage("Enter your OTP code here"),
         "followUS": MessageLookupByLibrary.simpleMessage("Follow us"),
+        "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "The phone number has an invalid format, check phone number or check you choose the country code"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("is correct?"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lease": MessageLookupByLibrary.simpleMessage("Lease"),
+        "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "The phone number is missing."),
         "notes": MessageLookupByLibrary.simpleMessage("NOTES"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("Number validation"),
         "odometer": MessageLookupByLibrary.simpleMessage("Odometer"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "Your phone number is not enabled, please contact us."),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumberMissingErrorText": MessageLookupByLibrary.simpleMessage(
+            "Please enter your phone number."),
+        "pinCodeIsMissing": MessageLookupByLibrary.simpleMessage(
+            "Please check your pin number"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "Privacy policy and terms of use"),
         "purchase": MessageLookupByLibrary.simpleMessage("Purchase"),
+        "quotaExceeded": MessageLookupByLibrary.simpleMessage(
+            "The SMS messages number has been exceeded"),
+        "resendNewCode":
+            MessageLookupByLibrary.simpleMessage("Resend new code"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("SIGN IN DETAILS"),
+        "theReCAPTCHAResponseTokenWasInvalidExpired":
+            MessageLookupByLibrary.simpleMessage(
+                "the reCAPTCHA response token was invalid, expired"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "userDisabled": MessageLookupByLibrary.simpleMessage(
+            "Your phone number has been disabled."),
+        "verification": MessageLookupByLibrary.simpleMessage("Verification"),
+        "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "wrongText": MessageLookupByLibrary.simpleMessage(
             "There is an error here, check your connectivity!")
       };

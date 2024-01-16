@@ -31,5 +31,18 @@
   "isCorrect":"صحيح ؟",
   "ok": "أكد",
   "egyNumberPrev":"+٢٠",
-  "countries": "الدول"
+  "countries": "الدول",
+  "verification": "التحقق",
+  "enterYourOTPCodeHere": "إدخل الرمز للتحقق",
+  "didNotYouReceiveAnyCode": "لم تتلقي أى رمز ؟",
+  "resendNewCode": "إرسال رمز جديد",
+  "verify": "تأكيد",
+  "theReCAPTCHAResponseTokenWasInvalidExpired": "رمز استجابة reCAPTCHA كان غير صالح، ومنتهي الصلاحية",
+  "invalidPhoneNumber":   "رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد",
+  "missingPhoneNumber": "تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول",
+  "quota-exceeded": "لقد تخطيت عدد الرسائل النصية المخصصة لك من فضلك حاول مرة أخرى في وقت لاحق",
+  "userDisabled": "رقم الهاتف الخاص بك قد تم تعطيله.",
+  "operationNotAllowed": "رقم الهاتف الخاص بك غير مفعل من فضلك تحدث إلينا.",
+  "phoneNumberMissingErrorText": "من فضلك إدخل رقم الهاتف.",
+  "pinCodeIsMissing": "من فضلك تأكد من الرمز"
 }

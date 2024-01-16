@@ -1117,6 +1117,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.3"
+  persian_input:
+    dependency: "direct main"
+    description:
+      name: persian_input
+      sha256: d6e43b351a078f49a3d346db8765f6db0c11fe0144d366ba8c2dd1edab73d420
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
   petitparser:
     dependency: transitive
     description:
@@ -1555,5 +1563,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0 <4.0.0"
+  dart: ">=3.0.6 <4.0.0"
   flutter: ">=3.10.0"

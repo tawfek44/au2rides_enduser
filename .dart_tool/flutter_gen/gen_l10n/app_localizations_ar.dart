@@ -102,4 +102,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get countries => 'الدول';
+
+  @override
+  String get verification => 'التحقق';
+
+  @override
+  String get enterYourOTPCodeHere => 'إدخل الرمز للتحقق';
+
+  @override
+  String get didNotYouReceiveAnyCode => 'لم تتلقي أى رمز ؟';
+
+  @override
+  String get resendNewCode => 'إرسال رمز جديد';
+
+  @override
+  String get verify => 'تأكيد';
+
+  @override
+  String get theReCAPTCHAResponseTokenWasInvalidExpired => 'رمز استجابة reCAPTCHA كان غير صالح، ومنتهي الصلاحية';
+
+  @override
+  String get invalidPhoneNumber => 'رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد';
+
+  @override
+  String get missingPhoneNumber => 'تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول';
+
+  @override
+  String get quotaExceeded => 'The SMS messages number has been exceeded';
+
+  @override
+  String get userDisabled => 'رقم الهاتف الخاص بك قد تم تعطيله.';
+
+  @override
+  String get operationNotAllowed => 'رقم الهاتف الخاص بك غير مفعل من فضلك تحدث إلينا.';
+
+  @override
+  String get phoneNumberMissingErrorText => 'من فضلك إدخل رقم الهاتف.';
+
+  @override
+  String get pinCodeIsMissing => 'من فضلك تأكد من الرمز';
 }

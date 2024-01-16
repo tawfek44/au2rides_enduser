@@ -379,6 +379,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Verification`
+  String get verification {
+    return Intl.message(
+      'Verification',
+      name: 'verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your OTP code here`
+  String get enterYourOTPCodeHere {
+    return Intl.message(
+      'Enter your OTP code here',
+      name: 'enterYourOTPCodeHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't you receive any code?`
+  String get didNotYouReceiveAnyCode {
+    return Intl.message(
+      'Didn\'t you receive any code?',
+      name: 'didNotYouReceiveAnyCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend new code`
+  String get resendNewCode {
+    return Intl.message(
+      'Resend new code',
+      name: 'resendNewCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify`
+  String get verify {
+    return Intl.message(
+      'Verify',
+      name: 'verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the reCAPTCHA response token was invalid, expired`
+  String get theReCAPTCHAResponseTokenWasInvalidExpired {
+    return Intl.message(
+      'the reCAPTCHA response token was invalid, expired',
+      name: 'theReCAPTCHAResponseTokenWasInvalidExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number has an invalid format, check phone number or check you choose the country code`
+  String get invalidPhoneNumber {
+    return Intl.message(
+      'The phone number has an invalid format, check phone number or check you choose the country code',
+      name: 'invalidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number is missing.`
+  String get missingPhoneNumber {
+    return Intl.message(
+      'The phone number is missing.',
+      name: 'missingPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The SMS messages number has been exceeded`
+  String get quotaExceeded {
+    return Intl.message(
+      'The SMS messages number has been exceeded',
+      name: 'quotaExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your phone number has been disabled.`
+  String get userDisabled {
+    return Intl.message(
+      'Your phone number has been disabled.',
+      name: 'userDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your phone number is not enabled, please contact us.`
+  String get operationNotAllowed {
+    return Intl.message(
+      'Your phone number is not enabled, please contact us.',
+      name: 'operationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number.`
+  String get phoneNumberMissingErrorText {
+    return Intl.message(
+      'Please enter your phone number.',
+      name: 'phoneNumberMissingErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your pin number`
+  String get pinCodeIsMissing {
+    return Intl.message(
+      'Please check your pin number',
+      name: 'pinCodeIsMissing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
