@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:au2rides/core/dependancy_injection/injection.dart';
+import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/local/sqlite.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:au2rides/features/splash_screen/presentation/bloc/check_primary_data_cubit.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 import '../../../download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
 
@@ -48,7 +51,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future authorizeFun() async {
     if (await widget.networkInfo.isConnected) {
-      await context.read<AuthorizeCubit>().authorize();
+      final response = await context.read<AuthorizeCubit>().authorize();
+      if(response is Left){
+        var snackBar = AppSnackBar(
+            text: response.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
   }
 

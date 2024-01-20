@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/authorize/authorize_body.dart';
@@ -9,6 +10,7 @@ import 'package:au2rides/features/download_screen/domain/usecase/acquisition_typ
 import 'package:au2rides/features/download_screen/domain/usecase/authorize/authorize_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -69,10 +71,15 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
       );
       final response = await _authorizeUseCase(
           param: AuthorizeBody(tenantId, responseType, client, mobileDeviceInfo).toJson());
-          getIt<UserRepository>().setUserToken(response.data["access_token"]["access_token"]);
+      print(response);
+      if(!(response is Left)){
+        getIt<UserRepository>().setUserToken(response.data["access_token"]["access_token"]);
+      }
+
+      return response;
 
     } catch (e) {
-      print(e);
+      return e;
     }
   }
 }

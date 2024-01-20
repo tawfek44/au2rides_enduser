@@ -1,5 +1,6 @@
 import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:au2rides/core/resources/data_state.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import '../../../env.dart';
@@ -33,15 +34,27 @@ class DioClient {
   }
   Future postData({required String endPoint, String? lang,required dynamic data,required apiUrl}) async {
     var link = apiUrl + endPoint;
+
+    try{
+  
     final response = await dio.post(link,options: Options(
-      contentType: Headers.jsonContentType,
+        contentType: Headers.jsonContentType,
         headers: {
           'Accept-Language':lang,
           'Authorization':getIt<UserRepository>().getUserToken
         },
-    ),data: data
-    );
-    return response;
+      ),data: data
+      );
+    if(response.statusCode==200){
+      return Right(response);
+    }
+    else{
+      return Left(Failure(message: response.statusMessage!));
+    }
+    }on DioException catch (e, _){
+      return Left(Failure(message: e.error.toString()));
+    }
+
   }
 
 
