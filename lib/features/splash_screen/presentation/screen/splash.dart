@@ -102,18 +102,25 @@ class _SplashScreenState extends State<SplashScreen> {
           .read<CheckPrimaryDataCubit>()
           .checkPrimaryData(values: list)
           .then((value) {
-        final response = value
-            .cast<Map<String, dynamic>>()
-            .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
-            .toList();
-        if (response.length > 0) {
-          NamedNavigatorImpl().push(Routes.downloadScreen, arguments: response);
-        } else {
-          Timer(const Duration(seconds: 2), () {
-            widget.userRepository.setFirstTimeOpenApp(false);
-            NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
-          });
-        }
+            if(!(value is Left)){
+              final response = value
+                  .cast<Map<String, dynamic>>()
+                  .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
+                  .toList();
+              if (response.length > 0) {
+                NamedNavigatorImpl().push(Routes.downloadScreen, arguments: response);
+              } else {
+                Timer(const Duration(seconds: 2), () {
+                  widget.userRepository.setFirstTimeOpenApp(false);
+                  NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
+                });
+              }
+            }
+            else{
+              var snackBar = AppSnackBar(
+                text: value.value.message, isSuccess: false, maxLines: 10);
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
       });
     } else {
       await context.read<CheckPrimaryDataCubit>().isDownloaded().then((value) {

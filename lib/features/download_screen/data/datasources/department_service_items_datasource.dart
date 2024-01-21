@@ -19,7 +19,7 @@ class DepartmentServiceItemsDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllDepartmentServiceItemsInDatabase(

@@ -10,7 +10,7 @@ class ReminderTypesRepositoryImpl extends ReminderTypesRepository {
 
   @override
   clearReminderTypesFromLocalDB({required String tableName, required languageId}) async {
-    final response = await _reminderTypesDataSource.deleteAllMonthsInDatabase(
+    final response = await _reminderTypesDataSource.deleteAllReminderInDatabase(
         tableName: tableName,languageId: languageId);
     return response;
   }

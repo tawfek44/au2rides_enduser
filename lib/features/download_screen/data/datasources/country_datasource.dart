@@ -13,7 +13,7 @@ class CountryDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllCountriesInDatabase({required dynamic values}) async {

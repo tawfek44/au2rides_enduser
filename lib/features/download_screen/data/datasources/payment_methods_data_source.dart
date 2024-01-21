@@ -17,7 +17,7 @@ class PaymentMethodsDataSource {
        endPoint: downloadPrimaryDataEndPoint,
         lang: appLang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
   Future savePaymentMethodsInLocalDb({required values,required tableName}) async {
     final response = await Au2ridesDatabase.instance.insert(tableName: tableName, values: values);

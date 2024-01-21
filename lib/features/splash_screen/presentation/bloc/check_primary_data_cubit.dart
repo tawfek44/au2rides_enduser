@@ -2,6 +2,7 @@ import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/features/splash_screen/domain/usecases/check_primary_data_usecase.dart';
 import 'package:au2rides/features/splash_screen/domain/usecases/is_downloaded_usecase.dart';
 import 'package:bloc/bloc.dart';
+import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -22,8 +23,14 @@ class CheckPrimaryDataCubit extends Cubit<CheckPrimaryDataState> {
     try {
       emit(const CheckPrimaryDataState.loading());
       final response = await checkPrimaryDataUseCase(param: values,);
-      emit(CheckPrimaryDataState.loaded(response.data));
-      return response.data;
+      if(!(response is Left)){
+        emit(CheckPrimaryDataState.loaded(response.data));
+        return response.data;
+      }
+      else{
+        return Left(response);
+      }
+
     } catch (e) {
       emit(CheckPrimaryDataState.error(e));
     }

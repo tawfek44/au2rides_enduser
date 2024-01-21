@@ -19,7 +19,7 @@ class EngineFuelTypesDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllEngineFuelTypesInDatabase(

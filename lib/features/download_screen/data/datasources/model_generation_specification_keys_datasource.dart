@@ -19,7 +19,7 @@ class ModelGenerationSpecificationKeysDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllModelGenerationSpecificationKeysInDatabase(

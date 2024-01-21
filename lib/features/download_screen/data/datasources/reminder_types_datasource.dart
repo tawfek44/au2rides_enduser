@@ -13,7 +13,7 @@ class ReminderTypesDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllReminderTypesInDatabase({required dynamic values,required tableName}) async {
@@ -22,9 +22,9 @@ class ReminderTypesDataSource {
     return response;
   }
 
-  deleteAllMonthsInDatabase({required String tableName,required languageId}) async {
+  deleteAllReminderInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: monthTableName,languageId: languageId);
+        .clearAllData(tableName: tableName,languageId: languageId);
     return response;
   }
 }

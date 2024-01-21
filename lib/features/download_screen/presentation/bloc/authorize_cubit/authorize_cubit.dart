@@ -73,7 +73,7 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
           param: AuthorizeBody(tenantId, responseType, client, mobileDeviceInfo).toJson());
       print(response);
       if(!(response is Left)){
-        getIt<UserRepository>().setUserToken(response.data["access_token"]["access_token"]);
+        getIt<UserRepository>().setAccessToken(response.data["access_token"]["access_token"]);
       }
 
       return response;

@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 class Failure {
   String? code;
-  String? httpStatusCode;
+  int? httpStatusCode;
   String? errorTitle;
   String message;
   String? errorUserMessage;

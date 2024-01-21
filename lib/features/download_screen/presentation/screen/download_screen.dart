@@ -38,11 +38,13 @@ import 'package:au2rides/features/download_screen/presentation/bloc/reminder_typ
 import 'package:au2rides/features/download_screen/presentation/bloc/service_departments_cubit/service_departments_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/workflow_statuses_cubit/workflow_statuses_cubit.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
@@ -171,6 +173,11 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
       await context.read<CountryCubit>().updateUserLanguageTable(
           appLanguage: widget.userRepository.userLanguage);
+    }
+    else{
+      var snackBar = AppSnackBar(
+          text: S.current.wrongText, isSuccess: false, maxLines: 10);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -320,7 +327,14 @@ class _DownloadScreenState extends State<DownloadScreen> {
             lang: widget.userRepository.userLanguage, tableDefinitions: table)
         .then((value) {
       //TODO 3. save new countries data in local db
-      saveCountriesInDatabase(response: value);
+      if(!(value is Left)){
+        saveCountriesInDatabase(response: value);
+      }
+      else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
 
     await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
@@ -396,7 +410,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForMonthsTable({required table}) async {
     //TODO 1. clear months table in local db
-    await context.read<MonthCubit>().clearCountriesInLocalDatabase(
+    await context.read<MonthCubit>().clearMonthsInLocalDatabase(
         tableName: table.tableName, languageId: table.languageId);
     //TODO 2. get months data from network db
     await context

@@ -19,7 +19,7 @@ class CurrencyDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllCurrencyInDatabase(

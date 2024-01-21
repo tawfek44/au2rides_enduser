@@ -19,7 +19,7 @@ class RideTypesDataSource {
        endPoint: downloadPrimaryDataEndPoint,
         lang: appLang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   Future saveRideTypesDataInLocalDb({required values,required tableName}) async {

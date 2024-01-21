@@ -1,5 +1,6 @@
 import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:bloc/bloc.dart';
+import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -31,11 +32,17 @@ class CountryCubit extends Cubit<CountryState> {
       emit(const CountryState.loading());
       tableDefinitions = (tableDefinitions as CheckPrimaryDataBodyModel).toJson();
       final response = await countryUseCase(param: [lang,tableDefinitions]);
-      emit(CountryState.loaded(response));
-      return response.data["data_rows"]
-          .cast<Map<String, dynamic>>()
-          .map((e) => CountryModel.fromJson(e))
-          .toList();
+      if(!(response is Left)){
+        emit(CountryState.loaded(response));
+        return response.data["data_rows"]
+            .cast<Map<String, dynamic>>()
+            .map((e) => CountryModel.fromJson(e))
+            .toList();
+      }
+      else{
+        return Left(response);
+      }
+
     } catch (e) {
       emit(CountryState.error(e));
     }

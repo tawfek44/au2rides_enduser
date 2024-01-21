@@ -19,7 +19,7 @@ class FuelConsumptionUnitTypesDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllFuelConsumptionUnitTypesInDatabase(

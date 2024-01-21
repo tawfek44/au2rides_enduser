@@ -19,7 +19,7 @@ class FuelBrandsDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllFuelBrandsInDatabase(

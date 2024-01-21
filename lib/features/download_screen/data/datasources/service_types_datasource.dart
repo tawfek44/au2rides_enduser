@@ -19,7 +19,7 @@ class ServiceTypesDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
 
   saveAllServiceTypesInDatabase(

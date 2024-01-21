@@ -13,7 +13,7 @@ class PressureUnitsDataSource {
         endPoint: downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
-    return response;
+    return response.value;
   }
   Future savePressureUnitsDataInLocalDb({required values,required tableName}) async {
     final response = await Au2ridesDatabase.instance.insert(tableName: tableName, values: values);
