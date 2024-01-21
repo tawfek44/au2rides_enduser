@@ -9,6 +9,7 @@ import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:au2rides/features/splash_screen/presentation/bloc/check_primary_data_cubit.dart';
 import 'package:either_dart/either.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,6 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future authorizeFun() async {
     if (await widget.networkInfo.isConnected) {
+      var token = await FirebaseMessaging.instance.getToken();
+      await getIt<UserRepository>().setUserToken(token??"");
       final response = await context.read<AuthorizeCubit>().authorize();
       if(response is Left){
         var snackBar = AppSnackBar(

@@ -317,17 +317,20 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future downloadPrimaryDataForCountryTable({required table}) async {
-    //TODO 1. clear countries table in local db
-    await context.read<CountryCubit>().clearCountriesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd=false;
+
     //TODO 2. get countries table from network db
     await context
         .read<CountryCubit>()
         .getAllCountries(
             lang: widget.userRepository.userLanguage, tableDefinitions: table)
-        .then((value) {
+        .then((value) async {
       //TODO 3. save new countries data in local db
       if(!(value is Left)){
+        //TODO 1. clear countries table in local db
+        await context.read<CountryCubit>().clearCountriesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd=true;
         saveCountriesInDatabase(response: value);
       }
       else{
@@ -336,14 +339,15 @@ class _DownloadScreenState extends State<DownloadScreen> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
-
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   Future downloadPrimaryDataForCurrencyTable({required table}) async {
-    //TODO 1. clear currency table in local db
-    await context.read<CurrencyCubit>().clearCurrenciesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd=false;
+
     //TODO 2. get currency data from network db
     await context
         .read<CurrencyCubit>()
@@ -351,11 +355,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage,
             tableDefinitions: table)
         .then((value) async {
+
       //save currency in local DB
       //TODO 3. save currency data in local db
-      await saveCurrenciesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear currency table in local db
+        await context.read<CurrencyCubit>().clearCurrenciesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd=true;
+        await saveCurrenciesInLocalDb(response: value, table: table);
+      }
+      else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd){
+      await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    }
   }
 
   saveCurrenciesInLocalDb({required response, required table}) async {
@@ -381,11 +399,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForPaymentMethodsTable(
       {required table}) async {
-    //TODO 1. clear payment methods table in local db
-    await context
-        .read<PaymentMethodsCubit>()
-        .clearPaymentMethodsInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd=false;
+
     //TODO 2. get payment methods data from network db
     await context
         .read<PaymentMethodsCubit>()
@@ -393,10 +408,26 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage,
             tableDefinitions: table)
         .then((value) async {
+
       //TODO 3. save payment methods data in local db
-      await savePaymentMethodsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear payment methods table in local db
+        await context
+            .read<PaymentMethodsCubit>()
+            .clearPaymentMethodsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await savePaymentMethodsInLocalDb(response: value, table: table);
+      } else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd){
+      await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    }
   }
 
   Future<void> savePaymentMethodsInLocalDb(
@@ -409,9 +440,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future<void> downloadPrimaryDataForMonthsTable({required table}) async {
-    //TODO 1. clear months table in local db
-    await context.read<MonthCubit>().clearMonthsInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get months data from network db
     await context
         .read<MonthCubit>()
@@ -419,9 +449,21 @@ class _DownloadScreenState extends State<DownloadScreen> {
             tableDefinitions: table, lang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save months data in local db
-      await saveMonthsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear months table in local db
+        await context.read<MonthCubit>().clearMonthsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveMonthsInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd){
+      await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    }
   }
 
   Future<void> saveMonthsInLocalDb({required response, required table}) async {
@@ -441,11 +483,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForAcquisitionTypesTable({required table}) async {
-    //TODO 1. clear acquisition types table in local db
-    await context
-        .read<AcquisitionTypesCubit>()
-        .clearAcquisitionTypesInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get acquisition types data from network db
     await context
         .read<AcquisitionTypesCubit>()
@@ -454,9 +493,23 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save acquisition types data in local db
-      await saveAcquisitionTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear acquisition types table in local db
+        await context
+            .read<AcquisitionTypesCubit>()
+            .clearAcquisitionTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveAcquisitionTypesInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd){
+      await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    }
   }
 
   Future<void> saveAcquisitionTypesInLocalDb(
@@ -471,9 +524,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future<void> downloadPrimaryDataForMetricUnitsTable({required table}) async {
-    //TODO 1. clear metric units table in local db
-    await context.read<MetricUnitsCubit>().clearMetricUnitsInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd= false;
+
     //TODO 2. get metric units data from network db
     await context
         .read<MetricUnitsCubit>()
@@ -482,9 +534,22 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save metric units data in local db
-      await saveMetricUnitsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear metric units table in local db
+        await context.read<MetricUnitsCubit>().clearMetricUnitsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveMetricUnitsInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveMetricUnitsInLocalDb({required response, required table}) async {
@@ -497,11 +562,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForEngineTransmissionTypesTable(
       {required table}) async {
-    //TODO 1. clear EngineTransmissionTypes table in local db
-    await context
-        .read<EngineTransmissionTypesCubit>()
-        .clearEngineTransmissionTypesInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get EngineTransmissionTypes data from network db
     await context
         .read<EngineTransmissionTypesCubit>()
@@ -510,9 +572,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save EngineTransmissionTypes data in local db
-      await saveEngineTransmissionTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear EngineTransmissionTypes table in local db
+        await context
+            .read<EngineTransmissionTypesCubit>()
+            .clearEngineTransmissionTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveEngineTransmissionTypesInLocalDb(
+            response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveEngineTransmissionTypesInLocalDb(
@@ -528,11 +606,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForEngineFuelTypesTable(
       {required table}) async {
-    //TODO 1. clear EngineFuelTypes table in local db
-    await context
-        .read<EngineFuelTypesCubit>()
-        .clearEngineFuelTypesInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd= false;
+
     //TODO 2. get EngineFuelTypes data from network db
     await context
         .read<EngineFuelTypesCubit>()
@@ -541,9 +616,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save EngineFuelTypes data in local db
-      await saveEngineFuelTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear EngineFuelTypes table in local db
+        await context
+            .read<EngineFuelTypesCubit>()
+            .clearEngineFuelTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveEngineFuelTypesInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveEngineFuelTypesInLocalDb({required response, required table}) async {
@@ -558,9 +648,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForReminderTypesTable(
       {required table}) async {
-    //TODO 1. clear ReminderTypes table in local db
-    await context.read<ReminderTypesCubit>().clearReminderTypesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get ReminderTypes data from network db
     await context
         .read<ReminderTypesCubit>()
@@ -568,9 +657,22 @@ class _DownloadScreenState extends State<DownloadScreen> {
             tableDefinitions: table, lang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save EngineFuelTypes data in local db
-      await saveReminderTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear ReminderTypes table in local db
+        await context.read<ReminderTypesCubit>().clearReminderTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveReminderTypesInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveReminderTypesInLocalDb({required response, required table}) async {
@@ -583,11 +685,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForRecurrencePeriodTypesTable(
       {required table}) async {
-    //TODO 1. clear RecurrencePeriodTypes table in local db
-    await context
-        .read<RecurrencePeriodTypesCubit>()
-        .clearRecurrencePeriodTypesInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd = false;
+
     //TODO 2. get RecurrencePeriodTypes data from network db
     await context
         .read<RecurrencePeriodTypesCubit>()
@@ -596,9 +695,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save RecurrencePeriodTypes data in local db
-      await saveRecurrencePeriodTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear RecurrencePeriodTypes table in local db
+        await context
+            .read<RecurrencePeriodTypesCubit>()
+            .clearRecurrencePeriodTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveRecurrencePeriodTypesInLocalDb(response: value, table: table);
+      }
+      else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveRecurrencePeriodTypesInLocalDb(
@@ -614,11 +729,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   Future<void> downloadPrimaryDataForReminderTypeServiceTable(
       {required table}) async {
-    //TODO 1. clear ReminderTypeService table in local db
-    await context
-        .read<ReminderTypeServiceCubit>()
-        .clearReminderTypeServiceInLocalDatabase(
-            tableName: table.tableName, languageId: table.languageId);
+    bool fnd = false;
+
     //TODO 2. get RecurrencePeriodTypes data from network db
     await context
         .read<ReminderTypeServiceCubit>()
@@ -627,9 +739,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
             appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save RecurrencePeriodTypes data in local db
-      await saveReminderTypeServiceInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear ReminderTypeService table in local db
+        await context
+            .read<ReminderTypeServiceCubit>()
+            .clearReminderTypeServiceInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveReminderTypeServiceInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveReminderTypeServiceInLocalDb({required response, required table}) async {
@@ -643,11 +770,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future<void> downloadPrimaryDataForFuelBrandsTable({required table}) async {
-    //TODO 1. clear FuelBrands table in local db
-    await context
-        .read<FuelBrandsCubit>()
-        .clearFuelBrandsInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd= false;
+
     //TODO 2. get FuelBrands data from network db
     await context
         .read<FuelBrandsCubit>()
@@ -656,9 +780,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save FuelBrands data in local db
-      await saveFuelBrandsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear FuelBrands table in local db
+        await context
+            .read<FuelBrandsCubit>()
+            .clearFuelBrandsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveFuelBrandsInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveFuelBrandsInLocalDb({required response, required table}) async {
@@ -672,11 +811,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   Future<void> downloadPrimaryDataForFuelConsumptionUnitTypesTable({required table}) async {
-    //TODO 1. clear FuelConsumptionUnitTypes table in local db
-    await context
-        .read<FuelConsumptionUnitTypesCubit>()
-        .clearFuelConsumptionUnitTypesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get FuelConsumptionUnitTypes data from network db
     await context
         .read<FuelConsumptionUnitTypesCubit>()
@@ -685,9 +821,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save FuelConsumptionUnitTypes data in local db
-      await saveFuelConsumptionUnitTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear FuelConsumptionUnitTypes table in local db
+        await context
+            .read<FuelConsumptionUnitTypesCubit>()
+            .clearFuelConsumptionUnitTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveFuelConsumptionUnitTypesInLocalDb(
+            response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveFuelConsumptionUnitTypesInLocalDb({required response, required table}) async {
@@ -701,11 +853,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForServiceDepartmentsTable({required table}) async {
-    //TODO 1. clear ServiceDepartments table in local db
-    await context
-        .read<ServiceDepartmentsCubit>()
-        .clearServiceDepartmentsInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get ServiceDepartments data from network db
     await context
         .read<ServiceDepartmentsCubit>()
@@ -714,9 +863,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save ServiceDepartments data in local db
-      await saveServiceDepartmentsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear ServiceDepartments table in local db
+        await context
+            .read<ServiceDepartmentsCubit>()
+            .clearServiceDepartmentsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveServiceDepartmentsInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveServiceDepartmentsInLocalDb({required response, required table}) async {
@@ -730,11 +894,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForServiceTypesTable({required table}) async {
-    //TODO 1. clear ServiceTypes table in local db
-    await context
-        .read<ServiceTypesCubit>()
-        .clearServiceTypesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd = false;
+
     //TODO 2. get ServiceTypes data from network db
     await context
         .read<ServiceTypesCubit>()
@@ -743,9 +904,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save ServiceTypes data in local db
-      await saveServiceTypesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear ServiceTypes table in local db
+        await context
+            .read<ServiceTypesCubit>()
+            .clearServiceTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveServiceTypesInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveServiceTypesInLocalDb({required response, required table}) async {
@@ -759,11 +935,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForFuelOctaneNumbersTable({required table}) async {
-    //TODO 1. clear FuelOctaneNumbers table in local db
-    await context
-        .read<FuelOctaneNumberCubit>()
-        .clearFuelOctaneNumberInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get FuelOctaneNumbers data from network db
     await context
         .read<FuelOctaneNumberCubit>()
@@ -772,9 +945,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save FuelOctaneNumbers data in local db
-      await saveFuelOctaneNumberInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear FuelOctaneNumbers table in local db
+        await context
+            .read<FuelOctaneNumberCubit>()
+            .clearFuelOctaneNumberInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveFuelOctaneNumberInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
   }
 
   saveFuelOctaneNumberInLocalDb({required response, required table}) async {
@@ -788,11 +976,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForDepartmentServiceItemsTable({required table}) async {
-    //TODO 1. clear DepartmentService table in local db
-    await context
-        .read<DepartmentServiceItemsCubit>()
-        .clearAcquisitionTypesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd= false;
+
     //TODO 2. get DepartmentService data from network db
     await context
         .read<DepartmentServiceItemsCubit>()
@@ -801,9 +986,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save DepartmentService data in local db
-      await saveDepartmentServiceItemsInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear DepartmentService table in local db
+        await context
+            .read<DepartmentServiceItemsCubit>()
+            .clearAcquisitionTypesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveDepartmentServiceItemsInLocalDb(
+            response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
 
   }
 
@@ -818,11 +1019,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForModelGenerationSpecificationKeysTable({required table}) async {
-    //TODO 1. clear ModelGenerationSpecificationKeys table in local db
-    await context
-        .read<ModelGenerationSpecificationKeysCubit>()
-        .clearModelGenerationSpecificationKeysInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd =false;
+
     //TODO 2. get ModelGenerationSpecificationKeys data from network db
     await context
         .read<ModelGenerationSpecificationKeysCubit>()
@@ -831,9 +1029,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save ModelGenerationSpecificationKeys data in local db
-      await saveModelGenerationSpecificationKeysInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear ModelGenerationSpecificationKeys table in local db
+        await context
+            .read<ModelGenerationSpecificationKeysCubit>()
+            .clearModelGenerationSpecificationKeysInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveModelGenerationSpecificationKeysInLocalDb(
+            response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
 
   }
 
@@ -848,11 +1062,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   }
 
   downloadPrimaryDataForModelWorkflowStatusesTable({required table}) async {
-    //TODO 1. clear WorkflowStatuses table in local db
-    await context
-        .read<WorkflowStatusesCubit>()
-        .clearWorkflowStatusesInLocalDatabase(
-        tableName: table.tableName, languageId: table.languageId);
+    bool fnd = false;
+
     //TODO 2. get WorkflowStatuses data from network db
     await context
         .read<WorkflowStatusesCubit>()
@@ -861,9 +1072,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
         appLang: widget.userRepository.userLanguage)
         .then((value) async {
       //TODO 3. save WorkflowStatuses data in local db
-      await saveWorkflowStatusesInLocalDb(response: value, table: table);
+      if(!(value is Left)) {
+        //TODO 1. clear WorkflowStatuses table in local db
+        await context
+            .read<WorkflowStatusesCubit>()
+            .clearWorkflowStatusesInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveWorkflowStatusesInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     });
-    await context.read<CountryCubit>().updateTableDefinitionTable(table: table);
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
 
   }
 

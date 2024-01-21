@@ -57,9 +57,7 @@ Future main() async {
       : await Firebase.initializeApp(
           // options: DefaultFirebaseOptions.currentPlatform,
           );
-  var token = await FirebaseMessaging.instance.getToken();
   await configureInjection();
-  await getIt<UserRepository>().setUserToken(token??"");
   Au2ridesDatabase.instance.database;
   languageTableCount =
       await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
