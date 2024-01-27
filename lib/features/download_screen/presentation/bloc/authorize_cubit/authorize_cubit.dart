@@ -29,7 +29,7 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
   AuthorizeCubit(
     this._authorizeUseCase,
   ) : super(const AuthorizeState.initial());
-  AuthorizeUseCase _authorizeUseCase;
+  final AuthorizeUseCase _authorizeUseCase;
 
   getDeviceIfo() async {
     var device = await DeviceInfoPlugin().deviceInfo;

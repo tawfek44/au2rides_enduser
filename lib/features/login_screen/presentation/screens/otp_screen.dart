@@ -1,12 +1,14 @@
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
-import 'package:au2rides/features/login_screen/presentation/screens/login_screen.dart';
+import 'package:au2rides/features/login_screen/presentation/bloc/authorize_mobile_number_cubit/authorize_mobile_number_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
@@ -31,7 +33,8 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
+      textDirection:
+          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -48,25 +51,17 @@ class _OTPScreenState extends State<OTPScreen> {
             children: [
               gap(height: 30.h),
               getLogo(),
-              SizedBox(
-                height: 24.h,
-              ),
+              gap(height: 24.h),
               getVerificationTextWidget(),
-              SizedBox(
-                height: 10.h,
-              ),
+              gap(height: 10.h),
               getEnterOTPTextWidget(),
-              SizedBox(
-                height: 30.h,
-              ),
+              gap(height: 30.h),
               getPinCodeAndVerifyButtonContainerWidget(),
-              SizedBox(
-                height: 20.h,
-              ),
+              gap(height: 20.h),
               getDidNotReceiveAnyCodeTextWidget(),
               getResendNewCodeTextButton(),
               gap(height: 20.h),
-              if(isLoading)...[
+              if (isLoading) ...[
                 const AppCircularProgressIndicator(),
               ]
             ],
@@ -78,8 +73,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
   Widget getResendNewCodeTextButton() => TextButton(
         onPressed: () async {
-          NamedNavigatorImpl().push(Routes.loginScreenRoute,replace: true);
-
+          NamedNavigatorImpl().push(Routes.loginScreenRoute, replace: true);
         },
         child: Text(
           S.current.resendNewCode,
@@ -131,7 +125,7 @@ class _OTPScreenState extends State<OTPScreen> {
             onPressed: () async {
               try {
                 setState(() {
-                  isLoading=true;
+                  isLoading = true;
                 });
                 PhoneAuthCredential phoneAuthCredential =
                     PhoneAuthProvider.credential(
@@ -140,31 +134,23 @@ class _OTPScreenState extends State<OTPScreen> {
                   smsCode: code,
                 );
                 await FirebaseAuth.instance
-                    .signInWithCredential(phoneAuthCredential).catchError((e){
-                  if(code.length<6){
-                    var snackBar = AppSnackBar(
-                        text: S.current.pinCodeIsMissing, isSuccess: false, maxLines: 10);
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    setState(() {
-                      isLoading=false;
-                    });
-                  }
-                  else{
-                    var snackBar = AppSnackBar(
-                        text: "The Number is verified successfully.",
-                        isSuccess: true,
-                        maxLines: 10);
-                    setState(() {
-                      isLoading=false;
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
-                  }
-                });
+                    .signInWithCredential(phoneAuthCredential)
+                    .then((value) async {
+                     await authorizeMobileNumber(
+                      mobileNumber: getIt<UserRepository>().getPhoneNumber,
+                      countryId: getIt<UserRepository>().getSelectedCountryId);
 
+                }).catchError((e) {
+                  var snackBar = AppSnackBar(
+                      text: e.toString(), isSuccess: false, maxLines: 10);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  setState(() {
+                    isLoading = false;
+                  });
+                });
               } catch (e) {
                 setState(() {
-                  isLoading=false;
+                  isLoading = false;
                 });
                 var snackBar = AppSnackBar(
                     text: e.toString(), isSuccess: false, maxLines: 10);
@@ -174,9 +160,9 @@ class _OTPScreenState extends State<OTPScreen> {
       );
 
   Widget getOTPTextField() => Directionality(
-    textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
-    child: OtpTextField(
-
+        textDirection:
+            isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+        child: OtpTextField(
           numberOfFields: 6,
           keyboardType: TextInputType.number,
           filled: true,
@@ -187,7 +173,7 @@ class _OTPScreenState extends State<OTPScreen> {
           fillColor: Colors.black.withOpacity(0.1),
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         ),
-  );
+      );
 
   Widget getPinCodeWidget() => OtpTextField(
         keyboardType: TextInputType.number,
@@ -222,4 +208,35 @@ class _OTPScreenState extends State<OTPScreen> {
         color: Theme.of(context).hintColor,
         textAlign: TextAlign.center,
       );
+
+    authorizeMobileNumber(
+      {required String mobileNumber, required int countryId}) async {
+    final response = await context
+        .read<AuthorizeMobileNumberCubit>()
+        .authorizeMobileNumber(
+      phoneNumber: getIt<UserRepository>().getPhoneNumber,
+      countryId: getIt<UserRepository>().getSelectedCountryId,
+    );
+    if(response is Failure){
+      var snackBar = AppSnackBar(
+          text: response.message,
+          isSuccess: false,
+          maxLines: 10);
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    else{
+      var snackBar = AppSnackBar(
+          text: "The Number is verified successfully.",
+          isSuccess: true,
+          maxLines: 10);
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
+    }
+  }
 }

@@ -40,9 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (getIt<UserRepository>().getUserToken != "") {
         await authorizeFun();
-      }
         checkPrimaryData();
 
     });
@@ -105,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen> {
           .read<CheckPrimaryDataCubit>()
           .checkPrimaryData(values: list)
           .then((value) {
-            if(!(value is Left)){
+            if(!(value is Failure)){
               final response = value
                   .cast<Map<String, dynamic>>()
                   .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
@@ -121,7 +119,7 @@ class _SplashScreenState extends State<SplashScreen> {
             }
             else{
               var snackBar = AppSnackBar(
-                text: value.value.message, isSuccess: false, maxLines: 10);
+                text: value.message, isSuccess: false, maxLines: 10);
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
       });

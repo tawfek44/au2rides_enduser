@@ -115,7 +115,7 @@ class _$InitialMetricUnitsStateImpl implements _InitialMetricUnitsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialMetricUnitsStateImpl);
@@ -232,7 +232,7 @@ class _$MetricUnitsStateLoadingImpl implements MetricUnitsStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MetricUnitsStateLoadingImpl);
@@ -364,7 +364,7 @@ class _$MetricUnitsStateLoadedImpl implements MetricUnitsStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MetricUnitsStateLoadedImpl &&
@@ -511,7 +511,7 @@ class _$MetricUnitsStateErrorImpl implements MetricUnitsStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MetricUnitsStateErrorImpl &&

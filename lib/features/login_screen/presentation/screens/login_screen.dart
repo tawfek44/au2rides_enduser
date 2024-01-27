@@ -272,6 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           isLoading = false;
         });
+        getIt<UserRepository>().setPhoneNumber(phoneNumber);
         getIt<UserRepository>().setVerificationIdForOTP(verificationId);
         NamedNavigatorImpl().push(Routes.otpScreenRoute);
       },

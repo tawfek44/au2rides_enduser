@@ -118,7 +118,7 @@ class _$InitialWorkflowStatusesStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialWorkflowStatusesStateImpl);
@@ -238,7 +238,7 @@ class _$WorkflowStatusesStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorkflowStatusesStateLoadingImpl);
@@ -372,7 +372,7 @@ class _$WorkflowStatusesStateLoadedImpl implements WorkflowStatusesStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorkflowStatusesStateLoadedImpl &&
@@ -520,7 +520,7 @@ class _$WorkflowStatusesStateErrorImpl implements WorkflowStatusesStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorkflowStatusesStateErrorImpl &&

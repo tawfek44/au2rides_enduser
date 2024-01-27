@@ -113,7 +113,7 @@ class _$InitialPressureUnitsImpl implements _InitialPressureUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialPressureUnitsImpl);
@@ -228,7 +228,7 @@ class _$LoadingPressureUnitsImpl implements LoadingPressureUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadingPressureUnitsImpl);
@@ -360,7 +360,7 @@ class _$LoadedPressureUnitsImpl implements LoadedPressureUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedPressureUnitsImpl &&
@@ -506,7 +506,7 @@ class _$ErrorPressureUnitsImpl implements ErrorPressureUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorPressureUnitsImpl &&

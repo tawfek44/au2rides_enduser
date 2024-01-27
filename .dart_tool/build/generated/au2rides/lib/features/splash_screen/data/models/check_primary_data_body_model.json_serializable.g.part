@@ -1,0 +1,23 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CheckPrimaryDataBodyModel _$CheckPrimaryDataBodyModelFromJson(
+        Map<String, dynamic> json) =>
+    CheckPrimaryDataBodyModel(
+      tableId: json['table_id'] as int,
+      tableName: json['table_name'] as String,
+      languageId: json['language_id'] as int,
+      schemaVersion: json['schema_version'] as int,
+      dataVersion: json['data_version'] as int,
+    );
+
+Map<String, dynamic> _$CheckPrimaryDataBodyModelToJson(
+        CheckPrimaryDataBodyModel instance) =>
+    <String, dynamic>{
+      'table_id': instance.tableId,
+      'table_name': instance.tableName,
+      'language_id': instance.languageId,
+      'schema_version': instance.schemaVersion,
+      'data_version': instance.dataVersion,
+    };

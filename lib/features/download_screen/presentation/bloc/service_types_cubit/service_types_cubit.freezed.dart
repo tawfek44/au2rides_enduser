@@ -116,7 +116,7 @@ class _$InitialAServiceTypesStateImpl implements _InitialAServiceTypesState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialAServiceTypesStateImpl);
@@ -234,7 +234,7 @@ class _$ServiceTypesStateLoadingImpl implements ServiceTypesStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceTypesStateLoadingImpl);
@@ -366,7 +366,7 @@ class _$ServiceTypesStateLoadedImpl implements ServiceTypesStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceTypesStateLoadedImpl &&
@@ -513,7 +513,7 @@ class _$ServiceTypesStateErrorImpl implements ServiceTypesStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceTypesStateErrorImpl &&

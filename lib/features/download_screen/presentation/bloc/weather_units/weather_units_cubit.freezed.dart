@@ -113,7 +113,7 @@ class _$InitialWeatherUnitsImpl implements _InitialWeatherUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialWeatherUnitsImpl);
@@ -228,7 +228,7 @@ class _$WeatherUnitsLoadingImpl implements WeatherUnitsLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherUnitsLoadingImpl);
@@ -358,7 +358,7 @@ class _$WeatherUnitsLoadedImpl implements WeatherUnitsLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherUnitsLoadedImpl &&
@@ -503,7 +503,7 @@ class _$WeatherUnitsErrorImpl implements WeatherUnitsError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherUnitsErrorImpl &&

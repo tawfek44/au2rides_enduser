@@ -113,7 +113,7 @@ class _$InitialMonthImpl implements _InitialMonth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InitialMonthImpl);
   }
@@ -227,7 +227,7 @@ class _$LoadingMonthImpl implements LoadingMonth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingMonthImpl);
   }
@@ -358,7 +358,7 @@ class _$LoadedMonthImpl implements LoadedMonth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedMonthImpl &&
@@ -503,7 +503,7 @@ class _$ErrorMonthImpl implements ErrorMonth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorMonthImpl &&

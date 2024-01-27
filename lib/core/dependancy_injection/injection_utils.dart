@@ -28,6 +28,7 @@ import '../../features/download_screen/presentation/bloc/fuel_octane_number_cubi
 import '../../features/download_screen/presentation/bloc/gender_cubit/gender_cubit.dart';
 import '../../features/download_screen/presentation/bloc/ride_types/ride_types_cubit.dart';
 import '../../features/download_screen/presentation/bloc/weather_units/weather_units_cubit.dart';
+import '../../features/login_screen/presentation/bloc/authorize_mobile_number_cubit/authorize_mobile_number_cubit.dart';
 import '../../features/splash_screen/presentation/bloc/check_primary_data_cubit.dart';
 import 'injection.dart';
 
@@ -59,7 +60,9 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ModelGenerationSpecificationKeysCubit>()),
         BlocProvider(create: (_) => getIt<WorkflowStatusesCubit>()),
         BlocProvider(create: (_) => getIt<AuthorizeCubit>()),
-        BlocProvider(create: (_) => getIt<GetCountriesCubit>())
+        BlocProvider(create: (_) => getIt<GetCountriesCubit>()),
+       BlocProvider(create: (_) => getIt<AuthorizeMobileNumberCubit>())
+
       ],
       child: child,
     );

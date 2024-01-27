@@ -143,6 +143,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   .setSelectedCountry(countries[index].countryName);
               getIt<UserRepository>()
                   .setSelectedCountryCallingCode(countries[index].countryCallingCode);
+              getIt<UserRepository>()
+                  .setSelectedCountryId(countries[index].countryId);
+
               NamedNavigatorImpl().push(Routes.loginScreenRoute,replace: true);
             });
           },

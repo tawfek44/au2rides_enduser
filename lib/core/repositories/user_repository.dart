@@ -36,6 +36,9 @@ class UserRepository {
   Future setSelectedCountryIndex(int countryIndex) async {
     await _prefs.setInt('selectedCountryIndex', countryIndex);
   }
+  Future setSelectedCountryId(int countryId) async {
+    await _prefs.setInt('selectedCountryId', countryId);
+  }
   Future setSelectedCountryCallingCode(String countryCallingCode) async {
     await _prefs.setString('selectedCountryCallingCode', countryCallingCode);
   }
@@ -44,6 +47,9 @@ class UserRepository {
   }
   Future setVerificationIdForOTP(String otpVerificationId) async {
     await _prefs.setString('otpVerificationId', otpVerificationId);
+  }
+  Future setPhoneNumber(String phoneNumber) async {
+    await _prefs.setString('phoneNumber', phoneNumber);
   }
 
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';
@@ -55,8 +61,10 @@ class UserRepository {
   String get getVerificationIdForOTP => _prefs.getString('otpVerificationId')??'';
   String get getSelectedCountryCallingCode => _prefs.getString('selectedCountryCallingCode')??'';
   int get getSelectedLanguageIndex => _prefs.getInt('selectedLanguageIndex')??-1;
+  int get getSelectedCountryId => _prefs.getInt('selectedCountryId')??1;
   int get getSelectedCountryIndex => _prefs.getInt('selectedCountryIndex')??-1;
-
+  String get getPhoneNumber => _prefs.getString('phoneNumber')??'';
+  String get getUserLanguage => _prefs.getString('lang')??'';
 
 
   Future logout() async {

@@ -118,7 +118,7 @@ class _$InitialReminderTypeServiceStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialReminderTypeServiceStateImpl);
@@ -239,7 +239,7 @@ class _$ReminderTypeServiceStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReminderTypeServiceStateLoadingImpl);
@@ -375,7 +375,7 @@ class _$ReminderTypeServiceStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReminderTypeServiceStateLoadedImpl &&
@@ -527,7 +527,7 @@ class _$ReminderTypeServiceStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReminderTypeServiceStateErrorImpl &&

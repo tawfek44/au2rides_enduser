@@ -114,7 +114,7 @@ class _$InitialRideTypesUnitsImpl implements _InitialRideTypesUnits {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialRideTypesUnitsImpl);
@@ -229,7 +229,7 @@ class _$RideTypesLoadingImpl implements RideTypesLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$RideTypesLoadingImpl);
   }
@@ -358,7 +358,7 @@ class _$RideTypesLoadedImpl implements RideTypesLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RideTypesLoadedImpl &&
@@ -502,7 +502,7 @@ class _$RideTypesErrorImpl implements RideTypesError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RideTypesErrorImpl &&

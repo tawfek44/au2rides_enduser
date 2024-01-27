@@ -122,7 +122,7 @@ class _$InitialFuelConsumptionUnitTypesStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialFuelConsumptionUnitTypesStateImpl);
@@ -245,7 +245,7 @@ class _$FuelConsumptionUnitTypesStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelConsumptionUnitTypesStateLoadingImpl);
@@ -383,7 +383,7 @@ class _$FuelConsumptionUnitTypesStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelConsumptionUnitTypesStateLoadedImpl &&
@@ -539,7 +539,7 @@ class _$FuelConsumptionUnitTypesStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelConsumptionUnitTypesStateErrorImpl &&

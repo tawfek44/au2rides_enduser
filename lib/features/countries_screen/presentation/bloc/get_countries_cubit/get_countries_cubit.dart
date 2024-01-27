@@ -17,7 +17,7 @@ class GetCountriesCubit extends Cubit<GetCountiesState> {
   GetCountriesCubit(
       this._getCountriesUseCase)
       : super(const GetCountiesState.initial());
-  GetCountriesUseCase _getCountriesUseCase;
+  final GetCountriesUseCase _getCountriesUseCase;
 
 
   Future getCountriesLocalDatabase({required String tableName,required languageId}) async {

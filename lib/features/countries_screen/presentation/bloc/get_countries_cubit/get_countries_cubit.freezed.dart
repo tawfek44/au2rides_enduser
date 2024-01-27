@@ -115,7 +115,7 @@ class _$InitialGetCountiesStateImpl implements _InitialGetCountiesState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialGetCountiesStateImpl);
@@ -232,7 +232,7 @@ class _$GetCountiesStateLoadingImpl implements GetCountiesStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCountiesStateLoadingImpl);
@@ -364,7 +364,7 @@ class _$GetCountiesStateLoadedImpl implements GetCountiesStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCountiesStateLoadedImpl &&
@@ -510,7 +510,7 @@ class _$GetCountiesStateErrorImpl implements GetCountiesStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCountiesStateErrorImpl &&

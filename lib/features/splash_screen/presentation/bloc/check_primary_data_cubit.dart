@@ -6,6 +6,7 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/error/failure.dart';
 import '../../data/models/check_primary_data_body_model.dart';
 import '../../data/models/check_primary_data_model.dart';
 
@@ -23,7 +24,7 @@ class CheckPrimaryDataCubit extends Cubit<CheckPrimaryDataState> {
     try {
       emit(const CheckPrimaryDataState.loading());
       final response = await checkPrimaryDataUseCase(param: values,);
-      if(!(response is Left)){
+      if(!(response is Failure)){
         emit(CheckPrimaryDataState.loaded(response.data));
         return response.data;
       }

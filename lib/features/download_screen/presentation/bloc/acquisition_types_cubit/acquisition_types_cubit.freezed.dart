@@ -118,7 +118,7 @@ class _$InitialAcquisitionTypesStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialAcquisitionTypesStateImpl);
@@ -238,7 +238,7 @@ class _$AcquisitionTypesStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AcquisitionTypesStateLoadingImpl);
@@ -372,7 +372,7 @@ class _$AcquisitionTypesStateLoadedImpl implements AcquisitionTypesStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AcquisitionTypesStateLoadedImpl &&
@@ -521,7 +521,7 @@ class _$AcquisitionTypesStateErrorImpl implements AcquisitionTypesStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AcquisitionTypesStateErrorImpl &&

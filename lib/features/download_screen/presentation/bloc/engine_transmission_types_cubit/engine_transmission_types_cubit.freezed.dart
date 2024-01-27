@@ -122,7 +122,7 @@ class _$InitialEngineTransmissionTypesStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialEngineTransmissionTypesStateImpl);
@@ -245,7 +245,7 @@ class _$EngineTransmissionTypesStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EngineTransmissionTypesStateLoadingImpl);
@@ -383,7 +383,7 @@ class _$EngineTransmissionTypesStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EngineTransmissionTypesStateLoadedImpl &&
@@ -539,7 +539,7 @@ class _$EngineTransmissionTypesStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EngineTransmissionTypesStateErrorImpl &&

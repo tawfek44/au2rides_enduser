@@ -113,7 +113,7 @@ class _$InitialCurrencyImpl implements _InitialCurrency {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InitialCurrencyImpl);
   }
@@ -227,7 +227,7 @@ class _$CurrencyLoadingImpl implements CurrencyLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$CurrencyLoadingImpl);
   }
@@ -356,7 +356,7 @@ class _$CurrecnyLoadedImpl implements CurrecnyLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrecnyLoadedImpl &&
@@ -502,7 +502,7 @@ class _$CurrencyErrorImpl implements CurrencyError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrencyErrorImpl &&

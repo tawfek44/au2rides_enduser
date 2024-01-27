@@ -119,7 +119,7 @@ class _$InitialRecurrencePeriodTypesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialRecurrencePeriodTypesImpl);
@@ -240,7 +240,7 @@ class _$RecurrencePeriodTypesStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecurrencePeriodTypesStateLoadingImpl);
@@ -376,7 +376,7 @@ class _$RecurrencePeriodTypesStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecurrencePeriodTypesStateLoadedImpl &&
@@ -528,7 +528,7 @@ class _$RecurrencePeriodTypesStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecurrencePeriodTypesStateErrorImpl &&

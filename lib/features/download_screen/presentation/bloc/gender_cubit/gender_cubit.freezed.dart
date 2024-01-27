@@ -113,7 +113,7 @@ class _$InitialGenderImpl implements _InitialGender {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InitialGenderImpl);
   }
@@ -227,7 +227,7 @@ class _$GenderLoadingImpl implements GenderLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GenderLoadingImpl);
   }
@@ -356,7 +356,7 @@ class _$GenderLoadedImpl implements GenderLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenderLoadedImpl &&
@@ -501,7 +501,7 @@ class _$GenderErrorImpl implements GenderError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenderErrorImpl &&

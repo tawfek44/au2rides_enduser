@@ -9,6 +9,7 @@ import 'package:au2rides/core/storage/tables/reminder_type_service.dart';
 import 'package:au2rides/core/storage/tables/reminder_types.dart';
 import 'package:au2rides/core/storage/tables/service_types.dart';
 import 'package:au2rides/core/storage/tables/tables_definitions.dart';
+import 'package:au2rides/core/storage/tables/users.dart';
 import 'package:au2rides/core/storage/tables/weather_measuring_units.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -49,6 +50,7 @@ class Au2ridesDatabase {
 
   Future _createDB(Database db, int version) async {
     const idType = "INTEGER PRIMARY KEY";
+    const textIdType = "TEXT PRIMARY KEY";
     const intType = "INTEGER NOT NULL";
     const textType = "TEXT NOT NULL";
     const textNullType = "TEXT NULL";
@@ -314,6 +316,24 @@ class Au2ridesDatabase {
     PRIMARY KEY (${WorkflowStatusesFields.workflowStatusId}, ${WorkflowStatusesFields.languageId})
     )
     ''');
+
+    //users
+    await db.execute('''
+    CREATE TABLE $usersTableName (
+    ${UsersFields.userId} $textIdType,
+    ${UsersFields.firstName} $textType,
+    ${UsersFields.lastName} $textType,
+    ${UsersFields.emailAddress} $textType,
+    ${UsersFields.isVerified} $intType,
+    ${UsersFields.profileImageUrl} $textType,
+    ${UsersFields.profileQrCode} $textType,
+    ${UsersFields.mobileNumber} $textType,
+    ${UsersFields.countryId} $textType,
+    ${UsersFields.genderId} $textType,
+    ${UsersFields.birthDate} $textType
+    )
+    ''');
+
   }
 
   insert({required String tableName, required dynamic values}) async {

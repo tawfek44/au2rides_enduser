@@ -113,7 +113,7 @@ class _$InitialReminderTypesImpl implements _InitialReminderTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialReminderTypesImpl);
@@ -228,7 +228,7 @@ class _$LoadingReminderTypesImpl implements LoadingReminderTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadingReminderTypesImpl);
@@ -358,7 +358,7 @@ class _$LoadedReminderTypesImpl implements LoadedReminderTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedReminderTypesImpl &&
@@ -503,7 +503,7 @@ class _$ErrorReminderTypesImpl implements ErrorReminderTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorReminderTypesImpl &&

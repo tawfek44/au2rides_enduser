@@ -115,7 +115,7 @@ class _$InitialFuelBrandsStateImpl implements _InitialFuelBrandsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialFuelBrandsStateImpl);
@@ -232,7 +232,7 @@ class _$FuelBrandsStateLoadingImpl implements FuelBrandsStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelBrandsStateLoadingImpl);
@@ -363,7 +363,7 @@ class _$FuelBrandsStateLoadedImpl implements FuelBrandsStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelBrandsStateLoadedImpl &&
@@ -508,7 +508,7 @@ class _$FuelBrandsStateErrorImpl implements FuelBrandsStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FuelBrandsStateErrorImpl &&

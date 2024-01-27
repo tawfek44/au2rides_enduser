@@ -121,7 +121,7 @@ class _$InitialDepartmentServiceItemsStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialDepartmentServiceItemsStateImpl);
@@ -243,7 +243,7 @@ class _$DepartmentServiceItemsStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DepartmentServiceItemsStateLoadingImpl);
@@ -380,7 +380,7 @@ class _$DepartmentServiceItemsStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DepartmentServiceItemsStateLoadedImpl &&
@@ -533,7 +533,7 @@ class _$DepartmentServiceItemsStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DepartmentServiceItemsStateErrorImpl &&

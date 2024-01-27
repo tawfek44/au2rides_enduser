@@ -1,0 +1,19 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$GenericApiErrorImpl _$$GenericApiErrorImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GenericApiErrorImpl(
+      status: json['status'] as int?,
+      error: json['error'] as String?,
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$$GenericApiErrorImplToJson(
+        _$GenericApiErrorImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'error': instance.error,
+      'message': instance.message,
+    };

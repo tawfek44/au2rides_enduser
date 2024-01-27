@@ -114,7 +114,7 @@ class _$InitialAuthorizeStateImpl implements _InitialAuthorizeState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialAuthorizeStateImpl);
@@ -230,7 +230,7 @@ class _$AuthorizeStateLoadingImpl implements AuthorizeStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthorizeStateLoadingImpl);
@@ -360,7 +360,7 @@ class _$AuthorizeStateLoadedImpl implements AuthorizeStateLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthorizeStateLoadedImpl &&
@@ -507,7 +507,7 @@ class _$AuthorizeStateErrorImpl implements AuthorizeStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthorizeStateErrorImpl &&

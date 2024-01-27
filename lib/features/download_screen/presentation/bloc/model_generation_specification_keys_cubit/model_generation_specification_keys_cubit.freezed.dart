@@ -134,7 +134,7 @@ class _$InitialModelGenerationSpecificationKeysStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialModelGenerationSpecificationKeysStateImpl);
@@ -269,7 +269,7 @@ class _$ModelGenerationSpecificationKeysStateLoadingImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModelGenerationSpecificationKeysStateLoadingImpl);
@@ -419,7 +419,7 @@ class _$ModelGenerationSpecificationKeysStateLoadedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModelGenerationSpecificationKeysStateLoadedImpl &&
@@ -586,7 +586,7 @@ class _$ModelGenerationSpecificationKeysStateErrorImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModelGenerationSpecificationKeysStateErrorImpl &&

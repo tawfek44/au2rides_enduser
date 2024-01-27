@@ -114,7 +114,7 @@ class _$InitialPaymentMethodsImpl implements _InitialPaymentMethods {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialPaymentMethodsImpl);
@@ -230,7 +230,7 @@ class _$PaymentMethodsLoadingImpl implements PaymentMethodsLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentMethodsLoadingImpl);
@@ -360,7 +360,7 @@ class _$PaymentMethodsLoadedImpl implements PaymentMethodsLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentMethodsLoadedImpl &&
@@ -506,7 +506,7 @@ class _$PaymentMethodsErrorImpl implements PaymentMethodsError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentMethodsErrorImpl &&
