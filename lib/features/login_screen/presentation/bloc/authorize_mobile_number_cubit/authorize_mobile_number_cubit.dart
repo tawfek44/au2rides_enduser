@@ -3,11 +3,14 @@ import 'dart:io' show Platform;
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:au2rides/core/storage/tables/users.dart';
 import 'package:au2rides/features/download_screen/data/models/acquisition_types/acquisition_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/authorize/authorize_body.dart';
 import 'package:au2rides/features/download_screen/data/models/authorize/authorize_model.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/acquisition_types/save_acquisition_types_in_local_db_usecase.dart';
 import 'package:au2rides/features/download_screen/domain/usecase/authorize/authorize_usecase.dart';
+import 'package:au2rides/features/login_screen/domain/repositories/check_user_existence_in_local_db_repository.dart';
+import 'package:au2rides/features/enter_user_info/domain/repositories/user/user_repository.dart';
 import 'package:au2rides/features/login_screen/domain/use_cases/authorize_mobile_number/authroize_mobile_number_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -31,7 +34,8 @@ class AuthorizeMobileNumberCubit extends Cubit<AuthorizeMobileNumberState> {
   ) : super(const AuthorizeMobileNumberState.initial());
   final AuthorizeMobileNumberUseCase _authorizeMobileNumberUseCase;
 
-  Future authorizeMobileNumber({required String phoneNumber,required int countryId}) async {
+  Future authorizeMobileNumber(
+      {required String phoneNumber, required int countryId}) async {
     try {
       AuthorizeMobileNumberBodyModel authorizeMobileNumberBodyModel =
           AuthorizeMobileNumberBodyModel(
@@ -42,17 +46,37 @@ class AuthorizeMobileNumberCubit extends Cubit<AuthorizeMobileNumberState> {
         behaviour: "login_register",
       );
       final response = await _authorizeMobileNumberUseCase(param: [
-        getIt<UserRepository>().getUserLanguage,authorizeMobileNumberBodyModel.toJson()
+        getIt<UserRepository>().getUserLanguage,
+        authorizeMobileNumberBodyModel.toJson()
       ]);
       if (!(response is Failure)) {
-       String userId = response.data["registered_user_id"];
-       //if userId is not found in local db add it in local db and network db
-        // if userId is found in local db go to home
+
       }
       return response;
-
     } catch (e) {
       return e;
     }
+  }
+
+  Future checkMobileNumberExistenceInLocalDb({required userId}) async {
+    return await  getIt<CheckUserExistenceInLocalDbRepository>()
+    .checkUserExistenceInLocalDb(userId: userId);
+  }
+  Future addNewUserInLocalDb({required userId}) async {
+    User user = User(
+        userId: userId,
+        firstName: "tawfek",
+        lastName: "hesham",
+        emailAddress: "tgthtgtrh@gmail.com",
+        isVerified: 1,
+        profileImageUrl: "thrbgyhyt",
+        profileQrCode: "byhjnyhjn",
+        mobileNumber: "01143178019",
+        countryId: 9,
+        genderId: 6,
+        birthDate: "12-1-1999");
+    final userIndex = await getIt<UserAccountRepository>()
+        .addUserInLocalDb(userData: user.toJson());
+    return userIndex;
   }
 }

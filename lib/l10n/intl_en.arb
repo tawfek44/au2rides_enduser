@@ -44,5 +44,13 @@
   "userDisabled": "Your phone number has been disabled.",
   "operationNotAllowed": "Your phone number is not enabled, please contact us.",
   "phoneNumberMissingErrorText": "Please enter your phone number.",
-  "pinCodeIsMissing": "Please check your pin number"
+  "pinCodeIsMissing": "Please check your pin number",
+  "numberVerified":"The Number verified successfully.",
+  "completeYourProfile": "Complete your profile",
+  "userInfo": "User Info",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "gender": "Gender",
+  "birthDate": "Birth Date",
 }

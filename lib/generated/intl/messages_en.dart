@@ -34,7 +34,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "attachment": MessageLookupByLibrary.simpleMessage("ATTACHMENTS"),
         "attachmentTitle":
             MessageLookupByLibrary.simpleMessage("Attachments..."),
+        "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "completeYourProfile":
+            MessageLookupByLibrary.simpleMessage("Complete your profile"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "countries": MessageLookupByLibrary.simpleMessage("Countries"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
@@ -44,20 +47,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "downloadingText":
             MessageLookupByLibrary.simpleMessage("Downloading Information ..."),
         "egyNumberPrev": MessageLookupByLibrary.simpleMessage("+20"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "englishLanguageText": MessageLookupByLibrary.simpleMessage("English"),
         "enterYourOTPCodeHere":
             MessageLookupByLibrary.simpleMessage("Enter your OTP code here"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "followUS": MessageLookupByLibrary.simpleMessage("Follow us"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number has an invalid format, check phone number or check you choose the country code"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("is correct?"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "lease": MessageLookupByLibrary.simpleMessage("Lease"),
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number is missing."),
         "notes": MessageLookupByLibrary.simpleMessage("NOTES"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("Number validation"),
+        "numberVerified": MessageLookupByLibrary.simpleMessage(
+            "The Number verified successfully."),
         "odometer": MessageLookupByLibrary.simpleMessage("Odometer"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -85,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "Your phone number has been disabled."),
+        "userInfo": MessageLookupByLibrary.simpleMessage("User Info"),
         "verification": MessageLookupByLibrary.simpleMessage("Verification"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "wrongText": MessageLookupByLibrary.simpleMessage(

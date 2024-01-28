@@ -44,5 +44,13 @@
   "userDisabled": "رقم الهاتف الخاص بك قد تم تعطيله.",
   "operationNotAllowed": "رقم الهاتف الخاص بك غير مفعل من فضلك تحدث إلينا.",
   "phoneNumberMissingErrorText": "من فضلك إدخل رقم الهاتف.",
-  "pinCodeIsMissing": "من فضلك تأكد من الرمز"
+  "pinCodeIsMissing": "من فضلك تأكد من الرمز",
+  "numberVerified":"تم التحقق من الرقم بنجاح.",
+  "completeYourProfile": "أكمل بياناتك",
+  "userInfo": "بيانات المستخدم",
+  "firstName": "الإسم الأول",
+  "lastName": "الإسم الأخير",
+  "email": "البريد الإلكترونى",
+  "gender": "الجنس",
+  "birthDate": "تاريخ الميلاد"
 }

@@ -333,7 +333,6 @@ class Au2ridesDatabase {
     ${UsersFields.birthDate} $textType
     )
     ''');
-
   }
 
   insert({required String tableName, required dynamic values}) async {

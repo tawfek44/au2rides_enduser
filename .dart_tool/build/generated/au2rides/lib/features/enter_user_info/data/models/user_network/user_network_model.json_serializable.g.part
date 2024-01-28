@@ -1,0 +1,29 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserNetworkModel _$UserNetworkModelFromJson(Map<String, dynamic> json) =>
+    UserNetworkModel(
+      userId: json['registered_user_id'] as String,
+      firstName: json['first_name'] as String,
+      lastName: json['last_name'] as String,
+      email: Email.fromJson(json['email'] as Map<String, dynamic>),
+      profileImageUrl: json['profile_image_url'] as String,
+      profileQrCode: json['profile_qr_code'] as String,
+      country: Country.fromJson(json['country'] as Map<String, dynamic>),
+      gender: Gender.fromJson(json['gender'] as Map<String, dynamic>),
+      birthDate: json['birth_date'] as String,
+    );
+
+Map<String, dynamic> _$UserNetworkModelToJson(UserNetworkModel instance) =>
+    <String, dynamic>{
+      'registered_user_id': instance.userId,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
+      'email': instance.email,
+      'profile_image_url': instance.profileImageUrl,
+      'profile_qr_code': instance.profileQrCode,
+      'country': instance.country,
+      'gender': instance.gender,
+      'birth_date': instance.birthDate,
+    };

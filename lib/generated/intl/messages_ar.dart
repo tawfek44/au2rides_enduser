@@ -32,7 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل انت متأكد ان هذا الرقم"),
         "attachment": MessageLookupByLibrary.simpleMessage("المرفقات"),
         "attachmentTitle": MessageLookupByLibrary.simpleMessage("المرفقات..."),
+        "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "completeYourProfile":
+            MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
         "countries": MessageLookupByLibrary.simpleMessage("الدول"),
         "country": MessageLookupByLibrary.simpleMessage("البلد"),
@@ -42,21 +45,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "downloadingText":
             MessageLookupByLibrary.simpleMessage("تحميل بيانات ..."),
         "egyNumberPrev": MessageLookupByLibrary.simpleMessage("+٢٠"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكترونى"),
         "englishLanguageText":
             MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "enterYourOTPCodeHere":
             MessageLookupByLibrary.simpleMessage("إدخل الرمز للتحقق"),
+        "firstName": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
+        "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("صحيح ؟"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
+        "lastName": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
         "lease": MessageLookupByLibrary.simpleMessage("إيجار"),
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("التحقق من رقم الهاتف"),
+        "numberVerified":
+            MessageLookupByLibrary.simpleMessage("تم التحقق من الرقم بنجاح."),
         "odometer": MessageLookupByLibrary.simpleMessage("عداد المسافات"),
         "ok": MessageLookupByLibrary.simpleMessage("أكد"),
         "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -81,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الخاص بك قد تم تعطيله."),
+        "userInfo": MessageLookupByLibrary.simpleMessage("بيانات المستخدم"),
         "verification": MessageLookupByLibrary.simpleMessage("التحقق"),
         "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "wrongText": MessageLookupByLibrary.simpleMessage(

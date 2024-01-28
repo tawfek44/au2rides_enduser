@@ -141,4 +141,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pinCodeIsMissing => 'Please check your pin number';
+
+  @override
+  String get numberVerified => 'The Number verified successfully.';
+
+  @override
+  String get completeYourProfile => 'Complete your profile';
+
+  @override
+  String get userInfo => 'User Info';
+
+  @override
+  String get firstName => 'First Name';
+
+  @override
+  String get lastName => 'Last Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get birthDate => 'Birth Date';
 }

@@ -136,10 +136,17 @@ class _OTPScreenState extends State<OTPScreen> {
                 await FirebaseAuth.instance
                     .signInWithCredential(phoneAuthCredential)
                     .then((value) async {
-                     await authorizeMobileNumber(
+                  await authorizeMobileNumber(
                       mobileNumber: getIt<UserRepository>().getPhoneNumber,
                       countryId: getIt<UserRepository>().getSelectedCountryId);
-
+                  var snackBar = AppSnackBar(
+                      text: S.current.numberVerified,
+                      isSuccess: true,
+                      maxLines: 10);
+                  setState(() {
+                    isLoading = false;
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }).catchError((e) {
                   var snackBar = AppSnackBar(
                       text: e.toString(), isSuccess: false, maxLines: 10);
@@ -209,34 +216,32 @@ class _OTPScreenState extends State<OTPScreen> {
         textAlign: TextAlign.center,
       );
 
-    authorizeMobileNumber(
+  authorizeMobileNumber(
       {required String mobileNumber, required int countryId}) async {
-    final response = await context
-        .read<AuthorizeMobileNumberCubit>()
-        .authorizeMobileNumber(
-      phoneNumber: getIt<UserRepository>().getPhoneNumber,
-      countryId: getIt<UserRepository>().getSelectedCountryId,
-    );
-    if(response is Failure){
-      var snackBar = AppSnackBar(
-          text: response.message,
-          isSuccess: false,
-          maxLines: 10);
+    final response =
+        await context.read<AuthorizeMobileNumberCubit>().authorizeMobileNumber(
+              phoneNumber: getIt<UserRepository>().getPhoneNumber,
+              countryId: getIt<UserRepository>().getSelectedCountryId,
+            );
+    if (response is Failure) {
+      var snackBar =
+          AppSnackBar(text: response.message, isSuccess: false, maxLines: 10);
       setState(() {
         isLoading = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-    else{
-      var snackBar = AppSnackBar(
-          text: "The Number is verified successfully.",
-          isSuccess: true,
-          maxLines: 10);
-      setState(() {
-        isLoading = false;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
+    } else {
+      String userId = response.data["registered_user_id"];
+      final isMobileNumberExist = await context
+          .read<AuthorizeMobileNumberCubit>()
+          .checkMobileNumberExistenceInLocalDb(userId: userId);
+
+      //this user is not exists in local db
+      if (isMobileNumberExist.map((e) => e).toList().length == 0) {
+        NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
+      } else {
+        NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute,clean: true);
+      }
     }
   }
 }

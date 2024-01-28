@@ -509,6 +509,86 @@ class S {
       args: [],
     );
   }
+
+  /// `The Number verified successfully.`
+  String get numberVerified {
+    return Intl.message(
+      'The Number verified successfully.',
+      name: 'numberVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your profile`
+  String get completeYourProfile {
+    return Intl.message(
+      'Complete your profile',
+      name: 'completeYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Info`
+  String get userInfo {
+    return Intl.message(
+      'User Info',
+      name: 'userInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name`
+  String get firstName {
+    return Intl.message(
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Date`
+  String get birthDate {
+    return Intl.message(
+      'Birth Date',
+      name: 'birthDate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

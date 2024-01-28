@@ -17,7 +17,7 @@ class User {
   final String firstName;
   final String lastName;
   final String emailAddress;
-  final bool isVerified;
+  final int isVerified;
   final String profileImageUrl;
   final String profileQrCode;
   final String mobileNumber;
