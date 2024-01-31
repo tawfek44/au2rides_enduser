@@ -5,5 +5,5 @@ class GetUserInfoState with _$GetUserInfoState {
   const factory GetUserInfoState.initial() = _InitialGetUserInfoState;
   const factory GetUserInfoState.loading() = LoadingGetUserInfoState;
   const factory GetUserInfoState.loaded(response) = LoadedGetUserInfoState;
-  const factory GetUserInfoState.error(Object e) = ErrorGetUserInfoState;
+  const factory GetUserInfoState.error(e) = ErrorGetUserInfoState;
 }

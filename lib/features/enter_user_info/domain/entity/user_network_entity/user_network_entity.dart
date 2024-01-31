@@ -6,23 +6,23 @@ part 'user_network_entity.g.dart';
 @JsonSerializable()
 class UserNetworkEntity extends Equatable {
   @JsonKey(name: "registered_user_id")
-  final String userId;
+  final String? userId;
   @JsonKey(name: "first_name")
-  final String firstName;
+  final String? firstName;
   @JsonKey(name: "last_name")
-  final String lastName;
+  final String? lastName;
   @JsonKey(name: "email")
-  final Email email;
+  final Email? email;
   @JsonKey(name: "profile_image_url")
-  final String profileImageUrl;
+  final String? profileImageUrl;
   @JsonKey(name: "profile_qr_code")
-  final String profileQrCode;
+  final String? profileQrCode;
   @JsonKey(name: "country")
-  final Country country;
+  final Country? country;
   @JsonKey(name: "gender")
-  final Gender gender;
+  final Gender? gender;
   @JsonKey(name: "birth_date")
-  final String birthDate;
+  final String? birthDate;
 
   const UserNetworkEntity(
       {required this.userId,

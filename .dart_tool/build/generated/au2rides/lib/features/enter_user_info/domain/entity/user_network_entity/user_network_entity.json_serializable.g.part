@@ -4,15 +4,21 @@
 
 UserNetworkEntity _$UserNetworkEntityFromJson(Map<String, dynamic> json) =>
     UserNetworkEntity(
-      userId: json['registered_user_id'] as String,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      email: Email.fromJson(json['email'] as Map<String, dynamic>),
-      profileImageUrl: json['profile_image_url'] as String,
-      profileQrCode: json['profile_qr_code'] as String,
-      country: Country.fromJson(json['country'] as Map<String, dynamic>),
-      gender: Gender.fromJson(json['gender'] as Map<String, dynamic>),
-      birthDate: json['birth_date'] as String,
+      userId: json['registered_user_id'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      email: json['email'] == null
+          ? null
+          : Email.fromJson(json['email'] as Map<String, dynamic>),
+      profileImageUrl: json['profile_image_url'] as String?,
+      profileQrCode: json['profile_qr_code'] as String?,
+      country: json['country'] == null
+          ? null
+          : Country.fromJson(json['country'] as Map<String, dynamic>),
+      gender: json['gender'] == null
+          ? null
+          : Gender.fromJson(json['gender'] as Map<String, dynamic>),
+      birthDate: json['birth_date'] as String?,
     );
 
 Map<String, dynamic> _$UserNetworkEntityToJson(UserNetworkEntity instance) =>

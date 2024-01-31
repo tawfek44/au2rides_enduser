@@ -1,6 +1,7 @@
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
+import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/core/widgets/shared_text_field.dart';
 import 'package:au2rides/features/enter_user_info/presentation/bloc/get_user_info_cubit.dart';
@@ -45,31 +46,51 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     _formKey = GlobalKey<FormState>();
     return Directionality(
       textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
-      child: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-            child: getAppBar(
-              context: context,
-              title: AppText(
-                text: S.current.completeYourProfile,
-                fontSize: 15.sp,
-                color: AppColors.white,
-              ),
-            )),
-        body: Form(
-          key: _formKey,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: ListView(
-              children: [
-                getUserPic(),
-                getUserInfoSection(),
-                gap(height: 15.w),
-                getContinueButton()
-              ],
-            ),
-          ),
-        ),
+      child: BlocBuilder<GetUserInfoCubit,GetUserInfoState>(
+       builder: (context,state){
+         if(state is LoadingGetUserInfoState){
+           return const Center(child: AppCircularProgressIndicator(),);
+         }
+         else if(state is LoadedGetUserInfoState){
+           firstNameController.text = state.response.firstName??"";
+           lastNameController.text = state.response.lastName??"";
+           emailController.text = state.response.email??"";
+           selectedDate = state.response.birthDate??selectedDate;
+           genderController.text = state.response.gender??"";
+           return Scaffold(
+             appBar: PreferredSize(
+                 preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+                 child: getAppBar(
+                   context: context,
+                   title: AppText(
+                     text: S.current.completeYourProfile,
+                     fontSize: 15.sp,
+                     color: AppColors.white,
+                   ),
+                 )),
+             body: Form(
+               key: _formKey,
+               child: Padding(
+                 padding: EdgeInsets.symmetric(horizontal: 20.w),
+                 child: ListView(
+                   children: [
+                     getUserPic(),
+                     getUserInfoSection(),
+                     gap(height: 15.w),
+                     getContinueButton()
+                   ],
+                 ),
+               ),
+             ),
+           );
+         }
+         else if(state is ErrorGetUserInfoState){
+           return Center(child: AppText(text: state.e["message"].toString()),);
+         }
+         else{
+           return Container();
+         }
+       },
       ),
     );
   }
@@ -238,7 +259,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                         getGenderWidget(),
                         const Spacer(),
                         AppText(
-                          text: "Male",
+                          text: textController,
                           fontSize: 13.sp,
                           color: AppColors.greyColor,
                         ),

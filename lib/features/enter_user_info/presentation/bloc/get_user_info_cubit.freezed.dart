@@ -21,7 +21,7 @@ mixin _$GetUserInfoState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic response) loaded,
-    required TResult Function(Object e) error,
+    required TResult Function(dynamic e) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$GetUserInfoState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic response)? loaded,
-    TResult? Function(Object e)? error,
+    TResult? Function(dynamic e)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$GetUserInfoState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic response)? loaded,
-    TResult Function(Object e)? error,
+    TResult Function(dynamic e)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -130,7 +130,7 @@ class _$InitialGetUserInfoStateImpl implements _InitialGetUserInfoState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic response) loaded,
-    required TResult Function(Object e) error,
+    required TResult Function(dynamic e) error,
   }) {
     return initial();
   }
@@ -141,7 +141,7 @@ class _$InitialGetUserInfoStateImpl implements _InitialGetUserInfoState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic response)? loaded,
-    TResult? Function(Object e)? error,
+    TResult? Function(dynamic e)? error,
   }) {
     return initial?.call();
   }
@@ -152,7 +152,7 @@ class _$InitialGetUserInfoStateImpl implements _InitialGetUserInfoState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic response)? loaded,
-    TResult Function(Object e)? error,
+    TResult Function(dynamic e)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -247,7 +247,7 @@ class _$LoadingGetUserInfoStateImpl implements LoadingGetUserInfoState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic response) loaded,
-    required TResult Function(Object e) error,
+    required TResult Function(dynamic e) error,
   }) {
     return loading();
   }
@@ -258,7 +258,7 @@ class _$LoadingGetUserInfoStateImpl implements LoadingGetUserInfoState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic response)? loaded,
-    TResult? Function(Object e)? error,
+    TResult? Function(dynamic e)? error,
   }) {
     return loading?.call();
   }
@@ -269,7 +269,7 @@ class _$LoadingGetUserInfoStateImpl implements LoadingGetUserInfoState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic response)? loaded,
-    TResult Function(Object e)? error,
+    TResult Function(dynamic e)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -388,7 +388,7 @@ class _$LoadedGetUserInfoStateImpl implements LoadedGetUserInfoState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic response) loaded,
-    required TResult Function(Object e) error,
+    required TResult Function(dynamic e) error,
   }) {
     return loaded(response);
   }
@@ -399,7 +399,7 @@ class _$LoadedGetUserInfoStateImpl implements LoadedGetUserInfoState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic response)? loaded,
-    TResult? Function(Object e)? error,
+    TResult? Function(dynamic e)? error,
   }) {
     return loaded?.call(response);
   }
@@ -410,7 +410,7 @@ class _$LoadedGetUserInfoStateImpl implements LoadedGetUserInfoState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic response)? loaded,
-    TResult Function(Object e)? error,
+    TResult Function(dynamic e)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -474,7 +474,7 @@ abstract class _$$ErrorGetUserInfoStateImplCopyWith<$Res> {
           $Res Function(_$ErrorGetUserInfoStateImpl) then) =
       __$$ErrorGetUserInfoStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object e});
+  $Res call({dynamic e});
 }
 
 /// @nodoc
@@ -488,10 +488,10 @@ class __$$ErrorGetUserInfoStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? e = null,
+    Object? e = freezed,
   }) {
     return _then(_$ErrorGetUserInfoStateImpl(
-      null == e ? _value.e : e,
+      freezed == e ? _value.e! : e,
     ));
   }
 }
@@ -502,7 +502,7 @@ class _$ErrorGetUserInfoStateImpl implements ErrorGetUserInfoState {
   const _$ErrorGetUserInfoStateImpl(this.e);
 
   @override
-  final Object e;
+  final dynamic e;
 
   @override
   String toString() {
@@ -534,7 +534,7 @@ class _$ErrorGetUserInfoStateImpl implements ErrorGetUserInfoState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(dynamic response) loaded,
-    required TResult Function(Object e) error,
+    required TResult Function(dynamic e) error,
   }) {
     return error(e);
   }
@@ -545,7 +545,7 @@ class _$ErrorGetUserInfoStateImpl implements ErrorGetUserInfoState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(dynamic response)? loaded,
-    TResult? Function(Object e)? error,
+    TResult? Function(dynamic e)? error,
   }) {
     return error?.call(e);
   }
@@ -556,7 +556,7 @@ class _$ErrorGetUserInfoStateImpl implements ErrorGetUserInfoState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(dynamic response)? loaded,
-    TResult Function(Object e)? error,
+    TResult Function(dynamic e)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -604,10 +604,10 @@ class _$ErrorGetUserInfoStateImpl implements ErrorGetUserInfoState {
 }
 
 abstract class ErrorGetUserInfoState implements GetUserInfoState {
-  const factory ErrorGetUserInfoState(final Object e) =
+  const factory ErrorGetUserInfoState(final dynamic e) =
       _$ErrorGetUserInfoStateImpl;
 
-  Object get e;
+  dynamic get e;
   @JsonKey(ignore: true)
   _$$ErrorGetUserInfoStateImplCopyWith<_$ErrorGetUserInfoStateImpl>
       get copyWith => throw _privateConstructorUsedError;

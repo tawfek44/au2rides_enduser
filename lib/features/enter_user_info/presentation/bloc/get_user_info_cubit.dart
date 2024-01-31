@@ -24,9 +24,7 @@ class GetUserInfoCubit extends Cubit<GetUserInfoState> {
       emit(const GetUserInfoState.loading());
       var response = await getUserInfoUseCase();
       if(!(response is Failure)){
-        response = response.data.cast<Map<String, dynamic>>()
-            .map((e) => UserNetworkModel.fromJson(e))
-            .toList();
+        response = UserNetworkModel.fromJson(response.data);
         emit(GetUserInfoState.loaded(response));
       }
       else{
