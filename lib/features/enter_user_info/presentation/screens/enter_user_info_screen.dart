@@ -28,7 +28,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   var firstNameController = TextEditingController();
   var lastNameController = TextEditingController();
   var emailController = TextEditingController();
-  var genderController = TextEditingController();
+  var genderText = "";
   var birthDateController = TextEditingController();
   String? selectedItem;
   DateTime nowDate = DateTime.now();
@@ -36,6 +36,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
   var dateFormat;
+  String birthDate="";
 @override
   void initState() {
     context.read<GetUserInfoCubit>().getUserInfo();
@@ -43,54 +44,55 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     _formKey = GlobalKey<FormState>();
     return Directionality(
       textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
-      child: BlocBuilder<GetUserInfoCubit,GetUserInfoState>(
-       builder: (context,state){
-         if(state is LoadingGetUserInfoState){
-           return const Center(child: AppCircularProgressIndicator(),);
-         }
-         else if(state is LoadedGetUserInfoState){
-           firstNameController.text = state.response.firstName??"";
-           lastNameController.text = state.response.lastName??"";
-           emailController.text = state.response.email??"";
-           selectedDate = state.response.birthDate??selectedDate;
-           genderController.text = state.response.gender??"";
-           return Scaffold(
-             appBar: PreferredSize(
-                 preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-                 child: getAppBar(
-                   context: context,
-                   title: AppText(
-                     text: S.current.completeYourProfile,
-                     fontSize: 15.sp,
-                     color: AppColors.white,
-                   ),
-                 )),
-             body: Form(
-               key: _formKey,
-               child: Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                 child: ListView(
-                   children: [
-                     getUserPic(),
-                     getUserInfoSection(),
-                     gap(height: 15.w),
-                     getContinueButton()
-                   ],
-                 ),
-               ),
-             ),
-           );
-         }
-         else if(state is ErrorGetUserInfoState){
-           return Center(child: AppText(text: state.e["message"].toString()),);
-         }
-         else{
-           return Container();
-         }
-       },
+      child: Scaffold(
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+            child: getAppBar(
+              context: context,
+              title: AppText(
+                text: S.current.completeYourProfile,
+                fontSize: 15.sp,
+                color: AppColors.white,
+              ),
+            )),
+        body: BlocBuilder<GetUserInfoCubit,GetUserInfoState>(
+          builder: (context,state){
+            if(state is LoadingGetUserInfoState){
+              return const Center(child: AppCircularProgressIndicator(),);
+            }
+            else if(state is LoadedGetUserInfoState){
+              firstNameController.text = state.response.firstName??"";
+              lastNameController.text = state.response.lastName??"";
+              emailController.text = state.response.email??"";
+              birthDate = state.response.birthDate==""?intl.DateFormat('dd-MM-yyyy').format(selectedDate):"";
+              genderText = state.response.gender??"";
+              return Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: ListView(
+                    children: [
+                      getUserPic(),
+                      getUserInfoSection(),
+                      gap(height: 15.w),
+                      getContinueButton()
+                    ],
+                  ),
+                ),
+              );
+            }
+            else if(state is ErrorGetUserInfoState){
+              return Center(child: AppText(text: state.e["message"],fontSize: fontSize,),);
+            }
+            else{
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }
@@ -116,7 +118,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
           child: AppText(
-            text: intl.DateFormat('dd MMM yyyy').format(selectedDate),
+            text: birthDate,
             fontSize: fontSize,
           ),
         ),
@@ -131,6 +133,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     if (pickedDate != null) {
       setState(() {
         selectedDate = pickedDate;
+        birthDate = intl.DateFormat('dd-MM-yyyy').format(selectedDate);
       });
     }
   }
@@ -206,7 +209,6 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 indent: 55.w,
               ),
               getUserInfoWidget(
-                  textController: genderController,
                   hintText: S.current.gender,
                   icon: Icons.male,
                   gender: true,
@@ -228,7 +230,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
 
   Widget getUserInfoWidget(
           {required hintText,
-          required textController,
+           textController,
           required icon,
           required bool gender,
           required bool birthdate}) =>
@@ -259,7 +261,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                         getGenderWidget(),
                         const Spacer(),
                         AppText(
-                          text: textController,
+
+                          text: genderText,
                           fontSize: 13.sp,
                           color: AppColors.greyColor,
                         ),
@@ -272,7 +275,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   ),
                 ),
               ),
-            ] else if (birthdate) ...[
+            ]
+            else if (birthdate) ...[
               Expanded(
                 child: Material(
                   color: Colors.transparent,
