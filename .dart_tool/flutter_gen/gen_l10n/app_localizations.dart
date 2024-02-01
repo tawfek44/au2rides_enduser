@@ -416,6 +416,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Birth Date'**
   String get birthDate;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get gallery;
+
+  /// No description provided for @firstNameValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter first name.'**
+  String get firstNameValidation;
+
+  /// No description provided for @secondNameValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter second name.'**
+  String get secondNameValidation;
+
+  /// No description provided for @genderTextIsNull.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose your gender'**
+  String get genderTextIsNull;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -589,6 +589,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter first name.`
+  String get firstNameValidation {
+    return Intl.message(
+      'Please enter first name.',
+      name: 'firstNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter second name.`
+  String get secondNameValidation {
+    return Intl.message(
+      'Please enter second name.',
+      name: 'secondNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose your gender`
+  String get genderTextIsNull {
+    return Intl.message(
+      'Please choose your gender',
+      name: 'genderTextIsNull',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

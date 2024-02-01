@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/features/enter_user_info/domain/use_cases/get_user_info_usecase.dart';
 import 'package:au2rides/features/splash_screen/domain/usecases/check_primary_data_usecase.dart';
@@ -5,6 +7,7 @@ import 'package:au2rides/features/splash_screen/domain/usecases/is_downloaded_us
 import 'package:bloc/bloc.dart';
 import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failure.dart';
@@ -35,4 +38,5 @@ class GetUserInfoCubit extends Cubit<GetUserInfoState> {
       emit(GetUserInfoState.error(e));
     }
   }
+
 }

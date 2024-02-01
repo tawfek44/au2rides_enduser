@@ -52,5 +52,10 @@
   "lastName": "الإسم الأخير",
   "email": "البريد الإلكترونى",
   "gender": "الجنس",
-  "birthDate": "تاريخ الميلاد"
+  "birthDate": "تاريخ الميلاد",
+  "camera": "الكاميرا",
+  "gallery": "الصور",
+  "firstNameValidation": "من فضلك إدخل الإسم الأول.",
+  "secondNameValidation": "من فضلك إدخل الإسم الأخير.",
+  "genderTextIsNull": "من فضلك أختر جنسك"
 }

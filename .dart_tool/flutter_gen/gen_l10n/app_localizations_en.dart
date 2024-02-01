@@ -165,4 +165,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get birthDate => 'Birth Date';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get gallery => 'Gallery';
+
+  @override
+  String get firstNameValidation => 'Please enter first name.';
+
+  @override
+  String get secondNameValidation => 'Please enter second name.';
+
+  @override
+  String get genderTextIsNull => 'Please choose your gender';
 }

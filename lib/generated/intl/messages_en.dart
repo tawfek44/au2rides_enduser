@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attachmentTitle":
             MessageLookupByLibrary.simpleMessage("Attachments..."),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("Complete your profile"),
@@ -52,8 +53,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourOTPCodeHere":
             MessageLookupByLibrary.simpleMessage("Enter your OTP code here"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "firstNameValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter first name."),
         "followUS": MessageLookupByLibrary.simpleMessage("Follow us"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "genderTextIsNull":
+            MessageLookupByLibrary.simpleMessage("Please choose your gender"),
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number has an invalid format, check phone number or check you choose the country code"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("is correct?"),
@@ -85,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendNewCode":
             MessageLookupByLibrary.simpleMessage("Resend new code"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "secondNameValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter second name."),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("SIGN IN DETAILS"),

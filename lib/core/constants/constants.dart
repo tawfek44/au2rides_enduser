@@ -50,6 +50,8 @@ const responseType = "authorization_code";
 const applicationId = "e199c942-3735-4b48-b2c7-01646b1bed89";
 const applicationSecret = "y5A7CaFcHeMhPkRpUrWuZw3y6B8DaGdJfMjQmSqV";
 const applicationIdentifierName = "com.au2rides.end_user";
+const userProfileConnectionString = "DefaultEndpointsProtocol=https;AccountName=au2ridesusersstorage;AccountKey=v2DieEsz8MTXwlZNus0PJQ41hvb1bjcLtJ+Tgd6B0w9SJOcuWbV3bBF/3QsnbMh1ziL8fJTxpRba+AStVVLOsw==;EndpointSuffix=core.windows.net";
+const registeredUserProfileImageUrl = "https://au2ridesusersstorage.blob.core.windows.net/staging-mobile-uploads/";
 Widget errorWidget() => Center(
   child: AppText(
     text: S.current.wrongText,

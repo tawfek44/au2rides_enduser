@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/styles/colors.dart';
+import 'package:au2rides/core/utils/uploader.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
@@ -7,12 +10,15 @@ import 'package:au2rides/core/widgets/shared_text_field.dart';
 import 'package:au2rides/features/enter_user_info/presentation/bloc/get_user_info_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' as intl;
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 
 class EnterUserInfoScreen extends StatefulWidget {
@@ -24,7 +30,7 @@ class EnterUserInfoScreen extends StatefulWidget {
 
 class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   late var _formKey;
-
+  var  fileName = "";
   var firstNameController = TextEditingController();
   var lastNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -36,18 +42,31 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   TimeOfDay dayTime = TimeOfDay.fromDateTime(DateTime.now());
   late DateTime tempDate;
   var dateFormat;
-  String birthDate="";
-@override
+  var image;
+  String birthDate = "";
+
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    birthDateController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     context.read<GetUserInfoCubit>().getUserInfo();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     _formKey = GlobalKey<FormState>();
     return Directionality(
-      textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
+      textDirection:
+          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -59,24 +78,27 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 color: AppColors.white,
               ),
             )),
-        body: BlocBuilder<GetUserInfoCubit,GetUserInfoState>(
-          builder: (context,state){
-            if(state is LoadingGetUserInfoState){
-              return const Center(child: AppCircularProgressIndicator(),);
-            }
-            else if(state is LoadedGetUserInfoState){
-              firstNameController.text = state.response.firstName??"";
-              lastNameController.text = state.response.lastName??"";
-              emailController.text = state.response.email??"";
-              birthDate = state.response.birthDate==""?intl.DateFormat('dd-MM-yyyy').format(selectedDate):"";
-              genderText = state.response.gender??"";
+        body: BlocBuilder<GetUserInfoCubit, GetUserInfoState>(
+          builder: (context, state) {
+            if (state is LoadingGetUserInfoState) {
+              return const Center(
+                child: AppCircularProgressIndicator(),
+              );
+            } else if (state is LoadedGetUserInfoState) {
+              firstNameController.text = state.response.firstName ?? "";
+              lastNameController.text = state.response.lastName ?? "";
+              emailController.text = state.response.email ?? "";
+              birthDate = state.response.birthDate == ""
+                  ? intl.DateFormat('dd-MM-yyyy').format(selectedDate)
+                  : "";
+              genderText = state.response.gender ?? "";
               return Form(
                 key: _formKey,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: ListView(
                     children: [
-                      getUserPic(),
+                      getUserPic(userId: state.response.userId),
                       getUserInfoSection(),
                       gap(height: 15.w),
                       getContinueButton()
@@ -84,11 +106,14 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   ),
                 ),
               );
-            }
-            else if(state is ErrorGetUserInfoState){
-              return Center(child: AppText(text: state.e["message"],fontSize: fontSize,),);
-            }
-            else{
+            } else if (state is ErrorGetUserInfoState) {
+              return Center(
+                child: AppText(
+                  text: state.e["message"],
+                  fontSize: fontSize,
+                ),
+              );
+            } else {
               return Container();
             }
           },
@@ -97,10 +122,30 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     );
   }
 
+  Future pickPhoto(ImageSource source) async {
+    try {
+      image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+      setState(() {
+        image = imageTemp;
+      });
+    } on PlatformException catch (e) {
+      print(e);
+    }
+  }
+
   Widget getContinueButton() => AppButton(
         label: S.current.continueText,
         onPressed: () {
-          if (_formKey.currentState!.validate()) {
+
+          if(genderText==""){
+            var snackBar =
+            AppSnackBar(text: S.current.genderTextIsNull, isSuccess: false, maxLines: 10);
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+           if (_formKey.currentState!.validate() && genderText!="") {
             NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute);
             _formKey.currentState!.save();
           }
@@ -138,7 +183,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getUserPic() => Padding(
+  Widget getUserPic({required userId}) => Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
           children: [
@@ -146,9 +191,9 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
               children: [
                 CircleAvatar(
                   radius: 80.w,
-                  child: const Image(
-                    image: AssetImage("images/user.png"),
-                  ),
+                  backgroundImage: image == null
+                      ? const AssetImage("images/user.png") as ImageProvider
+                      : FileImage(image),
                 ),
                 Positioned(
                   bottom: 0,
@@ -156,8 +201,18 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   child: CircleAvatar(
                     backgroundColor: Theme.of(context).primaryColor,
                     radius: 25.w,
-                    child: const Icon(
-                      Icons.camera_alt_outlined,
+                    child: IconButton(
+                      onPressed: () async {
+                        var imgSource = await showImageSource(context: context);
+                        if(imgSource == ImageSource.gallery){
+                          await pickPhoto(ImageSource.gallery);
+                        }
+                        else if(imgSource == ImageSource.camera){
+                          await pickPhoto(ImageSource.camera);
+                        }
+                         fileName = await uploadImageToAzure(image.path,userId);
+                      },
+                      icon: const Icon(Icons.camera_alt_outlined),
                       color: AppColors.white,
                     ),
                   ),
@@ -230,7 +285,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
 
   Widget getUserInfoWidget(
           {required hintText,
-           textController,
+          textController,
           required icon,
           required bool gender,
           required bool birthdate}) =>
@@ -261,7 +316,6 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                         getGenderWidget(),
                         const Spacer(),
                         AppText(
-
                           text: genderText,
                           fontSize: 13.sp,
                           color: AppColors.greyColor,
@@ -275,8 +329,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   ),
                 ),
               ),
-            ]
-            else if (birthdate) ...[
+            ] else if (birthdate) ...[
               Expanded(
                 child: Material(
                   color: Colors.transparent,
@@ -313,6 +366,26 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   hintText: hintText,
                   textController: textController,
                   inputType: TextInputType.text,
+                  validator: (value){
+                    if(textController == firstNameController){
+                      if(textController.text == "")
+                        {
+                          return S.current.firstNameValidation;
+                        }
+                      else {
+                        return null;
+                      }
+                    }
+                    else if(textController == lastNameController){
+                      if(textController.text == "")
+                      {
+                        return S.current.secondNameValidation;
+                      }
+                      else {
+                        return null;
+                      }
+                    }
+                  },
                 ),
               ),
           ],
@@ -353,4 +426,49 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
           inputType: inputType,
           validator: validator,
           onTap: onTap);
+
+  Future<ImageSource?> showImageSource({required context}) {
+    if (Platform.isAndroid) {
+      return showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) =>Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: AppText(text: S.current.camera,fontSize: fontSize,),
+              onTap: ()=>Navigator.of(context).pop(ImageSource.camera),
+            ),
+            ListTile(
+              leading: const Icon(Icons.image),
+              title: AppText(text: S.current.gallery,fontSize: fontSize,),
+              onTap: ()=>Navigator.of(context).pop(ImageSource.gallery),
+            ),
+          ],
+        )
+      );
+    } else {
+      return showCupertinoModalPopup<ImageSource>(
+          context: context,
+          builder: (BuildContext context) => CupertinoActionSheet(
+                actions: [
+                  CupertinoActionSheetAction(
+                    onPressed: () =>
+                        Navigator.of(context).pop(ImageSource.camera),
+                    child: AppText(
+                      text: S.current.camera,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                  CupertinoActionSheetAction(
+                    onPressed: () =>
+                        Navigator.of(context).pop(ImageSource.gallery),
+                    child: AppText(
+                      text: S.current.gallery,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                ],
+              ));
+    }
+  }
 }

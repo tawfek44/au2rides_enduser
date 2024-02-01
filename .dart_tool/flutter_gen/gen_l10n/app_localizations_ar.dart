@@ -165,4 +165,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get birthDate => 'تاريخ الميلاد';
+
+  @override
+  String get camera => 'الكاميرا';
+
+  @override
+  String get gallery => 'الصور';
+
+  @override
+  String get firstNameValidation => 'من فضلك إدخل الإسم الأول.';
+
+  @override
+  String get secondNameValidation => 'من فضلك إدخل الإسم الأخير.';
+
+  @override
+  String get genderTextIsNull => 'من فضلك أختر جنسك';
 }

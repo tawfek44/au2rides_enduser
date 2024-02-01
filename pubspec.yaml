@@ -61,6 +61,8 @@ dependencies:
   full_screen_image: ^2.0.0
   either_dart: ^1.0.0
   persian_input: ^0.2.3
+  azblob: ^2.3.0
+  path:
 
 dev_dependencies:
   flutter_test:

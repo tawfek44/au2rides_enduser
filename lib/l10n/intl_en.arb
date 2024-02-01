@@ -52,5 +52,10 @@
   "lastName": "Last Name",
   "email": "Email",
   "gender": "Gender",
-  "birthDate": "Birth Date"
+  "birthDate": "Birth Date",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "firstNameValidation": "Please enter first name.",
+  "secondNameValidation": "Please enter second name.",
+  "genderTextIsNull": "Please choose your gender"
 }

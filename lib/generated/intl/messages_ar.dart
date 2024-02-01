@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attachment": MessageLookupByLibrary.simpleMessage("المرفقات"),
         "attachmentTitle": MessageLookupByLibrary.simpleMessage("المرفقات..."),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+        "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
@@ -51,8 +52,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourOTPCodeHere":
             MessageLookupByLibrary.simpleMessage("إدخل الرمز للتحقق"),
         "firstName": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
+        "firstNameValidation":
+            MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأول."),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
+        "gallery": MessageLookupByLibrary.simpleMessage("الصور"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+        "genderTextIsNull":
+            MessageLookupByLibrary.simpleMessage("من فضلك أختر جنسك"),
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("صحيح ؟"),
@@ -81,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "purchase": MessageLookupByLibrary.simpleMessage("شراء"),
         "resendNewCode": MessageLookupByLibrary.simpleMessage("إرسال رمز جديد"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
+        "secondNameValidation":
+            MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأخير."),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("بيانات تسجيل الدخول"),
