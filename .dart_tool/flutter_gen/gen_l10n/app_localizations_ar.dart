@@ -180,4 +180,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get genderTextIsNull => 'من فضلك أختر جنسك';
+
+  @override
+  String get chooseYourGender => 'أختر جنسك';
+
+  @override
+  String get thereIsAnErrorInGender => 'هناك خطأ ما من فضلك حاول لاحقا مرة أخرى';
 }

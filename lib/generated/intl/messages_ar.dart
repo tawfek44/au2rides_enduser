@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "chooseYourGender": MessageLookupByLibrary.simpleMessage("أختر جنسك"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
@@ -95,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "theReCAPTCHAResponseTokenWasInvalidExpired":
             MessageLookupByLibrary.simpleMessage(
                 "رمز استجابة reCAPTCHA كان غير صالح، ومنتهي الصلاحية"),
+        "thereIsAnErrorInGender": MessageLookupByLibrary.simpleMessage(
+            "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الخاص بك قد تم تعطيله."),

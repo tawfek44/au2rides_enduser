@@ -57,5 +57,7 @@
   "gallery": "Gallery",
   "firstNameValidation": "Please enter first name.",
   "secondNameValidation": "Please enter second name.",
-  "genderTextIsNull": "Please choose your gender"
+  "genderTextIsNull": "Please choose your gender",
+  "chooseYourGender": "Choose your gender",
+  "thereIsAnErrorInGender": "There is an error, please try again later"
 }

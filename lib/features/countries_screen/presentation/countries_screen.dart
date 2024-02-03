@@ -27,7 +27,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
   var countriesList = [];
 
   var tempCountryList = [];
-  var selectedIndex = -1;
   TextEditingController countriesSearchText = TextEditingController();
 
   @override
@@ -50,6 +49,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return Directionality(
       textDirection:
           isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),

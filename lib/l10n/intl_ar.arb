@@ -57,5 +57,8 @@
   "gallery": "الصور",
   "firstNameValidation": "من فضلك إدخل الإسم الأول.",
   "secondNameValidation": "من فضلك إدخل الإسم الأخير.",
-  "genderTextIsNull": "من فضلك أختر جنسك"
+  "genderTextIsNull": "من فضلك أختر جنسك",
+  "chooseYourGender": "أختر جنسك",
+  "thereIsAnErrorInGender": "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى"
+
 }

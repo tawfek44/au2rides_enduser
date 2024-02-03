@@ -36,6 +36,7 @@ class UserRepository {
   Future setSelectedCountryIndex(int countryIndex) async {
     await _prefs.setInt('selectedCountryIndex', countryIndex);
   }
+
   Future setSelectedCountryId(int countryId) async {
     await _prefs.setInt('selectedCountryId', countryId);
   }
@@ -52,6 +53,17 @@ class UserRepository {
     await _prefs.setString('phoneNumber', phoneNumber);
   }
 
+  Future setSelectedGenderIndex(int genderIndex) async {
+    await _prefs.setInt('selectedGenderIndex', genderIndex);
+  }
+  Future setSelectedGenderName(String genderName) async {
+    await _prefs.setString('selectedGenderName', genderName);
+  }
+
+  Future setSelectedGenderId(int genderId) async {
+    await _prefs.setInt('selectedGenderId', genderId);
+  }
+
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';
   String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
@@ -66,6 +78,9 @@ class UserRepository {
   String get getPhoneNumber => _prefs.getString('phoneNumber')??'';
   String get getUserLanguage => _prefs.getString('lang')??'';
 
+  int get getSelectedGenderIndex => _prefs.getInt('selectedGenderIndex')??-1;
+  String get getSelectedGenderName => _prefs.getString('selectedGenderName')??'';
+  int get getSelectedGenderId => _prefs.getInt('selectedGenderId')??-1;
 
   Future logout() async {
     await _prefs.clear();

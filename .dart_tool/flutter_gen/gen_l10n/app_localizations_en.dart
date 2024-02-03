@@ -180,4 +180,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get genderTextIsNull => 'Please choose your gender';
+
+  @override
+  String get chooseYourGender => 'Choose your gender';
+
+  @override
+  String get thereIsAnErrorInGender => 'There is an error, please try again later';
 }

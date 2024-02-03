@@ -446,6 +446,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please choose your gender'**
   String get genderTextIsNull;
+
+  /// No description provided for @chooseYourGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your gender'**
+  String get chooseYourGender;
+
+  /// No description provided for @thereIsAnErrorInGender.
+  ///
+  /// In en, this message translates to:
+  /// **'There is an error, please try again later'**
+  String get thereIsAnErrorInGender;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

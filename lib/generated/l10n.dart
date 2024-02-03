@@ -639,6 +639,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose your gender`
+  String get chooseYourGender {
+    return Intl.message(
+      'Choose your gender',
+      name: 'chooseYourGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is an error, please try again later`
+  String get thereIsAnErrorInGender {
+    return Intl.message(
+      'There is an error, please try again later',
+      name: 'thereIsAnErrorInGender',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
