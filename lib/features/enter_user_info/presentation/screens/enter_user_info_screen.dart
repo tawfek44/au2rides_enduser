@@ -2,14 +2,17 @@ import 'dart:io';
 
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:au2rides/core/storage/local/sqlite.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/utils/uploader.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/core/widgets/shared_text_field.dart';
+import 'package:au2rides/features/enter_user_info/data/models/user/user_model.dart';
 import 'package:au2rides/features/enter_user_info/presentation/bloc/add_user_to_server/update_user_data_cubit.dart';
 import 'package:au2rides/features/enter_user_info/presentation/bloc/get_user_info_cubit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,8 +24,10 @@ import 'package:intl/intl.dart' as intl;
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/dependancy_injection/injection.dart';
+import '../../../../core/error/failure.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
+import '../bloc/add_user_in_local_db/add_user_in_loca_db_cubit.dart';
 
 class EnterUserInfoScreen extends StatefulWidget {
   const EnterUserInfoScreen({super.key});
@@ -89,21 +94,24 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             } else if (state is LoadedGetUserInfoState) {
               firstNameController.text = state.response.firstName ?? "";
               lastNameController.text = state.response.lastName ?? "";
-              emailController.text = state.response.email ?? "";
+              emailController.text = state.response.email.emailAddress ?? "";
               birthDate = state.response.birthDate == ""
                   ? intl.DateFormat('dd-MM-yyyy').format(selectedDate)
-                  : "";
-              genderText = state.response.gender ?? "";
+                  : state.response.birthDate;
+              genderText = state.response.gender.genderName ?? "";
+
               return Form(
                 key: _formKey,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: ListView(
                     children: [
-                      getUserPic(userId: state.response.userId),
+                      getUserPic(
+                          userId: state.response.userId,
+                          imageUrl: state.response.profileImageUrl),
                       getUserInfoSection(),
                       gap(height: 15.w),
-                      getContinueButton(userId: state.response.userId)
+                      getContinueButton(userId: state.response.userId,response1: state.response)
                     ],
                   ),
                 ),
@@ -138,7 +146,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getContinueButton({required userId}) => AppButton(
+  Widget getContinueButton({required userId,required response1}) => AppButton(
         label: S.current.continueText,
         onPressed: () async {
           if (getIt<UserRepository>().getSelectedGenderName == "") {
@@ -151,18 +159,54 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
           }
           if (_formKey.currentState!.validate() &&
               getIt<UserRepository>().getSelectedGenderName != "") {
-            await context.read<UpdateUserDataCubit>().updateUserDataInServer(
-                  birthDate: "01-01-2023",
-                  emailAddress: emailController.text,
-                  firstName: firstNameController.text,
-                  lastName: lastNameController.text,
-                  language: getIt<UserRepository>().getUserLanguage,
-                  genderId: getIt<UserRepository>().getSelectedGenderId,
-                  registeredUserId: userId,
-                  profileImageUrl:registeredUserProfileImageUrl+fileName
-                );
-            NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute);
             _formKey.currentState!.save();
+            final response = await context
+                .read<UpdateUserDataCubit>()
+                .updateUserDataInServer(
+                    birthDate: birthDate,
+                    emailAddress: emailController.text,
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    language: getIt<UserRepository>().getUserLanguage,
+                    genderId: getIt<UserRepository>().getSelectedGenderId,
+                    registeredUserId: userId,
+                    profileImageUrl: fileName==""? response1.profileImageUrl:registeredUserProfileImageUrl + fileName);
+            if (response is Failure) {
+              var snackBar = AppSnackBar(
+                  text: response.message, isSuccess: false, maxLines: 10);
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            } else {
+              var userData = UserModel(
+                userId: userId,
+                firstName: firstNameController.text,
+                lastName: lastNameController.text,
+                emailAddress: emailController.text,
+                isVerified: response.email.isVerified == false?0:1,
+                profileImageUrl: response.profileImageUrl,
+                profileQrCode: response.profileQrCode,
+                countryId: response.country.countryId,
+                genderId: response.gender.genderId,
+                birthDate: birthDate,
+                mobileNumber: response.mobileNumber
+              );
+              final localDbResponse = await context.read<AddUserToLocalDbCubit>().addUserToLocalDbInfo(
+                    userData: userData.toJson(),
+                 );
+              if(localDbResponse>0){
+                var snackBar = AppSnackBar(
+                    text: S.current.userInfoAddedSuccessfully, isSuccess: true, maxLines: 10);
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute,clean: true);
+                getIt<UserRepository>().setLoggedInMark(true);
+              }
+              else{
+                var snackBar = AppSnackBar(
+                    text: S.current.thereIsAnErrorInGender, isSuccess: false, maxLines: 10);
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+            }
+
+
           }
         },
         height: 50.h,
@@ -198,18 +242,17 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getUserPic({required userId}) => Padding(
+  Widget getUserPic({required userId, required imageUrl}) => Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
           children: [
             Stack(
               children: [
-                CircleAvatar(
-                  radius: 80.w,
-                  backgroundImage: image == null
-                      ? const AssetImage("images/user.png") as ImageProvider
-                      : FileImage(image),
-                ),
+                imageUrl == null
+                    ? getLocalImage(image: image)
+
+
+                    : getNetworkImage(imageUrl: imageUrl),
                 Positioned(
                   bottom: 0,
                   right: 0,
@@ -225,6 +268,9 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                           await pickPhoto(ImageSource.camera);
                         }
                         fileName = await uploadImageToAzure(image.path, userId);
+                        setState(()  {
+
+                        });
                       },
                       icon: const Icon(Icons.camera_alt_outlined),
                       color: AppColors.white,
@@ -483,4 +529,27 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
               ));
     }
   }
+
+  getNetworkImage({required imageUrl}) => CachedNetworkImage(
+        fit: BoxFit.fill,
+        imageBuilder: (context, imageProvider) => Container(
+          height: 150.h,
+          width: 150.w,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(500)),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        imageUrl: imageUrl,
+      );
+
+  getLocalImage({required image}) => CircleAvatar(
+        radius: 60.w,
+        backgroundImage: image == null
+            ? const AssetImage("images/user.png") as ImageProvider
+            : FileImage(image),
+      );
 }

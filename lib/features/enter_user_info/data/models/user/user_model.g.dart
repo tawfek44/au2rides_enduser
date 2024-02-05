@@ -17,12 +17,14 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       countryId: json['country_id'] as int,
       genderId: json['gender_id'] as int,
       birthDate: json['birth_date'] as String,
+      mobileNumber: json['mobile_number'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'user_id': instance.userId,
       'first_name': instance.firstName,
       'last_name': instance.lastName,
+      'mobile_number': instance.mobileNumber,
       'email_address': instance.emailAddress,
       'is_verified': instance.isVerified,
       'profile_image_url': instance.profileImageUrl,

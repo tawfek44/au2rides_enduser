@@ -186,4 +186,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thereIsAnErrorInGender => 'There is an error, please try again later';
+
+  @override
+  String get userInfoAddedSuccessfully => 'you complete your profile successfully.';
 }

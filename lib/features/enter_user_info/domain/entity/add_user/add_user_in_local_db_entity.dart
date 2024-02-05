@@ -11,6 +11,8 @@ class UserEntity extends Equatable {
   final String firstName;
   @JsonKey(name: "last_name")
   final String lastName;
+  @JsonKey(name: "mobile_number")
+  final String mobileNumber;
   @JsonKey(name: "email_address")
   final String emailAddress;
   @JsonKey(name: "is_verified")
@@ -35,6 +37,7 @@ class UserEntity extends Equatable {
       required this.profileImageUrl,
       required this.profileQrCode,
       required this.countryId,
+      required this.mobileNumber,
       required this.genderId,
       required this.birthDate});
 
@@ -50,6 +53,7 @@ class UserEntity extends Equatable {
         profileQrCode,
         countryId,
         birthDate,
-        genderId
+        genderId,
+        mobileNumber
       ];
 }

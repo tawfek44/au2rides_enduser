@@ -59,5 +59,6 @@
   "secondNameValidation": "Please enter second name.",
   "genderTextIsNull": "Please choose your gender",
   "chooseYourGender": "Choose your gender",
-  "thereIsAnErrorInGender": "There is an error, please try again later"
+  "thereIsAnErrorInGender": "There is an error, please try again later",
+  "userInfoAddedSuccessfully": "you complete your profile successfully."
 }

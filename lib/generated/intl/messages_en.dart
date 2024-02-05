@@ -107,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "Your phone number has been disabled."),
         "userInfo": MessageLookupByLibrary.simpleMessage("User Info"),
+        "userInfoAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "you complete your profile successfully."),
         "verification": MessageLookupByLibrary.simpleMessage("Verification"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "wrongText": MessageLookupByLibrary.simpleMessage(

@@ -36,6 +36,7 @@ class UpdateUserDataCubit extends Cubit<UpdateUserDataState> {
       if (!(response is Failure)) {
         response = UserNetworkModel.fromJson(response.data);
         emit(UpdateUserDataState.loaded(response));
+        return response;
       }
       else {
         emit(UpdateUserDataState.error(response));

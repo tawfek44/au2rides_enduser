@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io' show Platform;
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/error/failure.dart';
@@ -11,6 +12,7 @@ import 'package:au2rides/features/download_screen/domain/usecase/authorize/autho
 import 'package:bloc/bloc.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -36,11 +38,15 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
     var deviceInfo;
     if (device.data.isNotEmpty) {
       deviceInfo = device.data;
+     // printLongString(deviceInfo.toString());
       deviceInfo = json.encode(deviceInfo);
       return deviceInfo;
     }
   }
-
+  void printLongString(String text) {
+    final RegExp pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+    pattern.allMatches(text).forEach((RegExpMatch match) =>   print(match.group(0)));
+  }
   getPackageData() async {
     var packageInfo = await PackageInfo.fromPlatform();
     var packageVersion = packageInfo.version;

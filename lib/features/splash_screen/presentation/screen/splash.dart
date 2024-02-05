@@ -113,7 +113,12 @@ class _SplashScreenState extends State<SplashScreen> {
               } else {
                 Timer(const Duration(seconds: 2), () {
                   widget.userRepository.setFirstTimeOpenApp(false);
-                  NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
+                  if(getIt<UserRepository>().isLoggedIn){
+                    NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute, clean: true);
+                  }
+                  else{
+                    NamedNavigatorImpl().push(Routes.loginScreenRoute, clean: true);
+                  }
                 });
               }
             }

@@ -102,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الخاص بك قد تم تعطيله."),
         "userInfo": MessageLookupByLibrary.simpleMessage("بيانات المستخدم"),
+        "userInfoAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "لقد أكملت بيانات صفحتك الخاصة بنجاح."),
         "verification": MessageLookupByLibrary.simpleMessage("التحقق"),
         "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "wrongText": MessageLookupByLibrary.simpleMessage(

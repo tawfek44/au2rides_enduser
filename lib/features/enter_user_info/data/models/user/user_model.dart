@@ -13,5 +13,5 @@ class UserModel extends UserEntity {
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-  const UserModel({required super.userId, required super.firstName, required super.lastName, required super.emailAddress, required super.isVerified, required super.profileImageUrl, required super.profileQrCode, required super.countryId, required super.genderId, required super.birthDate});
+  const UserModel({required super.userId, required super.firstName, required super.lastName, required super.emailAddress, required super.isVerified, required super.profileImageUrl, required super.profileQrCode, required super.countryId, required super.genderId, required super.birthDate, required super.mobileNumber});
 }

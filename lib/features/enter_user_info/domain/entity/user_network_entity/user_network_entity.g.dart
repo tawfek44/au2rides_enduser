@@ -22,6 +22,7 @@ UserNetworkEntity _$UserNetworkEntityFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] == null
           ? null
           : Gender.fromJson(json['gender'] as Map<String, dynamic>),
+      mobileNumber: json['mobile_number'] as String?,
       birthDate: json['birth_date'] as String?,
     );
 
@@ -30,6 +31,7 @@ Map<String, dynamic> _$UserNetworkEntityToJson(UserNetworkEntity instance) =>
       'registered_user_id': instance.userId,
       'first_name': instance.firstName,
       'last_name': instance.lastName,
+      'mobile_number': instance.mobileNumber,
       'email': instance.email,
       'profile_image_url': instance.profileImageUrl,
       'profile_qr_code': instance.profileQrCode,

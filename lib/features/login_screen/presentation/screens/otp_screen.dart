@@ -241,6 +241,7 @@ class _OTPScreenState extends State<OTPScreen> {
       if (isMobileNumberExist.map((e) => e).toList().length == 0) {
         NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute);
       } else {
+        getIt<UserRepository>().setLoggedInMark(true);
         NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute,clean: true);
       }
     }

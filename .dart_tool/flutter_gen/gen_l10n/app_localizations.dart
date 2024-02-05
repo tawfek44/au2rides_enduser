@@ -458,6 +458,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There is an error, please try again later'**
   String get thereIsAnErrorInGender;
+
+  /// No description provided for @userInfoAddedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'you complete your profile successfully.'**
+  String get userInfoAddedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

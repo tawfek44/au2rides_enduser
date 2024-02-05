@@ -131,11 +131,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget getPhoneNumberWidget() =>
       CupertinoListTile(
           leadingToTitle: 0,
+          leadingSize: 40.w,
           leading: AppText(
             text: getIt<UserRepository>().getSelectedCountryCallingCode,
-            fontSize: fontSize,
+            fontSize: fontSize.sp,
             color: AppColors.greyColor,
-            maxLines: 5,
+            maxLines: 10,
           ),
           title: CupertinoTextField(
             controller: phoneController,

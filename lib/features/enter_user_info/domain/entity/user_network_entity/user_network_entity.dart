@@ -11,6 +11,8 @@ class UserNetworkEntity extends Equatable {
   final String? firstName;
   @JsonKey(name: "last_name")
   final String? lastName;
+  @JsonKey(name: "mobile_number")
+  final String? mobileNumber;
   @JsonKey(name: "email")
   final Email? email;
   @JsonKey(name: "profile_image_url")
@@ -33,12 +35,15 @@ class UserNetworkEntity extends Equatable {
       required this.profileQrCode,
       required this.country,
       required this.gender,
+      required this.mobileNumber,
       required this.birthDate});
+
   factory UserNetworkEntity.fromJson(final Map<String, dynamic> json) {
     return _$UserNetworkEntityFromJson(json);
   }
 
   Map<String, dynamic> toJson() => _$UserNetworkEntityToJson(this);
+
   @override
   List<Object?> get props => [
         userId,
@@ -48,7 +53,8 @@ class UserNetworkEntity extends Equatable {
         profileImageUrl,
         profileQrCode,
         birthDate,
-        gender
+        gender,
+        mobileNumber
       ];
 }
 
@@ -63,11 +69,13 @@ class Email extends Equatable {
     required this.emailAddress,
     required this.isVerified,
   });
+
   factory Email.fromJson(final Map<String, dynamic> json) {
     return _$EmailFromJson(json);
   }
 
   Map<String, dynamic> toJson() => _$EmailToJson(this);
+
   @override
   List<Object?> get props => [
         emailAddress,
@@ -86,11 +94,13 @@ class Country extends Equatable {
     required this.countryId,
     required this.countryName,
   });
+
   factory Country.fromJson(final Map<String, dynamic> json) {
     return _$CountryFromJson(json);
   }
 
   Map<String, dynamic> toJson() => _$CountryToJson(this);
+
   @override
   List<Object?> get props => [
         countryId,
@@ -109,14 +119,16 @@ class Gender extends Equatable {
     required this.genderId,
     required this.genderName,
   });
+
   factory Gender.fromJson(final Map<String, dynamic> json) {
     return _$GenderFromJson(json);
   }
 
   Map<String, dynamic> toJson() => _$GenderToJson(this);
+
   @override
   List<Object?> get props => [
-    genderId,
-    genderName,
-  ];
+        genderId,
+        genderName,
+      ];
 }

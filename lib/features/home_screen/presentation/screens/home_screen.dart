@@ -274,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     child: SizedBox(
       width: double.infinity,
-      height: 160.h,
+      height: 165.h,
       child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(

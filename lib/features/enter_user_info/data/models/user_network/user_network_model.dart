@@ -14,5 +14,5 @@ class UserNetworkModel extends UserNetworkEntity {
 
   Map<String, dynamic> toJson() => _$UserNetworkModelToJson(this);
 
-  const UserNetworkModel({required super.userId, required super.firstName, required super.lastName, required super.email, required super.profileImageUrl, required super.profileQrCode, required super.country, required super.gender, required super.birthDate});
+  const UserNetworkModel({required super.userId, required super.firstName, required super.lastName, required super.email, required super.profileImageUrl, required super.profileQrCode, required super.country, required super.gender, required super.birthDate, required super.mobileNumber});
 }

@@ -659,6 +659,16 @@ class S {
       args: [],
     );
   }
+
+  /// `you complete your profile successfully.`
+  String get userInfoAddedSuccessfully {
+    return Intl.message(
+      'you complete your profile successfully.',
+      name: 'userInfoAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

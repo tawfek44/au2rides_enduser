@@ -59,6 +59,7 @@
   "secondNameValidation": "من فضلك إدخل الإسم الأخير.",
   "genderTextIsNull": "من فضلك أختر جنسك",
   "chooseYourGender": "أختر جنسك",
-  "thereIsAnErrorInGender": "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى"
+  "thereIsAnErrorInGender": "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى",
+  "userInfoAddedSuccessfully": "لقد أكملت بيانات صفحتك الخاصة بنجاح."
 
 }
