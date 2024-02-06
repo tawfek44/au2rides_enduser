@@ -80,6 +80,7 @@ class AuthorizeCubit extends Cubit<AuthorizeState> {
       print(response);
       if(!(response is Left)){
         getIt<UserRepository>().setAccessToken(response.data["access_token"]["access_token"]);
+        getIt<UserRepository>().setRefreshToken(response.data["refresh_token"]["refresh_token"]);
       }
 
       return response;

@@ -236,6 +236,7 @@ class _OTPScreenState extends State<OTPScreen> {
           .read<AuthorizeMobileNumberCubit>()
           .checkMobileNumberExistenceInLocalDb(userId: userId);
       getIt<UserRepository>().setAccessToken(response.data["access_token"]["access_token"]);
+      getIt<UserRepository>().setRefreshToken(response.data["refresh_token"]["refresh_token"]);
 
       //this user is not exists in local db
       if (isMobileNumberExist.map((e) => e).toList().length == 0) {
