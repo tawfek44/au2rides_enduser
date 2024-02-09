@@ -1,46 +1,39 @@
 import 'dart:io';
-
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/tables/languages.dart';
-import 'package:au2rides/core/storage/tables/tables_definitions.dart';
 import 'package:au2rides/env.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
-
-import 'core/constants/constants.dart';
 import 'core/dependancy_injection/injection.dart';
 import 'core/storage/local/sqlite.dart';
+import 'core/storage/local/table_names.dart';
 import 'main.dart';
 
 late var languageTableCount;
 List<String> tableNames = [
-  countryTableName,
-  currencyTableName,
-  userGenderTableName,
-  weatherMeasuringUnitsTableName,
-  rideTypesTableName,
-  paymentMethodTableName,
-  monthTableName,
-  pressureUnitsTableName,
-  acquisitionTypesTableName,
-  metricUnitsTableName,
-  engineTransmissionTypes,
-  engineFuelTypes,
-  reminderTypesTableName,
-  reminderTypeServicesTableName,
-  recurrencePeriodTypesTableName,
-  fuelBrandsTableName,
-  fuelConsumptionUnitTypesTableName,
-  fuelOctaneNumbersTableName,
-  servicesDepartmentsTableName,
-  servicesTypesTableName,
-  departmentServiceItemsTableName,
-  modelGenerationSpecificationKeys,
-  workflowStatusesTableName
+  TableNames.countryTableName,
+  TableNames.currencyTableName,
+  TableNames.userGenderTableName,
+  TableNames.weatherMeasuringUnitsTableName,
+  TableNames.rideTypesTableName,
+  TableNames.paymentMethodTableName,
+  TableNames.monthTableName,
+  TableNames.pressureUnitsTableName,
+  TableNames.acquisitionTypesTableName,
+  TableNames.metricUnitsTableName,
+  TableNames.engineTransmissionTypes,
+  TableNames.engineFuelTypes,
+  TableNames.reminderTypesTableName,
+  TableNames.reminderTypeServicesTableName,
+  TableNames.recurrencePeriodTypesTableName,
+  TableNames.fuelBrandsTableName,
+  TableNames.fuelConsumptionUnitTypesTableName,
+  TableNames.fuelOctaneNumbersTableName,
+  TableNames.servicesDepartmentsTableName,
+  TableNames.servicesTypesTableName,
+  TableNames.departmentServiceItemsTableName,
+  TableNames.modelGenerationSpecificationKeys,
+  TableNames.workflowStatusesTableName
 ];
 
 Future main() async {

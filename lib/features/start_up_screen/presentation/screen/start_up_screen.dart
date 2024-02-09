@@ -14,6 +14,7 @@ import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/storage/local/sqlite.dart';
+import '../../../../core/storage/local/table_names.dart';
 import '../../../../core/storage/tables/tables_definitions.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../main_dev.dart';
@@ -107,7 +108,7 @@ insertTableNamesInTablesDefinitions(
     {required Au2ridesDatabase databaseObject}) {
   for (var i = 0; i < tableNames.length; i++) {
     databaseObject.insert(
-        tableName: tableDefinitionsTableName,
+        tableName: TableNames.tableDefinitionsTableName,
         values: TableDefinitions(
             tableId: i + 1,
             tableName: tableNames[i],

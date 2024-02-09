@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/storage/local/sqlite.dart';
+import '../../../../../core/storage/local/table_names.dart';
 import '../../../data/models/country/country_model.dart';
 import '../../../domain/usecase/country/clear_all_data_country_usecase.dart';
 import '../../../domain/usecase/country/country_usecase.dart';
@@ -52,7 +53,7 @@ class CountryCubit extends Cubit<CountryState> {
     try {
       await Au2ridesDatabase.instance.updateData(
           queryText:
-              "UPDATE $languageTableName SET is_downloaded = ? WHERE language_code = ?",
+              "UPDATE ${TableNames.languageTableName} SET is_downloaded = ? WHERE language_code = ?",
           values: [1, appLanguage]);
     } catch (e) {
       print(e);
@@ -63,7 +64,7 @@ class CountryCubit extends Cubit<CountryState> {
     try {
       await Au2ridesDatabase.instance.updateData(
           queryText:
-              "UPDATE $tableDefinitionsTableName SET table_id = ?, table_name = ?, language_id = ?, schema_version = ?, data_version = ? WHERE table_name = ?",
+              "UPDATE ${TableNames.tableDefinitionsTableName} SET table_id = ?, table_name = ?, language_id = ?, schema_version = ?, data_version = ? WHERE table_name = ?",
           values: [
             table.tableId,
             table.tableName,

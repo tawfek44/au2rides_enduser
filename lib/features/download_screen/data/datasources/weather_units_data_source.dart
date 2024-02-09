@@ -3,6 +3,8 @@ import 'package:au2rides/core/storage/local/sqlite.dart';
 import 'package:au2rides/core/storage/network/dio_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/storage/network/end_points.dart';
+
 @injectable
 class WeatherUnitsDataSource {
   Future clearAllWeatherUnitsDataFromLocalDb({required tableName,required languageId}) async {
@@ -14,7 +16,7 @@ class WeatherUnitsDataSource {
   Future downloadWeatherUnitsDataFromNetworkDb(
       {required appLang, required tableDefinitions}) async {
    final response = await DioClient().fetchPrimaryData(
-       endPoint: downloadPrimaryDataEndPoint,
+       endPoint: EndPoints.downloadPrimaryDataEndPoint,
         lang: appLang,
         tableDefinitions: tableDefinitions);
     return response.value;

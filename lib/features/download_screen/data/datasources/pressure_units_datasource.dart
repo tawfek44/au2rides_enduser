@@ -4,13 +4,15 @@ import 'package:au2rides/env.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/local/table_names.dart';
+import '../../../../core/storage/network/end_points.dart';
 
 @injectable
 class PressureUnitsDataSource {
   getAllPressureUnitsFromAPI(
       {required String lang, required tableDefinitions}) async {
     final response = await DioClient().fetchPrimaryData(
-        endPoint: downloadPrimaryDataEndPoint,
+        endPoint: EndPoints.downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
     return response.value;
@@ -22,7 +24,7 @@ class PressureUnitsDataSource {
 
   deleteAllPressureUnitsInDatabase({required String tableName,required languageId}) async {
     final response = await Au2ridesDatabase.instance
-        .clearAllData(tableName: pressureUnitsTableName,languageId: languageId);
+        .clearAllData(tableName: TableNames.pressureUnitsTableName,languageId: languageId);
     return response;
   }
 }

@@ -68,7 +68,7 @@ class UserRepository {
   }
 
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';
-  String get getRefreshToken => 'Bearer ${_prefs.getString('refreshToken')}'??'';
+  String get getRefreshToken => '${_prefs.getString('refreshToken')}'??'';
   String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
   bool get getFirstTimeOpenApp => _prefs.getBool('firstTimeOpenApp')??true;

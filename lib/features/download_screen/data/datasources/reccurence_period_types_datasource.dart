@@ -4,6 +4,7 @@ import 'package:au2rides/env.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/network/end_points.dart';
 
 @injectable
 class RecurrencePeriodTypesDataSource {
@@ -16,7 +17,7 @@ class RecurrencePeriodTypesDataSource {
   getAllRecurrencePeriodTypesFromNetworkDatabase(
       {required String lang, required tableDefinitions}) async {
     final response = await DioClient().fetchPrimaryData(
-        endPoint: downloadPrimaryDataEndPoint,
+        endPoint: EndPoints.downloadPrimaryDataEndPoint,
         lang: lang,
         tableDefinitions: tableDefinitions);
     return response.value;

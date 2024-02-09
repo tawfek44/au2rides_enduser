@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/repositories/user_repository.dart';
+import '../../../../core/storage/network/end_points.dart';
 
 @injectable
 class CheckPrimaryDataDataSource {
@@ -12,7 +13,7 @@ class CheckPrimaryDataDataSource {
 
   checkPrimaryData({required String lang, required dynamic data}) async {
     final response = await DioClient().postData(
-        endPoint: primaryDataEndpoint,
+        endPoint: EndPoints.primaryDataEndpoint,
         lang: lang,
         data: data,
         apiUrl: baseUrl,

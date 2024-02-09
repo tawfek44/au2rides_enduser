@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/dependancy_injection/injection.dart';
 import '../../../../../core/repositories/user_repository.dart';
+import '../../../../../core/storage/network/end_points.dart';
 import '../../../../../env.dart';
 
 abstract class GetUserDataFromNetworkDatasource {
@@ -15,7 +16,7 @@ class GetUserDataFromNetworkDatasourceImp implements GetUserDataFromNetworkDatas
   @override
   getUserDataFromNetwork() async {
     final response = await DioClient().getData(
-        endPoint: userDataEndPoint,
+        endPoint: EndPoints.userDataEndPoint,
         apiUrl: AppEnvironment.authAPIUrl,
         authorizationToken: getIt<UserRepository>().getAccessToken);
     return response.value;

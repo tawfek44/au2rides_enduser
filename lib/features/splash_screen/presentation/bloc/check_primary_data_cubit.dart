@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../../core/storage/local/table_names.dart';
 import '../../data/models/check_primary_data_body_model.dart';
 import '../../data/models/check_primary_data_model.dart';
 
@@ -38,7 +39,7 @@ class CheckPrimaryDataCubit extends Cubit<CheckPrimaryDataState> {
   }
   Future isDownloaded() async {
     try {
-      final response = await isDownloadedUseCase(param: languageTableName);
+      final response = await isDownloadedUseCase(param: TableNames.languageTableName);
       return response;
     } catch (e) {
      print(e);

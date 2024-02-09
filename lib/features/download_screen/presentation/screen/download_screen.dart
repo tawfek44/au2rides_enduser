@@ -44,6 +44,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/local/table_names.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
@@ -99,73 +100,73 @@ class _DownloadScreenState extends State<DownloadScreen> {
     if (await widget.networkInfo.isConnected) {
       for (var table in widget.tablesNames) {
         switch (table.tableName) {
-          case countryTableName:
+          case TableNames.countryTableName:
             await downloadPrimaryDataForCountryTable(table: table);
             break;
-          case currencyTableName:
+          case TableNames.currencyTableName:
             await downloadPrimaryDataForCurrencyTable(table: table);
             break;
-          case userGenderTableName:
+          case TableNames.userGenderTableName:
             await downloadPrimaryDataForGenderTable(table: table);
             break;
-          case weatherMeasuringUnitsTableName:
+          case TableNames.weatherMeasuringUnitsTableName:
             await downloadPrimaryDataForWeatherMeasuringUnitsTable(table: table);
             break;
-          case rideTypesTableName:
+          case TableNames.rideTypesTableName:
             await downloadPrimaryDataForRideTypesTable(table: table);
             break;
-          case paymentMethodTableName:
+          case TableNames.paymentMethodTableName:
             await  downloadPrimaryDataForPaymentMethodsTable(table: table);
             break;
-          case monthTableName:
+          case TableNames.monthTableName:
             await downloadPrimaryDataForMonthsTable(table: table);
             break;
-          case pressureUnitsTableName:
+          case TableNames.pressureUnitsTableName:
             await downloadPrimaryDataForPressureUnitsTable(table: table);
             break;
-          case acquisitionTypesTableName:
+          case TableNames.acquisitionTypesTableName:
             await downloadPrimaryDataForAcquisitionTypesTable(table: table);
             break;
-          case metricUnitsTableName:
+          case TableNames.metricUnitsTableName:
             await downloadPrimaryDataForMetricUnitsTable(table: table);
             break;
-          case engineTransmissionTypes:
+          case TableNames.engineTransmissionTypes:
             await downloadPrimaryDataForEngineTransmissionTypesTable(table: table);
             break;
-          case engineFuelTypes:
+          case TableNames.engineFuelTypes:
             await downloadPrimaryDataForEngineFuelTypesTable(table: table);
             break;
-          case reminderTypesTableName:
+          case TableNames.reminderTypesTableName:
             await downloadPrimaryDataForReminderTypesTable(table: table);
             break;
-          case recurrencePeriodTypesTableName:
+          case TableNames.recurrencePeriodTypesTableName:
             await downloadPrimaryDataForRecurrencePeriodTypesTable(table: table);
             break;
-          case reminderTypeServicesTableName:
+          case TableNames.reminderTypeServicesTableName:
             await downloadPrimaryDataForReminderTypeServiceTable(table: table);
             break;
-          case fuelBrandsTableName:
+          case TableNames.fuelBrandsTableName:
             await downloadPrimaryDataForFuelBrandsTable(table: table);
             break;
-          case fuelConsumptionUnitTypesTableName:
+          case TableNames.fuelConsumptionUnitTypesTableName:
             await downloadPrimaryDataForFuelConsumptionUnitTypesTable(table: table);
             break;
-          case servicesDepartmentsTableName:
+          case TableNames.servicesDepartmentsTableName:
             await downloadPrimaryDataForServiceDepartmentsTable(table: table);
             break;
-          case servicesTypesTableName:
+          case TableNames.servicesTypesTableName:
             await downloadPrimaryDataForServiceTypesTable(table: table);
             break;
-          case fuelOctaneNumbersTableName:
+          case TableNames.fuelOctaneNumbersTableName:
             await downloadPrimaryDataForFuelOctaneNumbersTable(table: table);
             break;
-          case departmentServiceItemsTableName:
+          case TableNames.departmentServiceItemsTableName:
             await downloadPrimaryDataForDepartmentServiceItemsTable(table: table);
             break;
-          case modelGenerationSpecificationKeys:
+          case TableNames.modelGenerationSpecificationKeys:
             await downloadPrimaryDataForModelGenerationSpecificationKeysTable(table: table);
             break;
-          case workflowStatusesTableName:
+          case TableNames.workflowStatusesTableName:
             await downloadPrimaryDataForModelWorkflowStatusesTable(table: table);
             break;
         }
@@ -297,7 +298,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     for (var element in response) {
       await context.read<RideTypesCubit>().saveRideTypesDataInLocalDB(
           values: (element as RideTypesModel).toJson(),
-          tableName: rideTypesTableName);
+          tableName: TableNames.rideTypesTableName);
     }
   }
 
@@ -305,7 +306,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     for (var element in response) {
       await context.read<WeatherUnitsCubit>().saveWeatherUnitsDataInLocalDB(
           values: (element as WeatherUnitsModel).toJson(),
-          tableName: weatherMeasuringUnitsTableName);
+          tableName: TableNames.weatherMeasuringUnitsTableName);
     }
   }
 

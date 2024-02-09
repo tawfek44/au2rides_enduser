@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/storage/network/dio_client.dart';
+import '../../../../core/storage/network/end_points.dart';
 
 @injectable
 class RideTypesDataSource {
@@ -16,7 +17,7 @@ class RideTypesDataSource {
   Future downloadRideTypesDataFromNetworkDb(
       {required appLang, required tableDefinitions}) async {
    final response = await DioClient().fetchPrimaryData(
-       endPoint: downloadPrimaryDataEndPoint,
+       endPoint: EndPoints.downloadPrimaryDataEndPoint,
         lang: appLang,
         tableDefinitions: tableDefinitions);
     return response.value;

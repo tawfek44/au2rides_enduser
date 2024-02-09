@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:au2rides/core/storage/local/table_names.dart';
 import 'package:au2rides/core/storage/tables/engine_transmission_types.dart';
 import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/metric_units_types.dart';
@@ -57,7 +58,7 @@ class Au2ridesDatabase {
 
     //Table Definition
     await db.execute('''
-    CREATE TABLE $tableDefinitionsTableName (
+    CREATE TABLE ${TableNames.tableDefinitionsTableName} (
     ${TableDefinitionsFields.tableId} $idType,
     ${TableDefinitionsFields.tableName} $textType,
     ${TableDefinitionsFields.languageId} $intType,
@@ -67,7 +68,7 @@ class Au2ridesDatabase {
     ''');
     //Language
     await db.execute('''
-    CREATE TABLE $languageTableName (
+    CREATE TABLE ${TableNames.languageTableName} (
     ${LanguageFields.languageId} $idType,
     ${LanguageFields.languageCode} $textType,
     ${LanguageFields.languageName} $textType,
@@ -78,7 +79,7 @@ class Au2ridesDatabase {
 
     //Country
     await db.execute('''
-    CREATE TABLE $countryTableName (
+    CREATE TABLE ${TableNames.countryTableName} (
     ${CountryFields.countryId} $intType,
     ${CountryFields.languageId} $intType,
     ${CountryFields.countryName} $textType,
@@ -91,7 +92,7 @@ class Au2ridesDatabase {
 
     //Currency
     await db.execute('''
-    CREATE TABLE $currencyTableName (
+    CREATE TABLE ${TableNames.currencyTableName} (
     ${CurrencyFields.currencyId} $intType,
     ${CurrencyFields.languageId} $intType,
     ${CurrencyFields.currencyCode} $textType,
@@ -103,7 +104,7 @@ class Au2ridesDatabase {
 
     //gender
     await db.execute('''
-    CREATE TABLE $userGenderTableName (
+    CREATE TABLE ${TableNames.userGenderTableName} (
     ${GenderFields.genderId} $intType,
     ${GenderFields.languageId} $intType,
     ${GenderFields.genderName} $textType,
@@ -112,7 +113,7 @@ class Au2ridesDatabase {
     ''');
     //weather_measuring_units;
     await db.execute('''
-    CREATE TABLE $weatherMeasuringUnitsTableName (
+    CREATE TABLE ${TableNames.weatherMeasuringUnitsTableName} (
     ${WeatherMeasuringUnitsFields.measuringUnitId} $intType,
     ${WeatherMeasuringUnitsFields.languageId} $intType,
     ${WeatherMeasuringUnitsFields.measuringUnitName} $textType,
@@ -122,7 +123,7 @@ class Au2ridesDatabase {
     ''');
     //ride_types
     await db.execute('''
-    CREATE TABLE $rideTypesTableName (
+    CREATE TABLE ${TableNames.rideTypesTableName} (
     ${RideTypesFields.rideTypeId} $intType,
     ${RideTypesFields.languageId} $intType,
     ${RideTypesFields.rideTypeName} $textType,
@@ -133,7 +134,7 @@ class Au2ridesDatabase {
     ''');
     //payment_methods = 6;
     await db.execute('''
-    CREATE TABLE $paymentMethodTableName (
+    CREATE TABLE ${TableNames.paymentMethodTableName} (
     ${PaymentMethodsFields.paymentMethodId} $intType,
     ${PaymentMethodsFields.languageId} $intType,
     ${PaymentMethodsFields.allowedCountries} $textNullType,
@@ -145,7 +146,7 @@ class Au2ridesDatabase {
     ''');
     //months
     await db.execute('''
-    CREATE TABLE $monthTableName (
+    CREATE TABLE ${TableNames.monthTableName} (
     ${MonthFields.monthId} $intType,
     ${MonthFields.languageId} $intType,
     ${MonthFields.monthName} $textType,
@@ -155,7 +156,7 @@ class Au2ridesDatabase {
 
     //pressure_units
     await db.execute('''
-    CREATE TABLE $pressureUnitsTableName (
+    CREATE TABLE ${TableNames.pressureUnitsTableName} (
     ${PressureUnitsFields.pressureUnitId} $intType,
     ${PressureUnitsFields.languageId} $intType,
     ${PressureUnitsFields.pressureUnitName} $textType,
@@ -166,7 +167,7 @@ class Au2ridesDatabase {
 
     //AcquisitionTypes
     await db.execute('''
-    CREATE TABLE $acquisitionTypesTableName (
+    CREATE TABLE ${TableNames.acquisitionTypesTableName} (
     ${AcquisitionTypesFields.acquisitionTypeId} $intType,
     ${AcquisitionTypesFields.languageId} $intType,
     ${AcquisitionTypesFields.acquisitionTypeName} $textType,
@@ -176,7 +177,7 @@ class Au2ridesDatabase {
 
     //metric units
     await db.execute('''
-    CREATE TABLE $metricUnitsTableName (
+    CREATE TABLE ${TableNames.metricUnitsTableName} (
     ${MetricUnitsFields.metricUnitId} $intType,
     ${MetricUnitsFields.languageId} $intType,
     ${MetricUnitsFields.metricUnitName} $textType,
@@ -187,7 +188,7 @@ class Au2ridesDatabase {
 
     //engine_transmission_types
     await db.execute('''
-    CREATE TABLE $engineTransmissionTypes (
+    CREATE TABLE ${TableNames.engineTransmissionTypes} (
     ${EngineTransmissionTypesFields.engineTransmissionTypeId} $intType,
     ${EngineTransmissionTypesFields.languageId} $intType,
     ${EngineTransmissionTypesFields.engineTransmissionTypeName} $textType,
@@ -197,7 +198,7 @@ class Au2ridesDatabase {
     //engine_fuel_types
 
     await db.execute('''
-    CREATE TABLE $engineFuelTypes (
+    CREATE TABLE ${TableNames.engineFuelTypes} (
     ${EngineFuelTypesFields.engineFuelTypeId} $intType,
     ${EngineFuelTypesFields.languageId} $intType,
     ${EngineFuelTypesFields.engineFuelTypeName} $textType,
@@ -207,7 +208,7 @@ class Au2ridesDatabase {
 
     //reminder_types
     await db.execute('''
-    CREATE TABLE $reminderTypesTableName (
+    CREATE TABLE ${TableNames.reminderTypesTableName} (
     ${ReminderTypesFields.reminderTypeId} $intType,
     ${ReminderTypesFields.languageId} $intType,
     ${ReminderTypesFields.reminderTypeName} $textType,
@@ -217,7 +218,7 @@ class Au2ridesDatabase {
 
     //recurrence_period_types
     await db.execute('''
-    CREATE TABLE $recurrencePeriodTypesTableName (
+    CREATE TABLE ${TableNames.recurrencePeriodTypesTableName} (
     ${RecurrencePeriodTypesFields.recurrencePeriodTypeId} $intType,
     ${RecurrencePeriodTypesFields.languageId} $intType,
     ${RecurrencePeriodTypesFields.recurrencePeriodTypeName} $textType,
@@ -227,7 +228,7 @@ class Au2ridesDatabase {
     ''');
     //reminder_type_service
     await db.execute('''
-    CREATE TABLE $reminderTypeServicesTableName (
+    CREATE TABLE ${TableNames.reminderTypeServicesTableName} (
     ${ReminderTypeServiceFields.reminderTypeServiceId} $intType,
     ${ReminderTypeServiceFields.languageId} $intType,
     ${ReminderTypeServiceFields.allowedReminderTypes} $textType,
@@ -237,7 +238,7 @@ class Au2ridesDatabase {
     ''');
     //fuel_brands
     await db.execute('''
-    CREATE TABLE $fuelBrandsTableName (
+    CREATE TABLE ${TableNames.fuelBrandsTableName} (
     ${FuelBrandsFields.fuelBrandId} $intType,
     ${FuelBrandsFields.languageId} $intType,
     ${FuelBrandsFields.fuelBrandName} $textType,
@@ -248,7 +249,7 @@ class Au2ridesDatabase {
     ''');
     //fuel_consumption_units_types
     await db.execute('''
-    CREATE TABLE $fuelConsumptionUnitTypesTableName (
+    CREATE TABLE ${TableNames.fuelConsumptionUnitTypesTableName} (
     ${FuelConsumptionUnitTypesFields.fuelConsumptionUnitTypeId} $intType,
     ${FuelConsumptionUnitTypesFields.languageId} $intType,
     ${FuelConsumptionUnitTypesFields.fuelConsumptionUnitTypeName} $textType,
@@ -258,7 +259,7 @@ class Au2ridesDatabase {
 
     //service_departments
     await db.execute('''
-    CREATE TABLE $servicesDepartmentsTableName (
+    CREATE TABLE ${TableNames.servicesDepartmentsTableName} (
     ${ServiceDepartmentsFields.serviceDepartmentId} $intType,
     ${ServiceDepartmentsFields.languageId} $intType,
     ${ServiceDepartmentsFields.serviceDepartmentName} $textType,
@@ -267,7 +268,7 @@ class Au2ridesDatabase {
     ''');
     //service_types
     await db.execute('''
-    CREATE TABLE $servicesTypesTableName (
+    CREATE TABLE ${TableNames.servicesTypesTableName} (
     ${ServiceTypesFields.serviceTypeId} $intType,
     ${ServiceTypesFields.languageId} $intType,
     ${ServiceTypesFields.serviceTypeName} $textType,
@@ -276,7 +277,7 @@ class Au2ridesDatabase {
     ''');
     //fuel_octane_number
     await db.execute('''
-    CREATE TABLE $fuelOctaneNumbersTableName (
+    CREATE TABLE ${TableNames.fuelOctaneNumbersTableName} (
     ${FuelOctaneNumberFields.fuelOctaneNumberId} $intType,
     ${FuelOctaneNumberFields.languageId} $intType,
     ${FuelOctaneNumberFields.fuelOctaneNumber} $textType,
@@ -286,7 +287,7 @@ class Au2ridesDatabase {
 
     //department_service_items
     await db.execute('''
-    CREATE TABLE $departmentServiceItemsTableName (
+    CREATE TABLE ${TableNames.departmentServiceItemsTableName} (
     ${DepartmentServiceItemsFields.departmentServiceItemId} $intType,
     ${DepartmentServiceItemsFields.languageId} $intType,
     ${DepartmentServiceItemsFields.departmentServiceItemName} $textType,
@@ -299,7 +300,7 @@ class Au2ridesDatabase {
 
     //model_generation_specification_keys
     await db.execute('''
-    CREATE TABLE $modelGenerationSpecificationKeys (
+    CREATE TABLE ${TableNames.modelGenerationSpecificationKeys} (
     ${ModelGenerationSpecificationKeysFields.specificationItemId} $intType,
     ${ModelGenerationSpecificationKeysFields.languageId} $intType,
     ${ModelGenerationSpecificationKeysFields.specificationItemName} $textType,
@@ -309,7 +310,7 @@ class Au2ridesDatabase {
     ''');
     //model_generation_specification_keys
     await db.execute('''
-    CREATE TABLE $workflowStatusesTableName (
+    CREATE TABLE ${TableNames.workflowStatusesTableName} (
     ${WorkflowStatusesFields.workflowStatusId} $intType,
     ${WorkflowStatusesFields.languageId} $intType,
     ${WorkflowStatusesFields.workflowStatusName} $textType,
@@ -319,7 +320,7 @@ class Au2ridesDatabase {
 
     //users
     await db.execute('''
-    CREATE TABLE $usersTableName (
+    CREATE TABLE ${TableNames.usersTableName} (
     ${UsersFields.userId} $textIdType,
     ${UsersFields.firstName} $textType,
     ${UsersFields.lastName} $textType,

@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/network_state/network_state.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/local/sqlite.dart';
-import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/splash_screen/data/models/check_primary_data_body_model.dart';
 import 'package:au2rides/features/splash_screen/presentation/bloc/check_primary_data_cubit.dart';
 import 'package:either_dart/either.dart';
@@ -18,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/storage/local/table_names.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 import '../../../download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
@@ -94,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
   checkPrimaryData() async {
     if (await widget.networkInfo.isConnected) {
       var responseBody = await Au2ridesDatabase.instance
-          .getAllDate(tableName: tableDefinitionsTableName);
+          .getAllDate(tableName: TableNames.tableDefinitionsTableName);
       List<dynamic> list = responseBody
           .cast<Map<String, dynamic>>()
           .map((e) => CheckPrimaryDataBodyModel.fromJson(e))

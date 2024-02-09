@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/storage/local/table_names.dart';
 import '../../data/models/gender/user_model.dart';
 
 part 'get_gender_state.dart';
@@ -19,7 +20,7 @@ class GetGenderCubit extends Cubit<GetGenderState> {
   Future getAllGender() async {
     try {
       emit(const GetGenderState.loading());
-      var response = await getGenderFromLocalDbUseCase(param: userGenderTableName);
+      var response = await getGenderFromLocalDbUseCase(param: TableNames.userGenderTableName);
       if(response.length>0){
          response
             .cast<Map<String, dynamic>>()

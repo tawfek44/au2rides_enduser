@@ -21,6 +21,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' as intl;
 
+
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/dependancy_injection/injection.dart';
@@ -94,11 +95,11 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             } else if (state is LoadedGetUserInfoState) {
               firstNameController.text = state.response.firstName ?? "";
               lastNameController.text = state.response.lastName ?? "";
-              emailController.text = state.response.email.emailAddress ?? "";
+              emailController.text = state.response.email==null?"": (state.response.email.emailAddress ?? "");
               birthDate = state.response.birthDate == ""
                   ? intl.DateFormat('dd-MM-yyyy').format(selectedDate)
                   : state.response.birthDate;
-              genderText = state.response.gender.genderName ?? "";
+              genderText = state.response.email==null?"":state.response.gender.genderName ?? "";
 
               return Form(
                 key: _formKey,
@@ -163,7 +164,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             final response = await context
                 .read<UpdateUserDataCubit>()
                 .updateUserDataInServer(
-                    birthDate: birthDate,
+                    birthDate: selectedDate.toString().split(" ")[0],
                     emailAddress: emailController.text,
                     firstName: firstNameController.text,
                     lastName: lastNameController.text,
@@ -213,6 +214,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
         roundness: corner,
       );
 
+
   Widget getDateWidget() => InkWell(
       onTap: showDateDialog,
       child: Container(
@@ -225,6 +227,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             text: birthDate,
             fontSize: fontSize,
           ),
+
         ),
       ));
 

@@ -14,37 +14,6 @@ const enLanguageCode = 'en';
 const arLanguageCode = 'ar';
 const enLanguageNumberCode = 56;
 const arLanguageNumberCode = 9;
-const String countryTableName = 'world_countries';
-const String languageTableName = 'languages';
-const String currencyTableName = 'currencies';
-const String tableDefinitionsTableName = 'tables_definitions';
-const String userGenderTableName = 'user_genders';
-const String weatherMeasuringUnitsTableName = 'weather_measuring_units';
-const String rideTypesTableName = 'ride_types';
-const String paymentMethodTableName = 'payment_methods';
-const String monthTableName = 'months';
-const String pressureUnitsTableName = 'pressure_units';
-const String acquisitionTypesTableName = 'acquisition_types';
-const String metricUnitsTableName = 'metric_units';
-const String engineTransmissionTypes = 'engine_transmission_types';
-const String engineFuelTypes = 'engine_fuel_types';
-const String reminderTypesTableName = 'reminder_types';
-const String reminderTypeServicesTableName = 'reminder_type_services';
-const String recurrencePeriodTypesTableName = 'recurrence_period_types';
-const String fuelBrandsTableName = 'fuel_brands';
-const String fuelOctaneNumbersTableName = 'fuel_octane_numbers';
-const String servicesDepartmentsTableName = 'services_departments';
-const String servicesTypesTableName = 'service_types';
-const String fuelConsumptionUnitTypesTableName = 'fuel_consumption_unit_types';
-const String departmentServiceItemsTableName = 'department_service_items';
-const String modelGenerationSpecificationKeys = 'model_generation_specification_keys';
-const String workflowStatusesTableName = 'workflow_statuses';
-const String usersTableName ='users';
-const downloadPrimaryDataEndPoint = "/api/Sync/v1.0/primary-data/download-primary-data";
-const primaryDataEndpoint = "/api/Sync/v1.0/primary-data/request-download-primary-data";
-const authorizeEndPoint= "/api/oauth/client/v1.0/authorize";
-const authorizeMobileNumberEndPoint= "/api/oauth/user/v1.0/authorize";
-const userDataEndPoint= "/api/oauth/user/v1.0/me";
 const tenantId = "96a97855-8463-492d-a5ec-5758e3ace3bf";
 const responseType = "authorization_code";
 const applicationId = "e199c942-3735-4b48-b2c7-01646b1bed89";
@@ -52,8 +21,7 @@ const applicationSecret = "y5A7CaFcHeMhPkRpUrWuZw3y6B8DaGdJfMjQmSqV";
 const applicationIdentifierName = "com.au2rides.end_user";
 const userProfileConnectionString = "DefaultEndpointsProtocol=https;AccountName=au2ridesusersstorage;AccountKey=v2DieEsz8MTXwlZNus0PJQ41hvb1bjcLtJ+Tgd6B0w9SJOcuWbV3bBF/3QsnbMh1ziL8fJTxpRba+AStVVLOsw==;EndpointSuffix=core.windows.net";
 const registeredUserProfileImageUrl = "https://au2ridesusersstorage.blob.core.windows.net/staging-mobile-uploads/";
-const updateUserInfoEndPoint= "/api/oauth/user/v1.0/update-basic-info";
-const renewAccessTokenEndPoint= "/api/oauth/user/v1.0/access-token";
+
 
 Widget errorWidget() => Center(
   child: AppText(

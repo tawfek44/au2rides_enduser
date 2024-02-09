@@ -1,19 +1,19 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
-import 'dart:developer' as log_dev;
 import 'core/app_routes/app_routes.dart';
 import 'core/app_routes/app_routes_names.dart';
+import 'core/storage/local/sqlite.dart';
+import 'core/storage/tables/languages.dart';
 import 'core/styles/theme.dart';
 import 'core/dependancy_injection/injection_utils.dart' as di;
+import 'env.dart';
 import 'generated/l10n.dart';
 import 'main_dev.dart';
 
@@ -56,8 +56,51 @@ Future main() async {
   launchApp();
 }
  */
-class _MyAppState extends State<MyApp> {
+Future main() async {
+  AppEnvironment.setUpEnv(EnvironmentType.dev);
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyB6yJxYSASdbAnEmWxQZIOovzsHZUnE46Q",
+        appId: "1:814804161658:android:238fee2bf31ab7b72157c3",
+        messagingSenderId: "814804161658",
+        projectId: "au2rides-enduser",
+      ))
+      : await Firebase.initializeApp(
+    // options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await configureInjection();
+  Au2ridesDatabase.instance.database;
+  languageTableCount =
+  await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
+  if (languageTableCount == 0) {
+    getIt<UserRepository>().setSelectedCountry("");
+    getIt<UserRepository>().setSelectedCountryIndex(-1);
+    getIt<UserRepository>().setSelectedCountryCallingCode("");
+    Au2ridesDatabase.instance.insert(
+        tableName: 'languages',
+        values: Language(
+            languageId: 9,
+            languageCode: "ar",
+            languageName: "العربية",
+            directionality: "rtl",
+            isDownloaded: false)
+            .toJson());
+    Au2ridesDatabase.instance.insert(
+        tableName: 'languages',
+        values: Language(
+            languageId: 56,
+            languageCode: "en",
+            languageName: "English",
+            directionality: "ltr",
+            isDownloaded: false)
+            .toJson());
 
+  }
+  launchApp();
+}
+class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {

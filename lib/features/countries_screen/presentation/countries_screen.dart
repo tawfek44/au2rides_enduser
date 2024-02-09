@@ -13,6 +13,7 @@ import '../../../core/app_routes/app_routes.dart';
 import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/dependancy_injection/injection.dart';
+import '../../../core/storage/local/table_names.dart';
 import '../../../core/styles/colors.dart';
 import '../../../generated/l10n.dart';
 
@@ -35,7 +36,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
       countriesList = await context
           .read<GetCountriesCubit>()
           .getCountriesLocalDatabase(
-              tableName: countryTableName,
+              tableName: TableNames.countryTableName,
               languageId:
                   getIt<UserRepository>().userLanguage == "ar" ? arLanguageNumberCode : enLanguageNumberCode);
       tempCountryList = countriesList;

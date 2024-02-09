@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/repositories/user_repository.dart';
+import '../../../../core/storage/network/end_points.dart';
 
 abstract class AuthorizeDataSource {
   authorizeNetworkDatabase({required data});
@@ -18,7 +19,7 @@ class AuthorizeDataSourceImpl implements AuthorizeDataSource {
   @override
   authorizeNetworkDatabase({required data}) async {
     final response = await DioClient().postData(
-        endPoint: authorizeEndPoint,
+        endPoint: EndPoints.authorizeEndPoint,
         data: data,
         apiUrl: baseUrl,
         authorizationToken: getIt<UserRepository>().getUserToken);

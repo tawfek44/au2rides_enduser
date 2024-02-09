@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/repositories/user_repository.dart';
+import '../../../../core/storage/network/end_points.dart';
 import '../../../../env.dart';
 
 
@@ -18,7 +19,7 @@ class LoginDatasourceImp implements AuthorizeMobileNumberDatasource{
       authorizationToken: getIt<UserRepository>().getAccessToken,
       data: mobileNumberAuthorizationBody,
       apiUrl: AppEnvironment.authAPIUrl ,
-      endPoint:authorizeMobileNumberEndPoint ,
+      endPoint:EndPoints.authorizeMobileNumberEndPoint ,
       lang: language
     );
     return response.value;
