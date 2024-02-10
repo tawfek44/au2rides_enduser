@@ -88,7 +88,7 @@ class FirebaseNotifications {
 
     var androidt = const AndroidNotificationDetails(
       '12',
-      'CHANNEL_KARATEEN',
+      'CHANNEL_AU2RIDES',
       'CHANNEL_DESCRIPTION',
       priority: Priority.max,
       channelShowBadge: true,
@@ -99,8 +99,8 @@ class FirebaseNotifications {
       enableLights: true,
       importance: Importance.max,
     );
-    var iost = const IOSNotificationDetails();
-    var platform = NotificationDetails(android: androidt, iOS: iost);
+    var ios = const IOSNotificationDetails();
+    var platform = NotificationDetails(android: androidt, iOS: ios);
     await _notificationsPlugin.show(0, title, body, platform);
   }
 

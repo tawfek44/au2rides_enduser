@@ -56,50 +56,6 @@ Future main() async {
   launchApp();
 }
  */
-Future main() async {
-  AppEnvironment.setUpEnv(EnvironmentType.dev);
-  WidgetsFlutterBinding.ensureInitialized();
-  Platform.isAndroid
-      ? await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyB6yJxYSASdbAnEmWxQZIOovzsHZUnE46Q",
-        appId: "1:814804161658:android:238fee2bf31ab7b72157c3",
-        messagingSenderId: "814804161658",
-        projectId: "au2rides-enduser",
-      ))
-      : await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await configureInjection();
-  Au2ridesDatabase.instance.database;
-  languageTableCount =
-  await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
-  if (languageTableCount == 0) {
-    getIt<UserRepository>().setSelectedCountry("");
-    getIt<UserRepository>().setSelectedCountryIndex(-1);
-    getIt<UserRepository>().setSelectedCountryCallingCode("");
-    Au2ridesDatabase.instance.insert(
-        tableName: 'languages',
-        values: Language(
-            languageId: 9,
-            languageCode: "ar",
-            languageName: "العربية",
-            directionality: "rtl",
-            isDownloaded: false)
-            .toJson());
-    Au2ridesDatabase.instance.insert(
-        tableName: 'languages',
-        values: Language(
-            languageId: 56,
-            languageCode: "en",
-            languageName: "English",
-            directionality: "ltr",
-            isDownloaded: false)
-            .toJson());
-
-  }
-  launchApp();
-}
 class _MyAppState extends State<MyApp> {
 
   @override

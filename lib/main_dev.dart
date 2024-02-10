@@ -5,6 +5,7 @@ import 'package:au2rides/env.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'core/dependancy_injection/injection.dart';
+import 'core/notification_manager/push_notification_manager.dart';
 import 'core/storage/local/sqlite.dart';
 import 'core/storage/local/table_names.dart';
 import 'main.dart';
@@ -50,10 +51,11 @@ Future main() async {
       : await Firebase.initializeApp(
           // options: DefaultFirebaseOptions.currentPlatform,
           );
+  FirebaseNotifications().setUpFirebase();
   await configureInjection();
   Au2ridesDatabase.instance.database;
   languageTableCount =
-      await Au2ridesDatabase.instance.getTableCount(tableName: 'languages');
+      await Au2ridesDatabase.instance.getTableCount(tableName: TableNames.languageTableName);
   if (languageTableCount == 0) {
     getIt<UserRepository>().setSelectedCountry("");
     getIt<UserRepository>().setSelectedCountryIndex(-1);
