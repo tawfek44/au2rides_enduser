@@ -5,28 +5,28 @@ part 'model_generation_specification_keys_entity.g.dart';
 
 @JsonSerializable()
 class ModelGenerationSpecificationKeysEntity extends Equatable {
-  @JsonKey(name: "specification_item_id")
-  final int specificationItemId;
+  @JsonKey(name: "tyre_construction_type_id")
+  final int tyreConstructionTypeId;
   @JsonKey(name: "language_id")
   final int languageId;
-  @JsonKey(name: "specification_item_name")
-  final String specificationItemName;
-  @JsonKey(name: "specification_item_image_url")
-  final String specificationItemImageUrl;
+  @JsonKey(name: "tyre_construction_type_name")
+  final String tyreConstructionTypeName;
+  @JsonKey(name: "tyre_construction_type_code")
+  final String tyreConstructionTypeCode;
 
   const ModelGenerationSpecificationKeysEntity({
-    required this.specificationItemId,
+    required this.tyreConstructionTypeId,
     required this.languageId,
-    required this.specificationItemName,
-    required this.specificationItemImageUrl,
+    required this.tyreConstructionTypeName,
+    required this.tyreConstructionTypeCode,
   });
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-        specificationItemId,
+        tyreConstructionTypeId,
         languageId,
-        specificationItemName,
-        specificationItemImageUrl
+        tyreConstructionTypeName,
+        tyreConstructionTypeCode
       ];
 }

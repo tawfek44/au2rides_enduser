@@ -163,7 +163,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
           case TableNames.departmentServiceItemsTableName:
             await downloadPrimaryDataForDepartmentServiceItemsTable(table: table);
             break;
-          case TableNames.modelGenerationSpecificationKeys:
+          case TableNames.tireConstructionTypes:
             await downloadPrimaryDataForModelGenerationSpecificationKeysTable(table: table);
             break;
           case TableNames.workflowStatusesTableName:

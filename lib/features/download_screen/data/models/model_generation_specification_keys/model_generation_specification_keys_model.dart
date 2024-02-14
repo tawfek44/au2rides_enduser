@@ -7,11 +7,8 @@ part 'model_generation_specification_keys_model.g.dart';
 @JsonSerializable()
 class ModelGenerationSpecificationKeysModel
     extends ModelGenerationSpecificationKeysEntity {
-  const ModelGenerationSpecificationKeysModel(
-      {required super.specificationItemId,
-      required super.languageId,
-      required super.specificationItemName,
-      required super.specificationItemImageUrl});
+
+  const ModelGenerationSpecificationKeysModel({required super.tyreConstructionTypeId, required super.languageId, required super.tyreConstructionTypeName, required super.tyreConstructionTypeCode});
 
   factory ModelGenerationSpecificationKeysModel.fromJson(
       final Map<String, dynamic> json) {
@@ -20,4 +17,5 @@ class ModelGenerationSpecificationKeysModel
 
   Map<String, dynamic> toJson() =>
       _$ModelGenerationSpecificationKeysModelToJson(this);
+
 }

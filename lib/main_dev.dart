@@ -33,7 +33,7 @@ List<String> tableNames = [
   TableNames.servicesDepartmentsTableName,
   TableNames.servicesTypesTableName,
   TableNames.departmentServiceItemsTableName,
-  TableNames.modelGenerationSpecificationKeys,
+  TableNames.tireConstructionTypes,
   TableNames.workflowStatusesTableName
 ];
 

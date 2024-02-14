@@ -24,5 +24,6 @@ class TableNames {
       departmentServiceItemsTableName = 'department_service_items',
       modelGenerationSpecificationKeys = 'model_generation_specification_keys',
       workflowStatusesTableName = 'workflow_statuses',
-      usersTableName = 'users';
+      usersTableName = 'users',
+      tireConstructionTypes = 'tire_construction_types';
 }

@@ -23,7 +23,7 @@ import '../tables/engine_fuel_types.dart';
 import '../tables/fuel_brands.dart';
 import '../tables/fuel_consumption_unit_types.dart';
 import '../tables/fuel_octane_number.dart';
-import '../tables/model_generation_specification_keys.dart';
+import '../tables/tire_construction_types.dart';
 import '../tables/months.dart';
 import '../tables/payment_methods.dart';
 import '../tables/ride_types.dart';
@@ -298,14 +298,14 @@ class Au2ridesDatabase {
     )
     ''');
 
-    //model_generation_specification_keys
+    //tireConstructionTypes
     await db.execute('''
-    CREATE TABLE ${TableNames.modelGenerationSpecificationKeys} (
-    ${ModelGenerationSpecificationKeysFields.specificationItemId} $intType,
-    ${ModelGenerationSpecificationKeysFields.languageId} $intType,
-    ${ModelGenerationSpecificationKeysFields.specificationItemName} $textType,
-    ${ModelGenerationSpecificationKeysFields.specificationItemImageUrl} $textType,
-    PRIMARY KEY (${ModelGenerationSpecificationKeysFields.specificationItemId}, ${ModelGenerationSpecificationKeysFields.languageId})
+    CREATE TABLE ${TableNames.tireConstructionTypes} (
+    ${TireConstructionTypesField.tyreConstructionTypId} $intType,
+    ${TireConstructionTypesField.languageId} $intType,
+    ${TireConstructionTypesField.tyreConstructionTypeName} $textType,
+    ${TireConstructionTypesField.tyreConstructionTypeCode} $textType,
+    PRIMARY KEY (${TireConstructionTypesField.tyreConstructionTypId}, ${TireConstructionTypesField.languageId})
     )
     ''');
     //model_generation_specification_keys
