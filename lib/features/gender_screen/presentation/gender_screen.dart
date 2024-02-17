@@ -9,9 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../core/app_routes/app_routes.dart';
-import '../../../core/app_routes/app_routes_names.dart';
 import '../../../generated/l10n.dart';
 
 class GenderScreen extends StatefulWidget {
@@ -124,8 +121,8 @@ class _GenderScreenState extends State<GenderScreen> {
               getIt<UserRepository>().setSelectedGenderId(genderId);
               getIt<UserRepository>().setSelectedGenderIndex(genderIndex);
               getIt<UserRepository>().setSelectedGenderName(text);
-
-              NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute,replace: true);
+              Navigator.pop(context,text);
+              //NamedNavigatorImpl().push(Routes.enterUserInfoScreenRoute,replace: true);
             });
           },
           child: Padding(

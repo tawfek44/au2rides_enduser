@@ -40,6 +40,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
               languageId:
                   getIt<UserRepository>().userLanguage == "ar" ? arLanguageNumberCode : enLanguageNumberCode);
       tempCountryList = countriesList;
+
     });
 
     super.initState();

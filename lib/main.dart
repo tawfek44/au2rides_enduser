@@ -74,13 +74,12 @@ Future main() async {
   }
   launchApp();
 }
-class _MyAppState extends State<MyApp> {
 
+class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     //awel mara a5osh el app

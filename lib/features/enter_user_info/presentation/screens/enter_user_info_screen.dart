@@ -21,7 +21,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' as intl;
 
-
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/dependancy_injection/injection.dart';
@@ -44,6 +43,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   var lastNameController = TextEditingController();
   var emailController = TextEditingController();
   var genderText = "";
+  var genderId;
   var birthDateController = TextEditingController();
   String? selectedItem;
   DateTime nowDate = DateTime.now();
@@ -53,7 +53,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   var dateFormat;
   var image;
   String birthDate = "";
-
+  String genderTextFromGenderScreen = "";
+  bool enterUserDataLoading=false;
   @override
   void dispose() {
     firstNameController.dispose();
@@ -93,13 +94,22 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 child: AppCircularProgressIndicator(),
               );
             } else if (state is LoadedGetUserInfoState) {
-              firstNameController.text = state.response.firstName ?? "";
-              lastNameController.text = state.response.lastName ?? "";
-              emailController.text = state.response.email==null?"": (state.response.email.emailAddress ?? "");
+              firstNameController.text =
+                  state.response.firstName ?? firstNameController.text;
+              lastNameController.text =
+                  state.response.lastName ?? lastNameController.text;
+              emailController.text = state.response.email == null
+                  ? emailController.text
+                  : (state.response.email.emailAddress ?? emailController.text);
               birthDate = state.response.birthDate == ""
                   ? intl.DateFormat('dd-MM-yyyy').format(selectedDate)
                   : state.response.birthDate;
-              genderText = state.response.email==null?"":state.response.gender.genderName ?? "";
+              genderText = state.response.gender == null
+                  ? ""
+                  : state.response.gender.genderName ?? "";
+              genderId = state.response.gender == null
+                  ? ""
+                  : state.response.gender.genderId ?? -1;
 
               return Form(
                 key: _formKey,
@@ -112,7 +122,11 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                           imageUrl: state.response.profileImageUrl),
                       getUserInfoSection(),
                       gap(height: 15.w),
-                      getContinueButton(userId: state.response.userId,response1: state.response)
+
+                      getContinueButton(
+                          userId: state.response.userId,
+                          response1: state.response),
+                     // enterUserDataLoading?const Loading():Container(),
                     ],
                   ),
                 ),
@@ -147,10 +161,10 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getContinueButton({required userId,required response1}) => AppButton(
+  Widget getContinueButton({required userId, required response1}) => AppButton(
         label: S.current.continueText,
         onPressed: () async {
-          if (getIt<UserRepository>().getSelectedGenderName == "") {
+          if (getIt<UserRepository>().getSelectedGenderName == ""&&genderText=="") {
             var snackBar = AppSnackBar(
               text: S.current.genderTextIsNull,
               isSuccess: false,
@@ -159,61 +173,75 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
           if (_formKey.currentState!.validate() &&
-              getIt<UserRepository>().getSelectedGenderName != "") {
+              getIt<UserRepository>().getSelectedGenderName != ""||genderText!="") {
             _formKey.currentState!.save();
+            setState(() {
+              enterUserDataLoading=true;
+            });
             final response = await context
                 .read<UpdateUserDataCubit>()
                 .updateUserDataInServer(
-                    birthDate: selectedDate.toString().split(" ")[0],
+                    birthDate:"${selectedDate.toString().split(' ')[0].split('-')[2]}-${selectedDate.toString().split(' ')[0].split('-')[1]}-${selectedDate.toString().split(' ')[0].split('-')[0]}",
                     emailAddress: emailController.text,
                     firstName: firstNameController.text,
                     lastName: lastNameController.text,
                     language: getIt<UserRepository>().getUserLanguage,
-                    genderId: getIt<UserRepository>().getSelectedGenderId,
+                    genderId: getIt<UserRepository>().getSelectedGenderId==-1?genderId:getIt<UserRepository>().getSelectedGenderId,
                     registeredUserId: userId,
-                    profileImageUrl: fileName==""? response1.profileImageUrl:registeredUserProfileImageUrl + fileName);
+                    profileImageUrl: fileName == ""
+                        ? response1.profileImageUrl
+                        : registeredUserProfileImageUrl + fileName);
             if (response is Failure) {
               var snackBar = AppSnackBar(
                   text: response.message, isSuccess: false, maxLines: 10);
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              setState(() {
+                enterUserDataLoading=false;
+              });
             } else {
               var userData = UserModel(
-                userId: userId,
-                firstName: firstNameController.text,
-                lastName: lastNameController.text,
-                emailAddress: emailController.text,
-                isVerified: response.email.isVerified == false?0:1,
-                profileImageUrl: response.profileImageUrl,
-                profileQrCode: response.profileQrCode,
-                countryId: response.country.countryId,
-                genderId: response.gender.genderId,
-                birthDate: birthDate,
-                mobileNumber: response.mobileNumber
-              );
-              final localDbResponse = await context.read<AddUserToLocalDbCubit>().addUserToLocalDbInfo(
+                  userId: userId,
+                  firstName: firstNameController.text,
+                  lastName: lastNameController.text,
+                  emailAddress: emailController.text,
+                  isVerified: response.email.isVerified == false ? 0 : 1,
+                  profileImageUrl: response.profileImageUrl,
+                  profileQrCode: response.profileQrCode,
+                  countryId: response.country.countryId,
+                  genderId: response.gender.genderId,
+                  birthDate: birthDate,
+                  mobileNumber: response.mobileNumber);
+              final localDbResponse = await context
+                  .read<AddUserToLocalDbCubit>()
+                  .addUserToLocalDbInfo(
                     userData: userData.toJson(),
-                 );
-              if(localDbResponse>0){
+                  );
+              if (localDbResponse > 0) {
                 var snackBar = AppSnackBar(
-                    text: S.current.userInfoAddedSuccessfully, isSuccess: true, maxLines: 10);
+                    text: S.current.userInfoAddedSuccessfully,
+                    isSuccess: true,
+                    maxLines: 10);
+
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                NamedNavigatorImpl().push(Routes.bottomNavBarScreenRoute,clean: true);
+                NamedNavigatorImpl()
+                    .push(Routes.bottomNavBarScreenRoute, clean: true);
                 getIt<UserRepository>().setLoggedInMark(true);
-              }
-              else{
+              } else {
                 var snackBar = AppSnackBar(
-                    text: S.current.thereIsAnErrorInGender, isSuccess: false, maxLines: 10);
+                    text: S.current.thereIsAnErrorInGender,
+                    isSuccess: false,
+                    maxLines: 10);
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
+              }
+              setState(() {
+                enterUserDataLoading=false;
+              });
             }
-
-
           }
         },
         height: 50.h,
         roundness: corner,
       );
-
 
   Widget getDateWidget() => InkWell(
       onTap: showDateDialog,
@@ -227,7 +255,6 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             text: birthDate,
             fontSize: fontSize,
           ),
-
         ),
       ));
 
@@ -253,8 +280,6 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
               children: [
                 imageUrl == null
                     ? getLocalImage(image: image)
-
-
                     : getNetworkImage(imageUrl: imageUrl),
                 Positioned(
                   bottom: 0,
@@ -271,9 +296,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                           await pickPhoto(ImageSource.camera);
                         }
                         fileName = await uploadImageToAzure(image.path, userId);
-                        setState(()  {
-
-                        });
+                        setState(() {});
                       },
                       icon: const Icon(Icons.camera_alt_outlined),
                       color: AppColors.white,
@@ -367,8 +390,10 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {
-                      NamedNavigatorImpl().push(Routes.genderScreenRoute);
+                    onTap: () async {
+                      genderTextFromGenderScreen = await NamedNavigatorImpl()
+                          .push(Routes.genderScreenRoute);
+                      setState(() {});
                     },
                     child: Row(
                       children: [
@@ -379,7 +404,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                         getGenderWidget(),
                         const Spacer(),
                         AppText(
-                          text: getIt<UserRepository>().getSelectedGenderName,
+                          text: genderTextFromGenderScreen == "" ? getIt<UserRepository>().getSelectedGenderName ==""?genderText : genderTextFromGenderScreen:"",
                           fontSize: 13.sp,
                           color: AppColors.greyColor,
                         ),
