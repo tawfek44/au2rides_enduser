@@ -464,6 +464,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'you complete your profile successfully.'**
   String get userInfoAddedSuccessfully;
+
+  /// No description provided for @addNewRide.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new ride'**
+  String get addNewRide;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'NAME'**
+  String get name;
+
+  /// No description provided for @registrationDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'REGISTRATION DETAILS'**
+  String get registrationDetails;
+
+  /// No description provided for @licencePlate.
+  ///
+  /// In en, this message translates to:
+  /// **'Licence Plate'**
+  String get licencePlate;
+
+  /// No description provided for @licencePlateNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'License Plate : ex:123 ABC'**
+  String get licencePlateNumber;
+
+  /// No description provided for @vin.
+  ///
+  /// In en, this message translates to:
+  /// **'VIN : EX:WQ2BF2A53MLB51234'**
+  String get vin;
+
+  /// No description provided for @manufacturingDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'MANUFACTURING DETAILS'**
+  String get manufacturingDetails;
+
+  /// No description provided for @trimText.
+  ///
+  /// In en, this message translates to:
+  /// **'Trim'**
+  String get trimText;
+
+  /// No description provided for @modelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Model'**
+  String get modelText;
+
+  /// No description provided for @yearText.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get yearText;
+
+  /// No description provided for @makeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Make'**
+  String get makeText;
+
+  /// No description provided for @metrics.
+  ///
+  /// In en, this message translates to:
+  /// **'METRICS'**
+  String get metrics;
+
+  /// No description provided for @unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get unit;
+
+  /// No description provided for @fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'FUEL'**
+  String get fuel;
+
+  /// No description provided for @fuelType.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel Type'**
+  String get fuelType;
+
+  /// No description provided for @fuelUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel Units'**
+  String get fuelUnits;
+
+  /// No description provided for @consumption.
+  ///
+  /// In en, this message translates to:
+  /// **'Consumption'**
+  String get consumption;
+
+  /// No description provided for @regionalDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'REGIONAL DETAILS'**
+  String get regionalDetails;
+
+  /// No description provided for @currency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currency;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

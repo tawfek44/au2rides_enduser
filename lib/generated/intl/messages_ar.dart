@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acquisitionDetails":
             MessageLookupByLibrary.simpleMessage("تفاصيل الإمتلاك"),
         "acquisitionType": MessageLookupByLibrary.simpleMessage("نوع الإمتلاك"),
+        "addNewRide": MessageLookupByLibrary.simpleMessage("أضف مركبة جديدة"),
         "appLanguageText": MessageLookupByLibrary.simpleMessage("لغة التطبيق"),
         "arabicLanguageText": MessageLookupByLibrary.simpleMessage("العربية"),
         "areYouSureThatThisNumber":
@@ -38,9 +39,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourGender": MessageLookupByLibrary.simpleMessage("أختر جنسك"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
+        "consumption": MessageLookupByLibrary.simpleMessage("الإستهلاك"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
         "countries": MessageLookupByLibrary.simpleMessage("الدول"),
         "country": MessageLookupByLibrary.simpleMessage("البلد"),
+        "currency": MessageLookupByLibrary.simpleMessage("العملة"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "didNotYouReceiveAnyCode":
             MessageLookupByLibrary.simpleMessage("لم تتلقي أى رمز ؟"),
@@ -56,6 +59,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstNameValidation":
             MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأول."),
         "followUS": MessageLookupByLibrary.simpleMessage("تابعنا"),
+        "fuel": MessageLookupByLibrary.simpleMessage("الوقود"),
+        "fuelType": MessageLookupByLibrary.simpleMessage("نوع الوقود"),
+        "fuelUnits": MessageLookupByLibrary.simpleMessage("وحدات الوقود"),
         "gallery": MessageLookupByLibrary.simpleMessage("الصور"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderTextIsNull":
@@ -66,8 +72,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "lastName": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
         "lease": MessageLookupByLibrary.simpleMessage("إيجار"),
+        "licencePlate": MessageLookupByLibrary.simpleMessage("لوحة الترخيص"),
+        "licencePlateNumber":
+            MessageLookupByLibrary.simpleMessage("رقم اللوحة : مثال ٥٨٣ أ ب ج"),
+        "makeText": MessageLookupByLibrary.simpleMessage("النوع"),
+        "manufacturingDetails":
+            MessageLookupByLibrary.simpleMessage("تفاصيل التصنيع"),
+        "metrics": MessageLookupByLibrary.simpleMessage("المقاييس"),
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول"),
+        "modelText": MessageLookupByLibrary.simpleMessage("الموديل"),
+        "name": MessageLookupByLibrary.simpleMessage("الأسم"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("التحقق من رقم الهاتف"),
@@ -86,6 +101,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "سياسة الخصوصية وشروط الإستخدام"),
         "purchase": MessageLookupByLibrary.simpleMessage("شراء"),
+        "regionalDetails":
+            MessageLookupByLibrary.simpleMessage("التفاصيل الإقليمية"),
+        "registrationDetails":
+            MessageLookupByLibrary.simpleMessage("تفاصيل التسجيل"),
+        "required": MessageLookupByLibrary.simpleMessage("مطلوب"),
         "resendNewCode": MessageLookupByLibrary.simpleMessage("إرسال رمز جديد"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "secondNameValidation":
@@ -98,7 +118,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "رمز استجابة reCAPTCHA كان غير صالح، ومنتهي الصلاحية"),
         "thereIsAnErrorInGender": MessageLookupByLibrary.simpleMessage(
             "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى"),
+        "trimText": MessageLookupByLibrary.simpleMessage("الفئة"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
+        "unit": MessageLookupByLibrary.simpleMessage("الوحدة"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الخاص بك قد تم تعطيله."),
         "userInfo": MessageLookupByLibrary.simpleMessage("بيانات المستخدم"),
@@ -106,7 +128,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "لقد أكملت بيانات صفحتك الخاصة بنجاح."),
         "verification": MessageLookupByLibrary.simpleMessage("التحقق"),
         "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "vin": MessageLookupByLibrary.simpleMessage(
+            "رقم تعريف المركبة : EX:WQ2BF2A53MLB51234"),
         "wrongText": MessageLookupByLibrary.simpleMessage(
-            "هناك خطأ ما, تحقق من إتصالك بالإنترنت!")
+            "هناك خطأ ما, تحقق من إتصالك بالإنترنت!"),
+        "yearText": MessageLookupByLibrary.simpleMessage("السنة")
       };
 }

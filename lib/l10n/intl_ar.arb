@@ -60,6 +60,25 @@
   "genderTextIsNull": "من فضلك أختر جنسك",
   "chooseYourGender": "أختر جنسك",
   "thereIsAnErrorInGender": "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى",
-  "userInfoAddedSuccessfully": "لقد أكملت بيانات صفحتك الخاصة بنجاح."
-
+  "userInfoAddedSuccessfully": "لقد أكملت بيانات صفحتك الخاصة بنجاح.",
+  "addNewRide": "أضف مركبة جديدة",
+  "required": "مطلوب",
+  "name": "الأسم",
+  "registrationDetails": "تفاصيل التسجيل",
+  "licencePlate": "لوحة الترخيص",
+  "licencePlateNumber": "رقم اللوحة : مثال ٥٨٣ أ ب ج",
+  "vin": "رقم تعريف المركبة : EX:WQ2BF2A53MLB51234",
+  "manufacturingDetails": "تفاصيل التصنيع",
+  "trimText": "الفئة",
+  "modelText": "الموديل",
+  "yearText": "السنة",
+  "makeText": "النوع",
+  "metrics": "المقاييس",
+  "unit": "الوحدة",
+  "fuel": "الوقود",
+  "fuelType": "نوع الوقود",
+  "fuelUnits": "وحدات الوقود",
+  "consumption": "الإستهلاك",
+  "regionalDetails": "التفاصيل الإقليمية",
+  "currency": "العملة"
 }

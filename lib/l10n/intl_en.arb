@@ -60,5 +60,26 @@
   "genderTextIsNull": "Please choose your gender",
   "chooseYourGender": "Choose your gender",
   "thereIsAnErrorInGender": "There is an error, please try again later",
-  "userInfoAddedSuccessfully": "you complete your profile successfully."
+  "userInfoAddedSuccessfully": "you complete your profile successfully.",
+  "addNewRide": "Add new ride",
+  "required": "Required",
+  "name": "NAME",
+  "registrationDetails": "REGISTRATION DETAILS",
+  "licencePlate": "Licence Plate",
+  "licencePlateNumber": "License Plate : ex:123 ABC",
+  "vin": "VIN : EX:WQ2BF2A53MLB51234",
+  "manufacturingDetails": "MANUFACTURING DETAILS",
+  "trimText": "Trim",
+  "modelText": "Model",
+  "yearText": "Year",
+  "makeText": "Make",
+  "metrics": "METRICS",
+  "unit": "Unit",
+  "fuel": "FUEL",
+  "fuelType": "Fuel Type",
+  "fuelUnits": "Fuel Units",
+  "consumption": "Consumption",
+  "regionalDetails": "REGIONAL DETAILS",
+  "currency": "Currency"
+
 }

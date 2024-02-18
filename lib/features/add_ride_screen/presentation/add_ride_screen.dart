@@ -14,6 +14,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../core/app_routes/app_routes.dart';
 import '../../../core/app_routes/app_routes_names.dart';
 import '../../../core/widgets/file_picker_utils.dart';
+import '../../../generated/l10n.dart';
 
 class AddRideScreen extends StatefulWidget {
   const AddRideScreen({super.key});
@@ -26,27 +27,30 @@ class _AddRideScreenState extends State<AddRideScreen> {
   PlatformFile? selectedImage;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-          child: getAppBar(
-            route: AppBarRoutes.save,
-            context: context,
-            title: AppText(text:"Add new ride",fontSize: 16.sp,color: AppColors.white,),
-          )),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
-          child: Column(
-            children: [
-              buildImageWidget(context),
-              getNameSection(),
-              getRegistrationDetailsSection(),
-              getManufacturerDetailsSection(),
-              getMetricsSection(),
-              getFuelSection(),
-              getRegionalDetailsSection()
-            ],
+    return Directionality(
+      textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
+      child: Scaffold(
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+            child: getAppBar(
+              route: AppBarRoutes.save,
+              context: context,
+              title: AppText(text:S.current.addNewRide,fontSize: 16.sp,color: AppColors.white,),
+            )),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
+            child: Column(
+              children: [
+                buildImageWidget(context),
+                getNameSection(),
+                getRegistrationDetailsSection(),
+                getManufacturerDetailsSection(),
+                getMetricsSection(),
+                getFuelSection(),
+                getRegionalDetailsSection()
+              ],
+            ),
           ),
         ),
       ),
@@ -55,8 +59,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
 
   Widget getRegionalDetailsSection()=>buildSection(context, [
     TextFieldDto(
-      groupName: "REGIONAL DETAILS",
-      fieldName: "Country",
+      groupName: S.current.regionalDetails,
+      fieldName: S.current.country,
       info: "Egypt",
       destination: Routes.countriesScreenRoute,
       leadingIcon: CupertinoIcons.globe,
@@ -65,8 +69,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
       },
     ),
     TextFieldDto(
-      groupName: "REGIONAL DETAILS",
-      fieldName: "Currency",
+      groupName: S.current.regionalDetails,
+      fieldName: S.current.currency,
       info: "EGP",
       destination: Routes.currencyScreenRoute,
       leadingIcon: CupertinoIcons.money_dollar,
@@ -77,8 +81,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
   ],);
   Widget getFuelSection()=>buildSection(context, [
       TextFieldDto(
-        groupName: "FUEL",
-        fieldName: "Fuel Type",
+        groupName: S.current.fuel,
+        fieldName: S.current.fuelType,
         info: "Gasoline",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: Icons.local_gas_station_outlined,
@@ -87,8 +91,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
         },
       ),
       TextFieldDto(
-        groupName: "FUEL",
-        fieldName: "Fuel Units",
+        groupName: S.current.fuel,
+        fieldName: S.current.fuelUnits,
         info:"Liters",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.speedometer,
@@ -97,13 +101,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
         },
       ),
       TextFieldDto(
-        groupName: "FUEL",
-        fieldName: "Consumption",
+        groupName: S.current.fuel,
+        fieldName: S.current.consumption,
         info: "Liters / 100 KM",
         leadingIcon: CupertinoIcons.speedometer,
         destination: Routes.multiSelectionScreenRoute,
         fieldType: FieldType.listTile,
         onChanged: (text) {
+
         },
       ),
     ],);
@@ -111,8 +116,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
     context,
     [
       TextFieldDto(
-        groupName: "METRICS",
-        fieldName: "Unit",
+        groupName:S.current.metrics,
+        fieldName: S.current.unit,
         info: "Kilometers",
         destination: Routes.multiSelectionScreenRoute,
         leadingIcon: CupertinoIcons.waveform,
@@ -121,9 +126,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
         },
       ),
       TextFieldDto(
-        groupName: "METRICS",
-        fieldName: "Odometer",
-        info: "Odometer",
+        groupName: S.current.metrics,
+        fieldName: S.current.odometer,
+        info: S.current.odometer,
         leadingIcon: CupertinoIcons.speedometer,
         fieldType: FieldType.text,
         trailingWidget:  Text("km",
@@ -137,67 +142,71 @@ class _AddRideScreenState extends State<AddRideScreen> {
       ),
     ],
   );
-  Widget getManufacturerDetailsSection()=> buildSection(context, [
-    TextFieldDto(
-      groupName: "MANUFACTURING DETAILS",
-      fieldName: "Type",
-      info: "Car",
-      leadingIcon: CupertinoIcons.equal_circle,
-      fieldType: FieldType.listTile,
-      onChanged: (text) {
+  Widget getManufacturerDetailsSection()=> Directionality(
+    textDirection: isArabicLocalization()?TextDirection.rtl:TextDirection.ltr,
+    child: buildSection(context, [
+      TextFieldDto(
+        groupName: S.current.manufacturingDetails,
+        fieldName: S.current.type,
+        info: "Car",
+        leadingIcon: CupertinoIcons.equal_circle,
+        fieldType: FieldType.listTile,
+        onChanged: (text) {
 
-      },
-      destination: Routes.multiSelectionScreenRoute
-    ),
-    TextFieldDto(
-      groupName: "MANUFACTURING DETAILS",
-      fieldName: "Year",
-      info: "Year",
-      destination: Routes.multiSelectionScreenRoute,
-      leadingIcon: CupertinoIcons.calendar,
-      fieldType: FieldType.date,
-      inputType: TextInputType.datetime,
-      onChanged: (text) {
+        },
+        destination: Routes.multiSelectionScreenRoute
+      ),
+      TextFieldDto(
+        groupName: S.current.manufacturingDetails,
+        fieldName: S.current.yearText,
+        info: "Year",
+        destination: Routes.multiSelectionScreenRoute,
+        leadingIcon: CupertinoIcons.calendar,
+        fieldType: FieldType.date,
 
-      },
-    ),
-    TextFieldDto(
-      groupName: "MANUFACTURING DETAILS",
-      fieldName: "Make",
-      info: "MG",
-      fieldType: FieldType.listTile,
-      leadingIcon: CupertinoIcons.car,
-      destination: Routes.multiSelectionScreenRoute,
-      onChanged: (text) {
-      },
-    ),
-    TextFieldDto(
-      groupName: "MANUFACTURING DETAILS",
-      fieldName: "Model",
-      info: "ZS",
-      destination: Routes.multiSelectionScreenRoute,
-      leadingIcon: CupertinoIcons.car_detailed,
-      fieldType: FieldType.listTile,
-      onChanged: (text) {
+        inputType: TextInputType.datetime,
+        onChanged: (text) {
 
-      },
-    ),
-    TextFieldDto(
-      groupName: "MANUFACTURING DETAILS",
-      fieldName: "Trim",
-      info: "Comfort",
-      fieldType: FieldType.listTile,
-      leadingIcon: CupertinoIcons.car,
-      destination: Routes.multiSelectionScreenRoute,
-      onChanged: (text) {
-      },
-    ),
-  ],);
+        },
+      ),
+      TextFieldDto(
+        groupName: S.current.manufacturingDetails,
+        fieldName: S.current.makeText,
+        info: "MG",
+        fieldType: FieldType.listTile,
+        leadingIcon: CupertinoIcons.car,
+        destination: Routes.multiSelectionScreenRoute,
+        onChanged: (text) {
+        },
+      ),
+      TextFieldDto(
+        groupName: S.current.manufacturingDetails,
+        fieldName: S.current.modelText,
+        info: "ZS",
+        destination: Routes.multiSelectionScreenRoute,
+        leadingIcon: CupertinoIcons.car_detailed,
+        fieldType: FieldType.listTile,
+        onChanged: (text) {
+
+        },
+      ),
+      TextFieldDto(
+        groupName: S.current.manufacturingDetails,
+        fieldName: S.current.trimText,
+        info: "Comfort",
+        fieldType: FieldType.listTile,
+        leadingIcon: CupertinoIcons.car,
+        destination: Routes.multiSelectionScreenRoute,
+        onChanged: (text) {
+        },
+      ),
+    ],),
+  );
   Widget getRegistrationDetailsSection()=>buildSection(context, [
     TextFieldDto(
-        groupName: "REGISTRATION DETAILS",
-        fieldName: "REGISTRATION DETAILS",
-        info: "VIN : EX:WQ2BF2A53MLB51234",
+        groupName: S.current.registrationDetails,
+        fieldName: S.current.registrationDetails,
+        info: S.current.vin,
         onChanged: (text) {
 
         },
@@ -206,9 +215,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
         leadingIcon: Icons.tag,
        ),
     TextFieldDto(
-      groupName: "REGISTRATION DETAILS",
-      fieldName: "Licence Plate",
-      info: "License Plate : ex:123 ABC",
+      groupName: S.current.registrationDetails,
+      fieldName: S.current.licencePlate,
+      info: S.current.licencePlateNumber,
       leadingIcon: CupertinoIcons.textformat_abc,
       fieldType: FieldType.text,
       inputType: TextInputType.text,
@@ -218,9 +227,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
   ]);
   Widget getNameSection()=>buildSection(context, [
     TextFieldDto(
-        groupName: "NAME",
-        fieldName: "NAME",
-        info: "Requierd",
+        groupName: S.current.name,
+        fieldName: S.current.name,
+        info: S.current.required,
         onChanged: (text) {
 
         },

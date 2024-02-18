@@ -189,4 +189,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userInfoAddedSuccessfully => 'you complete your profile successfully.';
+
+  @override
+  String get addNewRide => 'Add new ride';
+
+  @override
+  String get required => 'Required';
+
+  @override
+  String get name => 'NAME';
+
+  @override
+  String get registrationDetails => 'REGISTRATION DETAILS';
+
+  @override
+  String get licencePlate => 'Licence Plate';
+
+  @override
+  String get licencePlateNumber => 'License Plate : ex:123 ABC';
+
+  @override
+  String get vin => 'VIN : EX:WQ2BF2A53MLB51234';
+
+  @override
+  String get manufacturingDetails => 'MANUFACTURING DETAILS';
+
+  @override
+  String get trimText => 'Trim';
+
+  @override
+  String get modelText => 'Model';
+
+  @override
+  String get yearText => 'Year';
+
+  @override
+  String get makeText => 'Make';
+
+  @override
+  String get metrics => 'METRICS';
+
+  @override
+  String get unit => 'Unit';
+
+  @override
+  String get fuel => 'FUEL';
+
+  @override
+  String get fuelType => 'Fuel Type';
+
+  @override
+  String get fuelUnits => 'Fuel Units';
+
+  @override
+  String get consumption => 'Consumption';
+
+  @override
+  String get regionalDetails => 'REGIONAL DETAILS';
+
+  @override
+  String get currency => 'Currency';
 }

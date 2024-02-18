@@ -669,6 +669,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Add new ride`
+  String get addNewRide {
+    return Intl.message(
+      'Add new ride',
+      name: 'addNewRide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required`
+  String get required {
+    return Intl.message(
+      'Required',
+      name: 'required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NAME`
+  String get name {
+    return Intl.message(
+      'NAME',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGISTRATION DETAILS`
+  String get registrationDetails {
+    return Intl.message(
+      'REGISTRATION DETAILS',
+      name: 'registrationDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Licence Plate`
+  String get licencePlate {
+    return Intl.message(
+      'Licence Plate',
+      name: 'licencePlate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License Plate : ex:123 ABC`
+  String get licencePlateNumber {
+    return Intl.message(
+      'License Plate : ex:123 ABC',
+      name: 'licencePlateNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIN : EX:WQ2BF2A53MLB51234`
+  String get vin {
+    return Intl.message(
+      'VIN : EX:WQ2BF2A53MLB51234',
+      name: 'vin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MANUFACTURING DETAILS`
+  String get manufacturingDetails {
+    return Intl.message(
+      'MANUFACTURING DETAILS',
+      name: 'manufacturingDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trim`
+  String get trimText {
+    return Intl.message(
+      'Trim',
+      name: 'trimText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model`
+  String get modelText {
+    return Intl.message(
+      'Model',
+      name: 'modelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get yearText {
+    return Intl.message(
+      'Year',
+      name: 'yearText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make`
+  String get makeText {
+    return Intl.message(
+      'Make',
+      name: 'makeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `METRICS`
+  String get metrics {
+    return Intl.message(
+      'METRICS',
+      name: 'metrics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unit`
+  String get unit {
+    return Intl.message(
+      'Unit',
+      name: 'unit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FUEL`
+  String get fuel {
+    return Intl.message(
+      'FUEL',
+      name: 'fuel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel Type`
+  String get fuelType {
+    return Intl.message(
+      'Fuel Type',
+      name: 'fuelType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel Units`
+  String get fuelUnits {
+    return Intl.message(
+      'Fuel Units',
+      name: 'fuelUnits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consumption`
+  String get consumption {
+    return Intl.message(
+      'Consumption',
+      name: 'consumption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGIONAL DETAILS`
+  String get regionalDetails {
+    return Intl.message(
+      'REGIONAL DETAILS',
+      name: 'regionalDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency`
+  String get currency {
+    return Intl.message(
+      'Currency',
+      name: 'currency',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

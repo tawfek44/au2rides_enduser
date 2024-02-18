@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Acquisition Details"),
         "acquisitionType":
             MessageLookupByLibrary.simpleMessage("Acquisition Type"),
+        "addNewRide": MessageLookupByLibrary.simpleMessage("Add new ride"),
         "appLanguageText": MessageLookupByLibrary.simpleMessage("App Language"),
         "arabicLanguageText": MessageLookupByLibrary.simpleMessage("Arabic"),
         "areYouSureThatThisNumber": MessageLookupByLibrary.simpleMessage(
@@ -41,9 +42,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose your gender"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("Complete your profile"),
+        "consumption": MessageLookupByLibrary.simpleMessage("Consumption"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "countries": MessageLookupByLibrary.simpleMessage("Countries"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "currency": MessageLookupByLibrary.simpleMessage("Currency"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "didNotYouReceiveAnyCode": MessageLookupByLibrary.simpleMessage(
             "Didn\'t you receive any code?"),
@@ -58,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstNameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter first name."),
         "followUS": MessageLookupByLibrary.simpleMessage("Follow us"),
+        "fuel": MessageLookupByLibrary.simpleMessage("FUEL"),
+        "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
+        "fuelUnits": MessageLookupByLibrary.simpleMessage("Fuel Units"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "genderTextIsNull":
@@ -68,8 +74,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "lease": MessageLookupByLibrary.simpleMessage("Lease"),
+        "licencePlate": MessageLookupByLibrary.simpleMessage("Licence Plate"),
+        "licencePlateNumber":
+            MessageLookupByLibrary.simpleMessage("License Plate : ex:123 ABC"),
+        "makeText": MessageLookupByLibrary.simpleMessage("Make"),
+        "manufacturingDetails":
+            MessageLookupByLibrary.simpleMessage("MANUFACTURING DETAILS"),
+        "metrics": MessageLookupByLibrary.simpleMessage("METRICS"),
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number is missing."),
+        "modelText": MessageLookupByLibrary.simpleMessage("Model"),
+        "name": MessageLookupByLibrary.simpleMessage("NAME"),
         "notes": MessageLookupByLibrary.simpleMessage("NOTES"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("Number validation"),
@@ -90,6 +105,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "purchase": MessageLookupByLibrary.simpleMessage("Purchase"),
         "quotaExceeded": MessageLookupByLibrary.simpleMessage(
             "The SMS messages number has been exceeded"),
+        "regionalDetails":
+            MessageLookupByLibrary.simpleMessage("REGIONAL DETAILS"),
+        "registrationDetails":
+            MessageLookupByLibrary.simpleMessage("REGISTRATION DETAILS"),
+        "required": MessageLookupByLibrary.simpleMessage("Required"),
         "resendNewCode":
             MessageLookupByLibrary.simpleMessage("Resend new code"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
@@ -103,7 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "the reCAPTCHA response token was invalid, expired"),
         "thereIsAnErrorInGender": MessageLookupByLibrary.simpleMessage(
             "There is an error, please try again later"),
+        "trimText": MessageLookupByLibrary.simpleMessage("Trim"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "unit": MessageLookupByLibrary.simpleMessage("Unit"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "Your phone number has been disabled."),
         "userInfo": MessageLookupByLibrary.simpleMessage("User Info"),
@@ -111,7 +133,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "you complete your profile successfully."),
         "verification": MessageLookupByLibrary.simpleMessage("Verification"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
+        "vin":
+            MessageLookupByLibrary.simpleMessage("VIN : EX:WQ2BF2A53MLB51234"),
         "wrongText": MessageLookupByLibrary.simpleMessage(
-            "There is an error here, check your connectivity!")
+            "There is an error here, check your connectivity!"),
+        "yearText": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

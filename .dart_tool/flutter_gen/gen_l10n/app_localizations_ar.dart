@@ -189,4 +189,64 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get userInfoAddedSuccessfully => 'لقد أكملت بيانات صفحتك الخاصة بنجاح.';
+
+  @override
+  String get addNewRide => 'أضف مركبة جديدة';
+
+  @override
+  String get required => 'مطلوب';
+
+  @override
+  String get name => 'الأسم';
+
+  @override
+  String get registrationDetails => 'تفاصيل التسجيل';
+
+  @override
+  String get licencePlate => 'لوحة الترخيص';
+
+  @override
+  String get licencePlateNumber => 'رقم اللوحة : مثال ٥٨٣ أ ب ج';
+
+  @override
+  String get vin => 'رقم تعريف المركبة : EX:WQ2BF2A53MLB51234';
+
+  @override
+  String get manufacturingDetails => 'تفاصيل التصنيع';
+
+  @override
+  String get trimText => 'الفئة';
+
+  @override
+  String get modelText => 'الموديل';
+
+  @override
+  String get yearText => 'السنة';
+
+  @override
+  String get makeText => 'النوع';
+
+  @override
+  String get metrics => 'المقاييس';
+
+  @override
+  String get unit => 'الوحدة';
+
+  @override
+  String get fuel => 'الوقود';
+
+  @override
+  String get fuelType => 'نوع الوقود';
+
+  @override
+  String get fuelUnits => 'وحدات الوقود';
+
+  @override
+  String get consumption => 'الإستهلاك';
+
+  @override
+  String get regionalDetails => 'التفاصيل الإقليمية';
+
+  @override
+  String get currency => 'العملة';
 }
