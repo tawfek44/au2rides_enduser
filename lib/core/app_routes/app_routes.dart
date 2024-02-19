@@ -12,7 +12,7 @@ import 'package:au2rides/features/add_maintenance_screen/presentation/screen/add
 import 'package:au2rides/features/add_new_driving_licence_screen/presentation/screen/add_driving_licence_screen.dart';
 import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.dart';
 import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
-import 'package:au2rides/features/add_ride_screen/presentation/add_ride_screen.dart';
+import 'package:au2rides/features/add_ride_screen/presentation/screen/add_ride_screen.dart';
 import 'package:au2rides/features/add_shop_screen/presentation/screen/add_shop_screen.dart';
 import 'package:au2rides/features/add_trip_screen/presentation/screen/add_trip_screen.dart';
 import 'package:au2rides/features/add_wallet_item/presentation/screen/add_wallet_item.dart';

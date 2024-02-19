@@ -5,5 +5,6 @@ class EndPoints{
    authorizeMobileNumberEndPoint= "/api/oauth/user/v1.0/authorize",
    userDataEndPoint= "/api/oauth/user/v1.0/me",
    updateUserInfoEndPoint= "/api/oauth/user/v1.0/update-basic-info",
-   renewAccessTokenEndPoint= "/api/oauth/user/v1.0/access-token";
+   renewAccessTokenEndPoint= "/api/oauth/user/v1.0/access-token",
+   addRideEndPoint = "/api/rides/v1.0/add-ride";
 }
