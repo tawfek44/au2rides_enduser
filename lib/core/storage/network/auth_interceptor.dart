@@ -10,6 +10,7 @@ import '../../dependancy_injection/injection.dart';
 import '../../error/errors_codes.dart';
 import '../../repositories/user_repository.dart';
 
+
 @injectable
 class AuthInterceptor extends Interceptor {
   final Dio dio;
