@@ -103,8 +103,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget getChooseCountryListTile() =>
       CupertinoListTile(
-        onTap: () {
-          NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+        onTap: () async {
+          var loginData = await NamedNavigatorImpl().push(Routes.countriesScreenRoute);
+          setState(() {
+            getIt<UserRepository>().setSelectedCountry(loginData[0]);
+            getIt<UserRepository>().setSelectedCountryCallingCode(loginData[1]);
+          });
         },
         leading: Icon(
           Icons.flag,

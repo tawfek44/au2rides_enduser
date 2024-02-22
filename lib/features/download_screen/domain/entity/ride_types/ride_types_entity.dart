@@ -6,13 +6,13 @@ part 'ride_types_entity.g.dart';
 @JsonSerializable()
 class RideTypesEntity extends Equatable {
   @JsonKey(name: "ride_type_id")
-  final int rideTypeId;
+  final int? rideTypeId;
   @JsonKey(name: "language_id")
-  final int languageId;
+  final int? languageId;
   @JsonKey(name: "ride_type_name")
-  final String rideTypeName;
+  final String? rideTypeName;
   @JsonKey(name: "ride_type_logo_url")
-  final String rideTypeLogoUrl;
+  final String? rideTypeLogoUrl;
 
   const RideTypesEntity(
       {required this.rideTypeId,

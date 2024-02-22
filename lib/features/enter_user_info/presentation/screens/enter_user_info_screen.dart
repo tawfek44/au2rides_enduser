@@ -54,7 +54,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   var image;
   String birthDate = "";
   String genderTextFromGenderScreen = "";
-  bool enterUserDataLoading=false;
+  bool enterUserDataLoading = false;
+
   @override
   void dispose() {
     firstNameController.dispose();
@@ -75,7 +76,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     _formKey = GlobalKey<FormState>();
     return Directionality(
       textDirection:
-          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -122,11 +123,12 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                           imageUrl: state.response.profileImageUrl),
                       getUserInfoSection(),
                       gap(height: 15.w),
-
                       getContinueButton(
                           userId: state.response.userId,
                           response1: state.response),
-                     // enterUserDataLoading?const Loading():Container(),
+                      enterUserDataLoading
+                          ? const AppCircularProgressIndicator()
+                          : Container(),
                     ],
                   ),
                 ),
@@ -161,10 +163,12 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getContinueButton({required userId, required response1}) => AppButton(
+  Widget getContinueButton({required userId, required response1}) =>
+      AppButton(
         label: S.current.continueText,
         onPressed: () async {
-          if (getIt<UserRepository>().getSelectedGenderName == ""&&genderText=="") {
+          if (getIt<UserRepository>().getSelectedGenderName == "" &&
+              genderText == "") {
             var snackBar = AppSnackBar(
               text: S.current.genderTextIsNull,
               isSuccess: false,
@@ -173,30 +177,36 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
           if (_formKey.currentState!.validate() &&
-              getIt<UserRepository>().getSelectedGenderName != ""||genderText!="") {
+              getIt<UserRepository>().getSelectedGenderName != "" ||
+              genderText != "") {
             _formKey.currentState!.save();
             setState(() {
-              enterUserDataLoading=true;
+              enterUserDataLoading = true;
             });
             final response = await context
                 .read<UpdateUserDataCubit>()
                 .updateUserDataInServer(
-                    birthDate:"${selectedDate.toString().split(' ')[0].split('-')[2]}-${selectedDate.toString().split(' ')[0].split('-')[1]}-${selectedDate.toString().split(' ')[0].split('-')[0]}",
-                    emailAddress: emailController.text,
-                    firstName: firstNameController.text,
-                    lastName: lastNameController.text,
-                    language: getIt<UserRepository>().getUserLanguage,
-                    genderId: getIt<UserRepository>().getSelectedGenderId==-1?genderId:getIt<UserRepository>().getSelectedGenderId,
-                    registeredUserId: userId,
-                    profileImageUrl: fileName == ""
-                        ? response1.profileImageUrl
-                        : registeredUserProfileImageUrl + fileName);
+                birthDate: "${selectedDate.toString().split(' ')[0].split(
+                    '-')[2]}-${selectedDate.toString().split(' ')[0].split(
+                    '-')[1]}-${selectedDate.toString().split(' ')[0].split(
+                    '-')[0]}",
+                emailAddress: emailController.text,
+                firstName: firstNameController.text,
+                lastName: lastNameController.text,
+                language: getIt<UserRepository>().getUserLanguage,
+                genderId: getIt<UserRepository>().getSelectedGenderId == -1
+                    ? genderId
+                    : getIt<UserRepository>().getSelectedGenderId,
+                registeredUserId: userId,
+                profileImageUrl: fileName == ""
+                    ? response1.profileImageUrl
+                    : registeredUserProfileImageUrl + fileName);
             if (response is Failure) {
               var snackBar = AppSnackBar(
                   text: response.message, isSuccess: false, maxLines: 10);
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
               setState(() {
-                enterUserDataLoading=false;
+                enterUserDataLoading = false;
               });
             } else {
               var userData = UserModel(
@@ -214,8 +224,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
               final localDbResponse = await context
                   .read<AddUserToLocalDbCubit>()
                   .addUserToLocalDbInfo(
-                    userData: userData.toJson(),
-                  );
+                userData: userData.toJson(),
+              );
               if (localDbResponse > 0) {
                 var snackBar = AppSnackBar(
                     text: S.current.userInfoAddedSuccessfully,
@@ -234,7 +244,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }
               setState(() {
-                enterUserDataLoading=false;
+                enterUserDataLoading = false;
               });
             }
           }
@@ -243,20 +253,21 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
         roundness: corner,
       );
 
-  Widget getDateWidget() => InkWell(
-      onTap: showDateDialog,
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.lightGreyColor,
-            borderRadius: BorderRadius.circular(5.w)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
-          child: AppText(
-            text: birthDate,
-            fontSize: fontSize,
-          ),
-        ),
-      ));
+  Widget getDateWidget() =>
+      InkWell(
+          onTap: showDateDialog,
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.lightGreyColor,
+                borderRadius: BorderRadius.circular(5.w)),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 5.h),
+              child: AppText(
+                text: birthDate,
+                fontSize: fontSize,
+              ),
+            ),
+          ));
 
   void showDateDialog() async {
     DateTime? pickedDate = await showDatePicker(
@@ -272,7 +283,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  Widget getUserPic({required userId, required imageUrl}) => Padding(
+  Widget getUserPic({required userId, required imageUrl}) =>
+      Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
         child: Column(
           children: [
@@ -285,7 +297,9 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   bottom: 0,
                   right: 0,
                   child: CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Theme
+                        .of(context)
+                        .primaryColor,
                     radius: 25.w,
                     child: IconButton(
                       onPressed: () async {
@@ -309,7 +323,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
         ),
       );
 
-  Widget getUserInfoSection() => CupertinoListSection.insetGrouped(
+  Widget getUserInfoSection() =>
+      CupertinoListSection.insetGrouped(
         header: AppText(
           text: S.current.userInfo,
           fontSize: 12.sp,
@@ -369,12 +384,11 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
         ],
       );
 
-  Widget getUserInfoWidget(
-          {required hintText,
-          textController,
-          required icon,
-          required bool gender,
-          required bool birthdate}) =>
+  Widget getUserInfoWidget({required hintText,
+    textController,
+    required icon,
+    required bool gender,
+    required bool birthdate}) =>
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Row(
@@ -383,7 +397,9 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
             if (!gender && !birthdate)
               Icon(
                 icon,
-                color: Theme.of(context).primaryColor,
+                color: Theme
+                    .of(context)
+                    .primaryColor,
               ),
             if (gender) ...[
               Expanded(
@@ -399,12 +415,14 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                       children: [
                         Icon(
                           icon,
-                          color: Theme.of(context).primaryColor,
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
                         ),
                         getGenderWidget(),
                         const Spacer(),
                         AppText(
-                          text: genderTextFromGenderScreen == "" ? getIt<UserRepository>().getSelectedGenderName ==""?genderText : genderTextFromGenderScreen:"",
+                          text: getGender(),
                           fontSize: 13.sp,
                           color: AppColors.greyColor,
                         ),
@@ -417,89 +435,107 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                   ),
                 ),
               ),
-            ] else if (birthdate) ...[
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () async {
-                      DateTime? date = await showDatePicker(
-                        context: context,
-                        initialDate: nowDate,
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime(2100),
-                      );
-                      if (date == null) return;
-                      setState(() {
-                        nowDate = date;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          icon,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        getBirthDateWidget(),
-                        const Spacer(),
-                        getDateWidget()
-                      ],
+            ] else
+              if (birthdate) ...[
+                Expanded(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () async {
+                        DateTime? date = await showDatePicker(
+                          context: context,
+                          initialDate: nowDate,
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime(2100),
+                        );
+                        if (date == null) return;
+                        setState(() {
+                          nowDate = date;
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            icon,
+                            color: Theme
+                                .of(context)
+                                .primaryColor,
+                          ),
+                          getBirthDateWidget(),
+                          const Spacer(),
+                          getDateWidget()
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )
-            ] else
-              Expanded(
-                child: SharedTextField(
-                  hintText: hintText,
-                  textController: textController,
-                  inputType: TextInputType.text,
-                  validator: (value) {
-                    if (textController == firstNameController) {
-                      if (textController.text == "") {
-                        return S.current.firstNameValidation;
-                      } else {
-                        return null;
+                )
+              ] else
+                Expanded(
+                  child: SharedTextField(
+                    hintText: hintText,
+                    textController: textController,
+                    inputType: TextInputType.text,
+                    validator: (value) {
+                      if (textController == firstNameController) {
+                        if (textController.text == "") {
+                          return S.current.firstNameValidation;
+                        } else {
+                          return null;
+                        }
+                      } else if (textController == lastNameController) {
+                        if (textController.text == "") {
+                          return S.current.secondNameValidation;
+                        } else {
+                          return null;
+                        }
                       }
-                    } else if (textController == lastNameController) {
-                      if (textController.text == "") {
-                        return S.current.secondNameValidation;
-                      } else {
-                        return null;
-                      }
-                    }
-                  },
+                    },
+                  ),
                 ),
-              ),
           ],
         ),
       );
 
-  Widget getGenderWidget() => Padding(
+  Widget getGenderWidget() =>
+      Padding(
         padding:
-            EdgeInsets.only(left: 7.w, top: 15.h, bottom: 15.h, right: 7.w),
+        EdgeInsets.only(left: 7.w, top: 15.h, bottom: 15.h, right: 7.w),
         child: AppText(
           text: S.current.gender,
           fontSize: fontSize,
         ),
       );
 
-  Widget getBirthDateWidget() => Padding(
+  getGender() {
+    if(genderTextFromGenderScreen=="") {
+      if (getIt<UserRepository>().getSelectedGenderName == "") {
+        return genderText;
+      }
+      else {
+        return getIt<UserRepository>().getSelectedGenderName;
+      }
+    }
+    else{
+      return genderTextFromGenderScreen;
+    }
+  }
+
+  Widget getBirthDateWidget() =>
+      Padding(
         padding:
-            EdgeInsets.only(left: 7.w, top: 15.h, bottom: 15.h, right: 7.w),
+        EdgeInsets.only(left: 7.w, top: 15.h, bottom: 15.h, right: 7.w),
         child: AppText(
           text: S.current.birthDate,
           fontSize: fontSize,
         ),
       );
 
-  Widget getTextField(
-          {required label,
-          required textController,
-          required inputType,
-          validator,
-          enabled,
-          onTap}) =>
+  Widget getTextField({required label,
+    required textController,
+    required inputType,
+    validator,
+    enabled,
+    onTap}) =>
       SharedTextField(
           label: label,
           enabled: enabled,
@@ -512,7 +548,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     if (Platform.isAndroid) {
       return showModalBottomSheet(
           context: context,
-          builder: (BuildContext context) => Wrap(
+          builder: (BuildContext context) =>
+              Wrap(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.camera_alt),
@@ -535,7 +572,8 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     } else {
       return showCupertinoModalPopup<ImageSource>(
           context: context,
-          builder: (BuildContext context) => CupertinoActionSheet(
+          builder: (BuildContext context) =>
+              CupertinoActionSheet(
                 actions: [
                   CupertinoActionSheetAction(
                     onPressed: () =>
@@ -558,23 +596,26 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
     }
   }
 
-  getNetworkImage({required imageUrl}) => CachedNetworkImage(
+  getNetworkImage({required imageUrl}) =>
+      CachedNetworkImage(
         fit: BoxFit.fill,
-        imageBuilder: (context, imageProvider) => Container(
-          height: 150.h,
-          width: 150.w,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(500)),
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.cover,
+        imageBuilder: (context, imageProvider) =>
+            Container(
+              height: 150.h,
+              width: 150.w,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(500)),
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-          ),
-        ),
         imageUrl: imageUrl,
       );
 
-  getLocalImage({required image}) => CircleAvatar(
+  getLocalImage({required image}) =>
+      CircleAvatar(
         radius: 60.w,
         backgroundImage: image == null
             ? const AssetImage("images/user.png") as ImageProvider

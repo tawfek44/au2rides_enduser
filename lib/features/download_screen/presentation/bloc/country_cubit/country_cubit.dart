@@ -39,6 +39,7 @@ class CountryCubit extends Cubit<CountryState> {
             .cast<Map<String, dynamic>>()
             .map((e) => CountryModel.fromJson(e))
             .toList();
+        int x=0;
       }
       else{
         return Left(response);

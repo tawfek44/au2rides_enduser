@@ -54,6 +54,7 @@ class Au2ridesDatabase {
     const textIdType = "TEXT PRIMARY KEY";
     const intType = "INTEGER NOT NULL";
     const textType = "TEXT NOT NULL";
+
     const textNullType = "TEXT NULL";
 
     //Table Definition
@@ -127,7 +128,7 @@ class Au2ridesDatabase {
     ${RideTypesFields.rideTypeId} $intType,
     ${RideTypesFields.languageId} $intType,
     ${RideTypesFields.rideTypeName} $textType,
-    ${RideTypesFields.rideTypeLogoUrl} $textType,
+    ${RideTypesFields.rideTypeLogoUrl} $textNullType,
      PRIMARY KEY (${RideTypesFields.rideTypeId}, ${RideTypesFields.languageId})
     
     )

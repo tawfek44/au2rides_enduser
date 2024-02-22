@@ -148,7 +148,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
               getIt<UserRepository>()
                   .setSelectedCountryId(countries[index].countryId);
 
-              NamedNavigatorImpl().push(Routes.loginScreenRoute,replace: true);
+              Navigator.pop(context,[countries[index].countryName,countries[index].countryCallingCode]);
             });
           },
           title: AppText(

@@ -7,12 +7,12 @@ part of 'country_model.dart';
 // **************************************************************************
 
 CountryModel _$CountryModelFromJson(Map<String, dynamic> json) => CountryModel(
-      countryId: json['country_id'] as int,
-      languageId: json['language_id'] as int,
-      countryName: json['count_name'] as String,
-      countryKeyCode: json['country_key_code'] as String,
-      countryCallingCode: json['international_calling_code'] as String,
-      countryImageUrl: json['flag_image_url'] as String,
+      countryId: json['country_id'] as int?,
+      languageId: json['language_id'] as int?,
+      countryName: json['count_name'] as String?,
+      countryKeyCode: json['country_key_code'] as String?,
+      countryCallingCode: json['international_calling_code'] as String?,
+      countryImageUrl: json['flag_image_url'] as String?,
     );
 
 Map<String, dynamic> _$CountryModelToJson(CountryModel instance) =>

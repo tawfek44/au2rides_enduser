@@ -6,17 +6,17 @@ part 'country_entity.g.dart';
 @JsonSerializable()
 class CountryEntity extends Equatable {
   @JsonKey(name: "country_id")
-  final int countryId;
+  final int? countryId;
   @JsonKey(name: "language_id")
-  final int languageId;
+  final int? languageId;
   @JsonKey(name: "count_name")
-  final String countryName;
+  final String? countryName;
   @JsonKey(name: "country_key_code")
-  final String countryKeyCode;
+  final String? countryKeyCode;
   @JsonKey(name: "international_calling_code")
-  final String countryCallingCode;
+  final String? countryCallingCode;
   @JsonKey(name: "flag_image_url")
-  final String countryImageUrl;
+  final String? countryImageUrl;
 
   const CountryEntity(
       {required this.countryId,
