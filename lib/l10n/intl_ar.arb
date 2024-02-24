@@ -80,5 +80,9 @@
   "fuelUnits": "وحدات الوقود",
   "consumption": "الإستهلاك",
   "regionalDetails": "التفاصيل الإقليمية",
-  "currency": "العملة"
+  "currency": "العملة",
+  "myRides": "مركباتى",
+  "seeFullForecast": "أنظر التوقعات كاملة",
+  "verified": "تم التحقق",
+  "notVerified": "لم يتم التحقق"
 }

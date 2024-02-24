@@ -1,18 +1,22 @@
 import 'dart:ui';
-
-
+import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
+import 'package:au2rides/features/home_screen/presentation/bloc/get_my_rides_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/app_circular_indicator.dart';
+import '../../../../generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,82 +26,115 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<GetMyRidesCubit>().getMyRides();
+  }
+
   int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          drawer: Drawer(
-              shape: const BeveledRectangleBorder(),
-              width: MediaQuery.of(context).size.width * (2 / 3) + 20.w,
-              child: getDrawerItems()),
-          appBar: PreferredSize(
+    return Directionality(
+      textDirection:
+          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      child: SafeArea(
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            drawer: Drawer(
+                shape: const BeveledRectangleBorder(),
+                width: MediaQuery.of(context).size.width * (2 / 3) + 20.w,
+                child: getDrawerItems()),
+            appBar: PreferredSize(
               preferredSize: Size.fromHeight(AppBar().preferredSize.height),
               child: getAppBar(
-                  context: context,
-                  title: InkWell(
-                    onTap: (){
-                      NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
-                    },
-                    child: CupertinoTextField(
-                      enabled: false,
-                      suffix: SizedBox(
-                        height: 42.h,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.qr_code,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          onPressed: () async {},
-                        ),
-                      ),
-                    ),
-                  ),
-                  leading: Builder(
-                    builder: (context) => IconButton(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      icon: const Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                        onPressed: () {
-                          NamedNavigatorImpl().push(Routes.notificationScreenRoute);
-                        },
-                        icon: const Icon(
-                          Icons.notifications_active,
-                          color: Colors.white,
-                        ))
-                  ])),
-          body: Padding(
-            padding: EdgeInsets.only(top: 10.h, left: 5.w, right: 5.w),
-            child: ListView(
-              children: [
-                getCarouselSliderWidget(),
-                SizedBox(
-                  height: 10.h,
-                ),
-                getSponsoredAds(),
-                SizedBox(
-                  height: 10.h,
-                ),
-                AppText(text: 'My Rides'),
-                SizedBox(
-                  height: 5.h,
-                ),
-                getMyRides(),
-              ],
+                context: context,
+                title: getQrCodeImageWidget(),
+                leading: getMenuIconWidget(),
+                actions: getActions(),
+              ),
             ),
-          )),
+            body: BlocBuilder<GetMyRidesCubit, GetMyRidesState>(
+              builder: (context, state) {
+                if (state is LoadedGetMyRidesState) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: 10.h, left: 5.w, right: 5.w),
+                    child: ListView(
+                      children: [
+                        getCarouselSliderWidget(),
+                        gap(height: 10.h),
+                        getSponsoredAds(),
+                        gap(height: 10.h),
+                        AppText(text: S.current.myRides),
+                        gap(height: 5.h),
+                        getMyRides(myRides: state.response),
+                      ],
+                    ),
+                  );
+                } else if (state is LoadingGetMyRidesState) {
+                  return const Center(
+                    child: AppCircularProgressIndicator(),
+                  );
+                } else if (state is ErrorGetMyRidesState) {
+                  return Center(
+                    child: AppText(
+                      text: state.e.toString(),
+                      fontSize: fontSize,
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+
+            )),
+      ),
     );
   }
+
+  getActions() => [
+        IconButton(
+            onPressed: () {
+              NamedNavigatorImpl().push(Routes.notificationScreenRoute);
+            },
+            icon: const Icon(
+              Icons.notifications_active,
+              color: Colors.white,
+            ))
+      ];
+
+  getMenuIconWidget() => Builder(
+        builder: (context) => IconButton(
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+        ),
+      );
+
+  Widget getQrCodeImageWidget() => InkWell(
+        onTap: () {
+          NamedNavigatorImpl().push(Routes.searchQRScreenRoute);
+        },
+        child: CupertinoTextField(
+          enabled: false,
+          suffix: SizedBox(
+            height: 42.h,
+            child: IconButton(
+              icon: Icon(
+                Icons.qr_code,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () async {},
+            ),
+          ),
+        ),
+      );
 
   Widget getDrawerItems() => ListView(
         children: [
@@ -108,9 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.home,
               drawerChoices: DrawerChoices.profile),
           getDrawerLinks(
-              title: "Au2rides club",
-              icon: Icons.area_chart,
-              drawerChoices: DrawerChoices.club,
+            title: "Au2rides club",
+            icon: Icons.area_chart,
+            drawerChoices: DrawerChoices.club,
           ),
           getDrawerLinks(
               title: "Notifications",
@@ -124,10 +161,6 @@ class _HomeScreenState extends State<HomeScreen> {
               title: "Overdue",
               icon: Icons.access_alarm_rounded,
               drawerChoices: DrawerChoices.overdue),
-       //   getDrawerLinks(
-          //    title: "My requests",
-            //  icon: Icons.compare_arrows_rounded,
-           //   drawerChoices: DrawerChoices.requests),
           getDrawerLinks(
               title: "App Language",
               icon: Icons.language,
@@ -202,9 +235,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {},
                     icon: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.white),
-                        borderRadius: BorderRadius.all(Radius.circular(50.w))
-                      ),
+                          border: Border.all(color: AppColors.white),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(50.w))),
                       child: CircleAvatar(
                         radius: 20.w,
                         backgroundColor: Theme.of(context).primaryColor,
@@ -255,83 +288,89 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-  Widget getImageProfile()=>SizedBox(
+  Widget getImageProfile() => SizedBox(
       width: 100.w,
       height: 100.h,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(40.w),
           child: Image.asset("images/img.png")));
-  Widget getMyRides() => ListView.builder(
+
+  Widget getMyRides({required myRides}) => ListView.builder(
         shrinkWrap: true,
-        itemBuilder: (context, index) => getRideItem(),
-        itemCount: 2,
+        itemBuilder: (context, index) => getRideItem(rideItem: myRides[index]),
+        itemCount: myRides.length,
         physics: const NeverScrollableScrollPhysics(),
       );
 
-  Widget getRideItem() => GestureDetector(
-    onTap: (){
-      NamedNavigatorImpl().push(Routes.rideDetailsScreenRoute);
-    },
-    child: SizedBox(
-      width: double.infinity,
-      height: 165.h,
-      child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(corner)),
-          ),
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.w),
-                child: Container(
-                  width: double.infinity,
-                  child: Image.asset(
-                    'images/car.png',
-                    fit: BoxFit.cover,
+  Widget getRideItem({required rideItem}) => GestureDetector(
+      onTap: () {
+        NamedNavigatorImpl().push(Routes.rideDetailsScreenRoute);
+      },
+      child: SizedBox(
+        width: double.infinity,
+        height: 190.h,
+        child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(corner)),
+            ),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(5.w),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Image.asset(
+                      'images/car.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              ClipRRect(
-                // Clip it cleanly.
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                  child: Container(
-                    color: Colors.grey.withOpacity(0.1),
-                    alignment: Alignment.center,
-                    child: getRideDetailsOnPic(),
+                ClipRRect(
+                  // Clip it cleanly.
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                    child: Container(
+                      color: Colors.grey.withOpacity(0.1),
+                      alignment: Alignment.center,
+                      child: getRideDetailsOnPic(rideDetails: rideItem),
+                    ),
                   ),
                 ),
+              ],
+            )),
+      ));
+
+  Widget getVerifiedWidget({required isVerified}) => Padding(
+    padding:  EdgeInsets.all(10.w),
+    child: Wrap(
+      children: [
+        Container(
+              decoration: BoxDecoration(
+                  color: isVerified ? AppColors.greenColor : AppColors.redColor,
+                  borderRadius: BorderRadius.circular(corner)),
+              child: Center(
+                child: AppText(
+                  text: isVerified ? S.current.verified : S.current.notVerified,
+                  maxLines: 4,
+                  color: AppColors.white,
+                  fontSize: fontSize-2.sp,
+                ),
               ),
-            ],
-          )),
-    )
+            ),
+      ],
+    ),
   );
 
-  Widget getVerifiedWidget()=> Container(
-    decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(corner)),
-    height: 25.h,
-    width: 50.w,
-    child: Center(
-        child: Text(
-          'Verified',
-          style: TextStyle(
-              color: Colors.white, fontSize: fontSize - 2.sp),
-          textAlign: TextAlign.center,
-        )),
-  );
-  getRideDetailsOnPic() =>
-      Padding(
-        padding: EdgeInsets.all(12.w),
+  getRideDetailsOnPic({required rideDetails}) => Padding(
+        padding: EdgeInsets.all(5.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            getRideDetails(),
+            getRideDetails(rideDetails: rideDetails),
             const Spacer(),
             IconButton(
-              onPressed: (){
+              onPressed: () {
                 showQrCodeDialog(context);
               },
               icon: Icon(
@@ -344,25 +383,37 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-
-  getRideDetails() =>
-      Column(
+  getRideDetails({required rideDetails}) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          getRideNameAndType(),
-          getRideYearAndModel(),
-          getVINNumber(),
+          getRideNameAndType(isVerified:rideDetails.rideIsVerified ,rideName:rideDetails.rideName,rideType: rideDetails.manufacturingDetails.rideType.rideTypeName),
+          getRideYearAndModel(model: rideDetails.manufacturingDetails.rideModel.rideModelName,year: rideDetails.manufacturingDetails.manufacturingYear,trimName: rideDetails.manufacturingDetails.rideTrim.rideTrimName),
+          getVINNumber(vinNumber: rideDetails.rideVinNumber),
           getPlateNumber(),
           getOdometerRead(),
         ],
       );
 
-  getRideNameAndType() =>
-      Row(
+  getRideNameAndType({required rideName, required rideType,required isVerified}) => Row(
         children: [
+          SizedBox(
+            width: 20.w,
+            child: AppText(
+              text: rideName,
+              fontSize: fontSize,
+              color: AppColors.white,
+              maxLines: 2,
+
+              fontWeight: FontWeight.bold,
+              shadowList: [
+                getShadow(),
+              ],
+            ),
+          ),
+          gap(width: 5.w),
           AppText(
-            text: "My car name",
+            text: rideType,
             fontSize: fontSize,
             color: AppColors.white,
             fontWeight: FontWeight.bold,
@@ -371,25 +422,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           gap(width: 5.w),
-          AppText(
-            text: "(Car)",
-            fontSize: fontSize,
-            color: AppColors.white,
-            fontWeight: FontWeight.bold,
-            shadowList: [
-              getShadow(),
-            ],
-          ),
-          gap(width: 5.w),
-          getVerifiedWidget(),
+          getVerifiedWidget(isVerified: isVerified),
         ],
       );
 
-  getRideYearAndModel() =>
-      Row(
+  getRideYearAndModel({required year,required model,required trimName}) => Row(
         children: [
           AppText(
-            text: "2024 GG-ZS",
+            text: "$year $model",
             fontSize: fontSize,
             color: AppColors.white,
             shadowList: [
@@ -398,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           gap(width: 5.w),
           AppText(
-            text: "(Trim)",
+            text: "($trimName)",
             fontSize: fontSize,
             color: AppColors.white,
             shadowList: [
@@ -408,8 +448,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  getOdometerRead() =>
-      AppText(
+  getOdometerRead() => AppText(
         text: "23243 KM",
         fontSize: fontSize,
         color: AppColors.white,
@@ -418,9 +457,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  getVINNumber() =>
-      AppText(
-        text: "56576879",
+  getVINNumber({required vinNumber}) => AppText(
+        text: vinNumber,
         fontSize: fontSize,
         color: AppColors.white,
         shadowList: [
@@ -428,8 +466,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  getPlateNumber() =>
-      AppText(
+  getPlateNumber() => AppText(
         text: "ج ر ص - 542",
         fontSize: fontSize,
         color: AppColors.white,
@@ -438,12 +475,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  getShadow() =>
-      const Shadow(
+  getShadow() => const Shadow(
         color: Colors.black,
         blurRadius: 2.0,
         offset: Offset(1.0, 1.0),
       );
+
   Widget getSponsoredAds() => CarouselSlider.builder(
         itemCount: 4,
         itemBuilder: (context, _, index) {
@@ -472,9 +509,9 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   Widget getCarouselSliderWidget() => SizedBox(
-    height: 190.h,
-      child: getWeatherItemWidget(),
-  );
+        height: 190.h,
+        child: getWeatherItemWidget(),
+      );
 
   Widget getWeatherItemWidget() => Stack(
         children: [
@@ -496,7 +533,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: 5.h,left: 10.w,right: 10.w),
+            padding: EdgeInsets.only(top: 5.h, left: 10.w, right: 10.w),
             child: Column(
               children: [
                 getLocationAndMoreRow(),
@@ -515,12 +552,10 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 40.h,
             child: Image.asset("images/sunny_weather.png"),
           ),
-          SizedBox(
-            width: 5.w,
-          ),
+          gap(width: 5.w),
           AppText(
             text: 'Desert of Giza Governorate',
-            fontSize:fontSize,
+            fontSize: fontSize,
           ),
           const Spacer(),
           IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz))
@@ -534,16 +569,14 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 80.w,
               height: 80.h,
               child: Image.asset("images/cloud.png")),
-          SizedBox(
-            width: 5.w,
-          ),
-          AppText(text: '22', fontSize: fontSize+5.sp),
+          gap(width: 5.w),
+          AppText(text: '22', fontSize: fontSize + 5.sp),
           SizedBox(
             width: 5.w,
           ),
           AppText(
             text: '°C',
-            fontSize: fontSize+5.sp,
+            fontSize: fontSize + 5.sp,
           )
         ],
       );
@@ -552,7 +585,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {},
         child: AppText(
           fontSize: fontSize,
-          text: 'See full forecast',
+          text: S.current.seeFullForecast,
         ),
       );
 

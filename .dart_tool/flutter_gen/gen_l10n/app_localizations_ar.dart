@@ -249,4 +249,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get currency => 'العملة';
+
+  @override
+  String get myRides => 'مركباتى';
+
+  @override
+  String get seeFullForecast => 'أنظر التوقعات كاملة';
+
+  @override
+  String get verified => 'تم التحقق';
+
+  @override
+  String get notVerified => 'لم يتم التحقق';
 }

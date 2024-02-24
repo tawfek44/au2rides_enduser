@@ -26,6 +26,7 @@ import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/linear_progress_indicator.dart';
 import '../../../../generated/l10n.dart';
 import '../bloc/add_user_in_local_db/add_user_in_loca_db_cubit.dart';
 
@@ -127,7 +128,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                           userId: state.response.userId,
                           response1: state.response),
                       enterUserDataLoading
-                          ? const AppCircularProgressIndicator()
+                          ? const AppLinearProgressIndicator()
                           : Container(),
                     ],
                   ),

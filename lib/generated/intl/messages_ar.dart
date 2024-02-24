@@ -82,7 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "تأكد من إدخالك لرقم الهاتف قبل تسجيل الدخول"),
         "modelText": MessageLookupByLibrary.simpleMessage("الموديل"),
+        "myRides": MessageLookupByLibrary.simpleMessage("مركباتى"),
         "name": MessageLookupByLibrary.simpleMessage("الأسم"),
+        "notVerified": MessageLookupByLibrary.simpleMessage("لم يتم التحقق"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("التحقق من رقم الهاتف"),
@@ -110,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "secondNameValidation":
             MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأخير."),
+        "seeFullForecast":
+            MessageLookupByLibrary.simpleMessage("أنظر التوقعات كاملة"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("بيانات تسجيل الدخول"),
@@ -127,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userInfoAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "لقد أكملت بيانات صفحتك الخاصة بنجاح."),
         "verification": MessageLookupByLibrary.simpleMessage("التحقق"),
+        "verified": MessageLookupByLibrary.simpleMessage("تم التحقق"),
         "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "vin": MessageLookupByLibrary.simpleMessage(
             "رقم تعريف المركبة : EX:WQ2BF2A53MLB51234"),

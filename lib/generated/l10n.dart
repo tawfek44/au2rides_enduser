@@ -869,6 +869,46 @@ class S {
       args: [],
     );
   }
+
+  /// `My Rides`
+  String get myRides {
+    return Intl.message(
+      'My Rides',
+      name: 'myRides',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See full forecast`
+  String get seeFullForecast {
+    return Intl.message(
+      'See full forecast',
+      name: 'seeFullForecast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verified`
+  String get verified {
+    return Intl.message(
+      'Verified',
+      name: 'verified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `notVerified`
+  String get notVerified {
+    return Intl.message(
+      'notVerified',
+      name: 'notVerified',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -80,6 +80,10 @@
   "fuelUnits": "Fuel Units",
   "consumption": "Consumption",
   "regionalDetails": "REGIONAL DETAILS",
-  "currency": "Currency"
+  "currency": "Currency",
+  "myRides": "My Rides",
+  "seeFullForecast": "See full forecast",
+  "verified": "Verified",
+  "notVerified": "notVerified"
 
 }

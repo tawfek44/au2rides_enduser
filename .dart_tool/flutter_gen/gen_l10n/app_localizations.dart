@@ -584,6 +584,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Currency'**
   String get currency;
+
+  /// No description provided for @myRides.
+  ///
+  /// In en, this message translates to:
+  /// **'My Rides'**
+  String get myRides;
+
+  /// No description provided for @seeFullForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'See full forecast'**
+  String get seeFullForecast;
+
+  /// No description provided for @verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get verified;
+
+  /// No description provided for @notVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'notVerified'**
+  String get notVerified;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

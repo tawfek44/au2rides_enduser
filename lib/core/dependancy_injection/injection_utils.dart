@@ -18,6 +18,8 @@ import 'package:au2rides/features/download_screen/presentation/bloc/service_depa
 import 'package:au2rides/features/download_screen/presentation/bloc/service_types_cubit/service_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/workflow_statuses_cubit/workflow_statuses_cubit.dart';
 import 'package:au2rides/features/enter_user_info/presentation/bloc/add_user_in_local_db/add_user_in_loca_db_cubit.dart';
+import 'package:au2rides/features/home_screen/domain/use_cases/get_my_rides_usecase.dart';
+import 'package:au2rides/features/home_screen/presentation/bloc/get_my_rides_cubit.dart';
 import 'package:au2rides/features/language_screen/presentation/bloc/language_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +73,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<GetGenderCubit>()),
         BlocProvider(create: (_) => getIt<UpdateUserDataCubit>()),
         BlocProvider(create: (_) => getIt<AddUserToLocalDbCubit>()),
-        BlocProvider(create: (_) => getIt<AddRideCubit>())
+        BlocProvider(create: (_) => getIt<AddRideCubit>()),
+        BlocProvider(create: (_) => getIt<GetMyRidesCubit>())
       ],
       child: child,
     );

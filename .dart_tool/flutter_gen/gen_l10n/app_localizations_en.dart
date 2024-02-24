@@ -249,4 +249,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get currency => 'Currency';
+
+  @override
+  String get myRides => 'My Rides';
+
+  @override
+  String get seeFullForecast => 'See full forecast';
+
+  @override
+  String get verified => 'Verified';
+
+  @override
+  String get notVerified => 'notVerified';
 }

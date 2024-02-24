@@ -84,7 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "missingPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number is missing."),
         "modelText": MessageLookupByLibrary.simpleMessage("Model"),
+        "myRides": MessageLookupByLibrary.simpleMessage("My Rides"),
         "name": MessageLookupByLibrary.simpleMessage("NAME"),
+        "notVerified": MessageLookupByLibrary.simpleMessage("notVerified"),
         "notes": MessageLookupByLibrary.simpleMessage("NOTES"),
         "numberValidation":
             MessageLookupByLibrary.simpleMessage("Number validation"),
@@ -115,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secondNameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter second name."),
+        "seeFullForecast":
+            MessageLookupByLibrary.simpleMessage("See full forecast"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("SIGN IN DETAILS"),
@@ -132,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userInfoAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "you complete your profile successfully."),
         "verification": MessageLookupByLibrary.simpleMessage("Verification"),
+        "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "vin":
             MessageLookupByLibrary.simpleMessage("VIN : EX:WQ2BF2A53MLB51234"),
