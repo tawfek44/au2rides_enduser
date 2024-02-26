@@ -20,7 +20,13 @@ class AuthInterceptor extends Interceptor {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
+
     if(err.response!=null){
+      if(err.response?.statusCode==500){
+        dio.options.headers["Authorization"] =
+            getIt<UserRepository>().getAccessToken;
+        return handler.resolve(await _retry(err.requestOptions));
+      }
       if (err.response?.data["code"] == HttpsStatusCode.authorizationAccessTokenExpired) {
         final newAccessToken = await renewAccessToken(
             appUrl: AppEnvironment.authAPIUrl,
@@ -34,6 +40,7 @@ class AuthInterceptor extends Interceptor {
           return handler.resolve(await _retry(err.requestOptions));
         }
       }
+
     }
 
     return super.onError(err, handler);

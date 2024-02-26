@@ -25,5 +25,6 @@ class TableNames {
       modelGenerationSpecificationKeys = 'model_generation_specification_keys',
       workflowStatusesTableName = 'workflow_statuses',
       usersTableName = 'users',
-      tireConstructionTypes = 'tire_construction_types';
+      tireConstructionTypes = 'tire_construction_types',
+      fuelMeasuringUnits = 'fuel_measuring_units';
 }

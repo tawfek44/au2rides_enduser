@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:au2rides/core/storage/local/table_names.dart';
 import 'package:au2rides/core/storage/tables/engine_transmission_types.dart';
+import 'package:au2rides/core/storage/tables/fuel_measuring_units.dart';
 import 'package:au2rides/core/storage/tables/languages.dart';
 import 'package:au2rides/core/storage/tables/metric_units_types.dart';
 import 'package:au2rides/core/storage/tables/pressure_units.dart';
@@ -335,6 +336,16 @@ class Au2ridesDatabase {
     ${UsersFields.birthDate} $textType
     )
     ''');
+    //fuel_measuring_units
+    await db.execute('''
+    CREATE TABLE ${TableNames.fuelMeasuringUnits} (
+    ${FuelMeasuringUnitsFields.fuelUnitId} $intType,
+    ${FuelMeasuringUnitsFields.languageId} $intType,
+    ${FuelMeasuringUnitsFields.fuelUnitName} $textType,
+    ${FuelMeasuringUnitsFields.fuelUnitCode} $textType,
+    PRIMARY KEY (${FuelMeasuringUnitsFields.fuelUnitId}, ${FuelMeasuringUnitsFields.languageId})
+    )
+    ''');
   }
 
   insert({required String tableName, required dynamic values}) async {
@@ -355,7 +366,6 @@ class Au2ridesDatabase {
     var data = await db.query(tableName);
     return data;
   }
-
 
   Future getAllDateWithCondition(
       {required String tableName,

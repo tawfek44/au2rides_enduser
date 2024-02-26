@@ -21,11 +21,10 @@ import 'package:au2rides/features/download_screen/data/models/reminder_type_serv
 import 'package:au2rides/features/download_screen/data/models/reminder_types/reminder_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/service_types/service_types_model.dart';
 import 'package:au2rides/features/download_screen/data/models/workflow_statuses/workflow_statuses_model.dart';
-import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
-import 'package:au2rides/features/download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_fuel_types_cubit/engine_fuel_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/engine_transmission_types_cubit/engine_transmission_types_cubit.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/fuel_measuring_units_cubit/fuel_measuring_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/metric_untis_cubit/metric_units_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/model_generation_specification_keys_cubit/model_generation_specification_keys_cubit.dart';
@@ -49,10 +48,12 @@ import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/country/country_model.dart';
 import '../../data/models/currency/currency_model.dart';
+import '../../data/models/fuel_measuring_units/fuel_measuring_units_model.dart';
 import '../../data/models/ride_types/ride_types_model.dart';
 import '../../data/models/services_departments/service_departments_model.dart';
 import '../../data/models/user_gender/user_gender_model.dart';
 import '../../data/models/weather_units_model/weather_units_model.dart';
+import '../bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import '../bloc/country_cubit/country_cubit.dart';
 import '../bloc/currency_cubit/currency_cubit.dart';
 import '../bloc/fuel_brands_cubit/fuel_brands_cubit.dart';
@@ -168,6 +169,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
             break;
           case TableNames.workflowStatusesTableName:
             await downloadPrimaryDataForModelWorkflowStatusesTable(table: table);
+            break;
+          case TableNames.fuelMeasuringUnits:
+            await downloadPrimaryDataForModelFuelMeasuringUnitsTable(table: table);
             break;
         }
       }
@@ -1101,6 +1105,47 @@ class _DownloadScreenState extends State<DownloadScreen> {
           .saveAllWorkflowStatusesInLocalDB(
           tableName: table.tableName,
           values: (element as WorkflowStatusesModel ).toJson());
+    }
+  }
+
+  downloadPrimaryDataForModelFuelMeasuringUnitsTable({required table}) async {
+    bool fnd = false;
+
+    //TODO 2. get FuelMeasuringUnits data from network db
+    await context
+        .read<FuelMeasuringUnitsCubit>()
+        .getAllFuelMeasuringUnitsFromNetworkDB(
+        tableDefinitions: table,
+        appLang: widget.userRepository.userLanguage)
+        .then((value) async {
+      //TODO 3. save WorkflowStatuses data in local db
+      if(!(value is Left)) {
+        //TODO 1. clear WorkflowStatuses table in local db
+        await context
+            .read<FuelMeasuringUnitsCubit>()
+            .clearFuelMeasuringUnitsInLocalDatabase(
+            tableName: table.tableName, languageId: table.languageId);
+        fnd = true;
+        await saveFuelMeasuringUnitsInLocalDb(response: value, table: table);
+      }else{
+        var snackBar = AppSnackBar(
+            text: value.value.message, isSuccess: false, maxLines: 10);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+    if(fnd) {
+      await context.read<CountryCubit>().updateTableDefinitionTable(
+          table: table);
+    }
+  }
+
+  saveFuelMeasuringUnitsInLocalDb({required response, required table}) async {
+    for (var element in response) {
+      await context
+          .read<FuelMeasuringUnitsCubit>()
+          .saveFuelMeasuringUnitsInLocalDB(
+          tableName: table.tableName,
+          values: (element as FuelMeasuringUnitsModel ).toJson());
     }
   }
 }

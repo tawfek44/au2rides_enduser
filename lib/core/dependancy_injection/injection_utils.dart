@@ -27,6 +27,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/download_screen/presentation/bloc/country_cubit/country_cubit.dart';
 import '../../features/download_screen/presentation/bloc/currency_cubit/currency_cubit.dart';
 import '../../features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
+import '../../features/download_screen/presentation/bloc/fuel_measuring_units_cubit/fuel_measuring_units_cubit.dart';
 import '../../features/download_screen/presentation/bloc/fuel_octane_number_cubit/fuel_octane_number_cubit.dart';
 import '../../features/download_screen/presentation/bloc/gender_cubit/gender_cubit.dart';
 import '../../features/download_screen/presentation/bloc/ride_types/ride_types_cubit.dart';
@@ -74,7 +75,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<UpdateUserDataCubit>()),
         BlocProvider(create: (_) => getIt<AddUserToLocalDbCubit>()),
         BlocProvider(create: (_) => getIt<AddRideCubit>()),
-        BlocProvider(create: (_) => getIt<GetMyRidesCubit>())
+        BlocProvider(create: (_) => getIt<GetMyRidesCubit>()),
+        BlocProvider(create: (_) => getIt<FuelMeasuringUnitsCubit>())
       ],
       child: child,
     );

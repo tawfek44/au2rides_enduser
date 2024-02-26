@@ -34,7 +34,8 @@ List<String> tableNames = [
   TableNames.servicesTypesTableName,
   TableNames.departmentServiceItemsTableName,
   TableNames.tireConstructionTypes,
-  TableNames.workflowStatusesTableName
+  TableNames.workflowStatusesTableName,
+  TableNames.fuelMeasuringUnits
 ];
 
 Future main() async {
