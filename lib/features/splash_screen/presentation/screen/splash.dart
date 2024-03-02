@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
           .read<CheckPrimaryDataCubit>()
           .checkPrimaryData(values: list)
           .then((value) {
-            if(!(value is Failure)){
+            if(!(value is Left)){
               final response = value
                   .cast<Map<String, dynamic>>()
                   .map((e) => CheckPrimaryDataBodyModel.fromJson(e))
@@ -123,7 +123,7 @@ class _SplashScreenState extends State<SplashScreen> {
             }
             else{
               var snackBar = AppSnackBar(
-                text: value.message, isSuccess: false, maxLines: 10);
+                text: value.value.message, isSuccess: false, maxLines: 10);
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
       });

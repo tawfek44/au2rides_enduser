@@ -7,8 +7,6 @@ import 'package:au2rides/core/storage/network/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import '../../../env.dart';
-import '../../app_routes/app_routes_names.dart';
-import '../../error/errors_codes.dart';
 import '../../error/failure.dart';
 
 class DioClient {

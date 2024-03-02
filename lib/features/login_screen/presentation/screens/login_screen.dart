@@ -105,10 +105,13 @@ class _LoginScreenState extends State<LoginScreen> {
       CupertinoListTile(
         onTap: () async {
           var loginData = await NamedNavigatorImpl().push(Routes.countriesScreenRoute);
-          setState(() {
-            getIt<UserRepository>().setSelectedCountry(loginData[0]);
-            getIt<UserRepository>().setSelectedCountryCallingCode(loginData[1]);
-          });
+          if(loginData!=null) {
+            setState(() {
+              getIt<UserRepository>().setSelectedCountry(loginData[0]);
+              getIt<UserRepository>().setSelectedCountryCallingCode(
+                  loginData[1]);
+            });
+          }
         },
         leading: Icon(
           Icons.flag,
@@ -121,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
           color: AppColors.greyColor,
         ),
         additionalInfo: AppText(
-          text: getIt<UserRepository>().getSelectedCountry,
+          text: getIt<UserRepository>().getSelectedCountry??"",
           color: AppColors.greyColor,
           fontSize: fontSize,
         ),
@@ -137,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
           leadingToTitle: 0,
           leadingSize: 40.w,
           leading: AppText(
-            text: getIt<UserRepository>().getSelectedCountryCallingCode,
+            text: getIt<UserRepository>().getSelectedCountryCallingCode??"",
             fontSize: fontSize.sp,
             color: AppColors.greyColor,
             maxLines: 10,
