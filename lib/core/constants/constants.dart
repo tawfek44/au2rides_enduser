@@ -25,7 +25,7 @@ const registeredUserProfileImageUrl = "https://au2ridesusersstorage.blob.core.wi
 
 Widget errorWidget() => Center(
   child: AppText(
-    text: S.current.wrongText,
+    text: S.current.connectivityError,
     fontSize: fontSize,
   ),
 );

@@ -36,9 +36,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "chooseRideType":
+            MessageLookupByLibrary.simpleMessage("أختر نوع المركبة"),
         "chooseYourGender": MessageLookupByLibrary.simpleMessage("أختر جنسك"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
+        "connectivityError": MessageLookupByLibrary.simpleMessage(
+            "لا يوجد خدمة إنترنت, تحقق من إتصالك بالإنترنت!"),
         "consumption": MessageLookupByLibrary.simpleMessage("الإستهلاك"),
         "continueText": MessageLookupByLibrary.simpleMessage("أكمل"),
         "countries": MessageLookupByLibrary.simpleMessage("الدول"),
@@ -135,8 +139,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "vin": MessageLookupByLibrary.simpleMessage(
             "رقم تعريف المركبة : EX:WQ2BF2A53MLB51234"),
-        "wrongText": MessageLookupByLibrary.simpleMessage(
-            "هناك خطأ ما, تحقق من إتصالك بالإنترنت!"),
         "yearText": MessageLookupByLibrary.simpleMessage("السنة")
       };
 }

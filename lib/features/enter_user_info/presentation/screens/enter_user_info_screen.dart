@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/error/errors_codes.dart';
 import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/storage/local/sqlite.dart';
 import 'package:au2rides/core/styles/colors.dart';
@@ -203,8 +204,15 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                     ? response1.profileImageUrl
                     : registeredUserProfileImageUrl + fileName);
             if (response is Failure) {
+              String? msg = "";
+              if(response.code == HttpsStatusCode.connectionError){
+                msg = S.current.connectivityError;
+              }
+              else{
+                msg = response.message;
+              }
               var snackBar = AppSnackBar(
-                  text: response.message, isSuccess: false, maxLines: 10);
+                  text: msg??"", isSuccess: false, maxLines: 10);
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
               setState(() {
                 enterUserDataLoading = false;

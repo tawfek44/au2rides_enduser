@@ -7,6 +7,7 @@ import 'package:au2rides/core/storage/network/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import '../../../env.dart';
+import '../../error/errors_codes.dart';
 import '../../error/failure.dart';
 
 class DioClient {
@@ -41,7 +42,11 @@ class DioClient {
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
-      } else {
+      }
+      else if (e.type == DioExceptionType.connectionError) {
+        return Left(Failure(code: HttpsStatusCode.connectionError));
+      }
+      else {
         return Left(Failure(message: e.error.toString()));
       }
     }
@@ -79,7 +84,10 @@ class DioClient {
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
-      } else {
+      } else if (e.type == DioExceptionType.connectionError) {
+        return Left(Failure(code: HttpsStatusCode.connectionError));
+      }
+      else {
         return Left(Failure(message: e.error.toString()));
       }
     }
@@ -118,7 +126,10 @@ class DioClient {
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
-      } else {
+      } else if (e.type == DioExceptionType.connectionError) {
+        return Left(Failure(code: HttpsStatusCode.connectionError));
+      }
+      else {
         return Left(Failure(message: e.error.toString()));
       }
     }

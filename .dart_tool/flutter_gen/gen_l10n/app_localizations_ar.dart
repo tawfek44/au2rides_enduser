@@ -68,7 +68,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get languages => 'اللغات';
 
   @override
-  String get wrongText => 'هناك خطأ ما, تحقق من إتصالك بالإنترنت!';
+  String get connectivityError => 'لا يوجد خدمة إنترنت, تحقق من إتصالك بالإنترنت!';
 
   @override
   String get downloadingText => 'تحميل بيانات ...';
@@ -261,4 +261,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notVerified => 'لم يتم التحقق';
+
+  @override
+  String get chooseRideType => 'أختر نوع المركبة';
 }

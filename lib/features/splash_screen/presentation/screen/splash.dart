@@ -16,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../core/app_routes/app_routes_names.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/error/errors_codes.dart';
 import '../../../../core/storage/local/table_names.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../generated/l10n.dart';
@@ -122,8 +123,16 @@ class _SplashScreenState extends State<SplashScreen> {
               }
             }
             else{
+              String msg = "";
+              switch(value.value.code){
+                case HttpsStatusCode.connectionError:
+                  msg = S.current.connectivityError;
+                  break;
+                default:
+                  msg = value.value.message;
+              }
               var snackBar = AppSnackBar(
-                text: value.value.message, isSuccess: false, maxLines: 10);
+                text: msg, isSuccess: false, maxLines: 10);
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
       });

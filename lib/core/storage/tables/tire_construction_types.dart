@@ -1,8 +1,8 @@
 class TireConstructionTypesField {
-  static const String tyreConstructionTypId = "tyre_construction_type_id";
+  static const String tyreConstructionTypId = "tire_construction_type_id";
   static const String languageId = "language_id";
-  static const String tyreConstructionTypeName = "tyre_construction_type_name";
-  static const String tyreConstructionTypeCode = "tyre_construction_type_code";
+  static const String tyreConstructionTypeName = "tire_construction_type_name";
+  static const String tyreConstructionTypeCode = "tire_construction_type_code";
 }
 
 class TireConstructionTypes {

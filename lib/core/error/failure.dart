@@ -4,12 +4,12 @@ class Failure {
   String? code;
   int? httpStatusCode;
   String? errorTitle;
-  String message;
+  String? message;
   String? errorUserMessage;
   String? aurtraceId;
 
   Failure(
-      {required this.message,
+      { this.message,
        this.code,
        this.errorTitle,
        this.errorUserMessage,

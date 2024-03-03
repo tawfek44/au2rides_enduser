@@ -1,4 +1,5 @@
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/error/errors_codes.dart';
 import 'package:au2rides/core/error/failure.dart';
 import 'package:au2rides/core/widgets/app_button.dart';
 import 'package:au2rides/core/widgets/app_circular_indicator.dart';
@@ -224,8 +225,15 @@ class _OTPScreenState extends State<OTPScreen> {
               countryId: getIt<UserRepository>().getSelectedCountryId,
             );
     if (response is Failure) {
+      String? msg ="" ;
+      if(response.code == HttpsStatusCode.connectionError){
+        msg = S.current.connectivityError;
+      }
+      else{
+        msg = response.message;
+      }
       var snackBar =
-          AppSnackBar(text: response.message, isSuccess: false, maxLines: 10);
+          AppSnackBar(text: msg??"", isSuccess: false, maxLines: 10);
       setState(() {
         isLoading = false;
       });

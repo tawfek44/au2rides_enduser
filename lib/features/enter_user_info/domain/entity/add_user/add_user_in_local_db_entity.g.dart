@@ -7,17 +7,17 @@ part of 'add_user_in_local_db_entity.dart';
 // **************************************************************************
 
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
-      userId: json['user_id'] as String,
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      emailAddress: json['email_address'] as String,
-      isVerified: json['is_verified'] as int,
-      profileImageUrl: json['profile_image_url'] as String,
-      profileQrCode: json['profile_qr_code'] as String,
-      countryId: json['country_id'] as int,
-      mobileNumber: json['mobile_number'] as String,
-      genderId: json['gender_id'] as int,
-      birthDate: json['birth_date'] as String,
+      userId: json['user_id'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      emailAddress: json['email_address'] as String?,
+      isVerified: json['is_verified'] as int?,
+      profileImageUrl: json['profile_image_url'] as String?,
+      profileQrCode: json['profile_qr_code'] as String?,
+      countryId: json['country_id'] as int?,
+      mobileNumber: json['mobile_number'] as String?,
+      genderId: json['gender_id'] as int?,
+      birthDate: json['birth_date'] as String?,
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>

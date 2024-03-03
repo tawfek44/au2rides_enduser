@@ -55,7 +55,6 @@ class Au2ridesDatabase {
     const textIdType = "TEXT PRIMARY KEY";
     const intType = "INTEGER NOT NULL";
     const textType = "TEXT NOT NULL";
-
     const textNullType = "TEXT NULL";
 
     //Table Definition

@@ -1,0 +1,623 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'choose_ride_type_cubit.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$ChooseRideTypeState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(Object e) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(Object e)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialChooseRideTypeState value) initial,
+    required TResult Function(LoadingChooseRideTypeState value) loading,
+    required TResult Function(LoadedChooseRideTypeState value) loaded,
+    required TResult Function(ErrorChooseRideTypeState value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialChooseRideTypeState value)? initial,
+    TResult? Function(LoadingChooseRideTypeState value)? loading,
+    TResult? Function(LoadedChooseRideTypeState value)? loaded,
+    TResult? Function(ErrorChooseRideTypeState value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialChooseRideTypeState value)? initial,
+    TResult Function(LoadingChooseRideTypeState value)? loading,
+    TResult Function(LoadedChooseRideTypeState value)? loaded,
+    TResult Function(ErrorChooseRideTypeState value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChooseRideTypeStateCopyWith<$Res> {
+  factory $ChooseRideTypeStateCopyWith(
+          ChooseRideTypeState value, $Res Function(ChooseRideTypeState) then) =
+      _$ChooseRideTypeStateCopyWithImpl<$Res, ChooseRideTypeState>;
+}
+
+/// @nodoc
+class _$ChooseRideTypeStateCopyWithImpl<$Res, $Val extends ChooseRideTypeState>
+    implements $ChooseRideTypeStateCopyWith<$Res> {
+  _$ChooseRideTypeStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitialChooseRideTypeStateImplCopyWith<$Res> {
+  factory _$$InitialChooseRideTypeStateImplCopyWith(
+          _$InitialChooseRideTypeStateImpl value,
+          $Res Function(_$InitialChooseRideTypeStateImpl) then) =
+      __$$InitialChooseRideTypeStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialChooseRideTypeStateImplCopyWithImpl<$Res>
+    extends _$ChooseRideTypeStateCopyWithImpl<$Res,
+        _$InitialChooseRideTypeStateImpl>
+    implements _$$InitialChooseRideTypeStateImplCopyWith<$Res> {
+  __$$InitialChooseRideTypeStateImplCopyWithImpl(
+      _$InitialChooseRideTypeStateImpl _value,
+      $Res Function(_$InitialChooseRideTypeStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitialChooseRideTypeStateImpl implements _InitialChooseRideTypeState {
+  const _$InitialChooseRideTypeStateImpl();
+
+  @override
+  String toString() {
+    return 'ChooseRideTypeState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitialChooseRideTypeStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(Object e) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(Object e)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialChooseRideTypeState value) initial,
+    required TResult Function(LoadingChooseRideTypeState value) loading,
+    required TResult Function(LoadedChooseRideTypeState value) loaded,
+    required TResult Function(ErrorChooseRideTypeState value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialChooseRideTypeState value)? initial,
+    TResult? Function(LoadingChooseRideTypeState value)? loading,
+    TResult? Function(LoadedChooseRideTypeState value)? loaded,
+    TResult? Function(ErrorChooseRideTypeState value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialChooseRideTypeState value)? initial,
+    TResult Function(LoadingChooseRideTypeState value)? loading,
+    TResult Function(LoadedChooseRideTypeState value)? loaded,
+    TResult Function(ErrorChooseRideTypeState value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitialChooseRideTypeState implements ChooseRideTypeState {
+  const factory _InitialChooseRideTypeState() =
+      _$InitialChooseRideTypeStateImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingChooseRideTypeStateImplCopyWith<$Res> {
+  factory _$$LoadingChooseRideTypeStateImplCopyWith(
+          _$LoadingChooseRideTypeStateImpl value,
+          $Res Function(_$LoadingChooseRideTypeStateImpl) then) =
+      __$$LoadingChooseRideTypeStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingChooseRideTypeStateImplCopyWithImpl<$Res>
+    extends _$ChooseRideTypeStateCopyWithImpl<$Res,
+        _$LoadingChooseRideTypeStateImpl>
+    implements _$$LoadingChooseRideTypeStateImplCopyWith<$Res> {
+  __$$LoadingChooseRideTypeStateImplCopyWithImpl(
+      _$LoadingChooseRideTypeStateImpl _value,
+      $Res Function(_$LoadingChooseRideTypeStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadingChooseRideTypeStateImpl implements LoadingChooseRideTypeState {
+  const _$LoadingChooseRideTypeStateImpl();
+
+  @override
+  String toString() {
+    return 'ChooseRideTypeState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingChooseRideTypeStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(Object e) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(Object e)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialChooseRideTypeState value) initial,
+    required TResult Function(LoadingChooseRideTypeState value) loading,
+    required TResult Function(LoadedChooseRideTypeState value) loaded,
+    required TResult Function(ErrorChooseRideTypeState value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialChooseRideTypeState value)? initial,
+    TResult? Function(LoadingChooseRideTypeState value)? loading,
+    TResult? Function(LoadedChooseRideTypeState value)? loaded,
+    TResult? Function(ErrorChooseRideTypeState value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialChooseRideTypeState value)? initial,
+    TResult Function(LoadingChooseRideTypeState value)? loading,
+    TResult Function(LoadedChooseRideTypeState value)? loaded,
+    TResult Function(ErrorChooseRideTypeState value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingChooseRideTypeState implements ChooseRideTypeState {
+  const factory LoadingChooseRideTypeState() = _$LoadingChooseRideTypeStateImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadedChooseRideTypeStateImplCopyWith<$Res> {
+  factory _$$LoadedChooseRideTypeStateImplCopyWith(
+          _$LoadedChooseRideTypeStateImpl value,
+          $Res Function(_$LoadedChooseRideTypeStateImpl) then) =
+      __$$LoadedChooseRideTypeStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({dynamic countriesResponse});
+}
+
+/// @nodoc
+class __$$LoadedChooseRideTypeStateImplCopyWithImpl<$Res>
+    extends _$ChooseRideTypeStateCopyWithImpl<$Res,
+        _$LoadedChooseRideTypeStateImpl>
+    implements _$$LoadedChooseRideTypeStateImplCopyWith<$Res> {
+  __$$LoadedChooseRideTypeStateImplCopyWithImpl(
+      _$LoadedChooseRideTypeStateImpl _value,
+      $Res Function(_$LoadedChooseRideTypeStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countriesResponse = freezed,
+  }) {
+    return _then(_$LoadedChooseRideTypeStateImpl(
+      freezed == countriesResponse
+          ? _value.countriesResponse!
+          : countriesResponse,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
+  const _$LoadedChooseRideTypeStateImpl(this.countriesResponse);
+
+  @override
+  final dynamic countriesResponse;
+
+  @override
+  String toString() {
+    return 'ChooseRideTypeState.loaded(countriesResponse: $countriesResponse)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedChooseRideTypeStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other.countriesResponse, countriesResponse));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(countriesResponse));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedChooseRideTypeStateImplCopyWith<_$LoadedChooseRideTypeStateImpl>
+      get copyWith => __$$LoadedChooseRideTypeStateImplCopyWithImpl<
+          _$LoadedChooseRideTypeStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(Object e) error,
+  }) {
+    return loaded(countriesResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(Object e)? error,
+  }) {
+    return loaded?.call(countriesResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(countriesResponse);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialChooseRideTypeState value) initial,
+    required TResult Function(LoadingChooseRideTypeState value) loading,
+    required TResult Function(LoadedChooseRideTypeState value) loaded,
+    required TResult Function(ErrorChooseRideTypeState value) error,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialChooseRideTypeState value)? initial,
+    TResult? Function(LoadingChooseRideTypeState value)? loading,
+    TResult? Function(LoadedChooseRideTypeState value)? loaded,
+    TResult? Function(ErrorChooseRideTypeState value)? error,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialChooseRideTypeState value)? initial,
+    TResult Function(LoadingChooseRideTypeState value)? loading,
+    TResult Function(LoadedChooseRideTypeState value)? loaded,
+    TResult Function(ErrorChooseRideTypeState value)? error,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadedChooseRideTypeState implements ChooseRideTypeState {
+  const factory LoadedChooseRideTypeState(final dynamic countriesResponse) =
+      _$LoadedChooseRideTypeStateImpl;
+
+  dynamic get countriesResponse;
+  @JsonKey(ignore: true)
+  _$$LoadedChooseRideTypeStateImplCopyWith<_$LoadedChooseRideTypeStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ErrorChooseRideTypeStateImplCopyWith<$Res> {
+  factory _$$ErrorChooseRideTypeStateImplCopyWith(
+          _$ErrorChooseRideTypeStateImpl value,
+          $Res Function(_$ErrorChooseRideTypeStateImpl) then) =
+      __$$ErrorChooseRideTypeStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object e});
+}
+
+/// @nodoc
+class __$$ErrorChooseRideTypeStateImplCopyWithImpl<$Res>
+    extends _$ChooseRideTypeStateCopyWithImpl<$Res,
+        _$ErrorChooseRideTypeStateImpl>
+    implements _$$ErrorChooseRideTypeStateImplCopyWith<$Res> {
+  __$$ErrorChooseRideTypeStateImplCopyWithImpl(
+      _$ErrorChooseRideTypeStateImpl _value,
+      $Res Function(_$ErrorChooseRideTypeStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? e = null,
+  }) {
+    return _then(_$ErrorChooseRideTypeStateImpl(
+      null == e ? _value.e : e,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorChooseRideTypeStateImpl implements ErrorChooseRideTypeState {
+  const _$ErrorChooseRideTypeStateImpl(this.e);
+
+  @override
+  final Object e;
+
+  @override
+  String toString() {
+    return 'ChooseRideTypeState.error(e: $e)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorChooseRideTypeStateImpl &&
+            const DeepCollectionEquality().equals(other.e, e));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorChooseRideTypeStateImplCopyWith<_$ErrorChooseRideTypeStateImpl>
+      get copyWith => __$$ErrorChooseRideTypeStateImplCopyWithImpl<
+          _$ErrorChooseRideTypeStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(Object e) error,
+  }) {
+    return error(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(Object e)? error,
+  }) {
+    return error?.call(e);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(Object e)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(e);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialChooseRideTypeState value) initial,
+    required TResult Function(LoadingChooseRideTypeState value) loading,
+    required TResult Function(LoadedChooseRideTypeState value) loaded,
+    required TResult Function(ErrorChooseRideTypeState value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialChooseRideTypeState value)? initial,
+    TResult? Function(LoadingChooseRideTypeState value)? loading,
+    TResult? Function(LoadedChooseRideTypeState value)? loaded,
+    TResult? Function(ErrorChooseRideTypeState value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialChooseRideTypeState value)? initial,
+    TResult Function(LoadingChooseRideTypeState value)? loading,
+    TResult Function(LoadedChooseRideTypeState value)? loaded,
+    TResult Function(ErrorChooseRideTypeState value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorChooseRideTypeState implements ChooseRideTypeState {
+  const factory ErrorChooseRideTypeState(final Object e) =
+      _$ErrorChooseRideTypeStateImpl;
+
+  Object get e;
+  @JsonKey(ignore: true)
+  _$$ErrorChooseRideTypeStateImplCopyWith<_$ErrorChooseRideTypeStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

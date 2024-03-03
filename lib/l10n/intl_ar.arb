@@ -20,7 +20,7 @@
   "notes": "ملاحظات",
   "search": "البحث",
   "languages": "اللغات",
-  "wrongText": "هناك خطأ ما, تحقق من إتصالك بالإنترنت!",
+  "connectivityError": "لا يوجد خدمة إنترنت, تحقق من إتصالك بالإنترنت!",
   "downloadingText": "تحميل بيانات ...",
   "signIn": "تسجيل الدخول",
   "signInDetails": "بيانات تسجيل الدخول",
@@ -84,5 +84,6 @@
   "myRides": "مركباتى",
   "seeFullForecast": "أنظر التوقعات كاملة",
   "verified": "تم التحقق",
-  "notVerified": "لم يتم التحقق"
+  "notVerified": "لم يتم التحقق",
+  "chooseRideType": "أختر نوع المركبة"
 }

@@ -20,5 +20,6 @@ class HttpsStatusCode{
       insufficientPermissions = "aur-017",
       usageRateLimitExceeded = "aur-020",
       callbackUrlNotAccepted = "aur-011",
-      forbidden = "aur-016";
+      forbidden = "aur-016",
+     connectionError = "connectionError";
 }

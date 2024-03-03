@@ -25,7 +25,7 @@ class AuthInterceptor extends Interceptor {
     if(err.response!=null){
 
       //Connection Timeout
-       if(err.response?.statusCode==500){
+       if(err.type == DioExceptionType.connectionTimeout){
         dio.options.headers["Authorization"] =
             getIt<UserRepository>().getAccessToken;
         return handler.resolve(await _retry(err.requestOptions));

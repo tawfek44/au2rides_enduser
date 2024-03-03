@@ -20,7 +20,7 @@
   "notes": "NOTES",
   "search": "Search",
   "languages": "Languages",
-  "wrongText": "There is an error here, check your connectivity!",
+  "connectivityError": "There is not internet connection, check your connectivity!",
   "downloadingText": "Downloading Information ...",
   "signIn": "Sign In",
   "signInDetails":"SIGN IN DETAILS",
@@ -84,6 +84,7 @@
   "myRides": "My Rides",
   "seeFullForecast": "See full forecast",
   "verified": "Verified",
-  "notVerified": "notVerified"
+  "notVerified": "notVerified",
+  "chooseRideType": "Choose ride type"
 
 }

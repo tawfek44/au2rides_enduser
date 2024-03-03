@@ -181,7 +181,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     }
     else{
       var snackBar = AppSnackBar(
-          text: S.current.wrongText, isSuccess: false, maxLines: 10);
+          text: S.current.connectivityError, isSuccess: false, maxLines: 10);
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

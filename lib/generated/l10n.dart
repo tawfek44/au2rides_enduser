@@ -260,11 +260,11 @@ class S {
     );
   }
 
-  /// `There is an error here, check your connectivity!`
-  String get wrongText {
+  /// `There is not internet connection, check your connectivity!`
+  String get connectivityError {
     return Intl.message(
-      'There is an error here, check your connectivity!',
-      name: 'wrongText',
+      'There is not internet connection, check your connectivity!',
+      name: 'connectivityError',
       desc: '',
       args: [],
     );
@@ -905,6 +905,16 @@ class S {
     return Intl.message(
       'notVerified',
       name: 'notVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose ride type`
+  String get chooseRideType {
+    return Intl.message(
+      'Choose ride type',
+      name: 'chooseRideType',
       desc: '',
       args: [],
     );

@@ -38,10 +38,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chooseRideType":
+            MessageLookupByLibrary.simpleMessage("Choose ride type"),
         "chooseYourGender":
             MessageLookupByLibrary.simpleMessage("Choose your gender"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("Complete your profile"),
+        "connectivityError": MessageLookupByLibrary.simpleMessage(
+            "There is not internet connection, check your connectivity!"),
         "consumption": MessageLookupByLibrary.simpleMessage("Consumption"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "countries": MessageLookupByLibrary.simpleMessage("Countries"),
@@ -140,8 +144,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "vin":
             MessageLookupByLibrary.simpleMessage("VIN : EX:WQ2BF2A53MLB51234"),
-        "wrongText": MessageLookupByLibrary.simpleMessage(
-            "There is an error here, check your connectivity!"),
         "yearText": MessageLookupByLibrary.simpleMessage("Year")
       };
 }

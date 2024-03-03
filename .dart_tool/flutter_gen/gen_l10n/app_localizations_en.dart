@@ -68,7 +68,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languages => 'Languages';
 
   @override
-  String get wrongText => 'There is an error here, check your connectivity!';
+  String get connectivityError => 'There is not internet connection, check your connectivity!';
 
   @override
   String get downloadingText => 'Downloading Information ...';
@@ -261,4 +261,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notVerified => 'notVerified';
+
+  @override
+  String get chooseRideType => 'Choose ride type';
 }

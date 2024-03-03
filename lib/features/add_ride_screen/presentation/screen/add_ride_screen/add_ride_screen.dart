@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:au2rides/core/constants/constants.dart';
-import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/add_ride_screen/data/models/add_ride_body/add_ride_body_model.dart';
@@ -11,12 +10,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../../../core/app_routes/app_routes.dart';
-import '../../../../core/app_routes/app_routes_names.dart';
-import '../../../../core/widgets/file_picker_utils.dart';
-import '../../../../generated/l10n.dart';
+import '../../../../../core/app_routes/app_routes.dart';
+import '../../../../../core/app_routes/app_routes_names.dart';
+import '../../../../../core/widgets/file_picker_utils.dart';
+import '../../../../../generated/l10n.dart';
 
 class AddRideScreen extends StatefulWidget {
   const AddRideScreen({super.key});
@@ -164,13 +161,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
           context,
           [
             TextFieldDto(
-                groupName: S.current.manufacturingDetails,
-                fieldName: S.current.type,
-                info: "Car",
-                leadingIcon: CupertinoIcons.equal_circle,
-                fieldType: FieldType.listTile,
-                onChanged: (text) {},
-                destination: Routes.multiSelectionScreenRoute),
+              groupName: S.current.manufacturingDetails,
+              fieldName: S.current.type,
+              info: "Car",
+              leadingIcon: CupertinoIcons.equal_circle,
+              fieldType: FieldType.listTile,
+              onChanged: (text) {},
+              destination: Routes.chooseRideTypeScreen,
+            ),
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.yearText,
@@ -415,6 +413,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       ),
     );
   }
+
   getAddRideBodyObject() {
     return const AddRideBodyModel(
       registeredRideId: "64f19801-c1c2-4491-89a2-4ada10a12fc3",

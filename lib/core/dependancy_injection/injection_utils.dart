@@ -1,4 +1,5 @@
 import 'package:au2rides/features/add_ride_screen/presentation/bloc/add_ride_cubit.dart';
+import 'package:au2rides/features/add_ride_screen/presentation/screen/ride_type_screen/presentation/bloc/choose_ride_type_cubit.dart';
 import 'package:au2rides/features/countries_screen/presentation/bloc/get_countries_cubit/get_countries_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/acquisition_types_cubit/acquisition_types_cubit.dart';
 import 'package:au2rides/features/download_screen/presentation/bloc/authorize_cubit/authorize_cubit.dart';
@@ -76,7 +77,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<AddUserToLocalDbCubit>()),
         BlocProvider(create: (_) => getIt<AddRideCubit>()),
         BlocProvider(create: (_) => getIt<GetMyRidesCubit>()),
-        BlocProvider(create: (_) => getIt<FuelMeasuringUnitsCubit>())
+        BlocProvider(create: (_) => getIt<FuelMeasuringUnitsCubit>()),
+        BlocProvider(create: (_) => getIt<ChooseRideTypeCubit>())
       ],
       child: child,
     );

@@ -219,11 +219,11 @@ abstract class AppLocalizations {
   /// **'Languages'**
   String get languages;
 
-  /// No description provided for @wrongText.
+  /// No description provided for @connectivityError.
   ///
   /// In en, this message translates to:
-  /// **'There is an error here, check your connectivity!'**
-  String get wrongText;
+  /// **'There is not internet connection, check your connectivity!'**
+  String get connectivityError;
 
   /// No description provided for @downloadingText.
   ///
@@ -608,6 +608,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'notVerified'**
   String get notVerified;
+
+  /// No description provided for @chooseRideType.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose ride type'**
+  String get chooseRideType;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
