@@ -15,7 +15,7 @@ class GetRidesDataSource {
     final response = await DioClient().getData(
         endPoint: EndPoints.getRidesEndPoint,
         lang: getIt<UserRepository>().getUserLanguage,
-        authorizationToken: getIt<UserRepository>().getAccessToken,
+        authorizationToken: getIt<UserRepository>().getUserAccessToken,
         apiUrl: baseUrl);
     return response.value;
   }

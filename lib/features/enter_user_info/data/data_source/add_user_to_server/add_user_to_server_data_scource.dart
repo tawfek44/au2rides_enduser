@@ -21,7 +21,7 @@ class AddUserToNetworkDatasourceImp
       apiUrl: AppEnvironment.authAPIUrl,
       data: data,
       lang: language,
-      authorizationToken: getIt<UserRepository>().getAccessToken,
+      authorizationToken: getIt<UserRepository>().getUserAccessToken,
     );
     return response.value;
   }

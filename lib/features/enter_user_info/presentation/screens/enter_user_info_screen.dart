@@ -293,43 +293,48 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
   }
 
   Widget getUserPic({required userId, required imageUrl}) =>
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.h),
-        child: Column(
-          children: [
-            Stack(
+      Column(
+        children: [
+         gap(height: 10.h),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            child: Column(
               children: [
-                imageUrl == null
-                    ? getLocalImage(image: image)
-                    : getNetworkImage(imageUrl: imageUrl),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: CircleAvatar(
-                    backgroundColor: Theme
-                        .of(context)
-                        .primaryColor,
-                    radius: 25.w,
-                    child: IconButton(
-                      onPressed: () async {
-                        var imgSource = await showImageSource(context: context);
-                        if (imgSource == ImageSource.gallery) {
-                          await pickPhoto(ImageSource.gallery);
-                        } else if (imgSource == ImageSource.camera) {
-                          await pickPhoto(ImageSource.camera);
-                        }
-                        fileName = await uploadImageToAzure(image.path, userId);
-                        setState(() {});
-                      },
-                      icon: const Icon(Icons.camera_alt_outlined),
-                      color: AppColors.white,
-                    ),
-                  ),
+                Stack(
+                  children: [
+                    imageUrl == null
+                        ? getLocalImage(image: image)
+                        : getNetworkImage(imageUrl: imageUrl),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: CircleAvatar(
+                        backgroundColor: Theme
+                            .of(context)
+                            .primaryColor,
+                        radius: 25.w,
+                        child: IconButton(
+                          onPressed: () async {
+                            var imgSource = await showImageSource(context: context);
+                            if (imgSource == ImageSource.gallery) {
+                              await pickPhoto(ImageSource.gallery);
+                            } else if (imgSource == ImageSource.camera) {
+                              await pickPhoto(ImageSource.camera);
+                            }
+                            fileName = await uploadImageToAzure(image.path, userId);
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.camera_alt_outlined),
+                          color: AppColors.white,
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       );
 
   Widget getUserInfoSection() =>

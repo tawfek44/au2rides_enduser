@@ -26,8 +26,14 @@ class UserRepository {
   Future setAccessToken(String token) async {
     await _prefs.setString('accessToken', token);
   }
+  Future setUserAccessToken(String token) async {
+    await _prefs.setString('userAccessToken', token);
+  }
   Future setRefreshToken(String token) async {
     await _prefs.setString('refreshToken', token);
+  }
+  Future setUserRefreshToken(String token) async {
+    await _prefs.setString('userRefreshToken', token);
   }
   Future setFirstTimeOpenApp(bool flag) async {
     await _prefs.setBool('firstTimeOpenApp', flag);
@@ -69,6 +75,10 @@ class UserRepository {
 
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';
   String get getRefreshToken => '${_prefs.getString('refreshToken')}'??'';
+
+  String get getUserAccessToken => 'Bearer ${_prefs.getString('userAccessToken')}'??'';
+  String get getUserRefreshToken => '${_prefs.getString('userRefreshToken')}'??'';
+
   String get userLanguage => _prefs.getString('lang') ?? Platform.localeName.substring(0,2);
   bool get isLoggedIn => _prefs.getBool('logged') ?? false;
   bool get getFirstTimeOpenApp => _prefs.getBool('firstTimeOpenApp')??true;

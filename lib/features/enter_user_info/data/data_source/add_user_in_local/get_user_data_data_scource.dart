@@ -18,7 +18,7 @@ class GetUserDataFromNetworkDatasourceImp implements GetUserDataFromNetworkDatas
     final response = await DioClient().getData(
         endPoint: EndPoints.userDataEndPoint,
         apiUrl: AppEnvironment.authAPIUrl,
-        authorizationToken: getIt<UserRepository>().getAccessToken);
+        authorizationToken: getIt<UserRepository>().getUserAccessToken);
     return response.value;
   }
 }

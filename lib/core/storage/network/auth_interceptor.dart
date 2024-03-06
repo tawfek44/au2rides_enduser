@@ -38,7 +38,7 @@ class AuthInterceptor extends Interceptor {
         if (newAccessToken != null) {
           getIt<UserRepository>().setAccessToken(newAccessToken);
           dio.options.headers["Authorization"] =
-              getIt<UserRepository>().getAccessToken;
+              getIt<UserRepository>().getUserAccessToken;
 
           return handler.resolve(await _retry(err.requestOptions));
         }
@@ -50,7 +50,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future _retry(RequestOptions requestOptions) async {
-    requestOptions.headers["Authorization"] = getIt<UserRepository>().getAccessToken;
+    requestOptions.headers["Authorization"] = getIt<UserRepository>().getUserAccessToken;
     requestOptions.headers["Accept-Language"]=getIt<UserRepository>().getUserLanguage;
     final options = Options(
       method: requestOptions.method,
@@ -70,15 +70,15 @@ class AuthInterceptor extends Interceptor {
             contentType: Headers.jsonContentType,
             headers: {
               'Accept-Language': lang,
-              'Authorization': getIt<UserRepository>().getRefreshToken
+              'Authorization': getIt<UserRepository>().getUserRefreshToken
             },
           ),
           data: {
-            "refresh_token": getIt<UserRepository>().getRefreshToken,
+            "refresh_token": getIt<UserRepository>().getUserRefreshToken,
             "grant_type": "refresh_token"
           });
       final newAccessToken = response.data["access_token"];
-      getIt<UserRepository>().setAccessToken(newAccessToken);
+      getIt<UserRepository>().setUserRefreshToken(newAccessToken);
       return newAccessToken;
     } catch (exception) {
       NamedNavigatorImpl().push(Routes.splashScreenRoute, clean: true);

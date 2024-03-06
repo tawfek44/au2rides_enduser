@@ -20,7 +20,7 @@ mixin _$ChooseRideTypeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(dynamic response) loaded,
     required TResult Function(Object e) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ChooseRideTypeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(dynamic response)? loaded,
     TResult? Function(Object e)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ChooseRideTypeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(dynamic response)? loaded,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) =>
@@ -130,7 +130,7 @@ class _$InitialChooseRideTypeStateImpl implements _InitialChooseRideTypeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(dynamic response) loaded,
     required TResult Function(Object e) error,
   }) {
     return initial();
@@ -141,7 +141,7 @@ class _$InitialChooseRideTypeStateImpl implements _InitialChooseRideTypeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(dynamic response)? loaded,
     TResult? Function(Object e)? error,
   }) {
     return initial?.call();
@@ -152,7 +152,7 @@ class _$InitialChooseRideTypeStateImpl implements _InitialChooseRideTypeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(dynamic response)? loaded,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingChooseRideTypeStateImpl implements LoadingChooseRideTypeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(dynamic response) loaded,
     required TResult Function(Object e) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingChooseRideTypeStateImpl implements LoadingChooseRideTypeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(dynamic response)? loaded,
     TResult? Function(Object e)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingChooseRideTypeStateImpl implements LoadingChooseRideTypeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(dynamic response)? loaded,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
@@ -330,7 +330,7 @@ abstract class _$$LoadedChooseRideTypeStateImplCopyWith<$Res> {
           $Res Function(_$LoadedChooseRideTypeStateImpl) then) =
       __$$LoadedChooseRideTypeStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({dynamic countriesResponse});
+  $Res call({dynamic response});
 }
 
 /// @nodoc
@@ -346,12 +346,10 @@ class __$$LoadedChooseRideTypeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? countriesResponse = freezed,
+    Object? response = freezed,
   }) {
     return _then(_$LoadedChooseRideTypeStateImpl(
-      freezed == countriesResponse
-          ? _value.countriesResponse!
-          : countriesResponse,
+      freezed == response ? _value.response! : response,
     ));
   }
 }
@@ -359,14 +357,14 @@ class __$$LoadedChooseRideTypeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
-  const _$LoadedChooseRideTypeStateImpl(this.countriesResponse);
+  const _$LoadedChooseRideTypeStateImpl(this.response);
 
   @override
-  final dynamic countriesResponse;
+  final dynamic response;
 
   @override
   String toString() {
-    return 'ChooseRideTypeState.loaded(countriesResponse: $countriesResponse)';
+    return 'ChooseRideTypeState.loaded(response: $response)';
   }
 
   @override
@@ -374,13 +372,12 @@ class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedChooseRideTypeStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other.countriesResponse, countriesResponse));
+            const DeepCollectionEquality().equals(other.response, response));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(countriesResponse));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(response));
 
   @JsonKey(ignore: true)
   @override
@@ -394,10 +391,10 @@ class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(dynamic response) loaded,
     required TResult Function(Object e) error,
   }) {
-    return loaded(countriesResponse);
+    return loaded(response);
   }
 
   @override
@@ -405,10 +402,10 @@ class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(dynamic response)? loaded,
     TResult? Function(Object e)? error,
   }) {
-    return loaded?.call(countriesResponse);
+    return loaded?.call(response);
   }
 
   @override
@@ -416,12 +413,12 @@ class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(dynamic response)? loaded,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(countriesResponse);
+      return loaded(response);
     }
     return orElse();
   }
@@ -465,10 +462,10 @@ class _$LoadedChooseRideTypeStateImpl implements LoadedChooseRideTypeState {
 }
 
 abstract class LoadedChooseRideTypeState implements ChooseRideTypeState {
-  const factory LoadedChooseRideTypeState(final dynamic countriesResponse) =
+  const factory LoadedChooseRideTypeState(final dynamic response) =
       _$LoadedChooseRideTypeStateImpl;
 
-  dynamic get countriesResponse;
+  dynamic get response;
   @JsonKey(ignore: true)
   _$$LoadedChooseRideTypeStateImplCopyWith<_$LoadedChooseRideTypeStateImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -542,7 +539,7 @@ class _$ErrorChooseRideTypeStateImpl implements ErrorChooseRideTypeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic countriesResponse) loaded,
+    required TResult Function(dynamic response) loaded,
     required TResult Function(Object e) error,
   }) {
     return error(e);
@@ -553,7 +550,7 @@ class _$ErrorChooseRideTypeStateImpl implements ErrorChooseRideTypeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic countriesResponse)? loaded,
+    TResult? Function(dynamic response)? loaded,
     TResult? Function(Object e)? error,
   }) {
     return error?.call(e);
@@ -564,7 +561,7 @@ class _$ErrorChooseRideTypeStateImpl implements ErrorChooseRideTypeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic countriesResponse)? loaded,
+    TResult Function(dynamic response)? loaded,
     TResult Function(Object e)? error,
     required TResult orElse(),
   }) {

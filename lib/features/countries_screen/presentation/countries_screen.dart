@@ -69,7 +69,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 child: AppCircularProgressIndicator(),
               );
             } else if (state is GetCountiesStateError) {
-              return Center(child: AppText(text: state.e.toString()));
+              return Center(child: AppText(text: state.e.toString(),fontSize: fontSize,));
             } else if (state is GetCountiesStateLoaded) {
               return SingleChildScrollView(
                 child: Padding(

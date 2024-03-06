@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:au2rides/core/dependancy_injection/injection.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/home_screen/presentation/bloc/get_my_rides_cubit.dart';
