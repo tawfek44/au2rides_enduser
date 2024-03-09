@@ -64,6 +64,7 @@ class Routes {
   static const downloadScreen = "DOWNLOAD_SCREEN_ROUTE";
   static const chooseRideTypeScreen = "CHOOSE_RIDE_TYPE_SCREEN";
   static const chooseRideMakesScreen = "CHOOSE_RIDE_MAKES_SCREEN";
+  static const chooseRideModelsScreen = "CHOOSE_RIDE_MODELS_SCREEN";
   static const xx = "xx";
 }
 

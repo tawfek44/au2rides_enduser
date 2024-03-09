@@ -8,5 +8,6 @@ class EndPoints{
    renewAccessTokenEndPoint= "/api/oauth/user/v1.0/access-token",
    addRideEndPoint = "/api/rides/v1.0/add-ride",
    getRideMakesEndPoint = "/api/rides/v1.0/ride-makes?ride-type=",
-   getRidesEndPoint = "/api/rides/v1.0/my-rides";
+   getRidesEndPoint = "/api/rides/v1.0/my-rides",
+   getRidesModelsEndPoint = "/api/rides/v1.0/ride-make/###/models";
 }

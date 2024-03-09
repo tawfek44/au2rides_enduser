@@ -86,7 +86,9 @@
   "verified": "Verified",
   "notVerified": "notVerified",
   "chooseRideType": "Choose ride type",
-  "selectYear": "Select Year"
+  "selectYear": "Select Year",
+  "pleaseFillThePastDataFirst": "Please, fill the last data firstly.",
+  "chooseTheModel": "Choose the model"
 
 
 }

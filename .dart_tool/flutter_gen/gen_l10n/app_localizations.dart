@@ -620,6 +620,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select Year'**
   String get selectYear;
+
+  /// No description provided for @pleaseFillThePastDataFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Please, fill the last data firstly.'**
+  String get pleaseFillThePastDataFirst;
+
+  /// No description provided for @chooseTheModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the model'**
+  String get chooseTheModel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

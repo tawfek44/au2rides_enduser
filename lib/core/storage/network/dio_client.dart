@@ -7,6 +7,7 @@ import 'package:au2rides/core/storage/network/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import '../../../env.dart';
+import '../../../generated/l10n.dart';
 import '../../error/errors_codes.dart';
 import '../../error/failure.dart';
 
@@ -35,13 +36,18 @@ class DioClient {
       return Right(response);
     } on DioException catch (e, _) {
       if (e.type == DioExceptionType.badResponse) {
-        return Left(Failure(
+        if(e.response?.statusCode==404){
+          return Left(Failure(
+            message: S.current.pleaseFillThePastDataFirst,));
+        }else {
+          return Left(Failure(
             message: e.response?.data["message"],
             code: e.response?.data["code"],
             aurtraceId: e.response?.data["autrace_id"],
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
+        }
       }
       else if (e.type == DioExceptionType.connectionError) {
         return Left(Failure(code: HttpsStatusCode.connectionError));
@@ -76,14 +82,21 @@ class DioClient {
         return Left(Failure(message: response.statusMessage!));
       }
     } on DioException catch (e, _) {
+
       if (e.type == DioExceptionType.badResponse) {
-        return Left(Failure(
+        if(e.response?.statusCode==404){
+          return Left(Failure(
+            message: S.current.pleaseFillThePastDataFirst,));
+        }
+        else {
+          return Left(Failure(
             message: e.response?.data["message"],
             code: e.response?.data["code"],
             aurtraceId: e.response?.data["autrace_id"],
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
+        }
       } else if (e.type == DioExceptionType.connectionError) {
         return Left(Failure(code: HttpsStatusCode.connectionError));
       }
@@ -119,13 +132,18 @@ class DioClient {
       }
     } on DioException catch (e, _) {
       if (e.type == DioExceptionType.badResponse) {
-        return Left(Failure(
+        if(e.response?.statusCode==404){
+          return Left(Failure(
+            message: S.current.pleaseFillThePastDataFirst,));
+        }else {
+          return Left(Failure(
             message: e.response?.data["message"],
             code: e.response?.data["code"],
             aurtraceId: e.response?.data["autrace_id"],
             errorTitle: e.response?.data["error_title"],
             errorUserMessage: e.response?.data["error_user_message"],
             httpStatusCode: e.response?.data["http_status_code"]));
+        }
       } else if (e.type == DioExceptionType.connectionError) {
         return Left(Failure(code: HttpsStatusCode.connectionError));
       }

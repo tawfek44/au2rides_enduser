@@ -102,22 +102,26 @@ class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
         itemBuilder: (context, index) => getRideMakesListTile(
             rideMakeName: rideMakesList[index].makeName,
             rideMakeImageUrl: rideMakesList[index].makeLogoUrl,
+          rideMakeId: rideMakesList[index].makeId,
           index: index
         ),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
         ),
+
         itemCount: rideMakesList.length,
       );
 
-  getRideMakesListTile({required rideMakeName, required rideMakeImageUrl,required index}) =>
+  getRideMakesListTile({required rideMakeName, required rideMakeImageUrl,required index,required rideMakeId}) =>
       CupertinoListTile.notched(
         onTap: () {
           setState(() {
             getIt<UserRepository>().setSelectedRideMakesIndex(index);
             getIt<UserRepository>()
                 .setSelectedRideMakesName(rideMakeName);
+            getIt<UserRepository>()
+                .setSelectedRideMakesId(rideMakeId);
 
             Navigator.pop(context,rideMakeName);
           });

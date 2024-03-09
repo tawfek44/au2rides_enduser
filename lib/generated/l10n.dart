@@ -929,6 +929,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Please, fill the last data firstly.`
+  String get pleaseFillThePastDataFirst {
+    return Intl.message(
+      'Please, fill the last data firstly.',
+      name: 'pleaseFillThePastDataFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the model`
+  String get chooseTheModel {
+    return Intl.message(
+      'Choose the model',
+      name: 'chooseTheModel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

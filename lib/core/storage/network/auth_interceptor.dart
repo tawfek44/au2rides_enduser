@@ -30,6 +30,9 @@ class AuthInterceptor extends Interceptor {
             getIt<UserRepository>().getAccessToken;
         return handler.resolve(await _retry(err.requestOptions));
       }
+       else if(err.response?.data==""){
+         return super.onError(err, handler);
+       }
       else if (err.response?.data["code"] == HttpsStatusCode.authorizationAccessTokenExpired) {
         final newAccessToken = await renewAccessToken(
             appUrl: AppEnvironment.authAPIUrl,

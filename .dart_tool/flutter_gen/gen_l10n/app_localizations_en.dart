@@ -267,4 +267,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectYear => 'Select Year';
+
+  @override
+  String get pleaseFillThePastDataFirst => 'Please, fill the last data firstly.';
+
+  @override
+  String get chooseTheModel => 'Choose the model';
 }

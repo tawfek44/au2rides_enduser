@@ -26,6 +26,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/add_ride_screen/presentation/screen/choose_ride_makes_screen/presentation/bloc/choose_ride_makes_cubit.dart';
+import '../../features/add_ride_screen/presentation/screen/choose_ride_models_screen/presentation/bloc/choose_ride_models_cubit.dart';
 import '../../features/download_screen/presentation/bloc/country_cubit/country_cubit.dart';
 import '../../features/download_screen/presentation/bloc/currency_cubit/currency_cubit.dart';
 import '../../features/download_screen/presentation/bloc/department_service_items_cubit/department_service_items_cubit.dart';
@@ -80,7 +81,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<GetMyRidesCubit>()),
         BlocProvider(create: (_) => getIt<FuelMeasuringUnitsCubit>()),
         BlocProvider(create: (_) => getIt<ChooseRideTypeCubit>()),
-        BlocProvider(create: (_) => getIt<ChooseRideMakesCubit>())
+        BlocProvider(create: (_) => getIt<ChooseRideMakesCubit>()),
+        BlocProvider(create: (_) => getIt<ChooseRideModelsCubit>())
       ],
       child: child,
     );

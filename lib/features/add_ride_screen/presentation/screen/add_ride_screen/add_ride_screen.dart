@@ -205,8 +205,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.modelText,
-              info: "ZS",
-              destination: Routes.multiSelectionScreenRoute,
+              info: getIt<UserRepository>().getSelectedRideModelName,
+              destination: Routes.chooseRideModelsScreen,
               leadingIcon: CupertinoIcons.car_detailed,
               fieldType: FieldType.listTile,
               fieldNameEnum: FieldNameEnum.rideModel,

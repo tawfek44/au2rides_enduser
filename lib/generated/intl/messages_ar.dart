@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("أختر نوع المركبة"),
+        "chooseTheModel": MessageLookupByLibrary.simpleMessage("إختر الموديل"),
         "chooseYourGender": MessageLookupByLibrary.simpleMessage("أختر جنسك"),
         "completeYourProfile":
             MessageLookupByLibrary.simpleMessage("أكمل بياناتك"),
@@ -103,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("من فضلك إدخل رقم الهاتف."),
         "pinCodeIsMissing":
             MessageLookupByLibrary.simpleMessage("من فضلك تأكد من الرمز"),
+        "pleaseFillThePastDataFirst": MessageLookupByLibrary.simpleMessage(
+            "من فضلك اختر كل البيانات السابقة أولا"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "سياسة الخصوصية وشروط الإستخدام"),

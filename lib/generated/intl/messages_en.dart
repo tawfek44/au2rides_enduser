@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("Choose ride type"),
+        "chooseTheModel":
+            MessageLookupByLibrary.simpleMessage("Choose the model"),
         "chooseYourGender":
             MessageLookupByLibrary.simpleMessage("Choose your gender"),
         "completeYourProfile":
@@ -105,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your phone number."),
         "pinCodeIsMissing": MessageLookupByLibrary.simpleMessage(
             "Please check your pin number"),
+        "pleaseFillThePastDataFirst": MessageLookupByLibrary.simpleMessage(
+            "Please, fill the last data firstly."),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "privacyPolicyAndTermsOfUse": MessageLookupByLibrary.simpleMessage(
             "Privacy policy and terms of use"),

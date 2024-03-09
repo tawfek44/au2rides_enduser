@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/enitites/choose_ride_makes_entity.dart';
-
 part 'choose_ride_makes_model.g.dart';
+
 
 @JsonSerializable()
 class ChooseRideMakesModel extends ChooseRideMakesEntity {

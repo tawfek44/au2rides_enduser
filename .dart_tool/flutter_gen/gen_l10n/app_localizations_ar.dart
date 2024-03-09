@@ -267,4 +267,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get selectYear => 'إختر سنة الإصدار';
+
+  @override
+  String get pleaseFillThePastDataFirst => 'من فضلك اختر كل البيانات السابقة أولا';
+
+  @override
+  String get chooseTheModel => 'إختر الموديل';
 }
