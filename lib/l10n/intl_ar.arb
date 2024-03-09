@@ -85,5 +85,6 @@
   "seeFullForecast": "أنظر التوقعات كاملة",
   "verified": "تم التحقق",
   "notVerified": "لم يتم التحقق",
-  "chooseRideType": "أختر نوع المركبة"
+  "chooseRideType": "أختر نوع المركبة",
+  "selectYear": "إختر سنة الإصدار"
 }

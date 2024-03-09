@@ -73,6 +73,29 @@ class UserRepository {
     await _prefs.setInt('selectedGenderId', genderId);
   }
 
+  Future setSelectedRideTypeIndex(int rideTypeIndex) async {
+    await _prefs.setInt('selectedRideTypeIndex', rideTypeIndex);
+  }
+
+  Future setSelectedRideType(String rideType) async {
+    await _prefs.setString('selectedRideType', rideType);
+  }
+  Future setSelectedRideTypeId(int rideTypeId) async {
+    await _prefs.setInt('selectedRideTypeId', rideTypeId);
+  }
+
+  Future setSelectedRideMakesIndex(int rideMakesIndex) async {
+    await _prefs.setInt('selectedRideMakesIndex', rideMakesIndex);
+  }
+  Future setSelectedRideMakesName(String rideMakes) async {
+    await _prefs.setString('selectedRideMakes', rideMakes);
+  }
+
+  int get getSelectedRideTypeId => _prefs.getInt('selectedRideTypeId')??-1;
+
+  String get getSelectedRideMakes => _prefs.getString('selectedRideMakes')??'';
+  String get getSelectedRideType => _prefs.getString('selectedRideType')??'';
+
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';
   String get getRefreshToken => '${_prefs.getString('refreshToken')}'??'';
 

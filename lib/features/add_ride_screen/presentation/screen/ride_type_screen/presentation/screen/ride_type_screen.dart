@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../../core/dependancy_injection/injection.dart';
+import '../../../../../../../core/repositories/user_repository.dart';
 import '../../../../../../../core/styles/colors.dart';
 import '../../../../../../../core/widgets/app_text.dart';
 import '../../../../../../../generated/l10n.dart';
@@ -21,12 +23,15 @@ class ChooseRideTypeScreen extends StatefulWidget {
 
 class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
   var carTypeList = [];
+  var tempCarTypeList = [];
+
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       carTypeList = await context.read<ChooseRideTypeCubit>().getRideTypes();
+      tempCarTypeList = carTypeList;
     });
     super.initState();
   }
@@ -68,7 +73,7 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
                     children: [
                       getSearchBar(),
                       gap(height: 15.h),
-                      getCarTypeListGroup(carTypesList: state.response),
+                      getCarTypeListGroup(carTypesList: tempCarTypeList),
                     ],
                   ),
                 ),
@@ -94,8 +99,11 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getCarTypeListTile(
+          rideTypeId: carTypesList[index].rideTypeId,
             rideType: carTypesList[index].rideTypeName,
-            rideTypeImageUrl: carTypesList[index].rideTypeLogoUrl),
+            rideTypeImageUrl: carTypesList[index].rideTypeLogoUrl,
+          index: index
+        ),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
@@ -103,28 +111,36 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
         itemCount: carTypesList.length,
       );
 
-  getCarTypeListTile({required rideType, required rideTypeImageUrl}) =>
-      SizedBox(
-        width: 30.w,
-        height: 30.h,
-        child: CupertinoListTile.notched(
-          onTap: () {},
-          backgroundColor: Colors.white,
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(30.w),
-            child: CachedNetworkImage(
-              imageUrl: rideTypeImageUrl,
-            ),
-          ),
-          title: AppText(
-            text: rideType,
-            fontSize: fontSize,
-          ),
-          trailing: Icon(
-            Icons.check,
-            color: Theme.of(context).primaryColor,
+  getCarTypeListTile({required rideType, required rideTypeImageUrl,required index,required rideTypeId}) =>
+      CupertinoListTile.notched(
+        onTap: () {
+          setState(() {
+            getIt<UserRepository>().setSelectedRideTypeIndex(index);
+            getIt<UserRepository>()
+                .setSelectedRideType(rideType);
+            getIt<UserRepository>()
+                .setSelectedRideTypeId(rideTypeId);
+
+            Navigator.pop(context,rideType);
+          });
+        },
+        backgroundColor: Colors.white,
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(30.w),
+          child: CachedNetworkImage(
+            imageUrl: rideTypeImageUrl,
           ),
         ),
+        title: AppText(
+          text: rideType,
+          fontSize: fontSize,
+        ),
+        trailing: rideType == getIt<UserRepository>().getSelectedRideType
+            ? Icon(
+          Icons.check,
+          color: Theme.of(context).primaryColor,
+        )
+            : Container()
       );
 
   getSearchBar() => CupertinoListSection.insetGrouped(
@@ -141,7 +157,23 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {},
+              onChanged: (String text) {
+                var temp = [];
+                if (text.isNotEmpty) {
+                  for (var element in tempCarTypeList) {
+                    if (element.rideTypeName.toLowerCase().contains(text)) {
+                      temp.add(element);
+                    }
+                  }
+                }
+                setState(() {
+                  if (temp.isNotEmpty) {
+                    tempCarTypeList = temp;
+                  } else {
+                    tempCarTypeList = carTypeList;
+                  }
+                });
+              },
             ),
           )
         ],

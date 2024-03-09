@@ -63,6 +63,7 @@ class Routes {
   static const showPaymentMethodsScreenRoute = "SHOW_PAYMENT_METHOD_SCREEN_ROUTE";
   static const downloadScreen = "DOWNLOAD_SCREEN_ROUTE";
   static const chooseRideTypeScreen = "CHOOSE_RIDE_TYPE_SCREEN";
+  static const chooseRideMakesScreen = "CHOOSE_RIDE_MAKES_SCREEN";
   static const xx = "xx";
 }
 

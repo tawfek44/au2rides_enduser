@@ -7,5 +7,6 @@ class EndPoints{
    updateUserInfoEndPoint= "/api/oauth/user/v1.0/update-basic-info",
    renewAccessTokenEndPoint= "/api/oauth/user/v1.0/access-token",
    addRideEndPoint = "/api/rides/v1.0/add-ride",
+   getRideMakesEndPoint = "/api/rides/v1.0/ride-makes?ride-type=",
    getRidesEndPoint = "/api/rides/v1.0/my-rides";
 }

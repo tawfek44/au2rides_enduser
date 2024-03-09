@@ -17,6 +17,7 @@ SnackBar AppSnackBar({
       text: text,
       maxLines: maxLines ?? 1,
       fontSize: fontSize,
+      textAlign: isArabicLocalization()?TextAlign.right:TextAlign.left,
       color: textColor ?? Colors.white,
     ),
     backgroundColor: isSuccess ? AppColors.validColor : Colors.red,

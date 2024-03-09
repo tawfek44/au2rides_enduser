@@ -118,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأخير."),
         "seeFullForecast":
             MessageLookupByLibrary.simpleMessage("أنظر التوقعات كاملة"),
+        "selectYear": MessageLookupByLibrary.simpleMessage("إختر سنة الإصدار"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("بيانات تسجيل الدخول"),

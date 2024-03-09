@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:au2rides/core/constants/constants.dart';
+import 'package:au2rides/core/dependancy_injection/injection.dart';
+import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/add_ride_screen/data/models/add_ride_body/add_ride_body_model.dart';
@@ -14,6 +16,9 @@ import '../../../../../core/app_routes/app_routes.dart';
 import '../../../../../core/app_routes/app_routes_names.dart';
 import '../../../../../core/widgets/file_picker_utils.dart';
 import '../../../../../generated/l10n.dart';
+import 'package:intl/intl.dart' as intl;
+
+import '../choose_ride_makes_screen/data/data_sources/choose_ride_makes_datasource.dart';
 
 class AddRideScreen extends StatefulWidget {
   const AddRideScreen({super.key});
@@ -24,6 +29,14 @@ class AddRideScreen extends StatefulWidget {
 
 class _AddRideScreenState extends State<AddRideScreen> {
   PlatformFile? selectedImage;
+  var date = DateTime.now().year.toString();
+  DateTime initialDate = DateTime.now();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,18 +174,18 @@ class _AddRideScreenState extends State<AddRideScreen> {
           context,
           [
             TextFieldDto(
-              groupName: S.current.manufacturingDetails,
-              fieldName: S.current.type,
-              info: "Car",
-              leadingIcon: CupertinoIcons.equal_circle,
-              fieldType: FieldType.listTile,
-              onChanged: (text) {},
-              destination: Routes.chooseRideTypeScreen,
-            ),
+                groupName: S.current.manufacturingDetails,
+                fieldName: S.current.type,
+                info: getIt<UserRepository>().getSelectedRideType,
+                leadingIcon: CupertinoIcons.equal_circle,
+                fieldType: FieldType.listTile,
+                onChanged: (text) {},
+                destination: Routes.chooseRideTypeScreen,
+                fieldNameEnum: FieldNameEnum.rideType),
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.yearText,
-              info: "Year",
+              info: date.toString(),
               destination: Routes.multiSelectionScreenRoute,
               leadingIcon: CupertinoIcons.calendar,
               fieldType: FieldType.date,
@@ -182,10 +195,11 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.makeText,
-              info: "MG",
+              info: getIt<UserRepository>().getSelectedRideMakes,
               fieldType: FieldType.listTile,
               leadingIcon: CupertinoIcons.car,
-              destination: Routes.multiSelectionScreenRoute,
+              destination: Routes.chooseRideMakesScreen,
+              fieldNameEnum: FieldNameEnum.rideName,
               onChanged: (text) {},
             ),
             TextFieldDto(
@@ -195,6 +209,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
               destination: Routes.multiSelectionScreenRoute,
               leadingIcon: CupertinoIcons.car_detailed,
               fieldType: FieldType.listTile,
+              fieldNameEnum: FieldNameEnum.rideModel,
               onChanged: (text) {},
             ),
             TextFieldDto(
@@ -203,6 +218,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
               info: "Comfort",
               fieldType: FieldType.listTile,
               leadingIcon: CupertinoIcons.car,
+              fieldNameEnum: FieldNameEnum.rideCategory,
               destination: Routes.multiSelectionScreenRoute,
               onChanged: (text) {},
             ),
@@ -268,36 +284,78 @@ class _AddRideScreenState extends State<AddRideScreen> {
     );
   }
 
-  CupertinoListTile buildChoosingTile(
-      BuildContext context, TextFieldDto fieldDto) {
-    return CupertinoListTile.notched(
-      onTap: () async {
-        if (fieldDto.destination != null) {
-          var value = await NamedNavigatorImpl().push(fieldDto.destination!);
-          if (value != null) {
-            setState(() {
-              fieldDto.onChanged(value);
-            });
-          }
-        }
-      },
-      title: AppText(
-        text: fieldDto.fieldName,
-        fontSize: fontSize,
-      ),
-      additionalInfo: AppText(
-        text: fieldDto.info,
-        fontSize: fontSize,
-        color: AppColors.greyColor,
-      ),
-      trailing: fieldDto.trailingWidget ??
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.grey,
+  Widget buildChoosingTile(BuildContext context, TextFieldDto fieldDto) {
+    if (getIt<UserRepository>().getSelectedRideTypeId == -1) {
+      if (fieldDto.fieldNameEnum == FieldNameEnum.rideType) {
+        return getChoosingTile(context, fieldDto, false);
+      } else {
+        return getChoosingTile(context, fieldDto, true);
+      }
+    } else {
+      return getChoosingTile(context, fieldDto, false);
+    }
+  }
+
+  getChoosingTile(BuildContext context, TextFieldDto fieldDto, bool isDimmed) =>
+      AbsorbPointer(
+        absorbing: isDimmed,
+        child: CupertinoListTile.notched(
+          onTap: () async {
+            if (fieldDto.destination != null) {
+              var value =
+                  await NamedNavigatorImpl().push(fieldDto.destination!);
+              if (value != null) {
+                setState(() {
+                  fieldDto.onChanged(value);
+                });
+              }
+            }
+          },
+          title: AppText(
+            text: fieldDto.fieldName,
+            fontSize: fontSize,
           ),
-      leading: Icon(
-        fieldDto.leadingIcon,
-        color: Theme.of(context).primaryColor,
+          additionalInfo: AppText(
+            text: fieldDto.info,
+            fontSize: fontSize,
+            color: AppColors.greyColor,
+          ),
+          trailing: fieldDto.trailingWidget ??
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.grey,
+              ),
+          leading: Icon(
+            fieldDto.leadingIcon,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+      );
+
+  showDateDialog() async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: AppText(
+          text: S.current.selectYear,
+          fontSize: fontSize,
+        ),
+        content: SizedBox(
+          height: 300.h,
+          width: 300.w,
+          child: YearPicker(
+            initialDate: initialDate,
+            firstDate: DateTime(1900),
+            lastDate: DateTime(3000),
+            selectedDate: DateTime.now(),
+            onChanged: (DateTime value) {
+              setState(() {
+                date = value.toString().split("-")[0];
+              });
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ),
     );
   }
@@ -305,9 +363,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
   Widget buildDateTile(BuildContext context, TextFieldDto fieldDto) {
     return CupertinoListTile.notched(
       onTap: () {
-        // showModalBottomSheet(
-        //    backgroundColor: Colors.white,
-        //    context: context, builder: (BuildContext context) {  },
+        showDateDialog();
       },
       title: AppText(
         text: fieldDto.fieldName,
@@ -449,6 +505,7 @@ class TextFieldDto {
   final String? destination;
   final TextInputType? inputType;
   final FieldType fieldType;
+  final FieldNameEnum? fieldNameEnum;
 
   TextFieldDto({
     required this.groupName,
@@ -459,9 +516,12 @@ class TextFieldDto {
     this.trailingIcon,
     this.trailingWidget,
     this.destination,
+    this.fieldNameEnum,
     this.inputType = TextInputType.text,
     this.fieldType = FieldType.text,
   });
 }
 
 enum FieldType { text, date, listTile }
+
+enum FieldNameEnum { rideType, rideYear, rideName, rideModel, rideCategory }

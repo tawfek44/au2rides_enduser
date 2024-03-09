@@ -614,6 +614,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose ride type'**
   String get chooseRideType;
+
+  /// No description provided for @selectYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Year'**
+  String get selectYear;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

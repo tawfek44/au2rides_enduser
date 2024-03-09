@@ -264,4 +264,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseRideType => 'أختر نوع المركبة';
+
+  @override
+  String get selectYear => 'إختر سنة الإصدار';
 }

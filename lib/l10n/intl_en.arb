@@ -85,6 +85,8 @@
   "seeFullForecast": "See full forecast",
   "verified": "Verified",
   "notVerified": "notVerified",
-  "chooseRideType": "Choose ride type"
+  "chooseRideType": "Choose ride type",
+  "selectYear": "Select Year"
+
 
 }

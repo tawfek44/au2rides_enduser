@@ -123,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter second name."),
         "seeFullForecast":
             MessageLookupByLibrary.simpleMessage("See full forecast"),
+        "selectYear": MessageLookupByLibrary.simpleMessage("Select Year"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInDetails":
             MessageLookupByLibrary.simpleMessage("SIGN IN DETAILS"),

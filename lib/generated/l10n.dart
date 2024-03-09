@@ -919,6 +919,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select Year`
+  String get selectYear {
+    return Intl.message(
+      'Select Year',
+      name: 'selectYear',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

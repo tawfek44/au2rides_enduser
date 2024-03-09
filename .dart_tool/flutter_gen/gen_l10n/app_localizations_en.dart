@@ -264,4 +264,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseRideType => 'Choose ride type';
+
+  @override
+  String get selectYear => 'Select Year';
 }
