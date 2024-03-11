@@ -87,7 +87,9 @@ class UserRepository {
   Future setSelectedRideMakesIndex(int rideMakesIndex) async {
     await _prefs.setInt('selectedRideMakesIndex', rideMakesIndex);
   }
-
+  Future setSelectedFuelTypesIndex(int fuelTypesIndex) async {
+    await _prefs.setInt('selectedFuelTypesIndex', fuelTypesIndex);
+  }
   Future setSelectedRideModelsIndex(int rideModelIndex) async {
     await _prefs.setInt('selectedRideModelIndex', rideModelIndex);
   }
@@ -100,6 +102,9 @@ class UserRepository {
   Future setSelectedRideModelsName(String rideModelName) async {
     await _prefs.setString('selectedRideModelName', rideModelName);
   }
+  Future setSelectedFuelType(String fuelTypeName) async {
+    await _prefs.setString('selectedFuelType', fuelTypeName);
+  }
 
   String get getSelectedRideModelName => _prefs.getString('selectedRideModelName')??'';
   String get getSelectedRideMakeId => _prefs.getString('selectedRideMakesId')??'';
@@ -109,6 +114,8 @@ class UserRepository {
   int get getSelectedRideTypeId => _prefs.getInt('selectedRideTypeId')??-1;
 
   String get getSelectedRideMakes => _prefs.getString('selectedRideMakes')??'';
+
+  String get getSelectedFuelTypeName => _prefs.getString('selectedFuelType')??'';
   String get getSelectedRideType => _prefs.getString('selectedRideType')??'';
 
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';

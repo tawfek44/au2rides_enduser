@@ -632,6 +632,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose the model'**
   String get chooseTheModel;
+
+  /// No description provided for @chooseFuelType.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose fuel type'**
+  String get chooseFuelType;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

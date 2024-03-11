@@ -110,8 +110,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.fuelType,
-            info: "Gasoline",
-            destination: Routes.multiSelectionScreenRoute,
+            info: getIt<UserRepository>().getSelectedFuelTypeName,
+            destination: Routes.chooseFuelTypesScreen,
             leadingIcon: Icons.local_gas_station_outlined,
             fieldType: FieldType.listTile,
             onChanged: (text) {},

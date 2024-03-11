@@ -949,6 +949,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose fuel type`
+  String get chooseFuelType {
+    return Intl.message(
+      'Choose fuel type',
+      name: 'chooseFuelType',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

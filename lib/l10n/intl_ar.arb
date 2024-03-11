@@ -88,5 +88,6 @@
   "chooseRideType": "أختر نوع المركبة",
   "selectYear": "إختر سنة الإصدار",
   "pleaseFillThePastDataFirst": "من فضلك اختر كل البيانات السابقة أولا",
-  "chooseTheModel": "إختر الموديل"
+  "chooseTheModel": "إختر الموديل",
+  "chooseFuelType": "إختر نوع الوقود"
 }

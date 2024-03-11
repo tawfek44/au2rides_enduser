@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chooseFuelType":
+            MessageLookupByLibrary.simpleMessage("Choose fuel type"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("Choose ride type"),
         "chooseTheModel":

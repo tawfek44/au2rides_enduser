@@ -88,7 +88,8 @@
   "chooseRideType": "Choose ride type",
   "selectYear": "Select Year",
   "pleaseFillThePastDataFirst": "Please, fill the last data firstly.",
-  "chooseTheModel": "Choose the model"
+  "chooseTheModel": "Choose the model",
+  "chooseFuelType": "Choose fuel type"
 
 
 }

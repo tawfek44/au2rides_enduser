@@ -273,4 +273,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseTheModel => 'إختر الموديل';
+
+  @override
+  String get chooseFuelType => 'إختر نوع الوقود';
 }
