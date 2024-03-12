@@ -276,4 +276,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseFuelType => 'Choose fuel type';
+
+  @override
+  String get chooseMetricUnit => 'Choose metric unit';
 }

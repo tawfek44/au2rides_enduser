@@ -89,5 +89,6 @@
   "selectYear": "إختر سنة الإصدار",
   "pleaseFillThePastDataFirst": "من فضلك اختر كل البيانات السابقة أولا",
   "chooseTheModel": "إختر الموديل",
-  "chooseFuelType": "إختر نوع الوقود"
+  "chooseFuelType": "إختر نوع الوقود",
+  "chooseMetricUnit": "إختر وحدات المسافة"
 }

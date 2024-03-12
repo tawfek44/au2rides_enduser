@@ -14,6 +14,7 @@ import 'package:au2rides/features/add_odometer/presentation/add_odometer_screen.
 import 'package:au2rides/features/add_reminders_screen/presentation/add_reminders_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/add_ride_screen/add_ride_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_fuel_type_screen/presentation/screen/choose_fuel_types_screen.dart';
+import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_metric_units_screen/presentation/screen/choose_metric_units_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_ride_models_screen/presentation/screen/choose_ride_models_screen.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/ride_type_screen/presentation/screen/ride_type_screen.dart';
 import 'package:au2rides/features/add_shop_screen/presentation/screen/add_shop_screen.dart';
@@ -460,6 +461,12 @@ class NamedNavigatorImpl implements NamedNavigator {
             builder: (_) => const Directionality(
               textDirection: TextDirection.ltr,
               child: ChooseFuelTypesScreen(),
+            ));
+      case Routes.chooseMetricUnitsScreen:
+        return MaterialPageRoute(
+            builder: (_) => const Directionality(
+              textDirection: TextDirection.ltr,
+              child: ChooseMetricUnitsScreen(),
             ));
       /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

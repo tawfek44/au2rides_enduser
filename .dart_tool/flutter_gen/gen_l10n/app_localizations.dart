@@ -638,6 +638,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose fuel type'**
   String get chooseFuelType;
+
+  /// No description provided for @chooseMetricUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose metric unit'**
+  String get chooseMetricUnit;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -276,4 +276,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseFuelType => 'إختر نوع الوقود';
+
+  @override
+  String get chooseMetricUnit => 'إختر وحدات المسافة';
 }

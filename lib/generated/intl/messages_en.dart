@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chooseFuelType":
             MessageLookupByLibrary.simpleMessage("Choose fuel type"),
+        "chooseMetricUnit":
+            MessageLookupByLibrary.simpleMessage("Choose metric unit"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("Choose ride type"),
         "chooseTheModel":

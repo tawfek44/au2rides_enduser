@@ -143,8 +143,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.metrics,
             fieldName: S.current.unit,
-            info: "Kilometers",
-            destination: Routes.multiSelectionScreenRoute,
+            info: getIt<UserRepository>().getSelectedMetricUnitName,
+            destination: Routes.chooseMetricUnitsScreen,
             leadingIcon: CupertinoIcons.waveform,
             fieldType: FieldType.listTile,
             onChanged: (text) {},

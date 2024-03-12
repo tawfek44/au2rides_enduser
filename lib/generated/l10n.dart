@@ -959,6 +959,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose metric unit`
+  String get chooseMetricUnit {
+    return Intl.message(
+      'Choose metric unit',
+      name: 'chooseMetricUnit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

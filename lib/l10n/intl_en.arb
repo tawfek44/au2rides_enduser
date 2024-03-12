@@ -89,7 +89,8 @@
   "selectYear": "Select Year",
   "pleaseFillThePastDataFirst": "Please, fill the last data firstly.",
   "chooseTheModel": "Choose the model",
-  "chooseFuelType": "Choose fuel type"
+  "chooseFuelType": "Choose fuel type",
+  "chooseMetricUnit": "Choose metric unit"
 
 
 }
