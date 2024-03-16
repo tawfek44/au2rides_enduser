@@ -87,6 +87,9 @@ class UserRepository {
   Future setSelectedRideMakesIndex(int rideMakesIndex) async {
     await _prefs.setInt('selectedRideMakesIndex', rideMakesIndex);
   }
+  Future setSelectedFuelUnitIndex(int fuelUnitIndex) async {
+    await _prefs.setInt('selectedFuelUnitIndex', fuelUnitIndex);
+  }
   Future setSelectedFuelTypesIndex(int fuelTypesIndex) async {
     await _prefs.setInt('selectedFuelTypesIndex', fuelTypesIndex);
   }
@@ -98,6 +101,9 @@ class UserRepository {
   }
   Future setSelectedRideMakesName(String rideMakes) async {
     await _prefs.setString('selectedRideMakes', rideMakes);
+  }
+  Future setSelectedFuelUnitName(String fuelUnit) async {
+    await _prefs.setString('selectedFuelUnitName', fuelUnit);
   }
   Future setSelectedRideMakesId(String rideMakesId) async {
     await _prefs.setString('selectedRideMakesId', rideMakesId);
@@ -124,6 +130,7 @@ class UserRepository {
   int get getSelectedRideTypeId => _prefs.getInt('selectedRideTypeId')??-1;
 
   String get getSelectedRideMakes => _prefs.getString('selectedRideMakes')??'';
+  String get getSelectedFuelUnitName => _prefs.getString('selectedFuelUnitName')??'';
 
   String get getSelectedFuelTypeName => _prefs.getString('selectedFuelType')??'';
   String get getSelectedRideType => _prefs.getString('selectedRideType')??'';

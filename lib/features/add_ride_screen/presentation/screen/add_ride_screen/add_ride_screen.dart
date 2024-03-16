@@ -119,8 +119,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.fuelUnits,
-            info: "Liters",
-            destination: Routes.multiSelectionScreenRoute,
+            info: getIt<UserRepository>().getSelectedFuelUnitName,
+            destination: Routes.chooseFuelUnitsScreen,
             leadingIcon: CupertinoIcons.speedometer,
             fieldType: FieldType.listTile,
             onChanged: (text) {},

@@ -67,6 +67,7 @@ class Routes {
   static const chooseRideModelsScreen = "CHOOSE_RIDE_MODELS_SCREEN";
   static const chooseFuelTypesScreen = "CHOOSE_FUEL_TYPES_SCREEN";
   static const chooseMetricUnitsScreen = "CHOOSE_METRIC_UNITS_SCREEN";
+  static const chooseFuelUnitsScreen = "CHOOSE_FUEL_UNITS_SCREEN";
   static const xx = "xx";
 }
 
