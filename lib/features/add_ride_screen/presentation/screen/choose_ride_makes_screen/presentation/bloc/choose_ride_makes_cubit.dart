@@ -11,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../generated/l10n.dart';
 import '../../domain/use_cases/choose_ride_makes_usecase.dart';
 
 
@@ -27,12 +28,21 @@ class ChooseRideMakesCubit extends Cubit<ChooseRideMakesState> {
     try {
       emit(const ChooseRideMakesState.loading());
       final response = await chooseRideMakesUseCase(param: rideTypeId);
-      var result = response.data
-          .cast<Map<String, dynamic>>()
-          .map((e) => ChooseRideMakesModel.fromJson(e))
-          .toList();
-      emit(ChooseRideMakesState.loaded(result));
-      return result;
+      if(!(response is Failure)){
+        var result = response.data
+            .cast<Map<String, dynamic>>()
+            .map((e) => ChooseRideMakesModel.fromJson(e))
+            .toList();
+        emit(ChooseRideMakesState.loaded(result));
+        return result;
+      }else{
+        if(response.code == "connectionError"){
+          emit(ChooseRideMakesState.error(S.current.connectivityError));
+        }
+        else{
+          emit(ChooseRideMakesState.error(response.message.toString()));
+        }
+      }
     } catch (e) {
       emit(ChooseRideMakesState.error(e));
     }

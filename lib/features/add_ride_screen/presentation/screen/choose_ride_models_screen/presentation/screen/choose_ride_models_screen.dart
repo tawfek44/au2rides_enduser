@@ -19,8 +19,8 @@ class ChooseRideModelsScreen extends StatefulWidget {
 }
 
 class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
-  var rideModelsList = [];
-  var tempRideModelsList = [];
+  var rideModelsList ;
+  var tempRideModelsList ;
 
   @override
   void initState() {
@@ -99,6 +99,7 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getRideModelsListTile(
             rideModelName: rideModelsList[index].rideModelName,
+            rideModelId: rideModelsList[index].rideModelId,
             index: index),
         separatorBuilder: (context, index) => Divider(
           height: 0,
@@ -108,12 +109,13 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
       );
 
   getRideModelsListTile(
-          {required rideModelName,  required index}) =>
+          {required rideModelName,  required index,required rideModelId}) =>
       CupertinoListTile.notched(
           onTap: () {
             setState(() {
               getIt<UserRepository>().setSelectedRideModelsIndex(index);
               getIt<UserRepository>().setSelectedRideModelsName(rideModelName);
+              getIt<UserRepository>().setSelectedRideModelsId(rideModelId);
               Navigator.pop(context,rideModelName);
             });
           },

@@ -10,6 +10,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../generated/l10n.dart';
 import '../../data/models/choose_ride_models_model.dart';
 import '../../domain/use_cases/choose_ride_models_usecase.dart';
 
@@ -35,8 +36,16 @@ class ChooseRideModelsCubit extends Cubit<ChooseRideModelsState> {
         emit(ChooseRideModelsState.loaded(result));
         return result;
     }
+
       else{
-        emit(ChooseRideModelsState.error(response.message.toString()));
+        if(response.code == "connectionError")
+          {
+            emit(ChooseRideModelsState.error(S.current.connectivityError));
+          }
+        else{
+          emit(ChooseRideModelsState.error(response.message.toString()));
+
+        }
       }
 
     } catch (e) {

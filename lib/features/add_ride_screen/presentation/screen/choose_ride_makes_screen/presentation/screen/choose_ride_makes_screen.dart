@@ -23,8 +23,8 @@ class ChooseRideMakesScreen extends StatefulWidget {
 }
 
 class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
-  var carMakesList = [];
-  var tempCarMakesList = [];
+  var carMakesList ;
+  var tempCarMakesList;
 
 
   @override

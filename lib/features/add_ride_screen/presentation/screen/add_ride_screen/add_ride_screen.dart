@@ -86,7 +86,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.regionalDetails,
             fieldName: S.current.country,
-            info: "Egypt",
+            info: getIt<UserRepository>().getSelectedCountry,
             destination: Routes.countriesScreenRoute,
             leadingIcon: CupertinoIcons.globe,
             fieldType: FieldType.listTile,
@@ -215,11 +215,11 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.trimText,
-              info: "Comfort",
+              info: getIt<UserRepository>().getSelectedRideModelTrimsName,
               fieldType: FieldType.listTile,
               leadingIcon: CupertinoIcons.car,
               fieldNameEnum: FieldNameEnum.rideCategory,
-              destination: Routes.multiSelectionScreenRoute,
+              destination: Routes.chooseRideModelTrimScreen,
               onChanged: (text) {},
             ),
           ],
@@ -314,11 +314,18 @@ class _AddRideScreenState extends State<AddRideScreen> {
           title: AppText(
             text: fieldDto.fieldName,
             fontSize: fontSize,
+            maxLines: 1,
           ),
-          additionalInfo: AppText(
-            text: fieldDto.info,
-            fontSize: fontSize,
-            color: AppColors.greyColor,
+
+          additionalInfo: SizedBox(
+            width: 150.w,
+            child: AppText(
+              textAlign: TextAlign.left,
+              text: fieldDto.info,
+              fontSize: fontSize,
+              color: AppColors.greyColor,
+              maxLines: 2,
+            ),
           ),
           trailing: fieldDto.trailingWidget ??
               const Icon(

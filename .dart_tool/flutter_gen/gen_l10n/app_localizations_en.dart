@@ -279,4 +279,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseMetricUnit => 'Choose metric unit';
+
+  @override
+  String get chooseRideModelTrim => 'Choose Ride Model Trim';
 }

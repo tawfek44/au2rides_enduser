@@ -22,8 +22,8 @@ class ChooseRideTypeScreen extends StatefulWidget {
 }
 
 class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
-  var carTypeList = [];
-  var tempCarTypeList = [];
+  var carTypeList ;
+  var tempCarTypeList;
 
 
   @override

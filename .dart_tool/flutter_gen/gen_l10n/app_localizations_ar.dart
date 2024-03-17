@@ -279,4 +279,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseMetricUnit => 'إختر وحدات المسافة';
+
+  @override
+  String get chooseRideModelTrim => 'إختر الفئة';
 }

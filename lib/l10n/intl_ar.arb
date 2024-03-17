@@ -90,5 +90,7 @@
   "pleaseFillThePastDataFirst": "من فضلك اختر كل البيانات السابقة أولا",
   "chooseTheModel": "إختر الموديل",
   "chooseFuelType": "إختر نوع الوقود",
-  "chooseMetricUnit": "إختر وحدات المسافة"
+  "chooseMetricUnit": "إختر وحدات المسافة",
+  "chooseRideModelTrim": "إختر الفئة"
+
 }

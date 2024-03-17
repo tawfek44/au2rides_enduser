@@ -7,8 +7,8 @@ import 'package:au2rides/env.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../../../core/constants/constants.dart';
 import '../../../../../../../core/storage/local/table_names.dart';
-
 
 abstract class ChooseFuelTypeDataSource {
   getFuelType();
@@ -18,7 +18,10 @@ abstract class ChooseFuelTypeDataSource {
 class ChooseFuelTypeSourceImpl implements ChooseFuelTypeDataSource {
   @override
   getFuelType() async {
-    final response = await Au2ridesDatabase.instance.getAllDate(tableName: TableNames.engineFuelTypes);
+    final response = await Au2ridesDatabase.instance.getAllDateWithCondition(
+      tableName: TableNames.engineFuelTypes,
+      where: 'language_id = ?',whereArgs: [getLanguageId(languageCode: getIt<UserRepository>().userLanguage)],
+    );
     return response;
   }
 }

@@ -10,6 +10,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../generated/l10n.dart';
 
 
 part 'add_ride_state.dart';
@@ -25,12 +26,22 @@ class ChooseRideTypeCubit extends Cubit<ChooseRideTypeState> {
     try {
       emit(const ChooseRideTypeState.loading());
       final response = await chooseRideTypeUseCase();
-      var result = response
-          .cast<Map<String, dynamic>>()
-          .map((e) => ChooseRideTypeModel.fromJson(e))
-          .toList();
-      emit(ChooseRideTypeState.loaded(result));
-      return result;
+      if(!(response is Failure)) {
+        var result = response
+            .cast<Map<String, dynamic>>()
+            .map((e) => ChooseRideTypeModel.fromJson(e))
+            .toList();
+        emit(ChooseRideTypeState.loaded(result));
+        return result;
+      }
+      else{
+        if(response.code == "connectionError") {
+          emit(ChooseRideTypeState.error(S.current.connectivityError));
+        }
+        else{
+          emit(ChooseRideTypeState.error(response.message.toString()));
+        }
+      }
     } catch (e) {
       emit(ChooseRideTypeState.error(e));
     }

@@ -1,10 +1,12 @@
 
+import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart' as intl;
 
+import '../dependancy_injection/injection.dart';
 import '../styles/colors.dart';
 import '../../generated/l10n.dart';
 import '../widgets/app_text.dart';
@@ -29,7 +31,9 @@ Widget errorWidget() => Center(
     fontSize: fontSize,
   ),
 );
-
+int getLanguageId({required languageCode}){
+  return getIt<UserRepository>().getUserLanguage=="ar"?9:56;
+}
 void showQrCodeDialog(BuildContext context) {
   showDialog(
       context: context,

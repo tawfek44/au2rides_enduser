@@ -9,5 +9,6 @@ class EndPoints{
    addRideEndPoint = "/api/rides/v1.0/add-ride",
    getRideMakesEndPoint = "/api/rides/v1.0/ride-makes?ride-type=",
    getRidesEndPoint = "/api/rides/v1.0/my-rides",
-   getRidesModelsEndPoint = "/api/rides/v1.0/ride-make/###/models";
+   getRidesModelsEndPoint = "/api/rides/v1.0/ride-make/###/models",
+   getRidesModelTrimEndPoint = "/api/rides/v1.0/ride-model/###/trims";
 }

@@ -969,6 +969,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose Ride Model Trim`
+  String get chooseRideModelTrim {
+    return Intl.message(
+      'Choose Ride Model Trim',
+      name: 'chooseRideModelTrim',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -644,6 +644,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose metric unit'**
   String get chooseMetricUnit;
+
+  /// No description provided for @chooseRideModelTrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Ride Model Trim'**
+  String get chooseRideModelTrim;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
