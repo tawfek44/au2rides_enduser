@@ -28,6 +28,7 @@ import 'package:au2rides/features/language_screen/presentation/bloc/language_cub
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/add_ride_screen/presentation/screen/choose_fuel_consumption_units_screen/presentation/bloc/choose_fuel_consumption_units_cubit.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_fuel_units_screen/presentation/bloc/choose_fuel_units_cubit.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_ride_makes_screen/presentation/bloc/choose_ride_makes_cubit.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_ride_models_screen/presentation/bloc/choose_ride_models_cubit.dart';
@@ -90,7 +91,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ChooseFuelTypesCubit>()),
         BlocProvider(create: (_) => getIt<ChooseMetricUnitsCubit>()),
         BlocProvider(create: (_) => getIt<ChooseFuelUnitsCubit>()),
-        BlocProvider(create: (_) => getIt<ChooseRideModelTrimCubit>())
+        BlocProvider(create: (_) => getIt<ChooseRideModelTrimCubit>()),
+        BlocProvider(create: (_) => getIt<ChooseFuelConsumptionUnitsCubit>())
       ],
       child: child,
     );

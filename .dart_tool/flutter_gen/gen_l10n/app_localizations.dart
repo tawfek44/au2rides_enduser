@@ -645,11 +645,11 @@ abstract class AppLocalizations {
   /// **'Choose metric unit'**
   String get chooseMetricUnit;
 
-  /// No description provided for @chooseRideModelTrim.
+  /// No description provided for @chooseConsumptionUnit.
   ///
   /// In en, this message translates to:
-  /// **'Choose Ride Model Trim'**
-  String get chooseRideModelTrim;
+  /// **'Choose consumption unit'**
+  String get chooseConsumptionUnit;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

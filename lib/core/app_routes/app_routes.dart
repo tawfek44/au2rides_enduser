@@ -62,6 +62,7 @@ import 'package:au2rides/features/transaction_history_screen/presentation/screen
 import 'package:au2rides/features/wallet_screen/presentation/screen/wallet_screen.dart';
 import 'package:au2rides/features/web_view_screen/web_view_screen.dart';
 import 'package:flutter/material.dart';
+import '../../features/add_ride_screen/presentation/screen/choose_fuel_consumption_units_screen/presentation/screen/choose_fuel_consumption_units_screen.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_fuel_units_screen/presentation/screen/choose_fuel_units_screen.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_ride_makes_screen/presentation/screen/choose_ride_makes_screen.dart';
 import '../../features/download_screen/presentation/screen/download_screen.dart';
@@ -481,6 +482,12 @@ class NamedNavigatorImpl implements NamedNavigator {
             builder: (_) => const Directionality(
               textDirection: TextDirection.ltr,
               child: ChooseRideModelTrimScreen(),
+            ));
+      case Routes.chooseRideFuelConsumptionUnitsScreen:
+        return MaterialPageRoute(
+            builder: (_) => const Directionality(
+              textDirection: TextDirection.ltr,
+              child: ChooseFuelConsumptionUnitsScreen(),
             ));
       /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

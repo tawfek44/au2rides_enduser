@@ -38,12 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chooseConsumptionUnit":
+            MessageLookupByLibrary.simpleMessage("Choose consumption unit"),
         "chooseFuelType":
             MessageLookupByLibrary.simpleMessage("Choose fuel type"),
         "chooseMetricUnit":
             MessageLookupByLibrary.simpleMessage("Choose metric unit"),
-        "chooseRideModelTrim":
-            MessageLookupByLibrary.simpleMessage("Choose Ride Model Trim"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("Choose ride type"),
         "chooseTheModel":

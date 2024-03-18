@@ -281,5 +281,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chooseMetricUnit => 'إختر وحدات المسافة';
 
   @override
-  String get chooseRideModelTrim => 'إختر الفئة';
+  String get chooseConsumptionUnit => 'إختر نوع الإستهلاك';
 }

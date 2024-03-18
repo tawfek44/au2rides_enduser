@@ -970,11 +970,11 @@ class S {
     );
   }
 
-  /// `Choose Ride Model Trim`
-  String get chooseRideModelTrim {
+  /// `Choose consumption unit`
+  String get chooseConsumptionUnit {
     return Intl.message(
-      'Choose Ride Model Trim',
-      name: 'chooseRideModelTrim',
+      'Choose consumption unit',
+      name: 'chooseConsumptionUnit',
       desc: '',
       args: [],
     );

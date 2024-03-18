@@ -36,12 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "chooseConsumptionUnit":
+            MessageLookupByLibrary.simpleMessage("إختر نوع الإستهلاك"),
         "chooseFuelType":
             MessageLookupByLibrary.simpleMessage("إختر نوع الوقود"),
         "chooseMetricUnit":
             MessageLookupByLibrary.simpleMessage("إختر وحدات المسافة"),
-        "chooseRideModelTrim":
-            MessageLookupByLibrary.simpleMessage("إختر الفئة"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("أختر نوع المركبة"),
         "chooseTheModel": MessageLookupByLibrary.simpleMessage("إختر الموديل"),

@@ -281,5 +281,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseMetricUnit => 'Choose metric unit';
 
   @override
-  String get chooseRideModelTrim => 'Choose Ride Model Trim';
+  String get chooseConsumptionUnit => 'Choose consumption unit';
 }

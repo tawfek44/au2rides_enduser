@@ -128,15 +128,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.consumption,
-            info: "Liters / 100 KM",
+            info: getIt<UserRepository>().getSelectedFuelConsumptionUnitName,
             leadingIcon: CupertinoIcons.speedometer,
-            destination: Routes.multiSelectionScreenRoute,
+            destination: Routes.chooseRideFuelConsumptionUnitsScreen,
             fieldType: FieldType.listTile,
             onChanged: (text) {},
           ),
         ],
       );
-
   Widget getMetricsSection() => buildSection(
         context,
         [
