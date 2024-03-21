@@ -979,6 +979,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose ride trim`
+  String get chooseRideModelTrim {
+    return Intl.message(
+      'Choose ride trim',
+      name: 'chooseRideModelTrim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose currency`
+  String get chooseCurrency {
+    return Intl.message(
+      'Choose currency',
+      name: 'chooseCurrency',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

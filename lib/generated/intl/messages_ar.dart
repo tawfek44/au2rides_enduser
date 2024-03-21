@@ -38,10 +38,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "chooseConsumptionUnit":
             MessageLookupByLibrary.simpleMessage("إختر نوع الإستهلاك"),
+        "chooseCurrency": MessageLookupByLibrary.simpleMessage("إختر العملة"),
         "chooseFuelType":
             MessageLookupByLibrary.simpleMessage("إختر نوع الوقود"),
         "chooseMetricUnit":
             MessageLookupByLibrary.simpleMessage("إختر وحدات المسافة"),
+        "chooseRideModelTrim":
+            MessageLookupByLibrary.simpleMessage("إختر الفئة"),
         "chooseRideType":
             MessageLookupByLibrary.simpleMessage("أختر نوع المركبة"),
         "chooseTheModel": MessageLookupByLibrary.simpleMessage("إختر الموديل"),

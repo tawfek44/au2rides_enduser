@@ -95,8 +95,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.regionalDetails,
             fieldName: S.current.currency,
-            info: "EGP",
-            destination: Routes.currencyScreenRoute,
+            info: getIt<UserRepository>().getSelectedCurrencyName,
+            destination: Routes.chooseCurrencyScreen,
             leadingIcon: CupertinoIcons.money_dollar,
             fieldType: FieldType.listTile,
             onChanged: (text) {},

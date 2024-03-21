@@ -1,4 +1,5 @@
 import 'package:au2rides/features/add_ride_screen/presentation/bloc/add_ride_cubit.dart';
+import 'package:au2rides/features/choose_currency_screen/presentation/bloc/choose_currency_cubit.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_fuel_type_screen/presentation/bloc/choose_fuel_types_cubit.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_metric_units_screen/presentation/bloc/choose_metric_units_cubit.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_model_trim_screen/presentation/bloc/choose_ride_model_trim_cubit.dart';
@@ -92,7 +93,8 @@ MultiBlocProvider provideApp(Widget child) => MultiBlocProvider(
         BlocProvider(create: (_) => getIt<ChooseMetricUnitsCubit>()),
         BlocProvider(create: (_) => getIt<ChooseFuelUnitsCubit>()),
         BlocProvider(create: (_) => getIt<ChooseRideModelTrimCubit>()),
-        BlocProvider(create: (_) => getIt<ChooseFuelConsumptionUnitsCubit>())
+        BlocProvider(create: (_) => getIt<ChooseFuelConsumptionUnitsCubit>()),
+        BlocProvider(create: (_) => getIt<ChooseCurrencyCubit>())
       ],
       child: child,
     );

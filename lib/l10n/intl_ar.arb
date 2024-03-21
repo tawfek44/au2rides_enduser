@@ -92,6 +92,7 @@
   "chooseFuelType": "إختر نوع الوقود",
   "chooseMetricUnit": "إختر وحدات المسافة",
   "chooseRideModelTrim": "إختر الفئة",
-  "chooseConsumptionUnit": "إختر نوع الإستهلاك"
+  "chooseConsumptionUnit": "إختر نوع الإستهلاك",
+  "chooseCurrency": "إختر العملة"
 
 }

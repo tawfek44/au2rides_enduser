@@ -91,6 +91,7 @@
   "chooseTheModel": "Choose the model",
   "chooseFuelType": "Choose fuel type",
   "chooseMetricUnit": "Choose metric unit",
-  "chooseConsumptionUnit": "Choose consumption unit"
-
+  "chooseConsumptionUnit": "Choose consumption unit",
+  "chooseRideModelTrim": "Choose ride trim",
+  "chooseCurrency": "Choose currency"
 }

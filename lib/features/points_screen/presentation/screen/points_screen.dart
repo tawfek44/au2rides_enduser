@@ -82,7 +82,7 @@ class _PointsScreenState extends State<PointsScreen> {
         color: Colors.white,
         child: InkWell(
           onTap: () {
-            NamedNavigatorImpl().push(Routes.currencyScreenRoute);
+            NamedNavigatorImpl().push(Routes.chooseCurrencyScreen);
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),

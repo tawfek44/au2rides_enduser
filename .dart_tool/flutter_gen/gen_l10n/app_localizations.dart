@@ -650,6 +650,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose consumption unit'**
   String get chooseConsumptionUnit;
+
+  /// No description provided for @chooseRideModelTrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose ride trim'**
+  String get chooseRideModelTrim;
+
+  /// No description provided for @chooseCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose currency'**
+  String get chooseCurrency;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

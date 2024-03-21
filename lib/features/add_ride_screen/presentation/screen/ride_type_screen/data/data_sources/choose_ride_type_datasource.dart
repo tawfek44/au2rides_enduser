@@ -17,7 +17,7 @@ class ChooseRideTypeSourceImpl implements ChooseRideTypeDataSource {
   @override
   chooseRideType() async {
     final response = await Au2ridesDatabase.instance
-        .getAllDateWithCondition(tableName: TableNames.rideTypesTableName,where: 'language_code = ?',whereArgs: [getLanguageId(languageCode: getIt<UserRepository>().userLanguage)]);
+        .getAllDateWithCondition(tableName: TableNames.rideTypesTableName,where: 'language_id = ?',whereArgs: [getLanguageId(languageCode: getIt<UserRepository>().userLanguage)]);
     return response;
   }
 }

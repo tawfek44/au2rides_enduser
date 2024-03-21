@@ -99,6 +99,7 @@ class UserRepository {
   Future setSelectedFuelConsumptionUnitsIndex(int fuelTypesIndex) async {
     await _prefs.setInt('selectedFuelConsumptionUnitsIndex', fuelTypesIndex);
   }
+
   Future setSelectedMetricUnitsIndex(int metricUnitIndex) async {
     await _prefs.setInt('selectedMetricUnitsIndex', metricUnitIndex);
   }
@@ -131,6 +132,9 @@ class UserRepository {
     await _prefs.setString('selectedFuelConsumptionUnit', fuelConsumptionUnitName);
   }
 
+  Future setSelectedCurrency(String currencyName) async {
+    await _prefs.setString('selectedCurrency', currencyName);
+  }
   Future setSelectedMetricUnitsName(String metricUnitName) async {
     await _prefs.setString('selectedMetricUnit', metricUnitName);
   }
@@ -152,6 +156,7 @@ class UserRepository {
 
   String get getSelectedFuelTypeName => _prefs.getString('selectedFuelType')??'';
   String get getSelectedFuelConsumptionUnitName => _prefs.getString('selectedFuelConsumptionUnit')??'';
+  String get getSelectedCurrencyName => _prefs.getString('selectedCurrency')??'';
   String get getSelectedRideType => _prefs.getString('selectedRideType')??'';
 
   String get getAccessToken => 'Bearer ${_prefs.getString('accessToken')}'??'';

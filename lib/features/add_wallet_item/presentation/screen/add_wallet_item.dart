@@ -114,7 +114,7 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                 NamedNavigatorImpl().push(Routes.countriesScreenRoute);
                 break;
               case WalletCountryChoice.currency:
-                NamedNavigatorImpl().push(Routes.currencyScreenRoute);
+                NamedNavigatorImpl().push(Routes.chooseCurrencyScreen);
                 break;
             }
           },

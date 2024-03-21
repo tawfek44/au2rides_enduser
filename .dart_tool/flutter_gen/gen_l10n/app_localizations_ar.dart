@@ -282,4 +282,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseConsumptionUnit => 'إختر نوع الإستهلاك';
+
+  @override
+  String get chooseRideModelTrim => 'إختر الفئة';
+
+  @override
+  String get chooseCurrency => 'إختر العملة';
 }

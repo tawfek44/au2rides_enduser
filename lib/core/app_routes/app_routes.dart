@@ -29,7 +29,6 @@ import 'package:au2rides/features/contact_us_screen/presentation/screen/contact_
 import 'package:au2rides/features/countries_screen/presentation/countries_screen.dart';
 import 'package:au2rides/features/coupons_screen/presentation/screen/coupons_screen.dart';
 import 'package:au2rides/features/create_item_screen/presentation/screen/create_item_screen.dart';
-import 'package:au2rides/features/currency_screen/presentation/screen/currency_screen.dart';
 import 'package:au2rides/features/dashboard_signs_screen/presentation/screen/dashboard_signs_screen.dart';
 import 'package:au2rides/features/departments_screen/presentation/screen/departments_screen.dart';
 import 'package:au2rides/features/driving_license_screen/presentation/screen/driving_license_screen.dart';
@@ -65,6 +64,7 @@ import 'package:flutter/material.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_fuel_consumption_units_screen/presentation/screen/choose_fuel_consumption_units_screen.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_fuel_units_screen/presentation/screen/choose_fuel_units_screen.dart';
 import '../../features/add_ride_screen/presentation/screen/choose_ride_makes_screen/presentation/screen/choose_ride_makes_screen.dart';
+import '../../features/choose_currency_screen/presentation/screen/choose_currency_screen.dart';
 import '../../features/download_screen/presentation/screen/download_screen.dart';
 import '../../features/identity_card_passport_screen/presentation/screen/identity_card_passport_screen.dart';
 import '../../features/login_screen/presentation/screens/otp_screen.dart';
@@ -164,12 +164,6 @@ class NamedNavigatorImpl implements NamedNavigator {
             builder: (_) => const Directionality(
                   textDirection: TextDirection.ltr,
                   child: PointsScreen(),
-                ));
-      case Routes.currencyScreenRoute:
-        return MaterialPageRoute(
-            builder: (_) => const Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: CurrencyScreen(),
                 ));
       case Routes.transactionHistoryScreenRoute:
         return MaterialPageRoute(
@@ -488,6 +482,12 @@ class NamedNavigatorImpl implements NamedNavigator {
             builder: (_) => const Directionality(
               textDirection: TextDirection.ltr,
               child: ChooseFuelConsumptionUnitsScreen(),
+            ));
+      case Routes.chooseCurrencyScreen:
+        return MaterialPageRoute(
+            builder: (_) => const Directionality(
+              textDirection: TextDirection.ltr,
+              child: ChooseCurrencyScreen(),
             ));
       /* case Routes.SurahScreenRoute:
         return MaterialPageRoute(

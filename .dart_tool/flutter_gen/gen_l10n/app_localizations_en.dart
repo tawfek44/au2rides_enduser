@@ -282,4 +282,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseConsumptionUnit => 'Choose consumption unit';
+
+  @override
+  String get chooseRideModelTrim => 'Choose ride trim';
+
+  @override
+  String get chooseCurrency => 'Choose currency';
 }
