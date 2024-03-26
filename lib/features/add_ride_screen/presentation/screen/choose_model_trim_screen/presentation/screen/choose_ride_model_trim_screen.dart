@@ -101,6 +101,7 @@ class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getRideModelTrimsListTile(
             rideModelTrimName: rideMakesList[index].rideTrimName,
+          rideTrimId: rideMakesList[index].rideTrimId,
           index: index
         ),
         separatorBuilder: (context, index) => Divider(
@@ -111,13 +112,15 @@ class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
         itemCount: rideMakesList.length,
       );
 
-  getRideModelTrimsListTile({required rideModelTrimName, required index}) =>
+  getRideModelTrimsListTile({required rideModelTrimName, required index,required rideTrimId}) =>
       CupertinoListTile.notched(
         onTap: () {
           setState(() {
             getIt<UserRepository>().setSelectedRideModelTrimsIndex(index);
             getIt<UserRepository>()
                 .setSelectedRideModelTrimsName(rideModelTrimName);
+            getIt<UserRepository>()
+                .setSelectedRideModelTrimId(rideTrimId);
 
             Navigator.pop(context,rideModelTrimName);
           });

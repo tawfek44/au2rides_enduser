@@ -263,6 +263,12 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
             case WorkSectionChoices.paymentMethod:
               NamedNavigatorImpl().push(Routes.showPaymentMethodsScreenRoute);
               break;
+            case WorkSectionChoices.byOwner:
+
+              break;
+            case WorkSectionChoices.cost:
+
+              break;
           }
         },
         title: AppText(

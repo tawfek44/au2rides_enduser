@@ -1,5 +1,6 @@
 
 import 'package:au2rides/core/repositories/user_repository.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -22,7 +23,7 @@ const applicationId = "e199c942-3735-4b48-b2c7-01646b1bed89";
 const applicationSecret = "y5A7CaFcHeMhPkRpUrWuZw3y6B8DaGdJfMjQmSqV";
 const applicationIdentifierName = "com.au2rides.end_user";
 const userProfileConnectionString = "DefaultEndpointsProtocol=https;AccountName=au2ridesusersstorage;AccountKey=v2DieEsz8MTXwlZNus0PJQ41hvb1bjcLtJ+Tgd6B0w9SJOcuWbV3bBF/3QsnbMh1ziL8fJTxpRba+AStVVLOsw==;EndpointSuffix=core.windows.net";
-const registeredUserProfileImageUrl = "https://au2ridesusersstorage.blob.core.windows.net/staging-mobile-uploads/";
+const azureImagesUrl = "https://au2ridesusersstorage.blob.core.windows.net/staging-mobile-uploads/";
 
 
 Widget errorWidget() => Center(
@@ -34,14 +35,14 @@ Widget errorWidget() => Center(
 int getLanguageId({required languageCode}){
   return getIt<UserRepository>().getUserLanguage=="ar"?9:56;
 }
-void showQrCodeDialog(BuildContext context) {
+void showQrCodeDialog({required BuildContext context,required imageUrl}) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
         return Directionality(
           textDirection: TextDirection.ltr,
           child: CupertinoAlertDialog(
-            content: Icon(Icons.qr_code,size: 200.w,),
+            content: SizedBox(width: 200.w,child: CachedNetworkImage(imageUrl: imageUrl)),
           ),
         );
       });
@@ -95,17 +96,18 @@ Widget getAppBar(
           route: route, onPressed: onPressed, actions: actions,onPressedDelete: onPressedDelete,context: context),
       bottom: bottom,
     );
-Widget getNotesSection({required context}) => CupertinoListSection.insetGrouped(
+Widget getNotesSection({required context,required controller}) => CupertinoListSection.insetGrouped(
   header: AppText(
     text: S.current.notes,
     color: AppColors.greyColor,
     fontSize: fontSize,
   ),
   margin: EdgeInsets.zero,
-  children: const [
+  children:  [
     CupertinoListTile.notched(
       title: CupertinoTextField(
-        decoration: BoxDecoration(border: Border(right: BorderSide.none)),
+        controller: controller,
+        decoration:const BoxDecoration(border: Border(right: BorderSide.none)),
         maxLines: highMaxLines,
       ),
     )

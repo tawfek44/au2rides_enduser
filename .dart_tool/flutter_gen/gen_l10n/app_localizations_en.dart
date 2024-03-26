@@ -288,4 +288,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseCurrency => 'Choose currency';
+
+  @override
+  String get km => 'km';
+
+  @override
+  String get rideAddedSuccessfully => 'The ride is added successfully.';
 }

@@ -202,7 +202,7 @@ class _EnterUserInfoScreenState extends State<EnterUserInfoScreen> {
                 registeredUserId: userId,
                 profileImageUrl: fileName == ""
                     ? response1.profileImageUrl
-                    : registeredUserProfileImageUrl + fileName);
+                    : azureImagesUrl + fileName);
             if (response is Failure) {
               String? msg = "";
               if(response.code == HttpsStatusCode.connectionError){

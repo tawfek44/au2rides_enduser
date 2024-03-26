@@ -88,7 +88,7 @@ class _AddWalletItemScreenState extends State<AddWalletItemScreen> {
                   leadingIcon: CupertinoIcons.star_circle,
                   hintText: "0"
               ),
-              getNotesSection(context: context)
+              //getNotesSection(context: context)
             ],
           ),
         ),

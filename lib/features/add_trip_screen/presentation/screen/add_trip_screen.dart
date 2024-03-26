@@ -90,7 +90,7 @@ class _AddTripScreenState extends State<AddTripScreen> {
                   )
                 ],
               ),
-              getNotesSection(context: context)
+              //getNotesSection(context: context)
             ],
           ),
         ),

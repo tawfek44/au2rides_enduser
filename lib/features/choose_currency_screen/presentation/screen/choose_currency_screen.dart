@@ -100,8 +100,9 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getCurrenciesListTile(
-          currencyImageUrl: currenciesList[index].currencyImageUrl,
-            currency: currenciesList[index].currencyName, index: index),
+            currencyImageUrl: currenciesList[index].currencyImageUrl,
+            currency: currenciesList[index].currencyName,
+            currencyId: currenciesList[index].currencyId),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
@@ -109,11 +110,15 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
         itemCount: currenciesList.length,
       );
 
-  getCurrenciesListTile({required currency, required index,required currencyImageUrl}) =>
+  getCurrenciesListTile(
+          {required currency,
+          required currencyId,
+          required currencyImageUrl}) =>
       CupertinoListTile.notched(
           onTap: () {
             setState(() {
               getIt<UserRepository>().setSelectedCurrency(currency);
+              getIt<UserRepository>().setSelectedCurrencyId(currencyId);
 
               Navigator.pop(context, currency);
             });
@@ -121,19 +126,16 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
           backgroundColor: Colors.white,
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(30.w),
-            child: SvgPicture.network(
-               currencyImageUrl,
+            child: SvgPicture.network(currencyImageUrl,
                 placeholderBuilder: (BuildContext context) => Container(
-                    padding:  EdgeInsets.all(20.w),
-                    child: const AppCircularProgressIndicator())
-            ),
+                    padding: EdgeInsets.all(20.w),
+                    child: const AppCircularProgressIndicator())),
           ),
           title: AppText(
             text: currency,
             fontSize: fontSize,
           ),
-          trailing: currency ==
-                  getIt<UserRepository>().getSelectedCurrencyName
+          trailing: currency == getIt<UserRepository>().getSelectedCurrencyName
               ? Icon(
                   Icons.check,
                   color: Theme.of(context).primaryColor,

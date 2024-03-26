@@ -8,9 +8,9 @@ class AddRideBodyModel extends AddRideBodyEntity {
   factory AddRideBodyModel.fromJson(final Map<String, dynamic> json) {
     return _$AddRideBodyModelFromJson(json);
   }
-
   const AddRideBodyModel(
-      {required super.registeredRideId,
+      {
+        required super.registeredRideId,
       required super.rideName,
       required super.metricUnitId,
       required super.rideImageUrl,

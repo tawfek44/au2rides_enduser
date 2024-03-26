@@ -73,7 +73,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                 ],
               ),
               gap(height: 20.h),
-              getNotesSection(context: context)
+              //getNotesSection(context: context)
             ],
           ),
         ),

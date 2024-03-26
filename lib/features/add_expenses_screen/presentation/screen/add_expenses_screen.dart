@@ -262,6 +262,12 @@ class _AddExpensesScreenState extends State<AddExpensesScreen> {
             case WorkSectionChoices.paymentMethod:
               NamedNavigatorImpl().push(Routes.showPaymentMethodsScreenRoute);
               break;
+            case WorkSectionChoices.cost:
+
+              break;
+            case WorkSectionChoices.byOwner:
+
+              break;
           }
         },
         title: AppText(

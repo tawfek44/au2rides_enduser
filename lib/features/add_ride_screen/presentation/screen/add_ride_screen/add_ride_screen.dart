@@ -6,19 +6,22 @@ import 'package:au2rides/core/repositories/user_repository.dart';
 import 'package:au2rides/core/styles/colors.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/add_ride_screen/data/models/add_ride_body/add_ride_body_model.dart';
-import 'package:au2rides/features/add_ride_screen/presentation/bloc/add_ride_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:uuid/uuid.dart';
 import '../../../../../core/app_routes/app_routes.dart';
 import '../../../../../core/app_routes/app_routes_names.dart';
-import '../../../../../core/widgets/file_picker_utils.dart';
+import '../../../../../core/widgets/app_snack_bar.dart';
 import '../../../../../generated/l10n.dart';
 import 'package:intl/intl.dart' as intl;
-
-import '../choose_ride_makes_screen/data/data_sources/choose_ride_makes_datasource.dart';
+import 'package:path/path.dart' as p;
+import '../../bloc/add_ride_cubit.dart';
 
 class AddRideScreen extends StatefulWidget {
   const AddRideScreen({super.key});
@@ -28,9 +31,16 @@ class AddRideScreen extends StatefulWidget {
 }
 
 class _AddRideScreenState extends State<AddRideScreen> {
+  var image;
   PlatformFile? selectedImage;
-  var date = DateTime.now().year.toString();
+  var manufactureYear = DateTime.now().year.toString();
   DateTime initialDate = DateTime.now();
+  String rideName = "";
+  String rideVINNumber = "";
+  String plateNumberText = "";
+  int odometerReading = 0;
+  var fileName = "";
+  TextEditingController notesController = TextEditingController();
 
   @override
   void initState() {
@@ -49,9 +59,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
             child: getAppBar(
               route: AppBarRoutes.save,
               onPressed: () async {
-                await context
-                    .read<AddRideCubit>()
-                    .addRide(addRideBody: getAddRideBodyObject());
+                var rideId = const Uuid().v4();
+                var rideResponse = await addRide(
+                    imagePath: image == null ? "" : image.path, rideId: rideId);
               },
               context: context,
               title: AppText(
@@ -60,25 +70,58 @@ class _AddRideScreenState extends State<AddRideScreen> {
                 color: AppColors.white,
               ),
             )),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-            child: Column(
-              children: [
-                buildImageWidget(context),
-                getNameSection(),
-                getRegistrationDetailsSection(),
-                getManufacturerDetailsSection(),
-                getMetricsSection(),
-                getFuelSection(),
-                getRegionalDetailsSection()
-              ],
-            ),
-          ),
+        body: BlocBuilder<AddRideCubit, AddRideState>(
+          builder: (context, state) {
+            if (state is LoadingAddRideState) {
+              return Center(
+                child: LoadingAnimationWidget.discreteCircle(
+                    color: Theme.of(context).primaryColor, size: 50.w),
+              );
+            } else {
+              if(state is LoadedAddRideState){
+                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  var snackBar = AppSnackBar(
+                      text: S.current.rideAddedSuccessfully, isSuccess: true, maxLines: 10);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                });
+
+              }
+              else if(state is ErrorAddRideState){
+                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  var snackBar = AppSnackBar(
+                      text: state.e.toString(), isSuccess: false, maxLines: 10);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                });
+
+              }
+              return addRideScreen();
+            }
+          },
         ),
       ),
     );
   }
+
+  Widget addRideScreen() => SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+          child: Column(
+            children: [
+              buildImageWidget(
+                context: context,
+                rideId: getIt<UserRepository>().getSelectedRideTypeId,
+              ),
+              getNameSection(),
+              getRegistrationDetailsSection(),
+              getManufacturerDetailsSection(),
+              getMetricsSection(),
+              getFuelSection(),
+              getRegionalDetailsSection(),
+              getNotesSection(context: context, controller: notesController),
+            ],
+          ),
+        ),
+      );
 
   Widget getRegionalDetailsSection() => buildSection(
         context,
@@ -136,6 +179,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           ),
         ],
       );
+
   Widget getMetricsSection() => buildSection(
         context,
         [
@@ -155,7 +199,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
             leadingIcon: CupertinoIcons.speedometer,
             fieldType: FieldType.text,
             trailingWidget: Text(
-              "km",
+              S.current.km,
               style: TextStyle(
                   color: Colors.grey,
                   fontSize: fontSize,
@@ -184,7 +228,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.yearText,
-              info: date.toString(),
+              info: manufactureYear.toString(),
               destination: Routes.multiSelectionScreenRoute,
               leadingIcon: CupertinoIcons.calendar,
               fieldType: FieldType.date,
@@ -315,7 +359,6 @@ class _AddRideScreenState extends State<AddRideScreen> {
             fontSize: fontSize,
             maxLines: 1,
           ),
-
           additionalInfo: SizedBox(
             width: 150.w,
             child: AppText(
@@ -356,7 +399,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
             selectedDate: DateTime.now(),
             onChanged: (DateTime value) {
               setState(() {
-                date = value.toString().split("-")[0];
+                manufactureYear = value.toString().split("-")[0];
               });
               Navigator.pop(context);
             },
@@ -413,14 +456,23 @@ class _AddRideScreenState extends State<AddRideScreen> {
           color: AppColors.greyColor,
         ),
         maxLines: 1,
-        onChanged: (name) {
-          fieldDto.onChanged(name);
+        onChanged: (value) {
+          if (fieldDto.fieldName == S.current.name) {
+            rideName = value;
+          } else if (fieldDto.fieldName == S.current.registrationDetails) {
+            rideVINNumber = value;
+          } else if (fieldDto.fieldName == S.current.licencePlate) {
+            plateNumberText = value;
+          } else if (fieldDto.fieldName == S.current.unit) {
+            odometerReading = int.parse(value);
+          }
+          fieldDto.onChanged(value);
         },
       ),
     );
   }
 
-  Widget buildImageWidget(BuildContext context) {
+  Widget buildImageWidget({required BuildContext context, required rideId}) {
     return SizedBox(
       height: 170.h,
       width: double.infinity,
@@ -437,36 +489,31 @@ class _AddRideScreenState extends State<AddRideScreen> {
                   Icons.add_a_photo,
                   size: 56.w,
                 ),
-                onPressed: () {
-                  FilePickerUtils.pickFile((file) {
-                    setState(() {
-                      selectedImage = file;
-                    });
-                  }, [
-                    FileExtension.jpeg,
-                    FileExtension.jpg,
-                    FileExtension.png
-                  ]);
+                onPressed: () async {
+                  var imgSource = await showImageSource(context: context);
+                  if (imgSource == ImageSource.gallery) {
+                    await pickPhoto(ImageSource.gallery);
+                  } else if (imgSource == ImageSource.camera) {
+                    await pickPhoto(ImageSource.camera);
+                  }
+                  setState(() {});
                 },
               ),
             ),
-            if (selectedImage != null)
+            if (image != null)
               InkWell(
-                onTap: () {
-                  FilePickerUtils.pickFile((file) {
-                    setState(() {
-                      selectedImage = file;
-                    });
-                  }, [
-                    FileExtension.jpeg,
-                    FileExtension.jpg,
-                    FileExtension.png,
-                  ]);
+                onTap: () async {
+                  var imgSource = await showImageSource(context: context);
+                  if (imgSource == ImageSource.gallery) {
+                    await pickPhoto(ImageSource.gallery);
+                  } else if (imgSource == ImageSource.camera) {
+                    await pickPhoto(ImageSource.camera);
+                  }
                 },
                 child: SizedBox(
                     width: double.infinity,
                     child: Image.file(
-                      File(selectedImage!.path!),
+                      File(image.path),
                       fit: BoxFit.fitWidth,
                     )),
               )
@@ -476,28 +523,137 @@ class _AddRideScreenState extends State<AddRideScreen> {
     );
   }
 
-  getAddRideBodyObject() {
-    return const AddRideBodyModel(
-      registeredRideId: "64f19801-c1c2-4491-89a2-4ada10a12fc3",
-      rideName: "registered ride name",
-      rideImageUrl: "registered ride image url",
-      rideVinNumber: "registered ride vin number",
-      rideTypeId: 1,
-      manufacturingYear: 2023,
-      makeId: "64f19801-c1c2-4491-89a2-4ada10a12fc3",
-      rideModelId: "64f19801-c1c2-4491-89a2-4ada10a12fc3",
-      rideTrimId: "64f19801-c1c2-4491-89a2-4ada10a12fc3",
-      metricUnitId: 1,
-      odometer: 6765768,
-      fuelTypeId: 1,
-      fuelUnitId: 1,
-      fuelConsumptionUnitTypeId: 1,
-      countryId: 1,
-      plateNumber: "plateNumber",
-      currencyId: 1,
-      notes: "notes",
-    ).toJson();
+  Future pickPhoto(ImageSource source) async {
+    try {
+      image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+      setState(() {
+        image = imageTemp;
+      });
+    } on PlatformException catch (e) {
+      print(e);
+    }
   }
+  Future<ImageSource?> showImageSource({required context}) {
+    if (Platform.isAndroid) {
+      return showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) => Wrap(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.camera_alt),
+                    title: AppText(
+                      text: S.current.camera,
+                      fontSize: fontSize,
+                    ),
+                    onTap: () => Navigator.of(context).pop(ImageSource.camera),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.image),
+                    title: AppText(
+                      text: S.current.gallery,
+                      fontSize: fontSize,
+                    ),
+                    onTap: () => Navigator.of(context).pop(ImageSource.gallery),
+                  ),
+                ],
+              ));
+    } else {
+      return showCupertinoModalPopup<ImageSource>(
+          context: context,
+          builder: (BuildContext context) => CupertinoActionSheet(
+                actions: [
+                  CupertinoActionSheetAction(
+                    onPressed: () =>
+                        Navigator.of(context).pop(ImageSource.camera),
+                    child: AppText(
+                      text: S.current.camera,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                  CupertinoActionSheetAction(
+                    onPressed: () =>
+                        Navigator.of(context).pop(ImageSource.gallery),
+                    child: AppText(
+                      text: S.current.gallery,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                ],
+              ));
+    }
+  }
+
+  Future addRide({required imagePath, required rideId}) async {
+    return await context.read<AddRideCubit>().addRide(
+        rideId: rideId,
+        imagePath: imagePath,
+        addRideBody: getAddRideBodyObject(
+          registeredRideId: rideId,
+          rideName: rideName,
+          rideImageUrl: imagePath != ""?azureImagesUrl + rideId + p.extension(imagePath):"",
+          rideVinNumber: rideVINNumber,
+          rideTypeId: getIt<UserRepository>().getSelectedRideTypeId,
+          manufacturingYear: int.parse(manufactureYear),
+          makeId: getIt<UserRepository>().getSelectedRideMakeId,
+          rideModelId: getIt<UserRepository>().getSelectedRideModelId,
+          rideTrimId: getIt<UserRepository>().getSelectedRideModelTrimId,
+          metricUnitId: getIt<UserRepository>().getSelectedMetricUnitId,
+          odometer: odometerReading,
+          fuelTypeId: getIt<UserRepository>().getSelectedFuelTypeId,
+          fuelUnitId: getIt<UserRepository>().getSelectedFuelUnitId,
+          fuelConsumptionUnitTypeId:
+              getIt<UserRepository>().getSelectedFuelConsumptionTypeId,
+          countryId: getIt<UserRepository>().getSelectedCountryId,
+          plateNumber: plateNumberText,
+          currencyId: getIt<UserRepository>().getSelectedCountryId,
+          notes: notesController.text,
+        ));
+  }
+}
+
+getAddRideBodyObject({
+  required registeredRideId,
+  required rideName,
+  required rideImageUrl,
+  required rideVinNumber,
+  required rideTypeId,
+  required manufacturingYear,
+  required makeId,
+  required rideModelId,
+  required rideTrimId,
+  required metricUnitId,
+  required odometer,
+  required fuelTypeId,
+  required fuelUnitId,
+  required fuelConsumptionUnitTypeId,
+  required countryId,
+  required plateNumber,
+  required currencyId,
+  required notes,
+}) {
+  return AddRideBodyModel(
+    registeredRideId: registeredRideId,
+    rideName: rideName,
+    rideImageUrl: rideImageUrl,
+    rideVinNumber: rideVinNumber,
+    rideTypeId: rideTypeId,
+    manufacturingYear: manufacturingYear,
+    makeId: makeId,
+    rideModelId: rideModelId,
+    rideTrimId: rideTrimId,
+    metricUnitId: metricUnitId,
+    odometer: odometer,
+    fuelTypeId: fuelTypeId,
+    fuelUnitId: fuelUnitId,
+    fuelConsumptionUnitTypeId: fuelConsumptionUnitTypeId,
+    countryId: countryId,
+    plateNumber: plateNumber,
+    currencyId: currencyId,
+    notes: notes,
+  ).toJson();
 }
 
 class TextFieldDto {

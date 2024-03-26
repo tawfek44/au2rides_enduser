@@ -93,5 +93,7 @@
   "chooseMetricUnit": "Choose metric unit",
   "chooseConsumptionUnit": "Choose consumption unit",
   "chooseRideModelTrim": "Choose ride trim",
-  "chooseCurrency": "Choose currency"
+  "chooseCurrency": "Choose currency",
+  "km": "km",
+  "rideAddedSuccessfully": "The ride is added successfully."
 }

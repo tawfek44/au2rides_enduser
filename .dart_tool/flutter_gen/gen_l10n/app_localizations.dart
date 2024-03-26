@@ -662,6 +662,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose currency'**
   String get chooseCurrency;
+
+  /// No description provided for @km.
+  ///
+  /// In en, this message translates to:
+  /// **'km'**
+  String get km;
+
+  /// No description provided for @rideAddedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'The ride is added successfully.'**
+  String get rideAddedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -173,6 +173,9 @@ class _MoreScreenState extends State<MoreScreen> {
                         case ExpansionListTileChoice.adds:
                           // TODO: Handle this case.
                           break;
+                        case ExpansionListTileChoice.settings:
+                        // TODO: Handle this case.
+                          break;
                         case ExpansionListTileChoice.orderAndPayments:
                           // TODO: Handle this case.
                           break;

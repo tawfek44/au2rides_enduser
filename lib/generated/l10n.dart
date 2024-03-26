@@ -999,6 +999,26 @@ class S {
       args: [],
     );
   }
+
+  /// `km`
+  String get km {
+    return Intl.message(
+      'km',
+      name: 'km',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The ride is added successfully.`
+  String get rideAddedSuccessfully {
+    return Intl.message(
+      'The ride is added successfully.',
+      name: 'rideAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

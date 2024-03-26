@@ -288,4 +288,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseCurrency => 'إختر العملة';
+
+  @override
+  String get km => 'كم';
+
+  @override
+  String get rideAddedSuccessfully => 'تم إضافة المركبة بنجاح.';
 }

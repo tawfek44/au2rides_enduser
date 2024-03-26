@@ -93,6 +93,8 @@
   "chooseMetricUnit": "إختر وحدات المسافة",
   "chooseRideModelTrim": "إختر الفئة",
   "chooseConsumptionUnit": "إختر نوع الإستهلاك",
-  "chooseCurrency": "إختر العملة"
+  "chooseCurrency": "إختر العملة",
+  "km": "كم",
+  "rideAddedSuccessfully": "تم إضافة المركبة بنجاح."
 
 }

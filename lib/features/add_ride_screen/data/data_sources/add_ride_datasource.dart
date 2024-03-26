@@ -22,7 +22,7 @@ class AddRideDataSourceImpl implements AddRideDataSource {
       endPoint:  EndPoints.addRideEndPoint,
       data: data,
       apiUrl: AppEnvironment.baseAPIUrl,
-      authorizationToken: getIt<UserRepository>().getAccessToken,
+      authorizationToken: getIt<UserRepository>().getUserAccessToken,
     );
     return response.value;
   }

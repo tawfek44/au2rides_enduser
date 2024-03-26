@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف غير صحيح من فضلك تأكد من رقم الهاتف أو من إختيارك لرمز البلد"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("صحيح ؟"),
+        "km": MessageLookupByLibrary.simpleMessage("كم"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "lastName": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
         "lease": MessageLookupByLibrary.simpleMessage("إيجار"),
@@ -125,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفاصيل التسجيل"),
         "required": MessageLookupByLibrary.simpleMessage("مطلوب"),
         "resendNewCode": MessageLookupByLibrary.simpleMessage("إرسال رمز جديد"),
+        "rideAddedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم إضافة المركبة بنجاح."),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "secondNameValidation":
             MessageLookupByLibrary.simpleMessage("من فضلك إدخل الإسم الأخير."),

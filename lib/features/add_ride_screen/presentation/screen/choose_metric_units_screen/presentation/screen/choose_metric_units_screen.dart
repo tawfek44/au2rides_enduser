@@ -99,6 +99,7 @@ class _ChooseMetricUnitsScreenState extends State<ChooseMetricUnitsScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getMetricUnitsListTile(
             metricUnit: metricUnitsList[index].metricUnitName,
+          metricUnitId: metricUnitsList[index].metricUnitId,
           index: index
         ),
         separatorBuilder: (context, index) => Divider(
@@ -109,12 +110,13 @@ class _ChooseMetricUnitsScreenState extends State<ChooseMetricUnitsScreen> {
         itemCount: metricUnitsList.length,
       );
 
-  getMetricUnitsListTile({required metricUnit,required index}) =>
+  getMetricUnitsListTile({required metricUnit,required index,required metricUnitId}) =>
       CupertinoListTile.notched(
         onTap: () {
           setState(() {
             getIt<UserRepository>().setSelectedMetricUnitsIndex(index);
             getIt<UserRepository>().setSelectedMetricUnitsName(metricUnit);
+            getIt<UserRepository>().setSelectedMetricUnitsId(metricUnitId);
 
             Navigator.pop(context,metricUnit);
           });

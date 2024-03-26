@@ -90,14 +90,14 @@ class UserRepository {
   Future setSelectedRideModelTrimsIndex(int rideModelTrimsIndex) async {
     await _prefs.setInt('selectedRideModelTrimsIndex', rideModelTrimsIndex);
   }
-  Future setSelectedFuelUnitIndex(int fuelUnitIndex) async {
-    await _prefs.setInt('selectedFuelUnitIndex', fuelUnitIndex);
+  Future setSelectedFuelUnitId(int fuelUnitId) async {
+    await _prefs.setInt('selectedFuelUnitId', fuelUnitId);
   }
-  Future setSelectedFuelTypesIndex(int fuelTypesIndex) async {
-    await _prefs.setInt('selectedFuelTypesIndex', fuelTypesIndex);
+  Future setSelectedFuelTypesId(int fuelTypesId) async {
+    await _prefs.setInt('selectedFuelTypesId', fuelTypesId);
   }
-  Future setSelectedFuelConsumptionUnitsIndex(int fuelTypesIndex) async {
-    await _prefs.setInt('selectedFuelConsumptionUnitsIndex', fuelTypesIndex);
+  Future setSelectedFuelConsumptionUnitsId(int fuelConsumptionUnitId) async {
+    await _prefs.setInt('selectedFuelConsumptionUnitsId', fuelConsumptionUnitId);
   }
 
   Future setSelectedMetricUnitsIndex(int metricUnitIndex) async {
@@ -111,6 +111,9 @@ class UserRepository {
   }
   Future setSelectedRideModelTrimsName(String rideModelTrimsName) async {
     await _prefs.setString('selectedRideModelsTrimsName', rideModelTrimsName);
+  }
+  Future setSelectedRideModelTrimId(String rideModelTrimsId) async {
+    await _prefs.setString('selectedRideModelsTrimId', rideModelTrimsId);
   }
   Future setSelectedFuelUnitName(String fuelUnit) async {
     await _prefs.setString('selectedFuelUnitName', fuelUnit);
@@ -135,11 +138,19 @@ class UserRepository {
   Future setSelectedCurrency(String currencyName) async {
     await _prefs.setString('selectedCurrency', currencyName);
   }
+  Future setSelectedCurrencyId(int currencyId) async {
+    await _prefs.setInt('selectedCurrencyId', currencyId);
+  }
   Future setSelectedMetricUnitsName(String metricUnitName) async {
     await _prefs.setString('selectedMetricUnit', metricUnitName);
   }
+  Future setSelectedMetricUnitsId(int metricUnitId) async {
+    await _prefs.setInt('selectedMetricUnitId', metricUnitId);
+  }
 
   String get getSelectedRideModelName => _prefs.getString('selectedRideModelName')??'';
+  int get getSelectedMetricUnitId => _prefs.getInt('selectedMetricUnitId')??-1;
+  String get getSelectedRideModelTrimId => _prefs.getString('selectedRideModelsTrimId')??'';
   String get getSelectedRideModelTrimsName => _prefs.getString('selectedRideModelsTrimsName')??'';
   String get getSelectedRideModelId => _prefs.getString('selectedRideModelId')??'';
   String get getSelectedMetricUnitName => _prefs.getString('selectedMetricUnit')??'';
@@ -147,9 +158,13 @@ class UserRepository {
   String get getSelectedRideMakeId => _prefs.getString('selectedRideMakesId')??'';
 
   int get getSelectedRideModelIndex => _prefs.getInt('selectedRideModelIndex')??-1;
+  int get getSelectedFuelUnitId => _prefs.getInt('selectedFuelUnitId')??-1;
   int get getSelectedMetricUnitsIndex => _prefs.getInt('selectedMetricUnitsIndex')??-1;
+  int get getSelectedCurrencyId => _prefs.getInt('selectedCurrencyId')??-1;
 
   int get getSelectedRideTypeId => _prefs.getInt('selectedRideTypeId')??-1;
+  int get getSelectedFuelTypeId => _prefs.getInt('selectedFuelTypesId')??-1;
+  int get getSelectedFuelConsumptionTypeId => _prefs.getInt('selectedFuelConsumptionUnitsId')??-1;
 
   String get getSelectedRideMakes => _prefs.getString('selectedRideMakes')??'';
   String get getSelectedFuelUnitName => _prefs.getString('selectedFuelUnitName')??'';

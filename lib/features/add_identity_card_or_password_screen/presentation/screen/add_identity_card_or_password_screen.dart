@@ -54,7 +54,7 @@ class _AddIdentityCardOrPasswordScreenState extends State<AddIdentityCardOrPassw
   Widget getNotesListSection()=>CupertinoListSection.insetGrouped(
     margin: EdgeInsets.zero,
     children: [
-      getNotesSection(context: context),
+      //getNotesSection(context: context),
     ],
   );
   Widget getDocumentBackImage()=> CupertinoListSection.insetGrouped(

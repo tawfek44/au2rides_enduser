@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "The phone number has an invalid format, check phone number or check you choose the country code"),
         "isCorrect": MessageLookupByLibrary.simpleMessage("is correct?"),
+        "km": MessageLookupByLibrary.simpleMessage("km"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "lease": MessageLookupByLibrary.simpleMessage("Lease"),
@@ -132,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "required": MessageLookupByLibrary.simpleMessage("Required"),
         "resendNewCode":
             MessageLookupByLibrary.simpleMessage("Resend new code"),
+        "rideAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "The ride is added successfully."),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secondNameValidation":
             MessageLookupByLibrary.simpleMessage("Please enter second name."),

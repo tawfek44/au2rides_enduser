@@ -55,7 +55,7 @@ class _AcquisitionScreenState extends State<AcquisitionScreen> {
                 ],
               ),
               addAttachment(),
-              getNotesSection(context: context),
+              //getNotesSection(context: context),
             ],
           ),
         ),

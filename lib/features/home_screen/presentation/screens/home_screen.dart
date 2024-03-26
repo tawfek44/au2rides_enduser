@@ -55,43 +55,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 actions: getActions(),
               ),
             ),
-            body: BlocBuilder<GetMyRidesCubit, GetMyRidesState>(
-              builder: (context, state) {
-                if (state is LoadedGetMyRidesState) {
-                  return Padding(
-                    padding: EdgeInsets.only(top: 10.h, left: 5.w, right: 5.w),
-                    child: ListView(
-                      children: [
-                        getCarouselSliderWidget(),
-                        gap(height: 10.h),
-                        getSponsoredAds(),
-                        gap(height: 10.h),
-                        AppText(text: S.current.myRides),
-                        gap(height: 5.h),
-                        getMyRides(myRides: state.response),
-                      ],
-                    ),
-                  );
-                } else if (state is LoadingGetMyRidesState) {
-                  return const Center(
-                    child: AppCircularProgressIndicator(),
-                  );
-                } else if (state is ErrorGetMyRidesState) {
-                  return Center(
-                    child: AppText(
-                      text: state.e.toString(),
-                      fontSize: fontSize,
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
-
+            body: ListView(
+              children: [
+                getCarouselSliderWidget(),
+                gap(height: 10.h),
+                getSponsoredAds(),
+                gap(height: 10.h),
+                getMyRidesWidget(),
+              ],
             )),
       ),
     );
   }
+  getMyRidesWidget() => BlocBuilder<GetMyRidesCubit, GetMyRidesState>(
+        builder: (context, state) {
+          if (state is LoadedGetMyRidesState) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText(text: S.current.myRides),
+                gap(height: 5.h),
+                getMyRides(myRides: state.response),
+              ],
+            );
+          }
+          else if (state is LoadingGetMyRidesState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorGetMyRidesState) {
+            return Center(
+              child: AppText(
+                text: state.e.toString(),
+                fontSize: fontSize,
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getActions() => [
         IconButton(
@@ -319,10 +322,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(5.w),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Image.asset(
-                      'images/car.png',
-                      fit: BoxFit.cover,
-                    ),
+                    child: rideItem.rideImageUrl == null ||
+                            rideItem.rideImageUrl == ""
+                        ? Image.asset(
+                            'images/car.png',
+                            fit: BoxFit.cover,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: rideItem.rideImageUrl,
+                          ),
                   ),
                 ),
                 ClipRRect(
@@ -341,10 +349,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ));
 
   Widget getVerifiedWidget({required isVerified}) => Padding(
-    padding:  EdgeInsets.all(10.w),
-    child: Wrap(
-      children: [
-        Container(
+        padding: EdgeInsets.all(10.w),
+        child: Wrap(
+          children: [
+            Container(
               decoration: BoxDecoration(
                   color: isVerified ? AppColors.greenColor : AppColors.redColor,
                   borderRadius: BorderRadius.circular(corner)),
@@ -353,13 +361,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: isVerified ? S.current.verified : S.current.notVerified,
                   maxLines: 4,
                   color: AppColors.white,
-                  fontSize: fontSize-2.sp,
+                  fontSize: fontSize - 2.sp,
                 ),
               ),
             ),
-      ],
-    ),
-  );
+          ],
+        ),
+      );
 
   getRideDetailsOnPic({required rideDetails}) => Padding(
         padding: EdgeInsets.all(5.w),
@@ -368,14 +376,18 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             getRideDetails(rideDetails: rideDetails),
             const Spacer(),
-            IconButton(
-              onPressed: () {
-                showQrCodeDialog(context);
-              },
-              icon: Icon(
-                CupertinoIcons.qrcode,
-                size: 60.w,
-                color: Colors.white,
+            SizedBox(
+              width: 100.w,
+              child: IconButton(
+                onPressed: () {
+                  showQrCodeDialog(
+                      context: context,
+                      imageUrl: rideDetails.rideQrCodes.rideQrCodeUrl);
+                },
+                icon: CachedNetworkImage(
+                    placeholder: (context, url) =>
+                        const AppCircularProgressIndicator(),
+                    imageUrl: rideDetails.rideQrCodes.rideWhiteQrCodeUrl),
               ),
             ),
           ],
@@ -386,24 +398,29 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          getRideNameAndType(isVerified:rideDetails.rideIsVerified ,rideName:rideDetails.rideName,rideType: rideDetails.manufacturingDetails.rideType.rideTypeName),
-          getRideYearAndModel(model: rideDetails.manufacturingDetails.rideModel.rideModelName,year: rideDetails.manufacturingDetails.manufacturingYear,trimName: rideDetails.manufacturingDetails.rideTrim.rideTrimName),
+          getRideNameAndType(
+              isVerified: rideDetails.rideIsVerified,
+              rideName: rideDetails.rideName,
+              rideType: rideDetails.manufacturingDetails.rideType.rideTypeName),
+          getRideYearAndModel(
+              model: rideDetails.manufacturingDetails.rideModel.rideModelName,
+              year: rideDetails.manufacturingDetails.manufacturingYear,
+              trimName: rideDetails.manufacturingDetails.rideTrim.rideTrimName),
           getVINNumber(vinNumber: rideDetails.rideVinNumber),
-          getPlateNumber(),
-          getOdometerRead(),
+          // getPlateNumber(),
+          // getOdometerRead(),
         ],
       );
-
-  getRideNameAndType({required rideName, required rideType,required isVerified}) => Row(
+  getRideNameAndType(
+          {required rideName, required rideType, required isVerified}) =>
+      Row(
         children: [
           SizedBox(
-            width: 20.w,
+            width: 60.w,
             child: AppText(
               text: rideName,
               fontSize: fontSize,
               color: AppColors.white,
-              maxLines: 2,
-
               fontWeight: FontWeight.bold,
               shadowList: [
                 getShadow(),
@@ -424,26 +441,31 @@ class _HomeScreenState extends State<HomeScreen> {
           getVerifiedWidget(isVerified: isVerified),
         ],
       );
-
-  getRideYearAndModel({required year,required model,required trimName}) => Row(
+  getRideYearAndModel({required year, required model, required trimName}) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: "$year $model",
+            text: "$year - $model",
             fontSize: fontSize,
             color: AppColors.white,
             shadowList: [
               getShadow(),
             ],
           ),
-          gap(width: 5.w),
-          AppText(
-            text: "($trimName)",
-            fontSize: fontSize,
-            color: AppColors.white,
-            shadowList: [
-              getShadow(),
-            ],
+          gap(height: 5.w),
+          SizedBox(
+            width: 120.w,
+            child: AppText(
+              text: "($trimName)",
+              fontSize: fontSize,
+              color: AppColors.white,
+              shadowList: [
+                getShadow(),
+              ],
+            ),
           ),
+
         ],
       );
 

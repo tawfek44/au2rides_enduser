@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +26,7 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
     tempShopsList = shopsList;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +78,8 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
               style: TextStyle(fontSize: fontSize),
               placeholder: "Search...",
               controller: shopsSearchText,
-              decoration:BoxDecoration(border: Border.all(style: BorderStyle.none)),
+              decoration:
+                  BoxDecoration(border: Border.all(style: BorderStyle.none)),
               onChanged: (String text) {
                 List<String> temp = [];
                 print(text);
@@ -117,7 +118,17 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
             text: countries[index],
             fontSize: fontSize,
           ),
-          trailing: IconButton(onPressed: (){showQrCodeDialog(context);}, icon: Icon(CupertinoIcons.qrcode,color: Theme.of(context).primaryColor,)),
+          trailing: IconButton(
+              onPressed: () {
+                showQrCodeDialog(
+                  imageUrl: "",
+                  context: context,
+                );
+              },
+              icon: Icon(
+                CupertinoIcons.qrcode,
+                color: Theme.of(context).primaryColor,
+              )),
         ),
         itemCount: countries.length,
         separatorBuilder: (BuildContext context, int index) {
@@ -126,7 +137,5 @@ class _AllShopsScreenState extends State<AllShopsScreen> {
             indent: 20.w,
           );
         },
-
       );
-
 }

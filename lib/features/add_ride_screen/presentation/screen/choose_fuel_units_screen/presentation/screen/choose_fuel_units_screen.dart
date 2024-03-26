@@ -1,10 +1,6 @@
 import 'package:au2rides/core/constants/constants.dart';
 import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_fuel_units_screen/presentation/bloc/choose_fuel_units_cubit.dart';
-import 'package:au2rides/features/add_ride_screen/presentation/screen/choose_ride_makes_screen/presentation/bloc/choose_ride_makes_cubit.dart';
-import 'package:au2rides/features/add_ride_screen/presentation/screen/ride_type_screen/presentation/bloc/choose_ride_type_cubit.dart';
-import 'package:au2rides/features/download_screen/presentation/bloc/ride_types/ride_types_cubit.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,7 +98,7 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getFuelUnisListTile(
             fuelUnitName: fuelUnitsList[index].fuelUnitName,
-          index: index
+          fuelUnitId: fuelUnitsList[index].fuelUnitId
         ),
         separatorBuilder: (context, index) => Divider(
           height: 0,
@@ -112,11 +108,11 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
         itemCount: fuelUnitsList.length,
       );
 
-  getFuelUnisListTile({required fuelUnitName,required index}) =>
+  getFuelUnisListTile({required fuelUnitName,required fuelUnitId}) =>
       CupertinoListTile.notched(
         onTap: () {
           setState(() {
-            getIt<UserRepository>().setSelectedFuelUnitIndex(index);
+            getIt<UserRepository>().setSelectedFuelUnitId(fuelUnitId);
             getIt<UserRepository>()
                 .setSelectedFuelUnitName(fuelUnitName);
 

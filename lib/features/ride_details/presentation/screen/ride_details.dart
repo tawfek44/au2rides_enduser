@@ -368,7 +368,7 @@ class _RideDetailsState extends State<RideDetails> {
             const Spacer(),
             IconButton(
               onPressed: (){
-                showQrCodeDialog(context);
+                showQrCodeDialog(imageUrl: "",context: context);
               },
               icon: Icon(
                 CupertinoIcons.qrcode,

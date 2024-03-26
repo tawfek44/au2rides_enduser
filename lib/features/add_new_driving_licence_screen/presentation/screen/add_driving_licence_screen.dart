@@ -136,7 +136,7 @@ class _AddDrivingLicenceScreenState extends State<AddDrivingLicenceScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      getNotesSection(context: context)
+                     // getNotesSection(context: context)
                     ],
                   )
                 ],

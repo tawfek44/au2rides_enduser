@@ -74,6 +74,7 @@ class AddRideBodyEntity extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
+        registeredRideId,
         rideName,
         rideImageUrl,
         rideVinNumber,

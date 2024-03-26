@@ -895,7 +895,7 @@ extension GetItInjectableX on _i1.GetIt {
         _i181.UpdateUserRepositoryImpl(gh<_i11.AddUserToNetworkDatasource>()));
     gh.factory<_i182.UserAccountRepository>(
         () => _i183.UserRepositoryImpl(gh<_i10.AddUserInLocalDbDatasource>()));
-    gh.singleton<_i184.UserRepository>(_i184.UserRepository.create(
+    gh.singleton<_i184.UserRepository>(() => _i184.UserRepository.create(
         gh<_i118.IPrefsManager>(instanceName: 'prefs')));
     gh.factory<_i185.WeatherUnitsDataSource>(
         () => _i185.WeatherUnitsDataSource());

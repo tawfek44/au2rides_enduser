@@ -8,10 +8,10 @@ import 'package:path/path.dart';
 
 import '../constants/constants.dart';
 
-Future uploadImageToAzure(String path,String userId) async {
+Future uploadImageToAzure(String path,String id) async {
   try {
     var file = File(path);
-    String fileName = userId+p.extension(path); // to user id
+    String fileName = id+p.extension(path);
     // read file as Uint8List
     Uint8List content = await file.readAsBytes();
     var storage = AzureStorage.parse(userProfileConnectionString);

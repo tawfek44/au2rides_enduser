@@ -110,7 +110,7 @@ class _ShopsTabScreenState extends State<ShopsTabScreen> {
         },
         title: getShopData(shopModel: shopModel),
     additionalInfo: IconButton(onPressed: (){
-      showQrCodeDialog(context);
+      showQrCodeDialog(context: context,imageUrl: "");
     }, icon: Icon(CupertinoIcons.qrcode,color: Theme.of(context).primaryColor,size: 40.w,)),
         trailing: Icon(
           Icons.arrow_forward_ios,

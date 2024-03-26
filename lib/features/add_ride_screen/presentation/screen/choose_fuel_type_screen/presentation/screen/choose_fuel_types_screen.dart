@@ -102,7 +102,7 @@ class _ChooseFuelTypesScreenState extends State<ChooseFuelTypesScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getFuelTypesListTile(
           fuelType: fuelTypesList[index].engineFuelTypeName,
-          index: index
+          fuelTypeId: fuelTypesList[index].engineFuelTypeId
         ),
         separatorBuilder: (context, index) => Divider(
           height: 0,
@@ -112,11 +112,11 @@ class _ChooseFuelTypesScreenState extends State<ChooseFuelTypesScreen> {
         itemCount: fuelTypesList.length,
       );
 
-  getFuelTypesListTile({required fuelType,required index}) =>
+  getFuelTypesListTile({required fuelType,required fuelTypeId}) =>
       CupertinoListTile.notched(
         onTap: () {
           setState(() {
-            getIt<UserRepository>().setSelectedFuelTypesIndex(index);
+            getIt<UserRepository>().setSelectedFuelTypesId(fuelTypeId);
             getIt<UserRepository>().setSelectedFuelType(fuelType);
 
             Navigator.pop(context,fuelType);
