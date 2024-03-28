@@ -19,18 +19,16 @@ class ChooseRideModelsScreen extends StatefulWidget {
 }
 
 class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
-  var rideModelsList ;
-  var tempRideModelsList ;
+  var rideModelsList = [];
+
+  var tempRideModelsList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      rideModelsList = await context
-          .read<ChooseRideModelsCubit>()
-          .getRideModels(
-              rideMakeId: getIt<UserRepository>().getSelectedRideMakeId);
-      tempRideModelsList = rideModelsList;
+      await context.read<ChooseRideModelsCubit>().getRideModels(
+          rideMakeId: getIt<UserRepository>().getSelectedRideMakeId);
     });
     super.initState();
   }
@@ -52,39 +50,48 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseRideModelsCubit, ChooseRideModelsState>(
-          builder: (context, state) {
-            if (state is LoadingChooseRideModelsState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseRideModelsState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseRideModelsState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getRideModelsListGroup(rideModelsList: tempRideModelsList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            getSearchBar(),
+            getRideModelListView(),
+          ],
         ),
       ),
     );
   }
+
+  getRideModelListView() =>
+      BlocBuilder<ChooseRideModelsCubit, ChooseRideModelsState>(
+        builder: (context, state) {
+          if (state is LoadingChooseRideModelsState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseRideModelsState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseRideModelsState) {
+            tempRideModelsList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getRideModelsListGroup(rideModelsList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getRideModelsListGroup({required rideModelsList}) =>
       CupertinoListSection.insetGrouped(
@@ -109,14 +116,14 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
       );
 
   getRideModelsListTile(
-          {required rideModelName,  required index,required rideModelId}) =>
+          {required rideModelName, required index, required rideModelId}) =>
       CupertinoListTile.notched(
           onTap: () {
             setState(() {
               getIt<UserRepository>().setSelectedRideModelsIndex(index);
               getIt<UserRepository>().setSelectedRideModelsName(rideModelName);
               getIt<UserRepository>().setSelectedRideModelsId(rideModelId);
-              Navigator.pop(context,rideModelName);
+              Navigator.pop(context, rideModelName);
             });
           },
           backgroundColor: Colors.white,
@@ -124,15 +131,16 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
             text: rideModelName,
             fontSize: fontSize,
           ),
-          trailing: rideModelName == getIt<UserRepository>().getSelectedRideModelName
-              ? Icon(
-                  Icons.check,
-                  color: Theme.of(context).primaryColor,
-                )
-              : Container());
+          trailing:
+              rideModelName == getIt<UserRepository>().getSelectedRideModelName
+                  ? Icon(
+                      Icons.check,
+                      color: Theme.of(context).primaryColor,
+                    )
+                  : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin: EdgeInsets.only(top: 15.h,left: 15.w,right: 15.w,bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -146,21 +154,10 @@ class _ChooseRideModelsScreenState extends State<ChooseRideModelsScreen> {
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
               onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempRideModelsList) {
-                    if (element.rideModelName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempRideModelsList = temp;
-                  } else {
-                    tempRideModelsList = rideModelsList;
-                  }
-                });
+                context.read<ChooseRideModelsCubit>().search(
+                      textToSearch: text,
+                      responseList: tempRideModelsList,
+                    );
               },
             ),
           )

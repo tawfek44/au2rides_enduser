@@ -11,7 +11,9 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../../../core/dependancy_injection/injection.dart';
 import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../core/repositories/user_repository.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../domain/use_cases/choose_ride_model_trim_usecase.dart';
 
@@ -47,6 +49,31 @@ class ChooseRideModelTrimCubit extends Cubit<ChooseRideModelTrimState> {
       }
 
     } catch (e) {
+      emit(ChooseRideModelTrimState.error(e));
+    }
+  }
+
+  search({required textToSearch,required responseList}) async {
+    try{
+      var temp = [];
+      if (textToSearch.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.rideTrimName.toLowerCase().contains(textToSearch)) {
+            temp.add(element);
+          }
+        }
+
+        if(temp.isNotEmpty){
+          emit(ChooseRideModelTrimState.loaded(temp));
+        }
+        else{
+          emit(ChooseRideModelTrimState.loaded(responseList));
+        }
+      }else{
+        await getRideModelTrims(rideMakesModelId: getIt<UserRepository>().getSelectedRideModelId);
+      }
+
+    }catch(e){
       emit(ChooseRideModelTrimState.error(e));
     }
   }

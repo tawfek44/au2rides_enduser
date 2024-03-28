@@ -23,13 +23,12 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
   var fuelUnitsList = [];
   var tempFuelUnitsList = [];
 
-
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      fuelUnitsList = await context.read<ChooseFuelUnitsCubit>().getFuelUnits();
-      tempFuelUnitsList = fuelUnitsList;
+      await context.read<ChooseFuelUnitsCubit>().getFuelUnits();
+
     });
     super.initState();
   }
@@ -51,39 +50,48 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseFuelUnitsCubit, ChooseFuelUnitsState>(
-          builder: (context, state) {
-            if (state is LoadingChooseFuelUnitsState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseFuelUnitsState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseFuelUnitsState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getFuelUnitsListGroup(fuelUnitsList: tempFuelUnitsList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: [
+            getSearchBar(),
+            getFuelUnitListView(),
+          ],
         ),
       ),
     );
   }
+
+  getFuelUnitListView() =>
+      BlocBuilder<ChooseFuelUnitsCubit, ChooseFuelUnitsState>(
+        builder: (context, state) {
+          if (state is LoadingChooseFuelUnitsState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseFuelUnitsState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseFuelUnitsState) {
+            tempFuelUnitsList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getFuelUnitsListGroup(fuelUnitsList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getFuelUnitsListGroup({required fuelUnitsList}) =>
       CupertinoListSection.insetGrouped(
@@ -98,42 +106,40 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getFuelUnisListTile(
             fuelUnitName: fuelUnitsList[index].fuelUnitName,
-          fuelUnitId: fuelUnitsList[index].fuelUnitId
-        ),
+            fuelUnitId: fuelUnitsList[index].fuelUnitId),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
         ),
-
         itemCount: fuelUnitsList.length,
       );
 
-  getFuelUnisListTile({required fuelUnitName,required fuelUnitId}) =>
+  getFuelUnisListTile({required fuelUnitName, required fuelUnitId}) =>
       CupertinoListTile.notched(
-        onTap: () {
-          setState(() {
-            getIt<UserRepository>().setSelectedFuelUnitId(fuelUnitId);
-            getIt<UserRepository>()
-                .setSelectedFuelUnitName(fuelUnitName);
+          onTap: () {
+            setState(() {
+              getIt<UserRepository>().setSelectedFuelUnitId(fuelUnitId);
+              getIt<UserRepository>().setSelectedFuelUnitName(fuelUnitName);
 
-            Navigator.pop(context,fuelUnitName);
-          });
-        },
-        backgroundColor: Colors.white,
-        title: AppText(
-          text: fuelUnitName,
-          fontSize: fontSize,
-        ),
-        trailing: fuelUnitName == getIt<UserRepository>().getSelectedFuelUnitName
-            ? Icon(
-          Icons.check,
-          color: Theme.of(context).primaryColor,
-        )
-            : Container()
-      );
+              Navigator.pop(context, fuelUnitName);
+            });
+          },
+          backgroundColor: Colors.white,
+          title: AppText(
+            text: fuelUnitName,
+            fontSize: fontSize,
+          ),
+          trailing:
+              fuelUnitName == getIt<UserRepository>().getSelectedFuelUnitName
+                  ? Icon(
+                      Icons.check,
+                      color: Theme.of(context).primaryColor,
+                    )
+                  : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin:
+            EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h, bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -146,22 +152,11 @@ class _ChooseFuelUnitsScreenState extends State<ChooseFuelUnitsScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempFuelUnitsList) {
-                    if (element.fuelUnitName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempFuelUnitsList = temp;
-                  } else {
-                    tempFuelUnitsList = fuelUnitsList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<ChooseFuelUnitsCubit>().search(
+                      textToSearch: text,
+                      responseList: tempFuelUnitsList,
+                    );
               },
             ),
           )

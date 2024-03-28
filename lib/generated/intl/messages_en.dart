@@ -150,7 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereIsAnErrorInGender": MessageLookupByLibrary.simpleMessage(
             "There is an error, please try again later"),
         "trimText": MessageLookupByLibrary.simpleMessage("Trim"),
-        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "type": MessageLookupByLibrary.simpleMessage("Ride type"),
         "unit": MessageLookupByLibrary.simpleMessage("Unit"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "Your phone number has been disabled."),

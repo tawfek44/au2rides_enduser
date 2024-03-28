@@ -23,16 +23,16 @@ class ChooseRideMakesScreen extends StatefulWidget {
 }
 
 class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
-  var carMakesList ;
-  var tempCarMakesList;
+  var carMakesList=[];
 
+  var tempCarMakesList=[];
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      carMakesList = await context.read<ChooseRideMakesCubit>().getRideMakes(rideTypeId: getIt<UserRepository>().getSelectedRideTypeId);
-      tempCarMakesList = carMakesList;
+      carMakesList = await context.read<ChooseRideMakesCubit>().getRideMakes(
+          rideTypeId: getIt<UserRepository>().getSelectedRideTypeId);
     });
     super.initState();
   }
@@ -54,39 +54,48 @@ class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseRideMakesCubit, ChooseRideMakesState>(
-          builder: (context, state) {
-            if (state is LoadingChooseRideMakesState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseRideMakesState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseRideMakesState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getRideMakesListGroup(rideMakesList: tempCarMakesList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            getSearchBar(),
+            getRideMakesListView(),
+          ],
         ),
       ),
     );
   }
+
+  getRideMakesListView() =>
+      BlocBuilder<ChooseRideMakesCubit, ChooseRideMakesState>(
+        builder: (context, state) {
+          if (state is LoadingChooseRideMakesState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseRideMakesState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseRideMakesState) {
+            tempCarMakesList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getRideMakesListGroup(rideMakesList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getRideMakesListGroup({required rideMakesList}) =>
       CupertinoListSection.insetGrouped(
@@ -102,51 +111,50 @@ class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
         itemBuilder: (context, index) => getRideMakesListTile(
             rideMakeName: rideMakesList[index].makeName,
             rideMakeImageUrl: rideMakesList[index].makeLogoUrl,
-          rideMakeId: rideMakesList[index].makeId,
-          index: index
-        ),
+            rideMakeId: rideMakesList[index].makeId,
+            index: index),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
         ),
-
         itemCount: rideMakesList.length,
       );
 
-  getRideMakesListTile({required rideMakeName, required rideMakeImageUrl,required index,required rideMakeId}) =>
+  getRideMakesListTile(
+          {required rideMakeName,
+          required rideMakeImageUrl,
+          required index,
+          required rideMakeId}) =>
       CupertinoListTile.notched(
-        onTap: () {
-          setState(() {
-            getIt<UserRepository>().setSelectedRideMakesIndex(index);
-            getIt<UserRepository>()
-                .setSelectedRideMakesName(rideMakeName);
-            getIt<UserRepository>()
-                .setSelectedRideMakesId(rideMakeId);
+          onTap: () {
+            setState(() {
+              getIt<UserRepository>().setSelectedRideMakesIndex(index);
+              getIt<UserRepository>().setSelectedRideMakesName(rideMakeName);
+              getIt<UserRepository>().setSelectedRideMakesId(rideMakeId);
 
-            Navigator.pop(context,rideMakeName);
-          });
-        },
-        backgroundColor: Colors.white,
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(30.w),
-          child: CachedNetworkImage(
-            imageUrl: rideMakeImageUrl,
+              Navigator.pop(context, rideMakeName);
+            });
+          },
+          backgroundColor: Colors.white,
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(30.w),
+            child: CachedNetworkImage(
+              imageUrl: rideMakeImageUrl,
+            ),
           ),
-        ),
-        title: AppText(
-          text: rideMakeName,
-          fontSize: fontSize,
-        ),
-        trailing: rideMakeName == getIt<UserRepository>().getSelectedRideMakes
-            ? Icon(
-          Icons.check,
-          color: Theme.of(context).primaryColor,
-        )
-            : Container()
-      );
+          title: AppText(
+            text: rideMakeName,
+            fontSize: fontSize,
+          ),
+          trailing: rideMakeName == getIt<UserRepository>().getSelectedRideMakes
+              ? Icon(
+                  Icons.check,
+                  color: Theme.of(context).primaryColor,
+                )
+              : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin: EdgeInsets.all(20.w),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -159,22 +167,14 @@ class _ChooseRideMakesScreenState extends State<ChooseRideMakesScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempCarMakesList) {
-                    if (element.makeName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempCarMakesList = temp;
-                  } else {
-                    tempCarMakesList = carMakesList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context
+                    .read<ChooseRideMakesCubit>()
+                    .searchInRideMakesListView(
+                     rideId: getIt<UserRepository>().getSelectedRideTypeId,
+                      text: text,
+                      responseList: tempCarMakesList,
+                    );
               },
             ),
           )

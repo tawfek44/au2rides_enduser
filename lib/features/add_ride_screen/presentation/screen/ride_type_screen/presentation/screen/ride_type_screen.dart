@@ -22,16 +22,15 @@ class ChooseRideTypeScreen extends StatefulWidget {
 }
 
 class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
-  var carTypeList ;
-  var tempCarTypeList;
+  var carTypeList;
 
+  var tempCarTypeList=[];
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       carTypeList = await context.read<ChooseRideTypeCubit>().getRideTypes();
-      tempCarTypeList = carTypeList;
     });
     super.initState();
   }
@@ -53,39 +52,44 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseRideTypeCubit, ChooseRideTypeState>(
-          builder: (context, state) {
-            if (state is LoadingChooseRideTypeState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseRideTypeState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseRideTypeState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getCarTypeListGroup(carTypesList: tempCarTypeList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: Column(
+          children: [
+            getSearchBar(),
+            getRideTypeList(),
+          ],
         ),
       ),
     );
   }
+  getRideTypeList() => BlocBuilder<ChooseRideTypeCubit, ChooseRideTypeState>(
+        builder: (context, state) {
+          if (state is LoadingChooseRideTypeState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseRideTypeState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseRideTypeState) {
+            tempCarTypeList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getCarTypeListGroup(carTypesList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getCarTypeListGroup({required carTypesList}) =>
       CupertinoListSection.insetGrouped(
@@ -99,11 +103,10 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getCarTypeListTile(
-          rideTypeId: carTypesList[index].rideTypeId,
+            rideTypeId: carTypesList[index].rideTypeId,
             rideType: carTypesList[index].rideTypeName,
             rideTypeImageUrl: carTypesList[index].rideTypeLogoUrl,
-          index: index
-        ),
+            index: index),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
@@ -111,40 +114,41 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
         itemCount: carTypesList.length,
       );
 
-  getCarTypeListTile({required rideType, required rideTypeImageUrl,required index,required rideTypeId}) =>
+  getCarTypeListTile(
+          {required rideType,
+          required rideTypeImageUrl,
+          required index,
+          required rideTypeId}) =>
       CupertinoListTile.notched(
-        onTap: () {
-          setState(() {
-            getIt<UserRepository>().setSelectedRideTypeIndex(index);
-            getIt<UserRepository>()
-                .setSelectedRideType(rideType);
-            getIt<UserRepository>()
-                .setSelectedRideTypeId(rideTypeId);
+          onTap: () {
+            setState(() {
+              getIt<UserRepository>().setSelectedRideTypeIndex(index);
+              getIt<UserRepository>().setSelectedRideType(rideType);
+              getIt<UserRepository>().setSelectedRideTypeId(rideTypeId);
 
-            Navigator.pop(context,rideType);
-          });
-        },
-        backgroundColor: Colors.white,
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(30.w),
-          child: CachedNetworkImage(
-            imageUrl: rideTypeImageUrl,
+              Navigator.pop(context, rideType);
+            });
+          },
+          backgroundColor: Colors.white,
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(30.w),
+            child: CachedNetworkImage(
+              imageUrl: rideTypeImageUrl,
+            ),
           ),
-        ),
-        title: AppText(
-          text: rideType,
-          fontSize: fontSize,
-        ),
-        trailing: rideType == getIt<UserRepository>().getSelectedRideType
-            ? Icon(
-          Icons.check,
-          color: Theme.of(context).primaryColor,
-        )
-            : Container()
-      );
+          title: AppText(
+            text: rideType,
+            fontSize: fontSize,
+          ),
+          trailing: rideType == getIt<UserRepository>().getSelectedRideType
+              ? Icon(
+                  Icons.check,
+                  color: Theme.of(context).primaryColor,
+                )
+              : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin: EdgeInsets.all(10.w),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -157,22 +161,11 @@ class _ChooseRideTypeScreenState extends State<ChooseRideTypeScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempCarTypeList) {
-                    if (element.rideTypeName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempCarTypeList = temp;
-                  } else {
-                    tempCarTypeList = carTypeList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<ChooseRideTypeCubit>().search(
+                  textValueFromSearchBar: text,
+                  responseList: tempCarTypeList,
+                );
               },
             ),
           )

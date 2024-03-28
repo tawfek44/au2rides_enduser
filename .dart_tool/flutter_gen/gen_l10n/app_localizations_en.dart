@@ -32,7 +32,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get date => 'Date';
 
   @override
-  String get type => 'Type';
+  String get type => 'Ride type';
 
   @override
   String get acquisitionType => 'Acquisition Type';

@@ -16,20 +16,22 @@ class ChooseFuelConsumptionUnitsScreen extends StatefulWidget {
   const ChooseFuelConsumptionUnitsScreen({super.key});
 
   @override
-  State<ChooseFuelConsumptionUnitsScreen> createState() => _ChooseFuelConsumptionUnitsScreenState();
+  State<ChooseFuelConsumptionUnitsScreen> createState() =>
+      _ChooseFuelConsumptionUnitsScreenState();
 }
 
-class _ChooseFuelConsumptionUnitsScreenState extends State<ChooseFuelConsumptionUnitsScreen> {
+class _ChooseFuelConsumptionUnitsScreenState
+    extends State<ChooseFuelConsumptionUnitsScreen> {
   var fuelConsumptionUnitsList = [];
   var tempFuelConsumptionUnitsList = [];
-
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      fuelConsumptionUnitsList = await context.read<ChooseFuelConsumptionUnitsCubit>().getFuelConsumptionUnits();
-      tempFuelConsumptionUnitsList = fuelConsumptionUnitsList;
+      fuelConsumptionUnitsList = await context
+          .read<ChooseFuelConsumptionUnitsCubit>()
+          .getFuelConsumptionUnits();
     });
     super.initState();
   }
@@ -51,87 +53,101 @@ class _ChooseFuelConsumptionUnitsScreenState extends State<ChooseFuelConsumption
             ),
           ),
         ),
-        body: BlocBuilder<ChooseFuelConsumptionUnitsCubit, ChooseFuelConsumptionUnitsState>(
-          builder: (context, state) {
-            if (state is LoadingChooseFuelConsumptionUnitsState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseFuelConsumptionUnitsState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseFuelConsumptionUnitsState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getFuelConsumptionUnitsListGroup(fuelConsumptionUnitsList: tempFuelConsumptionUnitsList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: Column(
+          children: [
+            getSearchBar(),
+            getFuelConsumptionListView(),
+          ],
         ),
       ),
     );
   }
 
+  getFuelConsumptionListView() => BlocBuilder<ChooseFuelConsumptionUnitsCubit,
+          ChooseFuelConsumptionUnitsState>(
+        builder: (context, state) {
+          if (state is LoadingChooseFuelConsumptionUnitsState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseFuelConsumptionUnitsState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseFuelConsumptionUnitsState) {
+            tempFuelConsumptionUnitsList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getFuelConsumptionUnitsListGroup(
+                        fuelConsumptionUnitsList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
+
   getFuelConsumptionUnitsListGroup({required fuelConsumptionUnitsList}) =>
       CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
         children: [
-          getFuelConsumptionUnitsList(fuelConsumptionUnitsList: fuelConsumptionUnitsList),
+          getFuelConsumptionUnitsList(
+              fuelConsumptionUnitsList: fuelConsumptionUnitsList),
         ],
       );
 
-  getFuelConsumptionUnitsList({required fuelConsumptionUnitsList}) => ListView.separated(
+  getFuelConsumptionUnitsList({required fuelConsumptionUnitsList}) =>
+      ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getFuelConsumptionUnitsListTile(
-          fuelType: fuelConsumptionUnitsList[index].fuelConsumptionUnitTypeName,
-          fuelConsumptionUnitId: fuelConsumptionUnitsList[index].fuelConsumptionUnitTypeId
-        ),
+            fuelType:
+                fuelConsumptionUnitsList[index].fuelConsumptionUnitTypeName,
+            fuelConsumptionUnitId:
+                fuelConsumptionUnitsList[index].fuelConsumptionUnitTypeId),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
         ),
-
         itemCount: fuelConsumptionUnitsList.length,
       );
-  getFuelConsumptionUnitsListTile({required fuelType,required fuelConsumptionUnitId}) =>
-      CupertinoListTile.notched(
-        onTap: () {
-          setState(() {
-            getIt<UserRepository>().setSelectedFuelConsumptionUnitsId(fuelConsumptionUnitId);
-            getIt<UserRepository>().setSelectedFuelConsumptionUnits(fuelType);
 
-            Navigator.pop(context,fuelType);
-          });
-        },
-        backgroundColor: Colors.white,
-        title: AppText(
-          text: fuelType,
-          fontSize: fontSize,
-        ),
-        trailing: fuelType == getIt<UserRepository>().getSelectedFuelConsumptionUnitName
-            ? Icon(
-          Icons.check,
-          color: Theme.of(context).primaryColor,
-        )
-            : Container()
-      );
+  getFuelConsumptionUnitsListTile(
+          {required fuelType, required fuelConsumptionUnitId}) =>
+      CupertinoListTile.notched(
+          onTap: () {
+            setState(() {
+              getIt<UserRepository>()
+                  .setSelectedFuelConsumptionUnitsId(fuelConsumptionUnitId);
+              getIt<UserRepository>().setSelectedFuelConsumptionUnits(fuelType);
+
+              Navigator.pop(context, fuelType);
+            });
+          },
+          backgroundColor: Colors.white,
+          title: AppText(
+            text: fuelType,
+            fontSize: fontSize,
+          ),
+          trailing: fuelType ==
+                  getIt<UserRepository>().getSelectedFuelConsumptionUnitName
+              ? Icon(
+                  Icons.check,
+                  color: Theme.of(context).primaryColor,
+                )
+              : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin:
+            EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h, bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -144,22 +160,11 @@ class _ChooseFuelConsumptionUnitsScreenState extends State<ChooseFuelConsumption
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempFuelConsumptionUnitsList) {
-                    if (element.fuelConsumptionUnitTypeName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempFuelConsumptionUnitsList = temp;
-                  } else {
-                    tempFuelConsumptionUnitsList = fuelConsumptionUnitsList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<ChooseFuelConsumptionUnitsCubit>().search(
+                      textToSearch: text,
+                      responseList: tempFuelConsumptionUnitsList,
+                    );
               },
             ),
           )

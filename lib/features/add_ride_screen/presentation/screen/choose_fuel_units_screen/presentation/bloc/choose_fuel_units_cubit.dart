@@ -38,4 +38,28 @@ class ChooseFuelUnitsCubit extends Cubit<ChooseFuelUnitsState> {
       emit(ChooseFuelUnitsState.error(e));
     }
   }
+
+  search({required textToSearch,required responseList}) async {
+    try{
+      var temp = [];
+      if (textToSearch.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.fuelUnitName.toLowerCase().contains(textToSearch)) {
+            temp.add(element);
+          }
+        }
+        if(temp.isNotEmpty){
+          emit(ChooseFuelUnitsState.loaded(temp));
+        }
+        else{
+          emit(ChooseFuelUnitsState.loaded(responseList));
+        }
+      }
+      else{
+        await getFuelUnits();
+      }
+    }catch(e){
+      emit(ChooseFuelUnitsState.error(e));
+    }
+  }
 }

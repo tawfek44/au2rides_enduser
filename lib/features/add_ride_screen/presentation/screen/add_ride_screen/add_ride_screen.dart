@@ -33,13 +33,27 @@ class AddRideScreen extends StatefulWidget {
 class _AddRideScreenState extends State<AddRideScreen> {
   var image;
   PlatformFile? selectedImage;
-  var manufactureYear = DateTime.now().year.toString();
+  var manufactureYear = DateTime
+      .now()
+      .year
+      .toString();
   DateTime initialDate = DateTime.now();
   String rideName = "";
   String rideVINNumber = "";
   String plateNumberText = "";
   int odometerReading = 0;
   var fileName = "";
+  String rideTypeName = "",
+      rideMakeText = "",
+      rideModel = "",
+      rideTrim = "",
+      consumptionUnit = "",
+      fuelType = "",
+      fuelUnit = "",
+      unit = "",
+      currency = "",
+      country = "";
+
   TextEditingController notesController = TextEditingController();
 
   @override
@@ -52,7 +66,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection:
-          isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+      isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -75,24 +89,25 @@ class _AddRideScreenState extends State<AddRideScreen> {
             if (state is LoadingAddRideState) {
               return Center(
                 child: LoadingAnimationWidget.discreteCircle(
-                    color: Theme.of(context).primaryColor, size: 50.w),
+                    color: Theme
+                        .of(context)
+                        .primaryColor, size: 50.w),
               );
             } else {
-              if(state is LoadedAddRideState){
+              if (state is LoadedAddRideState) {
                 WidgetsBinding.instance.addPostFrameCallback((_) async {
                   var snackBar = AppSnackBar(
-                      text: S.current.rideAddedSuccessfully, isSuccess: true, maxLines: 10);
+                      text: S.current.rideAddedSuccessfully,
+                      isSuccess: true,
+                      maxLines: 10);
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 });
-
-              }
-              else if(state is ErrorAddRideState){
+              } else if (state is ErrorAddRideState) {
                 WidgetsBinding.instance.addPostFrameCallback((_) async {
                   var snackBar = AppSnackBar(
                       text: state.e.toString(), isSuccess: false, maxLines: 10);
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 });
-
               }
               return addRideScreen();
             }
@@ -102,7 +117,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
     );
   }
 
-  Widget addRideScreen() => SingleChildScrollView(
+  Widget addRideScreen() =>
+      SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
           child: Column(
@@ -123,13 +139,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ),
       );
 
-  Widget getRegionalDetailsSection() => buildSection(
+  Widget getRegionalDetailsSection() =>
+      buildSection(
         context,
         [
           TextFieldDto(
             groupName: S.current.regionalDetails,
             fieldName: S.current.country,
-            info: getIt<UserRepository>().getSelectedCountry,
+            info: country,
             destination: Routes.countriesScreenRoute,
             leadingIcon: CupertinoIcons.globe,
             fieldType: FieldType.listTile,
@@ -138,7 +155,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.regionalDetails,
             fieldName: S.current.currency,
-            info: getIt<UserRepository>().getSelectedCurrencyName,
+            info: currency,
             destination: Routes.chooseCurrencyScreen,
             leadingIcon: CupertinoIcons.money_dollar,
             fieldType: FieldType.listTile,
@@ -147,13 +164,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ],
       );
 
-  Widget getFuelSection() => buildSection(
+  Widget getFuelSection() =>
+      buildSection(
         context,
         [
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.fuelType,
-            info: getIt<UserRepository>().getSelectedFuelTypeName,
+            info: fuelType,
             destination: Routes.chooseFuelTypesScreen,
             leadingIcon: Icons.local_gas_station_outlined,
             fieldType: FieldType.listTile,
@@ -162,7 +180,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.fuelUnits,
-            info: getIt<UserRepository>().getSelectedFuelUnitName,
+            info: fuelUnit,
             destination: Routes.chooseFuelUnitsScreen,
             leadingIcon: CupertinoIcons.speedometer,
             fieldType: FieldType.listTile,
@@ -171,7 +189,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           TextFieldDto(
             groupName: S.current.fuel,
             fieldName: S.current.consumption,
-            info: getIt<UserRepository>().getSelectedFuelConsumptionUnitName,
+            info: consumptionUnit,
             leadingIcon: CupertinoIcons.speedometer,
             destination: Routes.chooseRideFuelConsumptionUnitsScreen,
             fieldType: FieldType.listTile,
@@ -180,13 +198,14 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ],
       );
 
-  Widget getMetricsSection() => buildSection(
+  Widget getMetricsSection() =>
+      buildSection(
         context,
         [
           TextFieldDto(
             groupName: S.current.metrics,
             fieldName: S.current.unit,
-            info: getIt<UserRepository>().getSelectedMetricUnitName,
+            info: unit,
             destination: Routes.chooseMetricUnitsScreen,
             leadingIcon: CupertinoIcons.waveform,
             fieldType: FieldType.listTile,
@@ -210,16 +229,17 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ],
       );
 
-  Widget getManufacturerDetailsSection() => Directionality(
+  Widget getManufacturerDetailsSection() =>
+      Directionality(
         textDirection:
-            isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
+        isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
         child: buildSection(
           context,
           [
             TextFieldDto(
                 groupName: S.current.manufacturingDetails,
                 fieldName: S.current.type,
-                info: getIt<UserRepository>().getSelectedRideType,
+                info: rideTypeName,
                 leadingIcon: CupertinoIcons.equal_circle,
                 fieldType: FieldType.listTile,
                 onChanged: (text) {},
@@ -238,17 +258,17 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.makeText,
-              info: getIt<UserRepository>().getSelectedRideMakes,
+              info: rideMakeText,
               fieldType: FieldType.listTile,
               leadingIcon: CupertinoIcons.car,
               destination: Routes.chooseRideMakesScreen,
-              fieldNameEnum: FieldNameEnum.rideName,
+              fieldNameEnum: FieldNameEnum.rideMake,
               onChanged: (text) {},
             ),
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.modelText,
-              info: getIt<UserRepository>().getSelectedRideModelName,
+              info: rideModel,
               destination: Routes.chooseRideModelsScreen,
               leadingIcon: CupertinoIcons.car_detailed,
               fieldType: FieldType.listTile,
@@ -258,7 +278,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
             TextFieldDto(
               groupName: S.current.manufacturingDetails,
               fieldName: S.current.trimText,
-              info: getIt<UserRepository>().getSelectedRideModelTrimsName,
+              info: rideTrim,
               fieldType: FieldType.listTile,
               leadingIcon: CupertinoIcons.car,
               fieldNameEnum: FieldNameEnum.rideCategory,
@@ -269,7 +289,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ),
       );
 
-  Widget getRegistrationDetailsSection() => buildSection(context, [
+  Widget getRegistrationDetailsSection() =>
+      buildSection(context, [
         TextFieldDto(
           groupName: S.current.registrationDetails,
           fieldName: S.current.registrationDetails,
@@ -290,7 +311,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
         ),
       ]);
 
-  Widget getNameSection() => buildSection(context, [
+  Widget getNameSection() =>
+      buildSection(context, [
         TextFieldDto(
             groupName: S.current.name,
             fieldName: S.current.name,
@@ -346,8 +368,39 @@ class _AddRideScreenState extends State<AddRideScreen> {
           onTap: () async {
             if (fieldDto.destination != null) {
               var value =
-                  await NamedNavigatorImpl().push(fieldDto.destination!);
+              await NamedNavigatorImpl().push(fieldDto.destination!);
               if (value != null) {
+                if (fieldDto.fieldName == S.current.type) {
+                  rideTypeName = value;
+                }
+                else if (fieldDto.fieldName == S.current.makeText) {
+                  rideMakeText = value;
+                }
+                else if (fieldDto.fieldName == S.current.modelText) {
+                  rideModel = value;
+                }
+                else if (fieldDto.fieldName == S.current.trimText) {
+                  rideTrim = value;
+                }
+                else if(fieldDto.fieldName == S.current.unit){
+                  unit = value;
+                }
+                else if(fieldDto.fieldName == S.current.fuelType){
+                  fuelType = value;
+                }
+                else if(fieldDto.fieldName == S.current.fuelUnits){
+                  fuelUnit = value;
+                }
+                else if(fieldDto.fieldName == S.current.consumption){
+                  consumptionUnit = value;
+                }
+                else if(fieldDto.fieldName == S.current.country){
+                  country = value[0];
+                }
+                else if(fieldDto.fieldName == S.current.currency){
+                  currency = value;
+                }
+
                 setState(() {
                   fieldDto.onChanged(value);
                 });
@@ -376,7 +429,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
               ),
           leading: Icon(
             fieldDto.leadingIcon,
-            color: Theme.of(context).primaryColor,
+            color: Theme
+                .of(context)
+                .primaryColor,
           ),
         ),
       );
@@ -384,28 +439,29 @@ class _AddRideScreenState extends State<AddRideScreen> {
   showDateDialog() async {
     return showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: AppText(
-          text: S.current.selectYear,
-          fontSize: fontSize,
-        ),
-        content: SizedBox(
-          height: 300.h,
-          width: 300.w,
-          child: YearPicker(
-            initialDate: initialDate,
-            firstDate: DateTime(1900),
-            lastDate: DateTime(3000),
-            selectedDate: DateTime.now(),
-            onChanged: (DateTime value) {
-              setState(() {
-                manufactureYear = value.toString().split("-")[0];
-              });
-              Navigator.pop(context);
-            },
+      builder: (context) =>
+          AlertDialog(
+            title: AppText(
+              text: S.current.selectYear,
+              fontSize: fontSize,
+            ),
+            content: SizedBox(
+              height: 300.h,
+              width: 300.w,
+              child: YearPicker(
+                initialDate: initialDate,
+                firstDate: DateTime(1900),
+                lastDate: DateTime(3000),
+                selectedDate: DateTime.now(),
+                onChanged: (DateTime value) {
+                  setState(() {
+                    manufactureYear = value.toString().split("-")[0];
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 
@@ -430,7 +486,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
           ),
       leading: Icon(
         fieldDto.leadingIcon,
-        color: Theme.of(context).primaryColor,
+        color: Theme
+            .of(context)
+            .primaryColor,
       ),
     );
   }
@@ -439,12 +497,16 @@ class _AddRideScreenState extends State<AddRideScreen> {
     return CupertinoListTile(
       leading: Icon(
         fieldDto.leadingIcon,
-        color: Theme.of(context).primaryColor,
+        color: Theme
+            .of(context)
+            .primaryColor,
       ),
       trailing: fieldDto.trailingWidget ??
           Icon(
             fieldDto.trailingIcon,
-            color: Theme.of(context).primaryColor,
+            color: Theme
+                .of(context)
+                .primaryColor,
           ),
       title: CupertinoTextField(
         keyboardType: fieldDto.inputType,
@@ -478,7 +540,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
       width: double.infinity,
       child: Card(
         shape:
-            BeveledRectangleBorder(borderRadius: BorderRadius.circular(corner)),
+        BeveledRectangleBorder(borderRadius: BorderRadius.circular(corner)),
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Stack(
@@ -536,11 +598,13 @@ class _AddRideScreenState extends State<AddRideScreen> {
       print(e);
     }
   }
+
   Future<ImageSource?> showImageSource({required context}) {
     if (Platform.isAndroid) {
       return showModalBottomSheet(
           context: context,
-          builder: (BuildContext context) => Wrap(
+          builder: (BuildContext context) =>
+              Wrap(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.camera_alt),
@@ -563,7 +627,8 @@ class _AddRideScreenState extends State<AddRideScreen> {
     } else {
       return showCupertinoModalPopup<ImageSource>(
           context: context,
-          builder: (BuildContext context) => CupertinoActionSheet(
+          builder: (BuildContext context) =>
+              CupertinoActionSheet(
                 actions: [
                   CupertinoActionSheetAction(
                     onPressed: () =>
@@ -593,7 +658,9 @@ class _AddRideScreenState extends State<AddRideScreen> {
         addRideBody: getAddRideBodyObject(
           registeredRideId: rideId,
           rideName: rideName,
-          rideImageUrl: imagePath != ""?azureImagesUrl + rideId + p.extension(imagePath):"",
+          rideImageUrl: imagePath != ""
+              ? azureImagesUrl + rideId + p.extension(imagePath)
+              : "",
           rideVinNumber: rideVINNumber,
           rideTypeId: getIt<UserRepository>().getSelectedRideTypeId,
           manufacturingYear: int.parse(manufactureYear),
@@ -605,7 +672,7 @@ class _AddRideScreenState extends State<AddRideScreen> {
           fuelTypeId: getIt<UserRepository>().getSelectedFuelTypeId,
           fuelUnitId: getIt<UserRepository>().getSelectedFuelUnitId,
           fuelConsumptionUnitTypeId:
-              getIt<UserRepository>().getSelectedFuelConsumptionTypeId,
+          getIt<UserRepository>().getSelectedFuelConsumptionTypeId,
           countryId: getIt<UserRepository>().getSelectedCountryId,
           plateNumber: plateNumberText,
           currencyId: getIt<UserRepository>().getSelectedCountryId,
@@ -686,4 +753,11 @@ class TextFieldDto {
 
 enum FieldType { text, date, listTile }
 
-enum FieldNameEnum { rideType, rideYear, rideName, rideModel, rideCategory }
+enum FieldNameEnum {
+  rideType,
+  rideYear,
+  rideName,
+  rideModel,
+  rideCategory,
+  rideMake
+}

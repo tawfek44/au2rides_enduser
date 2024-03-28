@@ -9,7 +9,9 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../../../core/dependancy_injection/injection.dart';
 import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../core/repositories/user_repository.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../data/models/choose_ride_models_model.dart';
 import '../../domain/use_cases/choose_ride_models_usecase.dart';
@@ -28,26 +30,44 @@ class ChooseRideModelsCubit extends Cubit<ChooseRideModelsState> {
     try {
       emit(const ChooseRideModelsState.loading());
       final response = await chooseRideModelsUseCase(param: rideMakeId);
-      if(!(response is Failure)) {
+      if (!(response is Failure)) {
         var result = response.data
             .cast<Map<String, dynamic>>()
             .map((e) => ChooseRideModelsModel.fromJson(e))
             .toList();
         emit(ChooseRideModelsState.loaded(result));
         return result;
-    }
-
-      else{
-        if(response.code == "connectionError")
-          {
-            emit(ChooseRideModelsState.error(S.current.connectivityError));
-          }
-        else{
+      } else {
+        if (response.code == "connectionError") {
+          emit(ChooseRideModelsState.error(S.current.connectivityError));
+        } else {
           emit(ChooseRideModelsState.error(response.message.toString()));
-
         }
       }
+    } catch (e) {
+      emit(ChooseRideModelsState.error(e));
+    }
+  }
 
+  search({required textToSearch, required responseList}) async {
+    emit(const ChooseRideModelsState.loading());
+    try {
+      var temp = [];
+      if (textToSearch.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.rideModelName.toLowerCase().contains(textToSearch)) {
+            temp.add(element);
+          }
+        }
+        if (temp.isNotEmpty) {
+          emit(ChooseRideModelsState.loaded(temp));
+        } else {
+          emit(ChooseRideModelsState.loaded(responseList));
+        }
+      } else {
+        await getRideModels(
+            rideMakeId: getIt<UserRepository>().getSelectedRideMakeId);
+      }
     } catch (e) {
       emit(ChooseRideModelsState.error(e));
     }

@@ -47,4 +47,29 @@ class ChooseRideMakesCubit extends Cubit<ChooseRideMakesState> {
       emit(ChooseRideMakesState.error(e));
     }
   }
+  searchInRideMakesListView({required text,required responseList,required rideId}) async {
+    try{
+      var temp = [];
+      emit(const ChooseRideMakesState.loading());
+      if (text.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.makeName.toLowerCase().contains(text)) {
+            temp.add(element);
+          }
+        }
+        if(temp.isEmpty){
+          await getRideMakes(rideTypeId: rideId);
+        }
+        else{
+          emit(ChooseRideMakesState.loaded(temp));
+        }
+      }
+      else{
+        await getRideMakes(rideTypeId: rideId);
+      }
+    }catch(e){
+      emit(ChooseRideMakesState.error(e));
+    }
+
+  }
 }

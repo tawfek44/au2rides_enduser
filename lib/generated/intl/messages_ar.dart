@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereIsAnErrorInGender": MessageLookupByLibrary.simpleMessage(
             "هناك خطأ ما من فضلك حاول لاحقا مرة أخرى"),
         "trimText": MessageLookupByLibrary.simpleMessage("الفئة"),
-        "type": MessageLookupByLibrary.simpleMessage("النوع"),
+        "type": MessageLookupByLibrary.simpleMessage("نوع المركبة"),
         "unit": MessageLookupByLibrary.simpleMessage("الوحدة"),
         "userDisabled": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الخاص بك قد تم تعطيله."),

@@ -29,9 +29,7 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      currenciesList =
-          await context.read<ChooseCurrencyCubit>().getCurrencies();
-      tempCurrenciesList = currenciesList;
+      await context.read<ChooseCurrencyCubit>().getCurrencies();
     });
     super.initState();
   }
@@ -53,40 +51,45 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseCurrencyCubit, ChooseCurrencyState>(
-          builder: (context, state) {
-            if (state is LoadingChooseCurrencyState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseCurrencyState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseCurrencyState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getCurrenciesListGroup(
-                          currenciesList: tempCurrenciesList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [getSearchBar(), getCurrenciesListView()],
         ),
       ),
     );
   }
+
+  getCurrenciesListView() =>
+      BlocBuilder<ChooseCurrencyCubit, ChooseCurrencyState>(
+        builder: (context, state) {
+          if (state is LoadingChooseCurrencyState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseCurrencyState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseCurrencyState) {
+            tempCurrenciesList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getCurrenciesListGroup(currenciesList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getCurrenciesListGroup({required currenciesList}) =>
       CupertinoListSection.insetGrouped(
@@ -143,7 +146,8 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
               : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin:
+            EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h, bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -156,22 +160,11 @@ class _ChooseCurrencyScreenState extends State<ChooseCurrencyScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempCurrenciesList) {
-                    if (element.currencyName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempCurrenciesList = temp;
-                  } else {
-                    tempCurrenciesList = currenciesList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<ChooseCurrencyCubit>().search(
+                      textToSearch: text,
+                      responseList: tempCurrenciesList,
+                    );
               },
             ),
           )

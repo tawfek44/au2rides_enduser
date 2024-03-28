@@ -3,6 +3,7 @@ import 'package:au2rides/core/widgets/app_circular_indicator.dart';
 import 'package:au2rides/core/widgets/app_text.dart';
 import 'package:au2rides/features/countries_screen/presentation/bloc/get_countries_cubit/get_countries_cubit.dart';
 import 'package:au2rides/features/download_screen/data/models/country/country_model.dart';
+import 'package:au2rides/features/download_screen/presentation/bloc/country_cubit/country_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,14 +34,11 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      countriesList = await context
-          .read<GetCountriesCubit>()
-          .getCountriesLocalDatabase(
-              tableName: TableNames.countryTableName,
-              languageId:
-                  getIt<UserRepository>().userLanguage == "ar" ? arLanguageNumberCode : enLanguageNumberCode);
-      tempCountryList = countriesList;
-
+      await context.read<GetCountriesCubit>().getCountriesLocalDatabase(
+          tableName: TableNames.countryTableName,
+          languageId: getIt<UserRepository>().userLanguage == "ar"
+              ? arLanguageNumberCode
+              : enLanguageNumberCode);
     });
 
     super.initState();
@@ -51,7 +49,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return Directionality(
       textDirection:
           isArabicLocalization() ? TextDirection.rtl : TextDirection.ltr,
-
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(AppBar().preferredSize.height),
@@ -62,43 +59,59 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   fontSize: 16.sp,
                   color: AppColors.white,
                 ))),
-        body: BlocBuilder<GetCountriesCubit, GetCountiesState>(
-          builder: (context, state) {
-            if (state is GetCountiesStateLoading) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is GetCountiesStateError) {
-              return Center(child: AppText(text: state.e.toString(),fontSize: fontSize,));
-            } else if (state is GetCountiesStateLoaded) {
-              return SingleChildScrollView(
-                child: Padding(
-                    padding: EdgeInsets.all(10.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        getSearchBar(),
-                        gap(height: 10.h),
-                        getCountriesListSection()
-                      ],
-                    )),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            getSearchBar(),
+            getCountriesListView(),
+          ],
         ),
       ),
     );
   }
 
-  getCountriesListSection() => CupertinoListSection.insetGrouped(
+  getCountriesListView() {
+    return BlocBuilder<GetCountriesCubit, GetCountiesState>(
+      builder: (context, state) {
+        if (state is GetCountiesStateLoading) {
+          return const Center(
+            child: AppCircularProgressIndicator(),
+          );
+        } else if (state is GetCountiesStateError) {
+          return Center(
+              child: AppText(
+            text: state.e.toString(),
+            fontSize: fontSize,
+          ));
+        } else if (state is GetCountiesStateLoaded) {
+          tempCountryList = state.response;
+          return SingleChildScrollView(
+            child: Padding(
+                padding: EdgeInsets.all(10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    getCountriesListSection(countriesList: state.response)
+                  ],
+                )),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+
+  getCountriesListSection({required countriesList}) =>
+      CupertinoListSection.insetGrouped(
         margin: EdgeInsets.zero,
-        children: [getListView(countries: tempCountryList)],
+        children: [getListView(countries: countriesList)],
       );
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin:
+            EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h, bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -112,22 +125,11 @@ class _CountriesScreenState extends State<CountriesScreen> {
               controller: countriesSearchText,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempCountryList) {
-                    if (element.countryName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempCountryList = temp;
-                  } else {
-                    tempCountryList = countriesList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<GetCountriesCubit>().search(
+                      textToSearch: text,
+                      responseList: tempCountryList,
+                    );
               },
             ),
           )
@@ -143,19 +145,23 @@ class _CountriesScreenState extends State<CountriesScreen> {
               getIt<UserRepository>().setSelectedCountryIndex(index);
               getIt<UserRepository>()
                   .setSelectedCountry(countries[index].countryName);
-              getIt<UserRepository>()
-                  .setSelectedCountryCallingCode(countries[index].countryCallingCode);
+              getIt<UserRepository>().setSelectedCountryCallingCode(
+                  countries[index].countryCallingCode);
               getIt<UserRepository>()
                   .setSelectedCountryId(countries[index].countryId);
 
-              Navigator.pop(context,[countries[index].countryName,countries[index].countryCallingCode]);
+              Navigator.pop(context, [
+                countries[index].countryName,
+                countries[index].countryCallingCode
+              ]);
             });
           },
           title: AppText(
             text: countries[index].countryName,
             fontSize: fontSize,
           ),
-          trailing: countries[index].countryName == getIt<UserRepository>().getSelectedCountry
+          trailing: countries[index].countryName ==
+                  getIt<UserRepository>().getSelectedCountry
               ? Icon(
                   Icons.check,
                   color: Theme.of(context).primaryColor,

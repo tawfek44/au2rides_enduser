@@ -18,24 +18,23 @@ class ChooseRideModelTrimScreen extends StatefulWidget {
   const ChooseRideModelTrimScreen({super.key});
 
   @override
-  State<ChooseRideModelTrimScreen> createState() => _ChooseRideModelTrimScreenState();
+  State<ChooseRideModelTrimScreen> createState() =>
+      _ChooseRideModelTrimScreenState();
 }
 
 class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
-  var rideModelTrimsList ;
-  var tempRideModelTrimsList ;
-
+  var rideModelTrimsList = [];
+  var tempRideModelTrimsList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      rideModelTrimsList = await context.read<ChooseRideModelTrimCubit>().getRideModelTrims(rideMakesModelId: getIt<UserRepository>().getSelectedRideModelId);
-      tempRideModelTrimsList = rideModelTrimsList;
+      await context.read<ChooseRideModelTrimCubit>().getRideModelTrims(
+          rideMakesModelId: getIt<UserRepository>().getSelectedRideModelId);
     });
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,39 +53,46 @@ class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<ChooseRideModelTrimCubit, ChooseRideModelTrimState>(
-          builder: (context, state) {
-            if (state is LoadingChooseRideModelTrimState) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
-              );
-            } else if (state is ErrorChooseRideModelTrimState) {
-              return Center(
-                  child: AppText(
-                text: state.e.toString(),
-                fontSize: fontSize,
-              ));
-            } else if (state is LoadedChooseRideModelTrimState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(15.w),
-                  child: Column(
-                    children: [
-                      getSearchBar(),
-                      gap(height: 15.h),
-                      getRideModelTrimsListGroup(rideModelTrimsList: tempRideModelTrimsList),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
+        body: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: [getSearchBar(), getModelTrimListView()],
         ),
       ),
     );
   }
+
+  getModelTrimListView() =>
+      BlocBuilder<ChooseRideModelTrimCubit, ChooseRideModelTrimState>(
+        builder: (context, state) {
+          if (state is LoadingChooseRideModelTrimState) {
+            return const Center(
+              child: AppCircularProgressIndicator(),
+            );
+          } else if (state is ErrorChooseRideModelTrimState) {
+            return Center(
+                child: AppText(
+              text: state.e.toString(),
+              fontSize: fontSize,
+            ));
+          } else if (state is LoadedChooseRideModelTrimState) {
+            tempRideModelTrimsList = state.response;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(15.w),
+                child: Column(
+                  children: [
+                    getRideModelTrimsListGroup(
+                        rideModelTrimsList: state.response),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   getRideModelTrimsListGroup({required rideModelTrimsList}) =>
       CupertinoListSection.insetGrouped(
@@ -101,45 +107,44 @@ class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => getRideModelTrimsListTile(
             rideModelTrimName: rideMakesList[index].rideTrimName,
-          rideTrimId: rideMakesList[index].rideTrimId,
-          index: index
-        ),
+            rideTrimId: rideMakesList[index].rideTrimId,
+            index: index),
         separatorBuilder: (context, index) => Divider(
           height: 0,
           indent: 55.w,
         ),
-
         itemCount: rideMakesList.length,
       );
 
-  getRideModelTrimsListTile({required rideModelTrimName, required index,required rideTrimId}) =>
+  getRideModelTrimsListTile(
+          {required rideModelTrimName, required index, required rideTrimId}) =>
       CupertinoListTile.notched(
-        onTap: () {
-          setState(() {
-            getIt<UserRepository>().setSelectedRideModelTrimsIndex(index);
-            getIt<UserRepository>()
-                .setSelectedRideModelTrimsName(rideModelTrimName);
-            getIt<UserRepository>()
-                .setSelectedRideModelTrimId(rideTrimId);
+          onTap: () {
+            setState(() {
+              getIt<UserRepository>().setSelectedRideModelTrimsIndex(index);
+              getIt<UserRepository>()
+                  .setSelectedRideModelTrimsName(rideModelTrimName);
+              getIt<UserRepository>().setSelectedRideModelTrimId(rideTrimId);
 
-            Navigator.pop(context,rideModelTrimName);
-          });
-        },
-        backgroundColor: Colors.white,
-        title: AppText(
-          text: rideModelTrimName,
-          fontSize: fontSize,
-        ),
-        trailing: rideModelTrimName == getIt<UserRepository>().getSelectedRideMakes
-            ? Icon(
-          Icons.check,
-          color: Theme.of(context).primaryColor,
-        )
-            : Container()
-      );
+              Navigator.pop(context, rideModelTrimName);
+            });
+          },
+          backgroundColor: Colors.white,
+          title: AppText(
+            text: rideModelTrimName,
+            fontSize: fontSize,
+          ),
+          trailing:
+              rideModelTrimName == getIt<UserRepository>().getSelectedRideMakes
+                  ? Icon(
+                      Icons.check,
+                      color: Theme.of(context).primaryColor,
+                    )
+                  : Container());
 
   getSearchBar() => CupertinoListSection.insetGrouped(
-        margin: EdgeInsets.zero,
+        margin:
+            EdgeInsets.only(left: 15.w, right: 15.w, top: 15.h, bottom: 10.h),
         children: [
           CupertinoListTile(
             leading: const Icon(
@@ -152,22 +157,11 @@ class _ChooseRideModelTrimScreenState extends State<ChooseRideModelTrimScreen> {
               placeholder: S.current.search,
               decoration:
                   BoxDecoration(border: Border.all(style: BorderStyle.none)),
-              onChanged: (String text) {
-                var temp = [];
-                if (text.isNotEmpty) {
-                  for (var element in tempRideModelTrimsList) {
-                    if (element.rideTrimName.toLowerCase().contains(text)) {
-                      temp.add(element);
-                    }
-                  }
-                }
-                setState(() {
-                  if (temp.isNotEmpty) {
-                    tempRideModelTrimsList = temp;
-                  } else {
-                    tempRideModelTrimsList = rideModelTrimsList;
-                  }
-                });
+              onChanged: (String text) async {
+                await context.read<ChooseRideModelTrimCubit>().search(
+                      textToSearch: text,
+                      responseList: tempRideModelTrimsList,
+                    );
               },
             ),
           )

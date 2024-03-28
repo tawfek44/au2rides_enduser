@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// `Type`
+  /// `Ride type`
   String get type {
     return Intl.message(
-      'Type',
+      'Ride type',
       name: 'type',
       desc: '',
       args: [],

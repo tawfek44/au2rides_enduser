@@ -150,7 +150,7 @@ abstract class AppLocalizations {
   /// No description provided for @type.
   ///
   /// In en, this message translates to:
-  /// **'Type'**
+  /// **'Ride type'**
   String get type;
 
   /// No description provided for @acquisitionType.

@@ -1,4 +1,3 @@
-
 import 'package:au2rides/features/add_ride_screen/domain/use_cases/add_ride_usecase.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/ride_type_screen/data/data_sources/choose_ride_type_datasource.dart';
 import 'package:au2rides/features/add_ride_screen/presentation/screen/ride_type_screen/data/models/choose_ride_type_model.dart';
@@ -12,38 +11,61 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../core/error/failure.dart';
 import '../../../../../../../generated/l10n.dart';
 
-
 part 'add_ride_state.dart';
 
 part 'choose_ride_type_cubit.freezed.dart';
 
 @injectable
 class ChooseRideTypeCubit extends Cubit<ChooseRideTypeState> {
-  ChooseRideTypeCubit(this.chooseRideTypeUseCase) : super(const ChooseRideTypeState.initial());
+  ChooseRideTypeCubit(this.chooseRideTypeUseCase)
+      : super(const ChooseRideTypeState.initial());
   ChooseRideTypeUseCase chooseRideTypeUseCase;
 
   Future getRideTypes() async {
     try {
       emit(const ChooseRideTypeState.loading());
       final response = await chooseRideTypeUseCase();
-      if(!(response is Failure)) {
+      if (!(response is Failure)) {
         var result = response
             .cast<Map<String, dynamic>>()
             .map((e) => ChooseRideTypeModel.fromJson(e))
             .toList();
         emit(ChooseRideTypeState.loaded(result));
         return result;
-      }
-      else{
-        if(response.code == "connectionError") {
+      } else {
+        if (response.code == "connectionError") {
           emit(ChooseRideTypeState.error(S.current.connectivityError));
-        }
-        else{
+        } else {
           emit(ChooseRideTypeState.error(response.message.toString()));
         }
       }
     } catch (e) {
       emit(ChooseRideTypeState.error(e));
     }
+  }
+
+  Future search({required textValueFromSearchBar, required responseList}) async {
+    try{
+      var tempCarTypeList = responseList;
+      var tempList = [];
+      emit(const ChooseRideTypeState.loading());
+      if (textValueFromSearchBar.isNotEmpty) {
+        for (var element in tempCarTypeList) {
+          if (element.rideTypeName
+              .toLowerCase()
+              .contains(textValueFromSearchBar)) {
+            tempList.add(element);
+          }
+        }
+      }
+      if (tempList.isEmpty) {
+        await getRideTypes();
+      } else {
+        emit(ChooseRideTypeState.loaded(tempList));
+      }
+    }catch(e){
+      emit(ChooseRideTypeState.error(e));
+    }
+
   }
 }

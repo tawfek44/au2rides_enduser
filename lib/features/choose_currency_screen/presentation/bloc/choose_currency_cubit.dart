@@ -28,4 +28,27 @@ class ChooseCurrencyCubit extends Cubit<ChooseCurrencyState> {
       emit(ChooseCurrencyState.error(e));
     }
   }
+
+  search({required textToSearch,required responseList}) async {
+    try{
+      var temp = [];
+      if (textToSearch.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.currencyName.toLowerCase().contains(textToSearch)) {
+            temp.add(element);
+          }
+        }
+        if(temp.isNotEmpty){
+          emit(ChooseCurrencyState.loaded(temp));
+        }
+        else{
+          emit(ChooseCurrencyState.loaded(responseList));
+        }
+      }else{
+        await getCurrencies();
+      }
+    }catch(e){
+      emit(ChooseCurrencyState.error(e));
+    }
+  }
 }

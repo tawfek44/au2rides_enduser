@@ -32,7 +32,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get date => 'التاريخ';
 
   @override
-  String get type => 'النوع';
+  String get type => 'نوع المركبة';
 
   @override
   String get acquisitionType => 'نوع الإمتلاك';

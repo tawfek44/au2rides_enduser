@@ -38,4 +38,32 @@ class ChooseFuelTypesCubit extends Cubit<ChooseFuelTypesState> {
       emit(ChooseFuelTypesState.error(e));
     }
   }
+
+  search({required textToSearch,required responseList}) async {
+    try{
+      var temp = [];
+      if (textToSearch.isNotEmpty) {
+        for (var element in responseList) {
+          if (element.engineFuelTypeName.toLowerCase().contains(textToSearch)) {
+            temp.add(element);
+          }
+        }
+
+        if(temp.isNotEmpty){
+          emit(ChooseFuelTypesState.loaded(temp));
+        }
+        else{
+          emit(ChooseFuelTypesState.loaded(responseList));
+        }
+
+      }else{
+        await getFuelTypes();
+      }
+    }catch(e){
+      emit(ChooseFuelTypesState.error(e));
+    }
+
+
+
+  }
 }
